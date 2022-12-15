@@ -9,6 +9,9 @@ function connectDB() : mysqli{
 
     return $db;
 }
+
+// php -S localhost:3000
+
 // // function conectarDB() : mysqli{
 //     $usuario = 'usuario';
 //     $password = 'password';
