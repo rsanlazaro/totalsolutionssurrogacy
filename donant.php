@@ -58,10 +58,10 @@
             <a href="/" class="navbar-element">
               <p>Nosotros</p>
             </a>
-            <a href="/programs.html" class="navbar-element">
+            <a href="/programs.php" class="navbar-element">
               <p>Programas</p>
             </a>
-            <a href="/register.html" class="navbar-element">
+            <a href="/register.php" class="navbar-element">
               <p>Registro</p>
             </a>
           </div>
@@ -72,42 +72,95 @@
     <main class="program">
       <div class="hero-img">
         <div class="img-container">
-          <img src="build/img/hero/eggFreezing.webp" alt="hero-image" />
+          <img src="build/img/hero/donorBank.webp" alt="hero-image" />
         </div>
       </div>
       <div class="program-info">
-        <h3>Congelación <span>de óvulos</span></h3>
+        <h3>Banco de <span>donantes</span></h3>
         <p>
-          Nuestro programa de servicio completo de óvulos de donantes le brinda
-          acceso a una gran selección de óvulos de donantes congelados. Todos
-          nuestros donantes deben pasar por un riguroso proceso de entrevista y
-          también deben someterse a un examen médico y genético. Cumplimos y
-          superamos los más altos estándares establecidos por la ASRM y nos
-          adherimos a todas las reglamentaciones de los CDC y la FDA. Nuestra
-          base de datos destaca el historial médico de cada donante, sus
-          atributos físicos, si son donantes por primera vez o anteriores, y su
-          personalidad.
+          Nuestro equipo comprende que la búsqueda de donantes de óvulos puede
+          parecer una tarea desalentadora. Durante su búsqueda de donación de
+          óvulos, podrá ver una base de datos de donantes de óvulos con perfiles
+          detallados de donantes de óvulos.
         </p>
         <p>
-          Todos nuestros donantes en nuestro banco de óvulos son donantes
-          anteriores con un historial de donación exitoso. Además, somos la
-          única agencia de donación de óvulos que te da autonomía para reservar
-          óvulos congelados sin compromiso de compra. Nuestros coordinadores de
-          partidos dedicados lo guiarán a lo largo del camino.
+          Como parte de nuestro programa de donación de óvulos, estamos aquí
+          para ayudarte a encontrar una donante de óvulos que satisfaga tus
+          necesidades y preferencias únicas. Egg Donor lo ayudará en cada paso
+          del camino, para cumplir su sueño de formar una familia.
         </p>
-        <p>
-          Nos hemos asociado con una de las mejores clínicas de fertilidad en
-          Los Ángeles , que ha estado congelando óvulos utilizando la tecnología
-          de vitrificación más avanzada y sofisticada desde 2009, que congelará
-          y almacenará nuestros óvulos congelados para su uso futuro. Realizan
-          cientos de ciclos de congelación de óvulos cada año, lo que permite
-          una experiencia y conocimientos sin precedentes.
-        </p>
+      </div>
+      <div class="program-details">
+        <div class="program-details-text">
+          <ol>
+            <li>
+              Consultar: nuestro personal amable y experto está disponible para
+              responder cualquier pregunta que pueda tener sobre el proceso de
+              donación de óvulos. Nuestro objetivo es aliviar sus inquietudes al
+              explicar cómo funciona nuestro programa con respecto a los asuntos
+              legales, la detección y la logística de funcionamiento de un
+              ciclo.
+            </li>
+            <li>
+              Selección de donantes: encontrar la donante de óvulos adecuada es
+              un proceso muy personal y trabajamos arduamente para garantizar
+              que encuentre la pareja perfecta. Si bien las características como
+              la altura, el color de los ojos y el cabello y los puntajes de
+              coeficiente intelectual son importantes para muchas personas,
+              también queremos darle una idea de la personalidad única de su
+              donante de óvulos. Hemos descubierto que la mayoría de los futuros
+              padres “sienten una conexión” cuando encuentran a la donante de
+              óvulos adecuada.
+            </li>
+            <li>
+              Centro de fertilidad: si aún no está trabajando con un centro o
+              clínica de fertilidad, lo ayudaremos a seleccionar un centro de
+              confianza en función de su ubicación y necesidades. El centro de
+              fertilidad realizará la preselección de su donante de óvulos. Si
+              aún no ha tenido su examen médico, también deberá hacerse la
+              prueba.
+            </li>
+            <li>
+              Cuenta fiduciaria: todas las tarifas deben ser mantenidas en
+              depósito por un agente de depósito en garantía independiente, con
+              licencia y garantizado, asegurándose de que su dinero esté
+              protegido.
+            </li>
+            <li>
+              Legalidades: nuestro coordinador legal le proporcionará una
+              plantilla de un acuerdo de donante. Asimismo, lo derivará a un
+              abogado en su jurisdicción con experiencia en la ley de
+              reproducción asistida para revisar el acuerdo de donación, o
+              redactar un acuerdo completamente nuevo, si lo desea. Una vez que
+              haya firmado su acuerdo, nuestro coordinador se lo presentará a la
+              donante, con la recomendación de que consulte con un abogado en su
+              jurisdicción antes de firmarlo.
+            </li>
+            <li>
+              Ciclismo: su médico de FIV les dará a todas las partes un
+              protocolo médico a seguir. Los ciclos serán sincronizados y
+              monitoreados. Nuestro personal atento y comprensivo lo mantendrá
+              informado sobre el progreso del ciclo y lo guiará a través de su
+              viaje para convertirse en padre.
+            </li>
+            <li>Embarazo: ¡ojalá en la primera transferencia de embriones!</li>
+          </ol>
+          <div class="program-details-title">
+            <p>Pasos <span>a seguir</span></p>
+          </div>
+          <div class="program-details-heart">
+            <img src="build/img/icons/heart.webp" alt="heart">
+          </div>
+        </div>
+      </div>
+      <div class="login-link">
+        <p>Para poder acceder al catálogo de gestantes, es necesario iniciar sesión, en el botón de registro. Si requires más información, completa el siguiente formulario.</p>
+        <a href="register.php">Iniciar sesión para acceder al catálogo</a>
       </div>
       <div class="program-contact">
         <div class="form-body">
           <div class="contact-form">
-            <h2 class="contact-form-title">Quiero ser contactado</h2>
+            <h2 class="contact-form-title">Quiero seleccionar donante</h2>
             <form
               action="https://formsubmit.co/26414949918063df4e1da63cd289b75d"
               method="POST"
@@ -204,7 +257,7 @@
               <input
                 type="hidden"
                 name="_next"
-                value="https://www.mpetsa.com/thanks.html"
+                value="https://www.mpetsa.com/thanks.php"
               />
               <input
                 type="hidden"

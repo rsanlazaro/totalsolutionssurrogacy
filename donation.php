@@ -58,10 +58,10 @@
             <a href="/" class="navbar-element">
               <p>Nosotros</p>
             </a>
-            <a href="/programs.html" class="navbar-element">
+            <a href="/programs.php" class="navbar-element">
               <p>Programas</p>
             </a>
-            <a href="/register.html" class="navbar-element">
+            <a href="/register.php" class="navbar-element">
               <p>Registro</p>
             </a>
           </div>
@@ -72,95 +72,44 @@
     <main class="program">
       <div class="hero-img">
         <div class="img-container">
-          <img src="build/img/hero/donorBank.webp" alt="hero-image" />
+          <img src="build/img/hero/eggDonor.webp" alt="hero-image" />
         </div>
       </div>
       <div class="program-info">
-        <h3>Banco de <span>donantes</span></h3>
-        <p>
-          Nuestro equipo comprende que la búsqueda de donantes de óvulos puede
-          parecer una tarea desalentadora. Durante su búsqueda de donación de
-          óvulos, podrá ver una base de datos de donantes de óvulos con perfiles
-          detallados de donantes de óvulos.
-        </p>
-        <p>
-          Como parte de nuestro programa de donación de óvulos, estamos aquí
-          para ayudarte a encontrar una donante de óvulos que satisfaga tus
-          necesidades y preferencias únicas. Egg Donor lo ayudará en cada paso
-          del camino, para cumplir su sueño de formar una familia.
-        </p>
+        <h3>Conviértete en <span>donante de óvulos</span></h3>
+        <p>En Egg Donor, tenemos la mayor admiración y respeto por las mujeres jóvenes que deciden ayudar a otros donando sus óvulos. Convertirse en donante de óvulos puede parecer complejo y abrumador. Nuestro trabajo es guiar a la donante de óvulos a través del proceso, aliviar las preocupaciones y hacer de esta una experiencia placentera y satisfactoria.</p>
+        <p>Sin donantes de óvulos como usted, las parejas que luchan por formar una familia tendrían pocas esperanzas. La donación de óvulos ha sido descrita como una de las decisiones más poderosas y gratificantes que una mujer puede tomar, y esperamos que elija convertirse en donante de óvulos. Obtenga más información sobre el proceso de donación de óvulos, la compensación de las donantes de óvulos y los requisitos de las donantes de óvulos para los solicitantes.</p>
       </div>
       <div class="program-details">
         <div class="program-details-text">
-          <ol>
-            <li>
-              Consultar: nuestro personal amable y experto está disponible para
-              responder cualquier pregunta que pueda tener sobre el proceso de
-              donación de óvulos. Nuestro objetivo es aliviar sus inquietudes al
-              explicar cómo funciona nuestro programa con respecto a los asuntos
-              legales, la detección y la logística de funcionamiento de un
-              ciclo.
-            </li>
-            <li>
-              Selección de donantes: encontrar la donante de óvulos adecuada es
-              un proceso muy personal y trabajamos arduamente para garantizar
-              que encuentre la pareja perfecta. Si bien las características como
-              la altura, el color de los ojos y el cabello y los puntajes de
-              coeficiente intelectual son importantes para muchas personas,
-              también queremos darle una idea de la personalidad única de su
-              donante de óvulos. Hemos descubierto que la mayoría de los futuros
-              padres “sienten una conexión” cuando encuentran a la donante de
-              óvulos adecuada.
-            </li>
-            <li>
-              Centro de fertilidad: si aún no está trabajando con un centro o
-              clínica de fertilidad, lo ayudaremos a seleccionar un centro de
-              confianza en función de su ubicación y necesidades. El centro de
-              fertilidad realizará la preselección de su donante de óvulos. Si
-              aún no ha tenido su examen médico, también deberá hacerse la
-              prueba.
-            </li>
-            <li>
-              Cuenta fiduciaria: todas las tarifas deben ser mantenidas en
-              depósito por un agente de depósito en garantía independiente, con
-              licencia y garantizado, asegurándose de que su dinero esté
-              protegido.
-            </li>
-            <li>
-              Legalidades: nuestro coordinador legal le proporcionará una
-              plantilla de un acuerdo de donante. Asimismo, lo derivará a un
-              abogado en su jurisdicción con experiencia en la ley de
-              reproducción asistida para revisar el acuerdo de donación, o
-              redactar un acuerdo completamente nuevo, si lo desea. Una vez que
-              haya firmado su acuerdo, nuestro coordinador se lo presentará a la
-              donante, con la recomendación de que consulte con un abogado en su
-              jurisdicción antes de firmarlo.
-            </li>
-            <li>
-              Ciclismo: su médico de FIV les dará a todas las partes un
-              protocolo médico a seguir. Los ciclos serán sincronizados y
-              monitoreados. Nuestro personal atento y comprensivo lo mantendrá
-              informado sobre el progreso del ciclo y lo guiará a través de su
-              viaje para convertirse en padre.
-            </li>
-            <li>Embarazo: ¡ojalá en la primera transferencia de embriones!</li>
-          </ol>
+          <ul>
+            <li>Entre los 21 y 31 años.</li>
+            <li>Físicamente saludable.</li>
+            <li>Tener un IMC 19-29 (Calculadora de IMC)</li>
+            <li>No fumador.</li>
+            <li>Tiene períodos menstruales mensuales regulares.</li>
+            <li>No usar inyecciones de Depo-Provera, DIU Mirena, o implantes como forma de control de la natalidad.</li>
+            <li>Tener ambos ovarios.</li>
+            <li>Psicológicamente saludable.</li>
+            <li>Sin consumo actual de psicofármacos.</li>
+            <li>Sin anteceedentes de abuso de sustancias.</li>
+            <li>Sin antecedentes familiares de transtornos genéticos hereditarios.</li>
+            <li>Dispuesto a tomar inyecciones.</li>
+            <li>Confiable, maduro y capaz de asistir a las citas.</li>
+            <li>Si se cumplen los requisitos mínimos de óvulos de donante anteriores, complete y envíe la solicitud en línea.</li>
+          </ul>
           <div class="program-details-title">
-            <p>Pasos <span>a seguir</span></p>
+            <p>Requisitos <span>para donación de óvulos</span></p>
           </div>
           <div class="program-details-heart">
             <img src="build/img/icons/heart.webp" alt="heart">
           </div>
         </div>
       </div>
-      <div class="login-link">
-        <p>Para poder acceder al catálogo de gestantes, es necesario iniciar sesión, en el botón de registro. Si requires más información, completa el siguiente formulario.</p>
-        <a href="register.html">Iniciar sesión para acceder al catálogo</a>
-      </div>
       <div class="program-contact">
         <div class="form-body">
           <div class="contact-form">
-            <h2 class="contact-form-title">Quiero seleccionar donante</h2>
+            <h2 class="contact-form-title">Quiero ser donante</h2>
             <form
               action="https://formsubmit.co/26414949918063df4e1da63cd289b75d"
               method="POST"
@@ -257,7 +206,7 @@
               <input
                 type="hidden"
                 name="_next"
-                value="https://www.mpetsa.com/thanks.html"
+                value="https://www.mpetsa.com/thanks.php"
               />
               <input
                 type="hidden"
@@ -268,7 +217,7 @@
                 class="d-grid d-md-block d-md-flex justify-content-md-center"
               >
                 <button class="btn btn-send" type="submit">
-                  <div>Enviar</div>
+                  <div>Agendar</div>
                 </button>
               </div>
 

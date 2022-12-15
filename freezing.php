@@ -58,10 +58,10 @@
             <a href="/" class="navbar-element">
               <p>Nosotros</p>
             </a>
-            <a href="/programs.html" class="navbar-element">
+            <a href="/programs.php" class="navbar-element">
               <p>Programas</p>
             </a>
-            <a href="/register.html" class="navbar-element">
+            <a href="/register.php" class="navbar-element">
               <p>Registro</p>
             </a>
           </div>
@@ -72,44 +72,42 @@
     <main class="program">
       <div class="hero-img">
         <div class="img-container">
-          <img src="build/img/hero/eggDonor.webp" alt="hero-image" />
+          <img src="build/img/hero/eggFreezing.webp" alt="hero-image" />
         </div>
       </div>
       <div class="program-info">
-        <h3>Conviértete en <span>donante de óvulos</span></h3>
-        <p>En Egg Donor, tenemos la mayor admiración y respeto por las mujeres jóvenes que deciden ayudar a otros donando sus óvulos. Convertirse en donante de óvulos puede parecer complejo y abrumador. Nuestro trabajo es guiar a la donante de óvulos a través del proceso, aliviar las preocupaciones y hacer de esta una experiencia placentera y satisfactoria.</p>
-        <p>Sin donantes de óvulos como usted, las parejas que luchan por formar una familia tendrían pocas esperanzas. La donación de óvulos ha sido descrita como una de las decisiones más poderosas y gratificantes que una mujer puede tomar, y esperamos que elija convertirse en donante de óvulos. Obtenga más información sobre el proceso de donación de óvulos, la compensación de las donantes de óvulos y los requisitos de las donantes de óvulos para los solicitantes.</p>
-      </div>
-      <div class="program-details">
-        <div class="program-details-text">
-          <ul>
-            <li>Entre los 21 y 31 años.</li>
-            <li>Físicamente saludable.</li>
-            <li>Tener un IMC 19-29 (Calculadora de IMC)</li>
-            <li>No fumador.</li>
-            <li>Tiene períodos menstruales mensuales regulares.</li>
-            <li>No usar inyecciones de Depo-Provera, DIU Mirena, o implantes como forma de control de la natalidad.</li>
-            <li>Tener ambos ovarios.</li>
-            <li>Psicológicamente saludable.</li>
-            <li>Sin consumo actual de psicofármacos.</li>
-            <li>Sin anteceedentes de abuso de sustancias.</li>
-            <li>Sin antecedentes familiares de transtornos genéticos hereditarios.</li>
-            <li>Dispuesto a tomar inyecciones.</li>
-            <li>Confiable, maduro y capaz de asistir a las citas.</li>
-            <li>Si se cumplen los requisitos mínimos de óvulos de donante anteriores, complete y envíe la solicitud en línea.</li>
-          </ul>
-          <div class="program-details-title">
-            <p>Requisitos <span>para donación de óvulos</span></p>
-          </div>
-          <div class="program-details-heart">
-            <img src="build/img/icons/heart.webp" alt="heart">
-          </div>
-        </div>
+        <h3>Congelación <span>de óvulos</span></h3>
+        <p>
+          Nuestro programa de servicio completo de óvulos de donantes le brinda
+          acceso a una gran selección de óvulos de donantes congelados. Todos
+          nuestros donantes deben pasar por un riguroso proceso de entrevista y
+          también deben someterse a un examen médico y genético. Cumplimos y
+          superamos los más altos estándares establecidos por la ASRM y nos
+          adherimos a todas las reglamentaciones de los CDC y la FDA. Nuestra
+          base de datos destaca el historial médico de cada donante, sus
+          atributos físicos, si son donantes por primera vez o anteriores, y su
+          personalidad.
+        </p>
+        <p>
+          Todos nuestros donantes en nuestro banco de óvulos son donantes
+          anteriores con un historial de donación exitoso. Además, somos la
+          única agencia de donación de óvulos que te da autonomía para reservar
+          óvulos congelados sin compromiso de compra. Nuestros coordinadores de
+          partidos dedicados lo guiarán a lo largo del camino.
+        </p>
+        <p>
+          Nos hemos asociado con una de las mejores clínicas de fertilidad en
+          Los Ángeles , que ha estado congelando óvulos utilizando la tecnología
+          de vitrificación más avanzada y sofisticada desde 2009, que congelará
+          y almacenará nuestros óvulos congelados para su uso futuro. Realizan
+          cientos de ciclos de congelación de óvulos cada año, lo que permite
+          una experiencia y conocimientos sin precedentes.
+        </p>
       </div>
       <div class="program-contact">
         <div class="form-body">
           <div class="contact-form">
-            <h2 class="contact-form-title">Quiero ser donante</h2>
+            <h2 class="contact-form-title">Quiero ser contactado</h2>
             <form
               action="https://formsubmit.co/26414949918063df4e1da63cd289b75d"
               method="POST"
@@ -206,7 +204,7 @@
               <input
                 type="hidden"
                 name="_next"
-                value="https://www.mpetsa.com/thanks.html"
+                value="https://www.mpetsa.com/thanks.php"
               />
               <input
                 type="hidden"
@@ -217,7 +215,7 @@
                 class="d-grid d-md-block d-md-flex justify-content-md-center"
               >
                 <button class="btn btn-send" type="submit">
-                  <div>Agendar</div>
+                  <div>Enviar</div>
                 </button>
               </div>
 

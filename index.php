@@ -58,10 +58,10 @@
             <a href="/" class="navbar-element">
               <p>Nosotros</p>
             </a>
-            <a href="/programs.html" class="navbar-element">
+            <a href="/programs.php" class="navbar-element">
               <p>Programas</p>
             </a>
-            <a href="/register.html" class="navbar-element">
+            <a href="/register.php" class="navbar-element">
               <p>Registro</p>
             </a>
           </div>
@@ -77,11 +77,36 @@
         <div class="hero-text">
           <p>Donar la alegría de <span>formar una familia</span></p>
           <div class="hero-button">
-            <a href="programs.html">Saber más</a>
+            <a href="programs.php">Saber más</a>
           </div>
         </div>
       </div>
-      <div class="home-section programs-section">
+      <div class="home-info">
+        <div class="img-container">
+          <img src="build/img/icons/EggDonor.webp" alt="logo" />
+        </div>
+        <div class="home-info-text">
+          <p>
+            Somos una agencia de donación de óvulos dedicada a ayudarte en tu
+            sueño.
+          </p>
+          <p>
+            Nuestra pasión es ayudarte a cumplir sus sueños de tener o ayudar a
+            una familia. Con más de 25 años de experiencia en agencias de
+            subrogación y más de 1000 bebés nacidos, hemos visto cambiar
+            innumerables vidas, e incontables vidas creadas, debido al
+            desinterés de las gestantes subrogadas y las donantes de óvulos.
+            Nuestra gente y nuestros programas son lo que nos hace diferentes,
+            así que ya sea que desee formar su propia familia , convertirse en
+            madre subrogada o en donar óvulos , estamos aquí para hacer sus
+            sueños realidad.
+          </p>
+        </div>
+        <div class="heart-container">
+          <img src="build/img/icons/heartLogo.webp" alt="logo" />
+        </div>
+      </div>
+      <div class="home-section">
         <h3>Nuestros <span>programas</span></h3>
       </div>
       <div class="home-programs">
@@ -95,7 +120,9 @@
                 experiencia placentera y satisfactoria.
               </p>
             </div>
-            <a href="donation.html" class="home-program-btn">Saber más</a>
+            <div class="grid-button">
+              <a href="donation.php" class="home-program-btn">Saber más</a>
+            </div>
           </div>
           <div class="home-program-img">
             <img src="build/img/home/donation.webp" alt="img" />
@@ -110,7 +137,9 @@
                 para ayudarte en ese proceso.
               </p>
             </div>
-            <a href="donant.html" class="home-program-btn">Saber más</a>
+            <div class="grid-button">
+              <a href="donant.php" class="home-program-btn">Saber más</a>
+            </div>
           </div>
           <div class="home-program-img">
             <img src="build/img/home/donant.webp" alt="img" />
@@ -125,7 +154,9 @@
                 selección de óvulos de donantes congelados.
               </p>
             </div>
-            <a href="freezing.html" class="home-program-btn">Saber más</a>
+            <div class="grid-button">
+              <a href="freezing.php" class="home-program-btn">Saber más</a>
+            </div>
           </div>
           <div class="home-program-img">
             <img src="build/img/home/freezing.webp" alt="img" />
