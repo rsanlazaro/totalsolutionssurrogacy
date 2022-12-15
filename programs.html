@@ -23,6 +23,9 @@
   </head>
   <body>
     <header>
+      <div class="background-image">
+        <img src="build/img/home/background.webp" alt="background-image">
+      </div>
       <div class="header-top">
         <div class="header-phone">
           <div class="img-container">
@@ -31,15 +34,15 @@
           <p>55 5922 3371</p>
         </div>
         <div class="header-social-media">
-          <div class="img-container facebook">
+          <a href="facebook.com" class="img-container facebook">
             <img src="build/img/icons/facebook.webp" alt="facebook" />
-          </div>
-          <div class="img-container instagram">
+          </a>
+          <a href="instagram.com" class="img-container instagram">
             <img src="build/img/icons/instagram.webp" alt="instagram" />
-          </div>
-          <div class="img-container mail">
+          </a>
+          <a href="mailto:recepcion@saludconcept.mx" class="img-container mail">
             <img src="build/img/icons/mail.webp" alt="mail" />
-          </div>
+          </a>
         </div>
       </div>
       <div class="header-middle">
@@ -49,33 +52,18 @@
           /></a>
         </div>
       </div>
-      <nav class="navbar fixed-top-nav navbar-expand-md navbar-light">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="header-bottom">
-              <div class="navbar">
-                <a href="/" class="navbar-element">
-                  <p>Nosotros</p>
-                </a>
-                <a href="/programs.html" class="navbar-element">
-                  <p>Programas</p>
-                </a>
-                <a href="/register.html" class="navbar-element">
-                  <p>Registro</p>
-                </a>
-              </div>
-            </div>
+      <nav class="navbar">
+        <div class="header-bottom">
+          <div class="navbar">
+            <a href="/" class="navbar-element">
+              <p>Nosotros</p>
+            </a>
+            <a href="/programs.html" class="navbar-element">
+              <p>Programas</p>
+            </a>
+            <a href="/register.html" class="navbar-element">
+              <p>Registro</p>
+            </a>
           </div>
         </div>
       </nav>
@@ -86,8 +74,14 @@
         <div class="img-container">
           <img src="build/img/hero/home.webp" alt="hero-image" />
         </div>
+        <div class="hero-text">
+          <p>Donar la alegría de <span>formar una familia</span></p>
+          <div class="hero-button">
+            <a href="programs.html">Saber más</a>
+          </div>
+        </div>
       </div>
-      <div class="home-section">
+      <div class="home-section programs-section">
         <h3>Nuestros <span>programas</span></h3>
       </div>
       <div class="home-programs">
@@ -159,7 +153,17 @@
               <img src="build/img/icons/mailWhite.webp" alt="mail" />
             </div>
             <div class="info-text">
-              <p>recepcion@saludconcept.mx</p>
+              <a href="mailto:elcorreoquequieres@correo.com"
+                >recepcion@saludconcept.mx</a
+              >
+            </div>
+          </div>
+          <div class="form-info">
+            <div class="img-container">
+              <img src="build/img/icons/whatsappWhite.webp" alt="whatsapp" />
+            </div>
+            <div class="info-text">
+              <a href="https://wa.me/525559037194?">+52 55 5903 7194</a>
             </div>
           </div>
         </div>
@@ -168,18 +172,21 @@
             <div class="img-container">
               <img src="build/img/icons/phoneWhite.webp" alt="phone" />
             </div>
-            <div class="info-text"><p>55 5922 3371</p></div>
+            <div class="info-text">
+              <a href="tel:55-5922-3371">55 5922 3371</a>
+            </div>
           </div>
           <div class="form-info">
             <div class="img-container">
               <img src="build/img/icons/mapsWhite.webp" alt="location" />
             </div>
             <div class="info-text">
-              <p>
-                C. Concepción Beistegui 720, <br />
+              <a
+                href="https://www.google.com/maps/place/C.+Concepci%C3%B3n+Beistegui+720,+Col+del+Valle+Centro,+Benito+Ju%C3%A1rez,+03100+Ciudad+de+M%C3%A9xico,+CDMX/data=!4m2!3m1!1s0x85d1ff7d3fd37cc5:0x3999909446943457?sa=X&ved=2ahUKEwjD96n1hPj7AhVAlmoFHaoVCvAQ8gF6BAgUEAE"
+                >C. Concepción Beistegui 720, <br />
                 Col. del Valle Nte. Benito Juárez <br />
-                03100, CDMX.
-              </p>
+                03100, CDMX.</a
+              >
             </div>
           </div>
         </div>
@@ -195,6 +202,9 @@
               </div>
               <div class="img-container">
                 <img src="build/img/icons/facebook2White.webp" alt="facebook" />
+              </div>
+              <div class="img-container">
+                <img src="build/img/icons/whatsappWhite.webp" alt="whatsapp" />
               </div>
             </div>
           </div>
