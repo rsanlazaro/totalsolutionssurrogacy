@@ -3,7 +3,7 @@
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     } 
 }
@@ -21,9 +21,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $VIP = $_POST['VIP'];
     $Plus = $_POST['Plus'];
     $Elite = $_POST['Elite'];
+    $donant_1 = $_POST['donant_1'];
+    $donant_2 = $_POST['donant_2'];
+    $donant_3 = $_POST['donant_3'];
+    $code = $_POST['code'];
 }
 if ($id) {
-    $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}' WHERE id = ${id}";
+    $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', donant_1='${donant_1}', donant_2='${donant_2}', donant_3='${donant_3}', code='${code}' WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
     header("Location: users.php?msg=Los datos se han actualizado correctamente");
 }

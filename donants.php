@@ -5,9 +5,9 @@ include "includes/config/database.php";
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
-    } 
+    }
 }
 
 $conn = connectDB();
@@ -29,6 +29,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $type_body[$index] = $row['type_body'];
     $ocupation[$index] = $row['ocupation'];
     $profile[$index] = $row['profile'];
+    $supplier[$index] = $row['supplier'];
+    $price[$index] = $row['price'];
     $code[$index] = $row['code'];
 }
 
@@ -38,6 +40,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="register-info">
         <h3>Donantes registradas</h3>
     </div>
+    <?php if (isset($_GET['msg'])) { ?>
+        <p class="error"><?php echo $_GET['msg']; ?></p>
+    <?php } ?>
 
     <div class="container">
         <table class="responsive-table">
@@ -49,15 +54,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th>Año de nacimiento</th>
                     <th>Color de ojos</th>
                     <th>Color de piel</th>
-                    <th>Tipo de sangre</th>
                     <th>Altura</th>
                     <th>Peso</th>
-                    <th>Educación</th>
                     <th>Color de cabello</th>
                     <th>Tipo de cabello</th>
-                    <th>Tipo de cuerpo</th>
-                    <th>Ocupación</th>
                     <th>Perfil</th>
+                    <th>Proveedor</th>
+                    <th>Precio</th>
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
@@ -69,15 +72,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td data-title="Año de nacimiento"><?php echo $date_birth[$i] ?></td>
                         <td data-title="Color de ojos"><?php echo $color_eyes[$i] ?></td>
                         <td data-title="Color de piel"><?php echo $color_skin[$i] ?></td>
-                        <td data-title="Tipo de sangre"><?php echo $blood_type[$i] ?></td>
                         <td data-title="Altura"><?php echo $height[$i] ?> m</td>
                         <td data-title="Peso"><?php echo $weight[$i] ?> kg</td>
-                        <td data-title="Educación"><?php echo $education[$i] ?></td>
                         <td data-title="Color de cabello"><?php echo $color_hair[$i] ?></td>
                         <td data-title="Tipo de cabello"><?php echo $type_hair[$i] ?></td>
-                        <td data-title="Tipo de cuerpo"><?php echo $type_body[$i] ?></td>
-                        <td data-title="Ocupación"><?php echo $ocupation[$i] ?></td>
                         <td data-title="Perfil"><?php echo $profile[$i] ?></td>
+                        <td data-title="Proveedor"><?php echo $supplier[$i] ?></td>
+                        <td data-title="Precio"><?php if (isset($price[$i])) {
+                                                    echo "$" . $price[$i];
+                                                } ?></td>
                         <td>
                             <a href="donantEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>

@@ -1,13 +1,11 @@
 <?php
 include 'includes/templates/header.php';
-?>
-<?php
 include "includes/config/database.php";
 
-if (!$_SESSION['login']) {
+if (!($_SESSION['login'])) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     } 
 }
@@ -24,9 +22,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     $pass = $row['password'];
     $mail = $row['email'];
     $type = $row['type'];
-    $VIP = $row['VIP'];
-    $Plus = $row['Plus'];
-    $Elite = $row['Elite'];
+    $donant_1 = $row['donant_1'];
+    $donant_2 = $row['donant_2'];
+    $donant_3 = $row['donant_3'];
+    $code = $row['code'];
 }
 ?>
 <main class="register">
@@ -69,12 +68,18 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <label class="label-form" for="type-select">Tipo de usuario</label>
                                 <div class="form-control">
                                     <select name="type" class="selector" id="type-select">
-                                        <?php if ($type === 'USER') { ?>
-                                            <option value="USER" selected>Usuario</option>
-                                            <option value="ADMIN">Admin</option>
+                                        <?php if ($type === 'user') { ?>
+                                            <option value="user" selected>Usuario</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="admin-jr">Admin Jr</option>
+                                        <?php } elseif ($type === 'admin') { ?>
+                                            <option value="user">Usuario</option>
+                                            <option value="admin" selected>Admin</option>
+                                            <option value="admin-jr">Admin Jr</option>
                                         <?php } else { ?>
-                                            <option value="USER">Usuario</option>
-                                            <option value="ADMIN" selected>Admin</option>
+                                            <option value="user">Usuario</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="admin-jr" selected>Admin Jr</option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -85,58 +90,37 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </div>
                         <div class="col-md-12">
                             <div class="has-validation">
-                                <label class="label-form" for="type-select">VIP</label>
-                                <div class="form-control">
-                                    <select name="VIP" class="selector" id="type-select">
-                                        <?php if ($VIP === 'Yes') { ?>
-                                            <option value="Yes" selected>Sí</option>
-                                            <option value="No">No</option>
-                                        <?php } else { ?>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                <label class="label-form" for="validationCustomUsername">Donante 1:</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_1" value="<?php echo $donant_1 ?>" />
                                 <div class="invalid-feedback">
-                                    <div>Seleccione una opción</div>
+                                    <div>Ingrese la donante 1</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="has-validation">
-                                <label class="label-form" for="type-select">Plus</label>
-                                <div class="form-control">
-                                    <select name="Plus" class="selector" id="type-select">
-                                        <?php if ($Plus === 'Yes') { ?>
-                                            <option value="Yes" selected>Sí</option>
-                                            <option value="No">No</option>
-                                        <?php } else { ?>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                <label class="label-form" for="validationCustomUsername">Donante 2:</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_2" value="<?php echo $donant_2 ?>" />
                                 <div class="invalid-feedback">
-                                    <div>Seleccione una opción</div>
+                                    <div>Ingrese la donante 2</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="has-validation">
-                                <label class="label-form" for="type-select">Elite</label>
-                                <div class="form-control">
-                                    <select name="Elite" class="selector" id="type-select">
-                                        <?php if ($Elite === 'Yes') { ?>
-                                            <option value="Yes" selected>Sí</option>
-                                            <option value="No">No</option>
-                                        <?php } else { ?>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                <label class="label-form" for="validationCustomUsername">Donante 3:</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_3" value="<?php echo $donant_3 ?>" />
                                 <div class="invalid-feedback">
-                                    <div>Seleccione una opción</div>
+                                    <div>Ingrese la donante 3</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">ID de fenotipo</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" value="<?php echo $code ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el ID del fenotipo</div>
                                 </div>
                             </div>
                         </div>

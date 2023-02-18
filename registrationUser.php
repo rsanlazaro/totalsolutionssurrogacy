@@ -7,41 +7,52 @@ include "includes/config/database.php";
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
-    } 
+    }
 }
 
 $conn = connectDB();
 // When form submitted, insert values into the database.
-if (isset($_REQUEST['username'])) {	
-    // removes backslashes
-    $username = stripslashes($_REQUEST['username']);
-    //escapes special characters in a string
-    $username = mysqli_real_escape_string($conn, $username);
-    $email    = stripslashes($_REQUEST['email']);
-    $email    = mysqli_real_escape_string($conn, $email);
-    $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($conn, $password);
-    // $password = password_hash($password, PASSWORD_DEFAULT);
-    $type = stripslashes($_REQUEST['type']);
-    $type = mysqli_real_escape_string($conn, $type);
-    $VIP = stripslashes($_REQUEST['VIP']);
-    $VIP = mysqli_real_escape_string($conn, $VIP);
-    $Plus = stripslashes($_REQUEST['Plus']);
-    $Plus = mysqli_real_escape_string($conn, $Plus);
-    $Elite = stripslashes($_REQUEST['Elite']);
-    $Elite = mysqli_real_escape_string($conn, $Elite);
-    date_default_timezone_set('America/Mexico_City');
-    $create_datetime = date("y-m-d G:i:s");
-    var_dump($create_datetime);
-    $query    = "INSERT into `users` (username, password, email, type, VIP, Plus, Elite, date)
-                    VALUES ('$username', '" . $password . "', '$email', '$type', '$VIP', '$Plus', '$Elite', '$create_datetime')";
-    $result   = mysqli_query($conn, $query);
-    if ($result) {
-        header("Location: users.php?msg=El usuario se ha creado exitosamente");
+if (isset($_REQUEST['username'])) {
+    $usernameCheck = $_REQUEST['username'];
+    $sql = "SELECT * FROM users WHERE username='${usernameCheck}'";
+    $result = mysqli_query($conn, $sql);
+    $repeat = $result->num_rows;
+    if ($repeat > 0) {
+        header("location: /registrationUser.php?msg=El nombre de usuario ya ha sido registrado. Por favor, seleccione otro.");
     } else {
-        header("Location: users.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
+        // removes backslashes
+        $username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+        $username = mysqli_real_escape_string($conn, $username);
+        $email    = stripslashes($_REQUEST['email']);
+        $email    = mysqli_real_escape_string($conn, $email);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($conn, $password);
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        $type = stripslashes($_REQUEST['type']);
+        $type = mysqli_real_escape_string($conn, $type);
+        $VIP = stripslashes($_REQUEST['VIP']);
+        $VIP = mysqli_real_escape_string($conn, $VIP);
+        $Plus = stripslashes($_REQUEST['Plus']);
+        $Plus = mysqli_real_escape_string($conn, $Plus);
+        $Elite = stripslashes($_REQUEST['Elite']);
+        $Elite = mysqli_real_escape_string($conn, $Elite);
+        $Fenotipe = stripslashes($_REQUEST['Fenotipe']);
+        $Fenotipe = mysqli_real_escape_string($conn, $Fenotipe);
+        $code = stripslashes($_REQUEST['code']);
+        $code = mysqli_real_escape_string($conn, $code);
+        date_default_timezone_set('America/Mexico_City');
+        $create_datetime = date("y-m-d G:i:s");
+        $query    = "INSERT into `users` (username, password, email, type, vip, plus, elite, fenotipo, code, date)
+                    VALUES ('$username', '" . $password . "', '$email', '$type', '$VIP', '$Plus', '$Elite', '$Fenotipe', '$code', '$create_datetime')";
+        $result   = mysqli_query($conn, $query);
+        if ($result) {
+            header("Location: users.php?msg=El usuario se ha creado exitosamente");
+        } else {
+            header("Location: users.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
+        }
     }
 } else {
 ?>
@@ -49,6 +60,11 @@ if (isset($_REQUEST['username'])) {
         <div class="register-info">
             <h3>Ingresar información de usuario</h3>
         </div>
+        <?php if (isset($_GET['msg'])) { ?>
+
+            <p class="error"><?php echo $_GET['msg']; ?></p>
+
+        <?php } ?>
         <div class="register-form new-user">
             <div class="form-body">
                 <div class="contact-form">
@@ -84,8 +100,9 @@ if (isset($_REQUEST['username'])) {
                                     <label class="label-form" for="type-select">Tipo de usuario</label>
                                     <div class="form-control">
                                         <select name="type" class="selector" id="type-select">
-                                            <option value="USER">Usuario</option>
-                                            <option value="ADMIN">Admin</option>
+                                            <option value="user">Usuario</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="admin-jr">Admin Jr</option>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">
@@ -95,15 +112,15 @@ if (isset($_REQUEST['username'])) {
                             </div>
                             <div class="col-md-12">
                                 <div class="has-validation">
-                                    <label class="label-form" for="type-select">VIP</label>
+                                    <label class="label-form" for="type-select">Fenotipo</label>
                                     <div class="form-control">
-                                        <select name="VIP" class="selector" id="type-select">
-                                            <option value="Yes">Sí</option>
-                                            <option value="No">No</option>
+                                        <select name="Fenotipe" class="selector" id="type-select">
+                                            <option value="0">No</option>
+                                            <option value="1">Sí</option>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">
-                                        <div>Seleccione una opción</div>
+                                        <div>Seleccione un tipo de acceso</div>
                                     </div>
                                 </div>
                             </div>
@@ -112,12 +129,26 @@ if (isset($_REQUEST['username'])) {
                                     <label class="label-form" for="type-select">Plus</label>
                                     <div class="form-control">
                                         <select name="Plus" class="selector" id="type-select">
-                                            <option value="Yes">Sí</option>
-                                            <option value="No">No</option>
+                                            <option value="0">No</option>
+                                            <option value="1">Sí</option>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">
-                                        <div>Seleccione una opción</div>
+                                        <div>Seleccione un tipo de acceso</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="type-select">VIP</label>
+                                    <div class="form-control">
+                                        <select name="VIP" class="selector" id="type-select">
+                                            <option value="0">No</option>
+                                            <option value="1">Sí</option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione un tipo de acceso</div>
                                     </div>
                                 </div>
                             </div>
@@ -126,12 +157,21 @@ if (isset($_REQUEST['username'])) {
                                     <label class="label-form" for="type-select">Elite</label>
                                     <div class="form-control">
                                         <select name="Elite" class="selector" id="type-select">
-                                            <option value="Yes">Sí</option>
-                                            <option value="No">No</option>
+                                            <option value="0">No</option>
+                                            <option value="1">Sí</option>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">
-                                        <div>Seleccione una opción</div>
+                                        <div>Seleccione un tipo de acceso</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">ID de fenotipo</label>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" />
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el ID del fenotipo</div>
                                     </div>
                                 </div>
                             </div>

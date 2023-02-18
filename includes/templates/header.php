@@ -61,31 +61,31 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="programs.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <p>Programas</p>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <a class="dropdown-item" href="donation.php">Donación de óvulos</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="donantBank.php">Selecciona tu donante</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="freezing.php">Congelación de óvulos</a>
-                  </li>
-                </ul>
+            <a class="nav-link dropdown-toggle" href="programs.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <p>Programas</p>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="donation.php">Donación de óvulos</a>
               </li>
+              <li>
+                <a class="dropdown-item" href="donantBank.php">Selecciona tu donante</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="freezing.php">Congelación de óvulos</a>
+              </li>
+            </ul>
+          </li>
           <?php
           session_start();
-          if (!isset($_SESSION['type'])) { ?>
+          if (!(isset($_SESSION['type']))) { ?>
             <li class="nav-item">
               <a class="nav-link" href="login.php">
                 <p>Acceder</p>
               </a>
             </li>
             <?php } else {
-            if ($_SESSION['type'] == "ADMIN") { ?>
+            if ($_SESSION['type'] == "admin") { ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="admin.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <p>Administrador</p>
@@ -99,8 +99,8 @@
                   </li>
                 </ul>
               </li>
-            <?php } else if ($_SESSION['type'] == "USER") { ?>
-              <?php if ($_SESSION['VIP'] === 'No' && $_SESSION['Plus'] === 'No' && $_SESSION['Elite'] === 'No') { ?>
+            <?php } else if ($_SESSION['type'] == "user") { ?>
+              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === '0') { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="catalogue.php">
                     <p>Catálogo</p>
@@ -113,6 +113,20 @@
                   </a>
                 </li>
               <?php } ?>
+            <?php } else if ($_SESSION['type'] === 'admin-jr') { ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="admin.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <p>Administrador Jr.</p>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="users.php">Usuarios</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="donants.php">Donantes</a>
+                  </li>
+                </ul>
+              </li>
             <?php } ?>
           <?php } ?>
         </div>

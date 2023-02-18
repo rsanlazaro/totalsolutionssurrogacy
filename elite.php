@@ -6,7 +6,7 @@ include 'includes/functions.php';
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN' || $_SESSION['type'] === 'USER')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     }
 }

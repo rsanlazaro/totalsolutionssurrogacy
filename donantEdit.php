@@ -7,7 +7,7 @@ include "includes/config/database.php";
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     } 
 }
@@ -33,6 +33,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $type_body = $row['type_body'];
     $ocupation = $row['ocupation'];
     $profile = $row['profile'];
+    $supplier = $row['supplier'];
+    $price = $row['price'];
     $code = $row['code'];
 }
 ?>
@@ -49,7 +51,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Código de identificación</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" required value="<?php echo $code ?>" readonly="readonly"/>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" required value="<?php echo $code ?>" <?php if (!($_SESSION['type'] === 'admin')) { echo "readonly='readonly'"; } ?>/>
                                 <div class="invalid-feedback">
                                     <div>Ingrese el código de identificación</div>
                                 </div>
@@ -101,7 +103,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Altura</label>
-                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="height" required value="<?php echo $height ?>" />
+                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="height" required value="<?php echo $height ?>" min="0" step=".01"/>
                                 <div class="invalid-feedback">
                                     <div>Ingrese la altura</div>
                                 </div>
@@ -110,7 +112,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Peso</label>
-                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="weight" required value="<?php echo $weight ?>" />
+                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="weight" required value="<?php echo $weight ?>" min="0" step=".01"/>
                                 <div class="invalid-feedback">
                                     <div>Ingrese el peso</div>
                                 </div>
@@ -162,21 +164,47 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                         </div>
                         <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Proveedor</label>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="supplier" required value="<?php echo $supplier ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el proveedor</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Precio</label>
+                                    <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="price" required value="<?php echo $price ?>" min="0" step=".01"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el precio</div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="type-select">Perfil</label>
                                 <div class="form-control">
                                     <select name="profile" class="selector" id="type-select">
-                                        <?php if ($profile === 'VIP') { ?>
-                                            <option value="VIP" selected>VIP</option>
+                                        <?php if ($profile === 'Fenotipe') { ?>
+                                            <option value="Fenotipe" selected>Fenotipo</option>
                                             <option value="Plus">Plus</option>
+                                            <option value="VIP">VIP</option>
                                             <option value="Elite">Elite</option>
                                         <?php } elseif($profile === 'Plus') { ?>
-                                            <option value="VIP">VIP</option>
+                                            <option value="Fenotipe">Fenotipo</option>
                                             <option value="Plus" selected>Plus</option>
+                                            <option value="VIP">VIP</option>
+                                            <option value="Elite">Elite</option>
+                                        <?php } elseif ($profile === 'VIP') { ?>
+                                            <option value="Fenotipe">Fenotipo</option>
+                                            <option value="Plus">Plus</option>
+                                            <option value="VIP" selected>VIP</option>
                                             <option value="Elite">Elite</option>
                                         <?php } else { ?>
-                                            <option value="VIP">VIP</option>
+                                            <option value="Fenotipe">Fenotipo</option>
                                             <option value="Plus">Plus</option>
+                                            <option value="VIP">VIP</option>
                                             <option value="Elite" selected>Elite</option>
                                         <?php } ?>
                                     </select>
@@ -189,7 +217,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 1:</label>
-                                    <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1"/>
+                                    <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
                                     <img class="img-1-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png"?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
@@ -199,7 +227,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 2:</label>
-                                    <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2"/>
+                                    <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
                                     <img class="img-2-pre" src=<?php echo "build/img/admin/donants/" . $code . "_2.png"?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
@@ -209,7 +237,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 3:</label>
-                                    <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3"/>
+                                    <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
                                     <img class="img-3-pre" src=<?php echo "build/img/admin/donants/" . $code . "_3.png"?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
@@ -219,7 +247,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 4:</label>
-                                    <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4"/>
+                                    <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
                                     <img class="img-4-pre" src=<?php echo "build/img/admin/donants/" . $code . "_4.png"?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
@@ -238,5 +266,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 </main>
 <script src="build/js/bundle.min.js"></script>
 </body>
-
 </html>

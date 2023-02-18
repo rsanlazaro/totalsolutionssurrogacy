@@ -6,7 +6,7 @@ include 'includes/functions.php';
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'USER' || $_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     }
 }
@@ -31,18 +31,48 @@ while ($row = mysqli_fetch_assoc($result)) {
     $profile[$index] = $row['profile'];
     $code[$index] = $row['code'];
 }
+$idUser = $_SESSION['id'];
+$codeUser = $_SESSION['code'];
+$query = "SELECT * FROM users WHERE id='${idUser}'";
+$result = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result)) {
+    $codeR1 = $row['donant_1'];
+}
+$query = "SELECT donant_2 FROM users WHERE id='${idUser}'";
+$result2 = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result2)) {
+    $codeR2 = $row['donant_2'];
+}
+$query = "SELECT donant_3 FROM users WHERE id='${idUser}'";
+$result3 = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result3)) {
+    $codeR3 = $row['donant_3'];
+}
 ?>
 
 <main class="register">
     <div class="register-info">
         <h3>Catálogo</h3>
     </div>
-    <!-- <div class="esthetics-options">
-        <?php if ($_SESSION['VIP'] === 'No' && $_SESSION['Plus'] === 'No' && $_SESSION['Elite'] === 'No') { ?>
-            <p>No tiene accesos concedidos. Por favor solicite el acceso a la administración.</p>
-        <?php } ?>
+    <?php if (isset($codeUser)) {
+        if (!($codeUser === "")) { ?>
+            <div class="menu-users">
+                <div class="create-user">
+                    <a href="fenotipe.php">Ver fenotipo <?php echo $codeUser; ?></a>
+                </div>
+            </div>
+    <?php }
+    } ?>
+    <?php if (isset($_GET['msg'])) { ?>
+        <p class="error"><?php echo $_GET['msg']; ?></p>
+    <?php } ?>
+    <!-- <div class="esthetics-options"> -->
+    <?php if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "")) { ?>
+        <p>No tiene accesos concedidos. Por favor solicite el acceso a la administración.</p>
+    <?php } ?>
+    <!-- 
         <div class="esthetics-options-grid">
-            <?php if ($_SESSION['VIP'] === 'Yes') { ?>
+            <?php if ($_SESSION['vip'] === "1") { ?>
                 <a href="vip.php" class="esthetics-options-treatments">
                     <div class="esthetics-options-img">
                         <img src="build/img/admin/users.webp" alt="donants" />
@@ -54,7 +84,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
                 </a>
             <?php } ?>
-            <?php if ($_SESSION['Plus'] === 'Yes') { ?>
+            <?php if ($_SESSION['plus'] === "1") { ?>
                 <a href="plus.php" class="esthetics-packages">
                     <div class="esthetics-options-img">
                         <img src="build/img/admin/users.webp" alt="users" />
@@ -66,7 +96,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
                 </a>
             <?php } ?>
-            <?php if ($_SESSION['Elite'] === 'Yes') { ?>
+            <?php if ($_SESSION['elite'] === "1") { ?>
                 <a href="elite.php" class="esthetics-packages">
                     <div class="esthetics-options-img">
                         <img src="build/img/admin/users.webp" alt="users" />
@@ -82,13 +112,16 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div> -->
     <div class="catalogue">
         <div id="myBtnContainer">
-            <?php if ($_SESSION['VIP'] === 'Yes') { ?>
-                <button class="btn catalogue-btn" onclick="filterSelection('vip')"> VIP</button>
+            <?php if ($_SESSION['fenotipe'] === "1") { ?>
+                <button class="btn catalogue-btn" onclick="filterSelection('fenotipe')"> Fenotipo</button>
             <?php } ?>
-            <?php if ($_SESSION['Plus'] === 'Yes') { ?>
+            <?php if ($_SESSION['plus'] === "1") { ?>
                 <button class="btn catalogue-btn" onclick="filterSelection('plus')"> Plus</button>
             <?php } ?>
-            <?php if ($_SESSION['Elite'] === 'Yes') { ?>
+            <?php if ($_SESSION['vip'] === "1") { ?>
+                <button class="btn catalogue-btn" onclick="filterSelection('vip')"> VIP</button>
+            <?php } ?>
+            <?php if ($_SESSION['elite'] === "1") { ?>
                 <button class="btn catalogue-btn" onclick="filterSelection('elite')"> Elite</button>
             <?php } ?>
         </div>
@@ -96,14 +129,25 @@ while ($row = mysqli_fetch_assoc($result)) {
         <!-- Portfolio Gallery Grid -->
         <div class="row">
             <?php for ($i = 1; $i <= $index; $i++) { ?>
-                <?php if ($profile[$i] === "VIP") { ?>
-                    <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
+                <?php if ($profile[$i] === "Fenotipe") { ?>
+                    <a href="donantFenotipe.php?id=<?php echo $id[$i]; ?>" class="column fenotipe">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo "build/img/admin/donants/" . $code[$i] . "_1.png" ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo "build/img/admin/phenotype.png" ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
+                            <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                                </form>
+                            <?php } else { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante?')" type="submit">Seleccionar</button>
+                                </form>
+                            <?php } ?>
                         </div>
                     </a>
                 <?php } ?>
@@ -115,6 +159,39 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
+                            <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                                </form>
+                            <?php } else { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante?')" type="submit">Seleccionar</button>
+                                </form>
+                            <?php } ?>
+                        </div>
+                    </a>
+                <?php } ?>
+                <?php if ($profile[$i] === "VIP") { ?>
+                    <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
+                        <div class="content">
+                            <div class="catalogue-img-container">
+                                <img class="catalogue-img" src=<?php echo "build/img/admin/donants/" . $code[$i] . "_1.png" ?> alt="picture">
+                            </div>
+                            <h4>ID: <?php echo $code[$i] ?></h4>
+                            <p><?php echo $nationality[$i] ?></p>
+                            <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                                </form>
+                            <?php } else { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante?')" type="submit">Seleccionar</button>
+                                </form>
+                            <?php } ?>
                         </div>
                     </a>
                 <?php } ?>
@@ -126,6 +203,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
+                            <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                                </form>
+                            <?php } else { ?>
+                                <form class="form-select-btn" action="registerDonant.php" method="POST">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante?')" type="submit">Seleccionar</button>
+                                </form>
+                            <?php } ?>
                         </div>
                     </a>
                 <?php } ?>
@@ -141,14 +229,17 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
 </main>
 <script type="text/javascript">
-    <?php if ($_SESSION['Elite'] == 'Yes') { ?>
+    <?php if ($_SESSION['elite'] == '1') { ?>
         filterSelection("elite");
     <?php } ?>
-    <?php if ($_SESSION['Plus'] == 'Yes') { ?>
+    <?php if ($_SESSION['vip'] == '1') { ?>
+        filterSelection("vip");
+    <?php } ?>
+    <?php if ($_SESSION['plus'] == '1') { ?>
         filterSelection("plus");
     <?php } ?>
-    <?php if ($_SESSION['VIP'] == 'Yes') { ?>
-        filterSelection("vip");
+    <?php if ($_SESSION['fenotipe'] == '1') { ?>
+        filterSelection("fenotipe");
     <?php } ?>
 
     function filterSelection(c) {
@@ -197,7 +288,12 @@ while ($row = mysqli_fetch_assoc($result)) {
             this.className += " active";
         });
     }
+
+    function checkDelete() {
+        return confirm('Are you sure?');
+    }
 </script>
-<?php include 'includes/templates/footer.php';?>
+<?php include 'includes/templates/footer.php'; ?>
 </body>
+
 </html>

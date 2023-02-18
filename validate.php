@@ -5,7 +5,7 @@ include "includes/config/database.php";
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     }
 }
@@ -39,15 +39,6 @@ if (empty($username)) {
     $sql = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    // $hash = $row['password'];
-    // echo $hash;
-    // echo "    ";
-    // echo $password;
-    // $auth = password_verify($password, $hash);
-    // echo($auth);
-    // echo($row['username']);
-    // echo($username);
-    // echo(mysqli_num_rows($result) === 1)
     if ($password === $row['password']) {
         $auth = 1;
     }
@@ -61,10 +52,12 @@ if (empty($username)) {
             $_SESSION['id'] = $row['id'];
             $_SESSION['login'] = true;
             $_SESSION['type'] = $row['type'];
-            $_SESSION['VIP'] = $row['VIP'];
-            $_SESSION['Plus'] = $row['Plus'];
-            $_SESSION['Elite'] = $row['Elite'];
-            if ($row['type'] == "ADMIN") {
+            $_SESSION['vip'] = $row['vip'];
+            $_SESSION['plus'] = $row['plus'];
+            $_SESSION['elite'] = $row['elite'];
+            $_SESSION['fenotipe'] = $row['fenotipo'];
+            $_SESSION['code'] = $row['code'];
+            if ($row['type'] == "admin") {
                 header("Location: admin.php");
             } else {
                 header("Location: catalogue.php");

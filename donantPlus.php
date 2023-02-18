@@ -6,7 +6,7 @@ include 'includes/functions.php';
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'USER' || $_SESSION['type'] === 'ADMIN')) {
+    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
     }
 }
@@ -33,6 +33,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $type_body = $row['type_body'];
     $ocupation = $row['ocupation'];
     $profile = $row['profile'];
+    $price = $row['price'];
     $code = $row['code'];
 }
 ?>
@@ -51,6 +52,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
                 <div class="donant-data div2">
                     <ul>
+                        <li>Código: <?php echo $code ?></li>
                         <li>Nacionalidad: <?php echo $nationality ?></li>
                         <li>Fecha de nacimiento: <?php echo $date_birth ?></li>
                         <li>Color de ojos: <?php echo $color_eyes ?></li>
@@ -63,6 +65,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
+                        <li>Precio: <?php if(isset($price)) { echo "$".$price;} ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">
@@ -78,7 +81,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php } ?>
     </div>
 </main>
-<?php include 'includes/templates/footer.php';?>
+<?php include 'includes/templates/footer.php'; ?>
 </body>
 
 </html>
