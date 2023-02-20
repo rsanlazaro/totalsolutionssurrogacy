@@ -1,6 +1,6 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!($_SESSION['login'])) {
     header('location: /index.php');
@@ -70,14 +70,22 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <select name="type" class="selector" id="type-select">
                                         <?php if ($type === 'user') { ?>
                                             <option value="user" selected>Usuario</option>
+                                            <option value="donant">Donante</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="admin-jr">Admin Jr</option>
+                                        <?php } elseif ($type === 'donant') { ?>
+                                            <option value="user">Usuario</option>
+                                            <option value="donant" selected>Donante</option>
                                             <option value="admin">Admin</option>
                                             <option value="admin-jr">Admin Jr</option>
                                         <?php } elseif ($type === 'admin') { ?>
                                             <option value="user">Usuario</option>
+                                            <option value="donant">Donante</option>
                                             <option value="admin" selected>Admin</option>
                                             <option value="admin-jr">Admin Jr</option>
                                         <?php } else { ?>
                                             <option value="user">Usuario</option>
+                                            <option value="donant">Donante</option>
                                             <option value="admin">Admin</option>
                                             <option value="admin-jr" selected>Admin Jr</option>
                                         <?php } ?>

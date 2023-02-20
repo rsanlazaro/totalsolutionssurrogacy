@@ -1,12 +1,12 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 include 'includes/functions.php';
 // estaAutenticado();
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
         header('location: /index.php');
     }
 }
@@ -48,6 +48,11 @@ $result3 = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_assoc($result3)) {
     $codeR3 = $row['donant_3'];
 }
+$query = "SELECT * FROM donants WHERE code='${codeUser}'";
+$result = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result)) {
+    $codeUserId = $row['id'];
+}
 ?>
 
 <main class="register">
@@ -58,7 +63,7 @@ while ($row = mysqli_fetch_assoc($result3)) {
         if (!($codeUser === "")) { ?>
             <div class="menu-users">
                 <div class="create-user">
-                    <a href="fenotipe.php">Ver fenotipo <?php echo $codeUser; ?></a>
+                    <a href=<?php echo "donantFenotipe.php?id=".$codeUserId?>>Ver fenotipo <?php echo $codeUser; ?></a>
                 </div>
             </div>
     <?php }
@@ -67,7 +72,7 @@ while ($row = mysqli_fetch_assoc($result3)) {
         <p class="error"><?php echo $_GET['msg']; ?></p>
     <?php } ?>
     <!-- <div class="esthetics-options"> -->
-    <?php if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "")) { ?>
+    <?php if ($_SESSION['fenotipe'] === "0" && $_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "")) { ?>
         <p>No tiene accesos concedidos. Por favor solicite el acceso a la administración.</p>
     <?php } ?>
     <!-- 

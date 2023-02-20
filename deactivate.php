@@ -1,6 +1,6 @@
 <?php
 
-include "includes/config/database.php";
+include "includes/app.php";
 $conn = connectDB();
 
 // Check if id is set or not, if true,

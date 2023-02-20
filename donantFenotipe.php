@@ -1,6 +1,6 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 include 'includes/functions.php';
 // estaAutenticado();
 if (!$_SESSION['login']) {
@@ -14,7 +14,6 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 $sql = "SELECT * FROM donants WHERE id={$id}";
-$result = mysqli_query($conn, $sql);
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
     header('location: /');

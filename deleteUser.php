@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!$_SESSION['login']) {
     header('location: /index.php');

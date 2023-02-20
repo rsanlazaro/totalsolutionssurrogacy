@@ -1,6 +1,6 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!$_SESSION['login']) {
     header('location: /index.php');
@@ -42,31 +42,39 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p class="error"><?php echo $_GET['msg']; ?></p>
 
     <?php } ?>
+    <p>Hay un total de <?php echo $index - 1 ?> usuarios registrados</p>
 
-    <div class="container">
-        <table class="responsive-table">
-            <caption>Hay un total de <?php echo $index - 1 ?> usuarios registrados</caption>
+    <div class="container lab-pagination">
+        <div class="panel">
+            <div class="body">
+                <div class="input-group">
+                    <label for="searchBox">Búsqueda</label>
+                    <input type="search" id="searchBox" placeholder="Filtrar..." />
+                </div>
+            </div>
+        </div>
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
-                <tr>
-                    <th>Usuario</th>
-                    <th>Password</th>
-                    <th>E-mail</th>
-                    <th>Acceso</th>
+                <tr class="thead">
+                    <th onclick="sortTable(0)">Usuario</th>
+                    <th onclick="sortTable(1)">Password</th>
+                    <th onclick="sortTable(2)">E-mail</th>
+                    <th onclick="sortTable(3)">Acceso</th>
                     <th>Fenotipo</th>
                     <th>VIP</th>
                     <th>Plus</th>
                     <th>Elite</th>
-                    <th>ID fenotipo</th>
+                    <th onclick="sortTable(8)">ID fenotipo</th>
                     <th colspan="3">Donantes seleccionadas</th>
                     <th colspan="2">Acciones</th>
-                    <th>Creación</th>
+                    <th onclick="sortTable(11)">Creación</th>
                 </tr>
             </thead>
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
                     <?php if (!($user[$i] == 'SaludConceptAdmin')) { ?>
                         <tr>
-                            <th scope="row"><?php echo $user[$i] ?></th>
+                            <td scope="row"><?php echo $user[$i] ?></td>
                             <td data-title="Password"><?php echo $pass[$i] ?></td>
                             <td data-title="E-mail"><?php echo $mail[$i] ?></td>
                             <td data-title="Type">
@@ -118,10 +126,42 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     "<a href=activate.php?id=" . $id[$i] . "&type=elite class='btn-green'></a>";
                                 ?>
                             </td>
-                            <td data-title="ID Fenotipo"><?php if(isset($code[$i])) { if ($code[$i] === "") {echo "-";} else { echo $code[$i]; } } else {echo "-";}?></td>
-                            <td data-title="Donante 1"><?php if(isset($donante_1[$i])) { if ($donante_1[$i] === "") {echo "-";} else { echo $donante_1[$i]; } } else {echo "-";}?></td>
-                            <td data-title="Donante 2"><?php if(isset($donante_2[$i])) { if ($donante_2[$i] === "") {echo "-";} else { echo $donante_2[$i]; } } else {echo "-";}?></td>
-                            <td data-title="Donante 3"><?php if(isset($donante_3[$i])) { if ($donante_3[$i] === "") {echo "-";} else { echo $donante_3[$i]; } } else {echo "-";}?></td>
+                            <td data-title="ID Fenotipo"><?php if (isset($code[$i])) {
+                                                                if ($code[$i] === "") {
+                                                                    echo "-";
+                                                                } else {
+                                                                    echo $code[$i];
+                                                                }
+                                                            } else {
+                                                                echo "-";
+                                                            } ?></td>
+                            <td data-title="Donante 1"><?php if (isset($donante_1[$i])) {
+                                                            if ($donante_1[$i] === "") {
+                                                                echo "-";
+                                                            } else {
+                                                                echo $donante_1[$i];
+                                                            }
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
+                            <td data-title="Donante 2"><?php if (isset($donante_2[$i])) {
+                                                            if ($donante_2[$i] === "") {
+                                                                echo "-";
+                                                            } else {
+                                                                echo $donante_2[$i];
+                                                            }
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
+                            <td data-title="Donante 3"><?php if (isset($donante_3[$i])) {
+                                                            if ($donante_3[$i] === "") {
+                                                                echo "-";
+                                                            } else {
+                                                                echo $donante_3[$i];
+                                                            }
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
                             <td>
                                 <a href="user.php?id=<?php echo $id[$i]; ?>">Editar</a>
                             </td>
@@ -153,6 +193,77 @@ while ($row = mysqli_fetch_assoc($result)) {
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {
             return confirm('Are you sure?');
+        }
+    </script>
+    <!-- Custom JS -->
+    <script src="build/js/bundle2.min.js"></script>
+    <!-- Pagination -->
+    <script>
+        let options = {
+            numberPerPage: 10, //Cantidad de datos por pagina
+            goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+            pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
+        };
+        let filterOptions = {
+            el: "#searchBox", //Caja de texto para filtrar, puede ser una clase o un ID
+        };
+        paginate.init(".myTable", options, filterOptions);
+    </script>
+
+    <script>
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc";
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    /*check if the two rows should switch place,
+                    based on the direction, asc or desc:*/
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    //Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /*If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again.*/
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
         }
     </script>
 </main>

@@ -25,7 +25,7 @@ include 'includes/templates/header.php';
         <?php } ?>
         <form action="validate.php" method="POST" class="needs-validation" novalidate>
           <div class="col-md-12">
-            <label for="validationCustom01">Nombre de usuario o correo electrónico</label>
+            <label for="validationCustom01">Nombre de usuario</label>
             <input type="text" class="form-control" id="validationCustom01" name="username" placeholder="" required />
             <div class="invalid-feedback">
               <div>Ingrese un nombre de usuario</div>

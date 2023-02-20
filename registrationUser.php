@@ -2,7 +2,7 @@
 include 'includes/templates/header.php';
 ?>
 <?php
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!$_SESSION['login']) {
     header('location: /index.php');
@@ -20,6 +20,7 @@ if (isset($_REQUEST['username'])) {
     $result = mysqli_query($conn, $sql);
     $repeat = $result->num_rows;
     if ($repeat > 0) {
+        
         header("location: /registrationUser.php?msg=El nombre de usuario ya ha sido registrado. Por favor, seleccione otro.");
     } else {
         // removes backslashes
@@ -101,6 +102,7 @@ if (isset($_REQUEST['username'])) {
                                     <div class="form-control">
                                         <select name="type" class="selector" id="type-select">
                                             <option value="user">Usuario</option>
+                                            <option value="donant">Donante</option>
                                             <option value="admin">Admin</option>
                                             <option value="admin-jr">Admin Jr</option>
                                         </select>

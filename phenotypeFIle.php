@@ -1,10 +1,20 @@
 <?php
 include 'includes/templates/header.php';
+include "includes/app.php";
+include 'includes/functions.php';
+// estaAutenticado();
+if (!($_SESSION['login'])) {
+    header('location: /index.php');
+} else {
+    if (!($_SESSION['type'] === 'donant')) {
+        header('location: /index.php');
+    }
+}
 ?>
 <main>
     <div class="form-header">
         <div class="form-header-logo">
-            <img src="build/img/phenotype/BabyBoomLogo.webp" alt="BabyBoom">
+            <img src="build/img/icons/EggDonorWhite.webp" alt="EggDonor">
         </div>
         <div class="form-header-title form-white">
             <div class="spanish">

@@ -1,6 +1,6 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!$_SESSION['login']) {
     header('location: /index.php');
@@ -43,44 +43,50 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php if (isset($_GET['msg'])) { ?>
         <p class="error"><?php echo $_GET['msg']; ?></p>
     <?php } ?>
+    <p>Hay un total de <?php echo $index ?> donantes registradas</p>
 
-    <div class="container">
-        <table class="responsive-table">
-            <caption>Hay un total de <?php echo $index ?> donantes registradas</caption>
+    <div class="container lab-pagination">
+        <div class="panel">
+            <div class="body">
+                <div class="input-group">
+                    <label for="searchBox">Búsqueda</label>
+                    <input type="search" id="searchBox" placeholder="Filtrar..." />
+                </div>
+            </div>
+        </div>
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nacionalidad</th>
-                    <th>Año de nacimiento</th>
-                    <th>Color de ojos</th>
-                    <th>Color de piel</th>
-                    <th>Altura</th>
-                    <th>Peso</th>
-                    <th>Color de cabello</th>
-                    <th>Tipo de cabello</th>
-                    <th>Perfil</th>
-                    <th>Proveedor</th>
-                    <th>Precio</th>
+                <tr class="thead">
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">Nacionalidad</th>
+                    <th onclick="sortTable(2)">Año de nacimiento</th>
+                    <th onclick="sortTable(3)">Color de ojos</th>
+                    <th onclick="sortTable(4)">Color de piel</th>
+                    <th onclick="sortTable(5)">Altura</th>
+                    <th onclick="sortTable(6)">Peso</th>
+                    <th onclick="sortTable(7)">Color de cabello</th>
+                    <th onclick="sortTable(8)">Tipo de cabello</th>
+                    <th onclick="sortTable(9)">Perfil</th>
+                    <th onclick="sortTable(10)">Proveedor</th>
+                    <th onclick="sortTable(11)">Precio</th>
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
                     <tr>
-                        <th scope="row"><?php echo $code[$i] ?></th>
-                        <td data-title="Nacionalidad"><?php echo $nationality[$i] ?></td>
-                        <td data-title="Año de nacimiento"><?php echo $date_birth[$i] ?></td>
-                        <td data-title="Color de ojos"><?php echo $color_eyes[$i] ?></td>
-                        <td data-title="Color de piel"><?php echo $color_skin[$i] ?></td>
-                        <td data-title="Altura"><?php echo $height[$i] ?> m</td>
-                        <td data-title="Peso"><?php echo $weight[$i] ?> kg</td>
+                        <td scope="row"><?php if (isset($code[$i])) { echo $code[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Nacionalidad"><?php if (isset($nationality[$i])) { echo $nationality[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Año de nacimiento"><?php if (isset($date_birth[$i])) { echo $date_birth[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Color de ojos"><?php if (isset($color_eyes[$i])) { echo $color_eyes[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Color de piel"><?php if (isset($color_skin[$i])) { echo $color_skin[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Altura"><?php if (isset($height[$i])) { echo $height[$i]; } else { echo "-";} ?> m</td>
+                        <td data-title="Peso"><?php if (isset($weight[$i])) { echo $weight[$i]; } else { echo "-";} ?> kg</td>
                         <td data-title="Color de cabello"><?php echo $color_hair[$i] ?></td>
-                        <td data-title="Tipo de cabello"><?php echo $type_hair[$i] ?></td>
-                        <td data-title="Perfil"><?php echo $profile[$i] ?></td>
-                        <td data-title="Proveedor"><?php echo $supplier[$i] ?></td>
-                        <td data-title="Precio"><?php if (isset($price[$i])) {
-                                                    echo "$" . $price[$i];
-                                                } ?></td>
+                        <td data-title="Tipo de cabello"><?php if (isset($type_hair[$i])) { echo $type_hair[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Perfil"><?php if (isset($profile[$i])) { echo $profile[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Proveedor"><?php if (isset($supplier[$i])) { echo $supplier[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Precio"><?php if (isset($price[$i])) { echo "$" . $price[$i]; } else { echo "-";} ?></td>
                         <td>
                             <a href="donantEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>
@@ -113,4 +119,75 @@ while ($row = mysqli_fetch_assoc($result)) {
             return confirm('Are you sure?');
         }
     </script>
+    <!-- Custom JS -->
+    <script src="build/js/bundle2.min.js"></script>
+    <!-- Pagination -->
+    <script>
+        let options = {
+            numberPerPage: 10, //Cantidad de datos por pagina
+            goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+            pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
+        };
+        let filterOptions = {
+            el: "#searchBox", //Caja de texto para filtrar, puede ser una clase o un ID
+        };
+        paginate.init(".myTable", options, filterOptions);
+    </script>
+
+    <script>
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc";
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    /*check if the two rows should switch place,
+                    based on the direction, asc or desc:*/
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    //Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /*If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again.*/
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>       
 </main>

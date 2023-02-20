@@ -1,12 +1,12 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/config/database.php";
+include "includes/app.php";
 include 'includes/functions.php';
 // estaAutenticado();
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
         header('location: /index.php');
     }
 }

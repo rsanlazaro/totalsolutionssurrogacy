@@ -100,7 +100,7 @@
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>
-              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === '0') { ?>
+              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === '0' && $_SESSION['fenotipe'] === '0') { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="catalogue.php">
                     <p>Catálogo</p>
@@ -126,6 +126,12 @@
                     <a class="dropdown-item" href="donants.php">Donantes</a>
                   </li>
                 </ul>
+              </li>
+            <?php } else { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="phenotypeFile.php">
+                  <p>Formulario</p>
+                </a>
               </li>
             <?php } ?>
           <?php } ?>

@@ -2,7 +2,7 @@
 include 'includes/templates/header.php';
 ?>
 <?php
-include "includes/config/database.php";
+include "includes/app.php";
 
 if (!$_SESSION['login']) {
     header('location: /index.php');

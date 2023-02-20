@@ -7,5 +7,12 @@ function estaAutenticado() : void {
         header('location: /index.php');
     }
 }
-?>
 
+function debuguear($variable) : string {
+    echo "<pre>";
+    var_dump($variable);
+    echo "</pre>";
+    exit;
+}
+
+?>

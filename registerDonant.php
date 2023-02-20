@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include "includes/config/database.php";
+include "includes/app.php";
 $conn = connectDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = $_POST['code'];

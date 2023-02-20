@@ -9,7 +9,7 @@ if (!$_SESSION['login']) {
 }
 
 session_start();
-include "includes/config/database.php";
+include "includes/app.php";
 $conn = connectDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (($_FILES['image-1']['size'] > 0)) {
