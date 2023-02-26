@@ -1,5 +1,7 @@
 <?php
 
+require 'includes/functions.php';
+
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
@@ -11,6 +13,7 @@ if (!$_SESSION['login']) {
 session_start();
 include "includes/app.php";
 $conn = connectDB();
+debuguear($_FILES);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (($_FILES['image-1']['size'] > 0)) {
         $file = $_FILES['image-1']['name'];
