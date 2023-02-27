@@ -102,10 +102,10 @@ if (isset($_REQUEST['nationality'])) {
             //     }
             // }
             // } else {
-            $ext_img_1 = 'png';
-            $ext_img_2 = 'png';
-            $ext_img_3 = 'png';
-            $ext_img_4 = 'png';
+            // $ext_img_1 = 'png';
+            // $ext_img_2 = 'png';
+            // $ext_img_3 = 'png';
+            // $ext_img_4 = 'png';
             // }
             // removes backslashes
             $nationality = stripslashes($_REQUEST['nationality']);
@@ -138,14 +138,14 @@ if (isset($_REQUEST['nationality'])) {
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, ext_img_1, ext_img_2, ext_img_3, ext_img_4)
-                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$ext_img_1', '$ext_img_2', '$ext_img_3', '$ext_img_4')";
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img')";
             $result   = mysqli_query($conn, $query);
-            // if ($result) {
-            //     header("Location: donants.php?msg=El usuario se ha creado exitosamente");
-            // } else {
-            //     header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
-            // }
+            if ($result) {
+                header("Location: donants.php?msg=El usuario se ha creado exitosamente");
+            } else {
+                header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
+            }
         }
     }
 } else {
@@ -354,7 +354,7 @@ if (isset($_REQUEST['nationality'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 1:</label>
                                     <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" />
@@ -362,6 +362,7 @@ if (isset($_REQUEST['nationality'])) {
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
                                     </div>
+                                    <button id="upload_widget_1" class="cloudinary-button">Primera imagen</button>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -393,7 +394,7 @@ if (isset($_REQUEST['nationality'])) {
                                         <div>Seleccione una imagen</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-btn">
                                 <button class="btn btn-send" type="submit">
                                     <div>Crear perfil de donante</div>
@@ -406,7 +407,6 @@ if (isset($_REQUEST['nationality'])) {
     </main>
 <?php } ?>
 <script src="build/js/bundle.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
