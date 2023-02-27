@@ -217,15 +217,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <button id="upload_widget_1" class="cloudinary-button">Cargar primera foto</button>
-                        </div>
                         <div class="form-btn">
                             <button class="btn btn-send" type="submit">
                                 <div>Actualizar datos</div>
                             </button>
                         </div>
                     </form>
+                    <div class="col-md-12">
+                        <button id="upload_widget_1" class="cloudinary-button">Cargar primera foto</button>
+                    </div>
             </div>
         </div>
     </div>
