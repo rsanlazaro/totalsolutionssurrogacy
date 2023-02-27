@@ -17,6 +17,12 @@
         var myWidget = cloudinary.createUploadWidget({
             cloudName: 'dyn4nexb0',
             uploadPreset: 'eggdonor',
+            prepareUploadParams: (cb, params) => {
+                params = {
+                    publicId: "RAFA-IMG-TESTSTS",
+                };
+                cb(params);
+            }
         }, (error, result) => {
             if (!error && result && result.event === "success") {
                 console.log('Done! Here is the image info: ', result.info);
