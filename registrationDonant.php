@@ -146,7 +146,7 @@ if (isset($_REQUEST['nationality'])) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");
             } else {
                 header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
-            // }
+            }
         }
     }
 } else {
