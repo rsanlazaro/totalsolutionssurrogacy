@@ -231,7 +231,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
 </main>
 <script src="build/js/bundle.min.js"></script>
-script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     var myWidget_1 = cloudinary.createUploadWidget({
