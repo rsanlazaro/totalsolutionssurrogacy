@@ -139,13 +139,13 @@ if (isset($_REQUEST['nationality'])) {
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            // $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, ext_img_1, ext_img_2, ext_img_3, ext_img_4)
-            //         VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$ext_img_1', '$ext_img_2', '$ext_img_3', '$ext_img_4')";
-            // $result   = mysqli_query($conn, $query);
-            // if ($result) {
-            //     header("Location: donants.php?msg=El usuario se ha creado exitosamente");
-            // } else {
-            //     header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, ext_img_1, ext_img_2, ext_img_3, ext_img_4)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$ext_img_1', '$ext_img_2', '$ext_img_3', '$ext_img_4')";
+            $result   = mysqli_query($conn, $query);
+            if ($result) {
+                header("Location: donants.php?msg=El usuario se ha creado exitosamente");
+            } else {
+                header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
             // }
         }
     }
