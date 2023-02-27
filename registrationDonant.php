@@ -16,6 +16,7 @@ $conn = connectDB();
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['nationality'])) {
     $code = $_REQUEST['code'];
+    $code_img = $code;
     $pattern = "/^[A-Za-z]+-\\d+$/";
     if (!(preg_match($pattern, $code))) {
         $_SESSION['nationality'] = $_REQUEST['nationality'];
@@ -70,20 +71,45 @@ if (isset($_REQUEST['nationality'])) {
                         $path2 = pathinfo($file2);
                         $path3 = pathinfo($file3);
                         $path4 = pathinfo($file4);
-                        $ext = $path['extension'];
-                        $ext2 = $path2['extension'];
-                        $ext3 = $path3['extension'];
-                        $ext4 = $path4['extension'];
-                        $_FILES['image-1']['name'] = $_REQUEST['code'] . "_1." . $ext;
-                        $_FILES['image-2']['name'] = $_REQUEST['code'] . "_2." . $ext;
-                        $_FILES['image-3']['name'] = $_REQUEST['code'] . "_3." . $ext;
-                        $_FILES['image-4']['name'] = $_REQUEST['code'] . "_4." . $ext;
-                        move_uploaded_file($_FILES['image-1']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-1']['name']);
-                        move_uploaded_file($_FILES['image-2']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-2']['name']);
-                        move_uploaded_file($_FILES['image-3']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-3']['name']);
-                        move_uploaded_file($_FILES['image-4']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-4']['name']);
+                        $ext_img_1 = $path['extension'];
+                        $ext_img_2 = $path2['extension'];
+                        $ext_img_3 = $path3['extension'];
+                        $ext_img_4 = $path4['extension'];
+                        $_FILES['image-1']['name'] = $_REQUEST['code'] . "_1";
+                        $_FILES['image-2']['name'] = $_REQUEST['code'] . "_2";
+                        $_FILES['image-3']['name'] = $_REQUEST['code'] . "_3";
+                        $_FILES['image-4']['name'] = $_REQUEST['code'] . "_4";
+                        $cloudinary->uploadApi()->upload(
+                            $_FILES['image-1']['tmp_name'],
+                            ['public_id' => $_FILES['image-1']['name'],
+                             'overwrite' => true]
+                        );
+                        $cloudinary->uploadApi()->upload(
+                            $_FILES['image-2']['tmp_name'],
+                            ['public_id' => $_FILES['image-2']['name'],
+                             'overwrite' => true]
+                        );
+                        $cloudinary->uploadApi()->upload(
+                            $_FILES['image-3']['tmp_name'],
+                            ['public_id' => $_FILES['image-3']['name'],
+                             'overwrite' => true]
+                        );
+                        $cloudinary->uploadApi()->upload(
+                            $_FILES['image-4']['tmp_name'],
+                            ['public_id' => $_FILES['image-4']['name'],
+                             'overwrite' => true]
+                        );
+                        // move_uploaded_file($_FILES['image-1']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-1']['name']);
+                        // move_uploaded_file($_FILES['image-2']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-2']['name']);
+                        // move_uploaded_file($_FILES['image-3']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-3']['name']);
+                        // move_uploaded_file($_FILES['image-4']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-4']['name']);
                     }
                 }
+            } else {
+                $ext_img_1 = 'png';
+                $ext_img_2 = 'png';
+                $ext_img_3 = 'png';
+                $ext_img_4 = 'png';
             }
             // removes backslashes
             $nationality = stripslashes($_REQUEST['nationality']);
@@ -116,8 +142,8 @@ if (isset($_REQUEST['nationality'])) {
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code)
-                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code')";
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, ext_img_1, ext_img_2, ext_img_3, ext_img_4)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$ext_img_1', '$ext_img_2', '$ext_img_3', '$ext_img_4')";
             $result   = mysqli_query($conn, $query);
             if ($result) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");

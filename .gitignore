@@ -5,3 +5,4 @@ vendor/
 Extras/
 bower_components/
 gulpfile.js
+includes/.env

@@ -36,6 +36,11 @@ while ($row = mysqli_fetch_assoc($result)) {
     $supplier = $row['supplier'];
     $price = $row['price'];
     $code = $row['code'];
+    $code_img = $row['code_img'];
+    $ext_img_1 = $row['ext_img_1'];
+    $ext_img_2 = $row['ext_img_2'];
+    $ext_img_3 = $row['ext_img_3'];
+    $ext_img_4 = $row['ext_img_4'];
 }
 ?>
 <main class="register">
@@ -218,7 +223,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 1:</label>
                                     <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
-                                    <img class="img-1-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png"?> height="200" alt="Image preview...">
+                                    <img class="img-1-pre" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code . "_1." . $ext_img_1?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
                                     </div>
@@ -228,7 +233,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 2:</label>
                                     <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
-                                    <img class="img-2-pre" src=<?php echo "build/img/admin/donants/" . $code . "_2.png"?> height="200" alt="Image preview...">
+                                    <img class="img-2-pre" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code . "_2." . $ext_img_2?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
                                     </div>
@@ -238,7 +243,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 3:</label>
                                     <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
-                                    <img class="img-3-pre" src=<?php echo "build/img/admin/donants/" . $code . "_3.png"?> height="200" alt="Image preview...">
+                                    <img class="img-3-pre" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code . "_3." . $ext_img_3?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
                                     </div>
@@ -248,7 +253,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 4:</label>
                                     <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" <?php if($_SESSION['type'] === 'admin') { echo "disabled"; } ?>/>
-                                    <img class="img-4-pre" src=<?php echo "build/img/admin/donants/" . $code . "_4.png"?> height="200" alt="Image preview...">
+                                    <img class="img-4-pre" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code . "_4." . $ext_img_4?> height="200" alt="Image preview...">
                                     <div class="invalid-feedback">
                                         <div>Seleccione una imagen</div>
                                     </div>
