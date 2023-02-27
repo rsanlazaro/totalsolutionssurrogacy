@@ -239,7 +239,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         uploadPreset: 'eggdonor',
         prepareUploadParams: (cb, params) => {
             params = {
-                publicId: "RAFA",
+                publicId: "<?php echo $code_img ?>",
             };
             cb(params);
         }
