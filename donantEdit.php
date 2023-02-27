@@ -248,7 +248,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             console.log('Done! Here is the image info: ', result.info);
         }
     })
-    document.getElementById("upload_widget").addEventListener("click", function() {
+    document.getElementById("upload_widget_1").addEventListener("click", function() {
         myWidget_1.open();
     }, false);
 </script>
