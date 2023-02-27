@@ -82,23 +82,19 @@ if (isset($_REQUEST['nationality'])) {
                         $_FILES['image-4']['name'] = $_REQUEST['code'] . "_4";
                         $cloudinary->uploadApi()->upload(
                             $_FILES['image-1']['tmp_name'],
-                            ['public_id' => $_FILES['image-1']['name'],
-                             'overwrite' => true]
+                            ['public_id' => $_FILES['image-1']['name']]
                         );
                         $cloudinary->uploadApi()->upload(
                             $_FILES['image-2']['tmp_name'],
-                            ['public_id' => $_FILES['image-2']['name'],
-                             'overwrite' => true]
+                            ['public_id' => $_FILES['image-2']['name']]
                         );
                         $cloudinary->uploadApi()->upload(
                             $_FILES['image-3']['tmp_name'],
-                            ['public_id' => $_FILES['image-3']['name'],
-                             'overwrite' => true]
+                            ['public_id' => $_FILES['image-3']['name']]
                         );
                         $cloudinary->uploadApi()->upload(
                             $_FILES['image-4']['tmp_name'],
-                            ['public_id' => $_FILES['image-4']['name'],
-                             'overwrite' => true]
+                            ['public_id' => $_FILES['image-4']['name']]
                         );
                         // move_uploaded_file($_FILES['image-1']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-1']['name']);
                         // move_uploaded_file($_FILES['image-2']['tmp_name'], "build/img/admin/donants/" . $_FILES['image-2']['name']);
