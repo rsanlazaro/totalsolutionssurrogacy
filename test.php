@@ -32,7 +32,7 @@
             cloud_name: "dyn4nexb0",
             prepareUploadParams: (cb, params) => {
                 params = {
-                    publicId: "RAFA-IMG",
+                    publicId: "RAFA-IMG-TESTSTS",
                 };
                 cb(params);
             }
