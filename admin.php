@@ -23,7 +23,7 @@ if (!$_SESSION['login']) {
                 </div>
                 <div class="esthetics-options-bg">
                     <div class="esthetics-title">
-                        <h2>Usuarios<br /> <span></span></h2>
+                        <h2>IPs<br /> <span></span></h2>
                     </div>
                 </div>
             </a>

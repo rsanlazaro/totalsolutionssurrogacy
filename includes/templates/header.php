@@ -100,10 +100,10 @@
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>
-              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === '0' && $_SESSION['fenotipe'] === '0') { ?>
+              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && (!(isset($codeUser)) || $codeUser === "-")) { ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="catalogue.php">
-                    <p>Catálogo</p>
+                  <a class="nav-link" href="phenotypeFile.php">
+                    <p>Formulario</p>
                   </a>
                 </li>
               <?php } else { ?>
@@ -116,11 +116,11 @@
             <?php } else if ($_SESSION['type'] === 'admin-jr') { ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="admin.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <p>Administrador Jr.</p>
+                  <p>Usuario</p>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="users.php">Usuarios</a>
+                    <a class="dropdown-item" href="users.php">IPs</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="donants.php">Donantes</a>

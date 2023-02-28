@@ -1,10 +1,6 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-$cloudinary->uploadApi()->upload(
-  'https://res.cloudinary.com/demo/image/upload/c_thumb,g_face,h_150,w_150/r_20/e_sepia/l_cloudinary_icon_blue/e_brightness:100/o_60/c_scale,w_50/fl_layer_apply,g_south_east,x_5,y_5/a_10/front_face.png',
-  ['public_id' => 'RAFAAA']
-);
 ?>
 
 <main class="program">

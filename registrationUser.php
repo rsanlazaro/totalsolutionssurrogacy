@@ -20,7 +20,6 @@ if (isset($_REQUEST['username'])) {
     $result = mysqli_query($conn, $sql);
     $repeat = $result->num_rows;
     if ($repeat > 0) {
-        
         header("location: /registrationUser.php?msg=El nombre de usuario ya ha sido registrado. Por favor, seleccione otro.");
     } else {
         // removes backslashes
@@ -56,6 +55,12 @@ if (isset($_REQUEST['username'])) {
         }
     }
 } else {
+    $sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
+    $result = mysqli_query($conn, $sql);
+    $index = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $code[$index++] = $row['code'];
+    }
 ?>
     <main class="register">
         <div class="register-info">
@@ -101,10 +106,11 @@ if (isset($_REQUEST['username'])) {
                                     <label class="label-form" for="type-select">Tipo de usuario</label>
                                     <div class="form-control">
                                         <select name="type" class="selector" id="type-select">
-                                            <option value="user">Usuario</option>
-                                            <option value="donant">Donante</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="admin-jr">Admin Jr</option>
+                                            <option value="user">IP</option>
+                                            <?php if ($_SESSION['type'] === 'admin') { ?>
+                                                <option value="admin">Admin</option>
+                                                <option value="admin-jr">Usuario</option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">
@@ -170,13 +176,29 @@ if (isset($_REQUEST['username'])) {
                             </div>
                             <div class="col-md-12">
                                 <div class="has-validation">
-                                    <label class="label-form" for="validationCustomUsername">ID de fenotipo</label>
+                                    <label class="label-form" for="ID-select">Referencia de fenotipo</label>
+                                    <div class="form-control">
+                                        <select name="code" class="selector" id="ID-select">
+                                            <option value="-">-</option>
+                                            <?php for ($i = 0; $i <= $index - 1; $i++) { ?>
+                                                <option value="<?php echo $code[$i] ?>"> <?php echo $code[$i] ?> </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione un ID de fenotipo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Referencia de fenotipo</label>
                                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" />
                                     <div class="invalid-feedback">
                                         <div>Ingrese el ID del fenotipo</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-btn">
                                 <button class="btn btn-send" type="submit">
                                     <div>Crear usuario</div>

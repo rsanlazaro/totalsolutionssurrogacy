@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $supplier = $_POST['supplier'];
     $price = $_POST['price'];
     $code = $_POST['code'];
+    $code = strtoupper($code);
 
     $sql = "SELECT * FROM donants WHERE id=${id}";
     $result = mysqli_query($conn, $sql);

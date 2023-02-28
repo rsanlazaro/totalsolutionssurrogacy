@@ -44,6 +44,18 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p class="error"><?php echo $_GET['msg']; ?></p>
     <?php } ?>
     <p>Hay un total de <?php echo $index ?> donantes registradas</p>
+    <div class="menu-users">
+        <div class="create-user">
+            <a href="registrationDonant.php">
+                Nuevo usuario
+            </a>
+        </div>
+        <div class="logout">
+            <a href="logout.php">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
 
     <div class="container lab-pagination">
         <div class="panel">
@@ -59,17 +71,21 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <tr class="thead">
                     <th onclick="sortTable(0)">ID</th>
                     <th onclick="sortTable(1)">Nacionalidad</th>
-                    <th onclick="sortTable(2)">Año de nacimiento</th>
+                    <th onclick="sortTable(2)">Año</th>
                     <th onclick="sortTable(3)">Color de ojos</th>
                     <th onclick="sortTable(4)">Color de piel</th>
-                    <th onclick="sortTable(5)">Altura</th>
-                    <th onclick="sortTable(6)">Peso</th>
+                    <th onclick="sortTable(5)">Altura (m)</th>
+                    <th onclick="sortTable(6)">Peso (kg)</th>
                     <th onclick="sortTable(7)">Color de cabello</th>
                     <th onclick="sortTable(8)">Tipo de cabello</th>
                     <th onclick="sortTable(9)">Perfil</th>
                     <th onclick="sortTable(10)">Proveedor</th>
                     <th onclick="sortTable(11)">Precio</th>
-                    <th colspan="2">Acciones</th>
+                    <?php if ($_SESSION['type'] === 'admin') {?>
+                        <th colspan="2">Acciones</th>
+                    <?php } else { ?>
+                        <th>Editar</th>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -80,38 +96,28 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td data-title="Año de nacimiento"><?php if (isset($date_birth[$i])) { echo $date_birth[$i]; } else { echo "-";} ?></td>
                         <td data-title="Color de ojos"><?php if (isset($color_eyes[$i])) { echo $color_eyes[$i]; } else { echo "-";} ?></td>
                         <td data-title="Color de piel"><?php if (isset($color_skin[$i])) { echo $color_skin[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Altura"><?php if (isset($height[$i])) { echo $height[$i]; } else { echo "-";} ?> m</td>
-                        <td data-title="Peso"><?php if (isset($weight[$i])) { echo $weight[$i]; } else { echo "-";} ?> kg</td>
+                        <td data-title="Altura"><?php if (isset($height[$i])) { echo $height[$i]; } else { echo "-";} ?> </td>
+                        <td data-title="Peso"><?php if (isset($weight[$i])) { echo $weight[$i]; } else { echo "-";} ?> </td>
                         <td data-title="Color de cabello"><?php echo $color_hair[$i] ?></td>
                         <td data-title="Tipo de cabello"><?php if (isset($type_hair[$i])) { echo $type_hair[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Perfil"><?php if (isset($profile[$i])) { echo $profile[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Perfil"><?php if (isset($profile[$i])) { if($profile[$i] === "Fenotipe") {echo "Fenotipo";} else {echo $profile[$i]; } } else { echo "-";} ?></td>
                         <td data-title="Proveedor"><?php if (isset($supplier[$i])) { echo $supplier[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Precio"><?php if (isset($price[$i])) { echo "$" . $price[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Precio"><?php if (isset($price[$i])) { echo $price[$i] . " " . "\xE2\x82\xAc"; } else { echo "-";} ?></td>
                         <td>
                             <a href="donantEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>
-                        <td>
-                            <form method="POST" class="form-table" action="deleteDonant.php">
-                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                <input type="submit" onclick="return confirm('¿Deseas eliminar el registro de la donante?')" class="boton-rojo-block" value="Eliminar">
-                            </form>
-                        </td>
+                        <?php if ($_SESSION['type'] === 'admin') {?>
+                            <td>
+                                <form method="POST" class="form-table" action="deleteDonant.php">
+                                    <input type="hidden" value="<?php echo $id[$i]; ?>" name="id">
+                                    <input type="submit" onclick="return confirm('¿Deseas eliminar el registro de la donante?')" class="boton-rojo-block" value="Eliminar">
+                                </form>
+                            </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    <div class="menu-users">
-        <div class="create-user">
-            <a href="registrationDonant.php">
-                Nuevo usuario
-            </a>
-        </div>
-        <div class="logout">
-            <a href="logout.php">
-                Cerrar sesión
-            </a>
-        </div>
     </div>
 
     <script language="JavaScript" type="text/javascript">

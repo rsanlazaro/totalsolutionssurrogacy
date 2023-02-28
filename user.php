@@ -7,7 +7,7 @@ if (!($_SESSION['login'])) {
 } else {
     if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
         header('location: /index.php');
-    } 
+    }
 }
 
 $id = $_GET['id'];
@@ -26,6 +26,13 @@ while ($row = mysqli_fetch_assoc($result)) {
     $donant_2 = $row['donant_2'];
     $donant_3 = $row['donant_3'];
     $code = $row['code'];
+}
+
+$sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
+$result = mysqli_query($conn, $sql);
+$index = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    $codeDonants[$index++] = $row['code'];
 }
 ?>
 <main class="register">
@@ -99,7 +106,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Donante 1:</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_1" value="<?php echo $donant_1 ?>" />
+                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_1" value="<?php echo $donant_1 ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese la donante 1</div>
                                 </div>
@@ -108,7 +115,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Donante 2:</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_2" value="<?php echo $donant_2 ?>" />
+                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_2" value="<?php echo $donant_2 ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese la donante 2</div>
                                 </div>
@@ -117,7 +124,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Donante 3:</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_3" value="<?php echo $donant_3 ?>" />
+                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_3" value="<?php echo $donant_3 ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese la donante 3</div>
                                 </div>
@@ -125,13 +132,33 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </div>
                         <div class="col-md-12">
                             <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">ID de fenotipo</label>
+                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
+                                <div class="form-control">
+                                    <select name="code" class="selector" id="ID-select">
+                                    <option value="-">-</option>
+                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
+                                            if ($codeDonants[$i] === $code) { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } else { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <div>Seleccione un ID de fenotipo</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Referencia de fenotipo</label>
                                 <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" value="<?php echo $code ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese el ID del fenotipo</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-btn">
                             <button class="btn btn-send" type="submit">
                                 <div>Actualizar datos</div>

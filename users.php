@@ -30,11 +30,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     $code[$index] = $row['code'];
     $date[$index] = $row['date'];
 }
+
 ?>
 
 <main class="register">
     <div class="register-info">
-        <h3>Usuarios registrados</h3>
+        <h3>Perfiles registrados</h3>
     </div>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -42,7 +43,20 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p class="error"><?php echo $_GET['msg']; ?></p>
 
     <?php } ?>
-    <p>Hay un total de <?php echo $index - 1 ?> usuarios registrados</p>
+
+    <p>Hay un total de <?php echo $index - 1 ?> Perfiles registrados</p>
+    <div class="menu-users">
+        <div class="create-user">
+            <a href="registrationUser.php">
+                Nuevo Perfil
+            </a>
+        </div>
+        <div class="logout">
+            <a href="logout.php">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
 
     <div class="container lab-pagination">
         <div class="panel">
@@ -60,18 +74,32 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th onclick="sortTable(1)">Password</th>
                     <th onclick="sortTable(2)">E-mail</th>
                     <th onclick="sortTable(3)">Acceso</th>
-                    <th>Fenotipo</th>
+                    <!-- <th>Fenotipo</th> -->
                     <th>VIP</th>
                     <th>Plus</th>
                     <th>Elite</th>
                     <th onclick="sortTable(8)">ID fenotipo</th>
                     <th colspan="3">Donantes seleccionadas</th>
-                    <th colspan="2">Acciones</th>
+                    <?php if ($_SESSION['type'] === 'admin') { ?>
+                        <th colspan="2">Acciones</th>
+                    <?php } else { ?>
+                        <th>Editar</th>
+                    <?php } ?>
                     <th onclick="sortTable(11)">Creación</th>
                 </tr>
             </thead>
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
+                    <?php if (isset($code[$i])) {
+                        if (!($code[$i] === "" || $code[$i] === "-")) {
+                            $idOff = $id[$i];
+                            $vip[$i] = 0;
+                            $plus[$i] = 0;
+                            $elite[$i] = 0;
+                            $query = "UPDATE users SET vip=0, plus=0, elite=0 WHERE id = ${idOff}";
+                            $result = mysqli_query($conn, $query);
+                        }
+                    } ?>
                     <?php if (!($user[$i] == 'SaludConceptAdmin')) { ?>
                         <tr>
                             <td scope="row"><?php echo $user[$i] ?></td>
@@ -79,22 +107,12 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <td data-title="E-mail"><?php echo $mail[$i] ?></td>
                             <td data-title="Type">
                                 <?php if ($type[$i] === "user") {
-                                    echo "Usuario";
+                                    echo "IP";
                                 } elseif ($type[$i] === "admin") {
                                     echo "Admin";
                                 } else {
-                                    echo "Admin Jr";
+                                    echo "Usuario";
                                 } ?>
-                            </td>
-                            <td data-title="Fenotipo">
-                                <?php
-                                if ($fenotipo[$i] == "1")
-                                    echo
-                                    "<a href=deactivate.php?id=" . $id[$i] . "&type=fenotipo class='btn-gray'></a>";
-                                else
-                                    echo
-                                    "<a href=activate.php?id=" . $id[$i] . "&type=fenotipo class='btn-green'></a>";
-                                ?>
                             </td>
                             <td data-title="VIP">
                                 <?php
@@ -165,30 +183,20 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <td>
                                 <a href="user.php?id=<?php echo $id[$i]; ?>">Editar</a>
                             </td>
-                            <td>
-                                <form method="POST" class="form-table" action="deleteUser.php">
-                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                    <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
-                                </form>
-                            </td>
+                            <?php if ($_SESSION['type'] === 'admin') { ?>
+                                <td>
+                                    <form method="POST" class="form-table" action="deleteUser.php">
+                                        <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                        <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
+                                    </form>
+                                </td>
+                            <?php } ?>
                             <td data-title="Creación"><?php echo $date[$i] ?></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    <div class="menu-users">
-        <div class="create-user">
-            <a href="registrationUser.php">
-                Nuevo usuario
-            </a>
-        </div>
-        <div class="logout">
-            <a href="logout.php">
-                Cerrar sesión
-            </a>
-        </div>
     </div>
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {

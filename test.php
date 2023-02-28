@@ -14,7 +14,7 @@
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        var myWidget = cloudinary.createUploadWidget({
+        var myWidget_1 = cloudinary.createUploadWidget({
             cloudName: 'dyn4nexb0',
             uploadPreset: 'eggdonor',
             prepareUploadParams: (cb, params) => {
@@ -30,19 +30,8 @@
         })
 
         document.getElementById("upload_widget").addEventListener("click", function() {
-            myWidget.open();
+            myWidget_1.open();
         }, false);
-
-        cloudinary.openUploadWidget({
-            upload_preset: "eggdonor",
-            cloud_name: "dyn4nexb0",
-            prepareUploadParams: (cb, params) => {
-                params = {
-                    publicId: "RAFA-IMG-TESTSTS",
-                };
-                cb(params);
-            }
-        }, (error, result) => {});
     </script>
 </body>
 

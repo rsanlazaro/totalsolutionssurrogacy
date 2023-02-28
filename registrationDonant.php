@@ -16,6 +16,7 @@ $conn = connectDB();
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['nationality'])) {
     $code = $_REQUEST['code'];
+    $code = strtoupper($code);
     $code_img = $code;
     $pattern = "/^[A-Za-z]+-\\d+$/";
     if (!(preg_match($pattern, $code))) {
