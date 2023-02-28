@@ -225,10 +225,18 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </form>
                     <?php if (!($profile === 'Fenotipe')) { ?>
                         <div class="image-load">
-                            <button id="upload_widget_1" class="cloudinary-button btn btn-send">Cargar primera foto</button>
-                            <button id="upload_widget_2" class="cloudinary-button btn btn-send">Cargar segunda foto</button>
-                            <button id="upload_widget_3" class="cloudinary-button btn btn-send">Cargar tercera foto</button>
-                            <button id="upload_widget_4" class="cloudinary-button btn btn-send">Cargar cuarta foto</button>
+                            <div class="image-load-btn">
+                                <button id="upload_widget_1" class="cloudinary-button btn btn-send">Cargar primera foto</button>
+                            </div>
+                            <div class="image-load-btn">
+                                <button id="upload_widget_2" class="cloudinary-button btn btn-send">Cargar segunda foto</button>
+                            </div>
+                            <div class="image-load-btn">
+                                <button id="upload_widget_3" class="cloudinary-button btn btn-send">Cargar tercera foto</button>
+                            </div>
+                            <div class="image-load-btn">
+                                <button id="upload_widget_4" class="cloudinary-button btn btn-send">Cargar cuarta foto</button>
+                            </div>  
                         </div>
                     <?php } ?>
             </div>
@@ -242,6 +250,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     var myWidget_1 = cloudinary.createUploadWidget({
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
+        multiple: false,
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_1" ?>",
@@ -251,6 +260,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
+            document
+                .getElementById("uploadedimage")
+                .setAttribute("src", result.info.secure_url);
         }
     })
     document.getElementById("upload_widget_1").addEventListener("click", function() {
@@ -260,6 +272,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     var myWidget_2 = cloudinary.createUploadWidget({
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
+        multiple: false,
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_2" ?>",
@@ -269,6 +282,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
+            document
+                .getElementById("uploadedimage")
+                .setAttribute("src", result.info.secure_url);
         }
     })
     document.getElementById("upload_widget_2").addEventListener("click", function() {
@@ -278,6 +294,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     var myWidget_3 = cloudinary.createUploadWidget({
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
+        multiple: false,
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_3" ?>",
@@ -287,6 +304,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
+            document
+                .getElementById("uploadedimage")
+                .setAttribute("src", result.info.secure_url);
         }
     })
     document.getElementById("upload_widget_3").addEventListener("click", function() {
@@ -296,6 +316,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     var myWidget_4 = cloudinary.createUploadWidget({
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
+        multiple: false,
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_4" ?>",
@@ -305,6 +326,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
+            document
+                .getElementById("uploadedimage")
+                .setAttribute("src", result.info.secure_url);
         }
     })
     document.getElementById("upload_widget_4").addEventListener("click", function() {
