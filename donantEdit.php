@@ -236,7 +236,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                             <div class="image-load-btn">
                                 <button id="upload_widget_4" class="cloudinary-button btn btn-send">Cargar cuarta foto</button>
-                            </div>  
+                            </div>
                         </div>
                     <?php } ?>
             </div>
@@ -251,18 +251,35 @@ while ($row = mysqli_fetch_assoc($result)) {
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
         multiple: false,
+        folder: 'eggdonor',
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_1" ?>",
+                version: 10101010,
             };
             cb(params);
         }
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
-            document
-                .getElementById("uploadedimage")
-                .setAttribute("src", result.info.secure_url);
+            // document
+            //     .getElementById("uploadedimage")
+            //     .setAttribute("src", result.info.secure_url);
+            secureUrl1 = result.info.secure_url;
+            let date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = "secureUrl1=" + secureUrl1 + "; " + expires;
+            console.log(document.cookie);
+            <?php
+            if (isset($_COOKIE['secureUrl1'])) {
+                $secureUrl =  $_COOKIE['secureUrl1'];
+                $id = $_GET['id'];
+                $conn = connectDB();
+                $query = "UPDATE donants SET ext_img_1='${secureUrl}' WHERE id = ${id}";
+                $result = mysqli_query($conn, $query);
+            }
+            ?>
         }
     })
     document.getElementById("upload_widget_1").addEventListener("click", function() {
@@ -273,18 +290,35 @@ while ($row = mysqli_fetch_assoc($result)) {
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
         multiple: false,
+        folder: 'eggdonor',
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_2" ?>",
+                version: 10101010,
             };
             cb(params);
         }
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
-            document
-                .getElementById("uploadedimage")
-                .setAttribute("src", result.info.secure_url);
+            // document
+            //     .getElementById("uploadedimage")
+            //     .setAttribute("src", result.info.secure_url);
+            secureUrl2 = result.info.secure_url;
+            let date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = "secureUrl2=" + secureUrl2 + "; " + expires;
+            console.log(document.cookie);
+            <?php
+            if (isset($_COOKIE['secureUrl2'])) {
+                $secureUrl =  $_COOKIE['secureUrl2'];
+                $id = $_GET['id'];
+                $conn = connectDB();
+                $query = "UPDATE donants SET ext_img_2='${secureUrl}' WHERE id = ${id}";
+                $result = mysqli_query($conn, $query);
+            }
+            ?>
         }
     })
     document.getElementById("upload_widget_2").addEventListener("click", function() {
@@ -295,18 +329,35 @@ while ($row = mysqli_fetch_assoc($result)) {
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
         multiple: false,
+        folder: 'eggdonor',
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_3" ?>",
+                version: 10101010,
             };
             cb(params);
         }
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
-            document
-                .getElementById("uploadedimage")
-                .setAttribute("src", result.info.secure_url);
+            // document
+            //     .getElementById("uploadedimage")
+            //     .setAttribute("src", result.info.secure_url);
+            secureUrl3 = result.info.secure_url;
+            let date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = "secureUrl3=" + secureUrl3 + "; " + expires;
+            console.log(document.cookie);
+            <?php
+            if (isset($_COOKIE['secureUrl3'])) {
+                $secureUrl =  $_COOKIE['secureUrl3'];
+                $id = $_GET['id'];
+                $conn = connectDB();
+                $query = "UPDATE donants SET ext_img_3='${secureUrl}' WHERE id = ${id}";
+                $result = mysqli_query($conn, $query);
+            }
+            ?>
         }
     })
     document.getElementById("upload_widget_3").addEventListener("click", function() {
@@ -317,18 +368,35 @@ while ($row = mysqli_fetch_assoc($result)) {
         cloudName: 'dyn4nexb0',
         uploadPreset: 'eggdonor',
         multiple: false,
+        folder: 'eggdonor',
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_4" ?>",
+                version: 10101010,
             };
             cb(params);
         }
     }, (error, result) => {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
-            document
-                .getElementById("uploadedimage")
-                .setAttribute("src", result.info.secure_url);
+            // document
+            //     .getElementById("uploadedimage")
+            //     .setAttribute("src", result.info.secure_url);
+            secureUrl4 = result.info.secure_url;
+            let date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = "secureUrl4=" + secureUrl4 + "; " + expires;
+            console.log(document.cookie);
+            <?php
+            if (isset($_COOKIE['secureUrl4'])) {
+                $secureUrl =  $_COOKIE['secureUrl4'];
+                $id = $_GET['id'];
+                $conn = connectDB();
+                $query = "UPDATE donants SET ext_img_4='${secureUrl}' WHERE id = ${id}";
+                $result = mysqli_query($conn, $query);
+            }
+            ?>
         }
     })
     document.getElementById("upload_widget_4").addEventListener("click", function() {
