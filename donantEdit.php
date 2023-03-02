@@ -255,7 +255,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_1" ?>",
-                version: 10101010,
             };
             cb(params);
         }
@@ -294,7 +293,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_2" ?>",
-                version: 10101010,
             };
             cb(params);
         }
@@ -333,7 +331,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_3" ?>",
-                version: 10101010,
             };
             cb(params);
         }
@@ -372,7 +369,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         prepareUploadParams: (cb, params) => {
             params = {
                 publicId: "<?php echo $code_img . "_4" ?>",
-                version: 10101010,
             };
             cb(params);
         }

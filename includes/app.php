@@ -15,7 +15,7 @@ $cloudinary = new Cloudinary(
 );
 
 $cloudinary->uploadApi()->upload(
-    'https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg',
+    'https://https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg',
     ['public_id' => 'olympic_flag']
 );
 
