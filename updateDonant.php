@@ -93,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
     }
 }
-if ($id) {
-    $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}', ext_img_1='${ext_img_1}', ext_img_2='${ext_img_2}', ext_img_3='${ext_img_3}', ext_img_4='${ext_img_4}' WHERE id = ${id}";
-    $result = mysqli_query($conn, $query);
-    header("Location: donants.php?msg=Los datos se han actualizado correctamente");
-}
+// if ($id) {
+//     $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}', ext_img_1='${ext_img_1}', ext_img_2='${ext_img_2}', ext_img_3='${ext_img_3}', ext_img_4='${ext_img_4}' WHERE id = ${id}";
+//     $result = mysqli_query($conn, $query);
+//     header("Location: donants.php?msg=Los datos se han actualizado correctamente");
+// }
