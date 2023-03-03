@@ -217,28 +217,54 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </div>
                             </div>
                         </div>
+                        <?php if (!($profile === 'Fenotipe')) { ?>
+                            <div class="image-load">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Imagen 1:</label>
+                                    <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" />
+                                    <img class="img-1-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png" ?> height="200" alt="Image preview...">
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione una imagen</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-load">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Imagen 2:</label>
+                                    <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" />
+                                    <img class="img-2-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png" ?> height="200" alt="Image preview...">
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione una imagen</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-load">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Imagen 3:</label>
+                                    <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" />
+                                    <img class="img-3-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png" ?> height="200" alt="Image preview...">
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione una imagen</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-load">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Imagen 4:</label>
+                                    <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" />
+                                    <img class="img-4-pre" src=<?php echo "build/img/admin/donants/" . $code . "_1.png" ?> height="200" alt="Image preview...">
+                                    <div class="invalid-feedback">
+                                        <div>Seleccione una imagen</div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                         <div class="form-btn">
                             <button class="btn btn-send" type="submit">
                                 <div>Actualizar datos</div>
                             </button>
                         </div>
                     </form>
-                    <?php if (!($profile === 'Fenotipe')) { ?>
-                        <div class="image-load">
-                            <div class="image-load-btn">
-                                <button id="upload_widget_1" class="cloudinary-button btn btn-send">Cargar primera foto</button>
-                            </div>
-                            <div class="image-load-btn">
-                                <button id="upload_widget_2" class="cloudinary-button btn btn-send">Cargar segunda foto</button>
-                            </div>
-                            <div class="image-load-btn">
-                                <button id="upload_widget_3" class="cloudinary-button btn btn-send">Cargar tercera foto</button>
-                            </div>
-                            <div class="image-load-btn">
-                                <button id="upload_widget_4" class="cloudinary-button btn btn-send">Cargar cuarta foto</button>
-                            </div>
-                        </div>
-                    <?php } ?>
             </div>
         </div>
     </div>
@@ -247,157 +273,70 @@ while ($row = mysqli_fetch_assoc($result)) {
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    var myWidget_1 = cloudinary.createUploadWidget({
-        cloudName: 'dyn4nexb0',
-        uploadPreset: 'eggdonor',
-        multiple: false,
-        folder: 'eggdonor',
-        prepareUploadParams: (cb, params) => {
-            params = {
-                publicId: "<?php echo $code_img . "_1" ?>",
-            };
-            cb(params);
-        }
-    }, (error, result) => {
-        if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
-            // document
-            //     .getElementById("uploadedimage")
-            //     .setAttribute("src", result.info.secure_url);
-            secureUrl1 = result.info.secure_url;
-            let date = new Date();
-            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = "secureUrl1=" + secureUrl1 + "; " + expires;
-            console.log(document.cookie);
-            <?php
-            if (isset($_COOKIE['secureUrl1'])) {
-                $secureUrl =  $_COOKIE['secureUrl1'];
-                $id = $_GET['id'];
-                $conn = connectDB();
-                $query = "UPDATE donants SET ext_img_1='${secureUrl}' WHERE id = ${id}";
-                $result = mysqli_query($conn, $query);
-            }
-            ?>
-        }
-    })
-    document.getElementById("upload_widget_1").addEventListener("click", function() {
-        myWidget_1.open();
-    }, false);
+    function previewFile() {
+        var preview = document.querySelector(".img-1-pre");
+        var file = document.querySelector(".img-1-input").files[0];
+        var reader = new FileReader();
 
-    var myWidget_2 = cloudinary.createUploadWidget({
-        cloudName: 'dyn4nexb0',
-        uploadPreset: 'eggdonor',
-        multiple: false,
-        folder: 'eggdonor',
-        prepareUploadParams: (cb, params) => {
-            params = {
-                publicId: "<?php echo $code_img . "_2" ?>",
-            };
-            cb(params);
-        }
-    }, (error, result) => {
-        if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
-            // document
-            //     .getElementById("uploadedimage")
-            //     .setAttribute("src", result.info.secure_url);
-            secureUrl2 = result.info.secure_url;
-            let date = new Date();
-            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = "secureUrl2=" + secureUrl2 + "; " + expires;
-            console.log(document.cookie);
-            <?php
-            if (isset($_COOKIE['secureUrl2'])) {
-                $secureUrl =  $_COOKIE['secureUrl2'];
-                $id = $_GET['id'];
-                $conn = connectDB();
-                $query = "UPDATE donants SET ext_img_2='${secureUrl}' WHERE id = ${id}";
-                $result = mysqli_query($conn, $query);
-            }
-            ?>
-        }
-    })
-    document.getElementById("upload_widget_2").addEventListener("click", function() {
-        myWidget_2.open();
-    }, false);
+        reader.onloadend = function() {
+            preview.src = reader.result;
+            img1 = reader.result;
+        };
 
-    var myWidget_3 = cloudinary.createUploadWidget({
-        cloudName: 'dyn4nexb0',
-        uploadPreset: 'eggdonor',
-        multiple: false,
-        folder: 'eggdonor',
-        prepareUploadParams: (cb, params) => {
-            params = {
-                publicId: "<?php echo $code_img . "_3" ?>",
-            };
-            cb(params);
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
         }
-    }, (error, result) => {
-        if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
-            // document
-            //     .getElementById("uploadedimage")
-            //     .setAttribute("src", result.info.secure_url);
-            secureUrl3 = result.info.secure_url;
-            let date = new Date();
-            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = "secureUrl3=" + secureUrl3 + "; " + expires;
-            console.log(document.cookie);
-            <?php
-            if (isset($_COOKIE['secureUrl3'])) {
-                $secureUrl =  $_COOKIE['secureUrl3'];
-                $id = $_GET['id'];
-                $conn = connectDB();
-                $query = "UPDATE donants SET ext_img_3='${secureUrl}' WHERE id = ${id}";
-                $result = mysqli_query($conn, $query);
-            }
-            ?>
-        }
-    })
-    document.getElementById("upload_widget_3").addEventListener("click", function() {
-        myWidget_3.open();
-    }, false);
+    }
 
-    var myWidget_4 = cloudinary.createUploadWidget({
-        cloudName: 'dyn4nexb0',
-        uploadPreset: 'eggdonor',
-        multiple: false,
-        folder: 'eggdonor',
-        prepareUploadParams: (cb, params) => {
-            params = {
-                publicId: "<?php echo $code_img . "_4" ?>",
-            };
-            cb(params);
+    function previewFile2() {
+        var preview = document.querySelector(".img-2-pre");
+        var file = document.querySelector(".img-2-input").files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
         }
-    }, (error, result) => {
-        if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
-            // document
-            //     .getElementById("uploadedimage")
-            //     .setAttribute("src", result.info.secure_url);
-            secureUrl4 = result.info.secure_url;
-            let date = new Date();
-            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = "secureUrl4=" + secureUrl4 + "; " + expires;
-            console.log(document.cookie);
-            <?php
-            if (isset($_COOKIE['secureUrl4'])) {
-                $secureUrl =  $_COOKIE['secureUrl4'];
-                $id = $_GET['id'];
-                $conn = connectDB();
-                $query = "UPDATE donants SET ext_img_4='${secureUrl}' WHERE id = ${id}";
-                $result = mysqli_query($conn, $query);
-            }
-            ?>
+    }
+
+    function previewFile3() {
+        var preview = document.querySelector(".img-3-pre");
+        var file = document.querySelector(".img-3-input").files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
         }
-    })
-    document.getElementById("upload_widget_4").addEventListener("click", function() {
-        myWidget_4.open();
-    }, false);
+    }
+
+    function previewFile4() {
+        var preview = document.querySelector(".img-4-pre");
+        var file = document.querySelector(".img-4-input").files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
 </script>
 </body>
 

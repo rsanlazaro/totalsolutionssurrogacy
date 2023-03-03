@@ -11,6 +11,7 @@ if (!$_SESSION['login']) {
 
 include "includes/app.php";
 $conn = connectDB();
+var_dump($_FILES);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -50,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
             ['public_id' => $_FILES['image-1']['name'],
-            'overwrite' => true]
+            'overwrite' => true,
+            'folder' => 'eggdonor']
         );
     }
     if (($_FILES['image-2']['size'] > 0)) {
@@ -61,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cloudinary->uploadApi()->upload(
             $_FILES['image-2']['tmp_name'],
             ['public_id' => $_FILES['image-2']['name'],
-            'overwrite' => true]
+            'overwrite' => true,
+            'folder' => 'eggdonor']
         );
     }
     if (($_FILES['image-3']['size'] > 0)) {
@@ -72,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cloudinary->uploadApi()->upload(
             $_FILES['image-3']['tmp_name'],
             ['public_id' => $_FILES['image-3']['name'],
-            'overwrite' => true]
+            'overwrite' => true,
+            'folder' => 'eggdonor']
         );
     }
     if (($_FILES['image-4']['size'] > 0)) {
@@ -83,7 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cloudinary->uploadApi()->upload(
             $_FILES['image-4']['tmp_name'],
             ['public_id' => $_FILES['image-4']['name'],
-            'overwrite' => true]
+            'overwrite' => true,
+            'folder' => 'eggdonor']
         );
     }
 }

@@ -17,7 +17,8 @@ $cloudinary = new Cloudinary(
 $cloudinary->uploadApi()->upload(
     'https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg',
     ['public_id' => 'olympic_flag',
-     'overwrite' => true]
+     'overwrite' => true,
+     'folder' => 'eggdonor']
 );
 
 require 'functions.php';
