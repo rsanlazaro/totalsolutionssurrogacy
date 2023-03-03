@@ -136,7 +136,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantPlus.php?id=<?php echo $id[$i]; ?>" class="column plus">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img[$i] . "_1.png" ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img[$i] . "_1.png" ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -158,7 +158,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img[$i] . "_1.png" ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img[$i] . "_1.png" ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -180,7 +180,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantElite.php?id=<?php echo $id[$i]; ?>" class="column elite">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img[$i] . "_1.png" ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img[$i] . "_1.png" ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>

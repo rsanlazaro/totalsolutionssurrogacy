@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php if ($profile === "Plus") { ?>
             <div class="donant parent">
                 <div class="img-1 div1">
-                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img . "_1.png" ?> alt="picture">
+                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/eggdonor/" . $code_img . "_1.png" ?> alt="picture">
                 </div>
                 <div class="donant-data div2">
                     <ul>
@@ -69,13 +69,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </ul>
                 </div>
                 <div class="img-2 div3">
-                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img . "_2.png" ?> alt="picture">
+                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img . "_2.png" ?> alt="picture">
                 </div>
                 <div class="img-3 div4">
-                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img . "_3.png" ?> alt="picture">
+                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img . "_3.png" ?> alt="picture">
                 </div>
                 <div class="img-4 div5">
-                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/" . $code_img . "_4.png" ?> alt="picture">
+                    <img src=<?php echo "https://res.cloudinary.com/dyn4nexb0/image/upload/eggdonor/" . $code_img . "_4.png" ?> alt="picture">
                 </div>
             </div>
         <?php } ?>
