@@ -1,59 +1,62 @@
 <?php
 include 'includes/templates/header.php';
-include "includes/app.php";
-$conn = connectDB();
-if (isset($_REQUEST['form_name'])) {
-    $form_name = stripslashes($_REQUEST['form_name']);
-    $form_name = mysqli_real_escape_string($conn, $form_name);
-    $form_last_name = stripslashes($_REQUEST['form_last_name']);
-    $form_last_name = mysqli_real_escape_string($conn, $form_last_name);
-    $form_age = stripslashes($_REQUEST['form_age']);
-    $form_age = mysqli_real_escape_string($conn, $form_age);
-    $form_size = stripslashes($_REQUEST['form_size']);
-    $form_size = mysqli_real_escape_string($conn, $form_size);
-    $form_weight = stripslashes($_REQUEST['form_weight']);
-    $form_weight = mysqli_real_escape_string($conn, $form_weight);
-    $form_race = stripslashes($_REQUEST['form_race']);
-    $form_race = mysqli_real_escape_string($conn, $form_race);
-    $form_morfo = stripslashes($_REQUEST['form_morfo']);
-    $form_morfo = mysqli_real_escape_string($conn, $form_morfo);
-    $form_skin = stripslashes($_REQUEST['form_skin']);
-    $form_skin = mysqli_real_escape_string($conn, $form_skin);
-    $form_eyes_color = stripslashes($_REQUEST['form_eyes_color']);
-    $form_eyes_color = mysqli_real_escape_string($conn, $form_eyes_color);
-    $form_hair_color = stripslashes($_REQUEST['form_hair_color']);
-    $form_hair_color = mysqli_real_escape_string($conn, $form_hair_color);
-    $form_hair_type = stripslashes($_REQUEST['form_hair_type']);
-    $form_hair_type = mysqli_real_escape_string($conn, $form_hair_type);
-    $form_face_shape = stripslashes($_REQUEST['form_face_shape']);
-    $form_face_shape = mysqli_real_escape_string($conn, $form_face_shape);
-    $form_notes = stripslashes($_REQUEST['form_notes']);
-    $form_notes = mysqli_real_escape_string($conn, $form_notes);
-    $form_date = stripslashes($_REQUEST['form_date']);
-    $form_date = mysqli_real_escape_string($conn, $form_date);
-    $userId = $_SESSION['id'];
-    $query = "SELECT * FROM form WHERE userId='${userId}'";
-    $result   = mysqli_query($conn, $query);
-    $repeat = $result->num_rows;
-    if ($repeat > 0) {
-        $query = "UPDATE form SET form_name='${form_name}', form_last_name='${form_last_name}', form_age='${form_age}', form_size='${form_size}', form_weight='${form_weight}', form_race='${form_race}', form_morfo='${form_morfo}', form_skin='${form_skin}', form_eyes_color='${form_eyes_color}', form_hair_color='${form_hair_color}', form_hair_type='${form_hair_type}', form_face_shape='${form_face_shape}', form_notes='${form_notes}', form_date='${form_date}' WHERE userId = ${userId}";
-        $result   = mysqli_query($conn, $query);
-        if ($result) {
-            header("Location: phenotypeFile.php?msg=Se han actualizado las respuestas");
-        } else {
-            header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
-        }
-    } else {
-        $query    = "INSERT into `form` (form_name, form_last_name, form_age, form_size, form_weight, form_race, form_morfo, form_skin, form_eyes_color, form_hair_color, form_hair_type, form_face_shape, form_notes, form_date, userId)
-                    VALUES ('$form_name', '$form_last_name', '$form_age', '$form_size', '$form_weight', '$form_race', '$form_morfo', '$form_skin', '$form_eyes_color', '$form_hair_color', '$form_hair_type', '$form_face_shape', '$form_notes', '$form_date', '$userId')";
-        $result   = mysqli_query($conn, $query);
-        if ($result) {
-            header("Location: phenotypeFile.php?msg=Se han registrado las respuestas");
-        } else {
-            header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
-        }
-    } 
-}
+// include "includes/app.php";
+// if (!($_SESSION['login'])) {
+//     header('location: /index.php');
+// }
+// $conn = connectDB();
+// if (isset($_REQUEST['form_name'])) {
+//     $form_name = stripslashes($_REQUEST['form_name']);
+//     $form_name = mysqli_real_escape_string($conn, $form_name);
+//     $form_last_name = stripslashes($_REQUEST['form_last_name']);
+//     $form_last_name = mysqli_real_escape_string($conn, $form_last_name);
+//     $form_age = stripslashes($_REQUEST['form_age']);
+//     $form_age = mysqli_real_escape_string($conn, $form_age);
+//     $form_size = stripslashes($_REQUEST['form_size']);
+//     $form_size = mysqli_real_escape_string($conn, $form_size);
+//     $form_weight = stripslashes($_REQUEST['form_weight']);
+//     $form_weight = mysqli_real_escape_string($conn, $form_weight);
+//     $form_race = stripslashes($_REQUEST['form_race']);
+//     $form_race = mysqli_real_escape_string($conn, $form_race);
+//     $form_morfo = stripslashes($_REQUEST['form_morfo']);
+//     $form_morfo = mysqli_real_escape_string($conn, $form_morfo);
+//     $form_skin = stripslashes($_REQUEST['form_skin']);
+//     $form_skin = mysqli_real_escape_string($conn, $form_skin);
+//     $form_eyes_color = stripslashes($_REQUEST['form_eyes_color']);
+//     $form_eyes_color = mysqli_real_escape_string($conn, $form_eyes_color);
+//     $form_hair_color = stripslashes($_REQUEST['form_hair_color']);
+//     $form_hair_color = mysqli_real_escape_string($conn, $form_hair_color);
+//     $form_hair_type = stripslashes($_REQUEST['form_hair_type']);
+//     $form_hair_type = mysqli_real_escape_string($conn, $form_hair_type);
+//     $form_face_shape = stripslashes($_REQUEST['form_face_shape']);
+//     $form_face_shape = mysqli_real_escape_string($conn, $form_face_shape);
+//     $form_notes = stripslashes($_REQUEST['form_notes']);
+//     $form_notes = mysqli_real_escape_string($conn, $form_notes);
+//     $form_date = stripslashes($_REQUEST['form_date']);
+//     $form_date = mysqli_real_escape_string($conn, $form_date);
+//     $userId = $_SESSION['id'];
+//     $query = "SELECT * FROM form WHERE userId='${userId}'";
+//     $result   = mysqli_query($conn, $query);
+//     $repeat = $result->num_rows;
+//     if ($repeat > 0) {
+//         $query = "UPDATE form SET form_name='${form_name}', form_last_name='${form_last_name}', form_age='${form_age}', form_size='${form_size}', form_weight='${form_weight}', form_race='${form_race}', form_morfo='${form_morfo}', form_skin='${form_skin}', form_eyes_color='${form_eyes_color}', form_hair_color='${form_hair_color}', form_hair_type='${form_hair_type}', form_face_shape='${form_face_shape}', form_notes='${form_notes}', form_date='${form_date}' WHERE userId = ${userId}";
+//         $result   = mysqli_query($conn, $query);
+//         if ($result) {
+//             header("Location: phenotypeFile.php?msg=Se han actualizado las respuestas");
+//         } else {
+//             header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
+//         }
+//     } else {
+//         $query    = "INSERT into `form` (form_name, form_last_name, form_age, form_size, form_weight, form_race, form_morfo, form_skin, form_eyes_color, form_hair_color, form_hair_type, form_face_shape, form_notes, form_date, userId)
+//                     VALUES ('$form_name', '$form_last_name', '$form_age', '$form_size', '$form_weight', '$form_race', '$form_morfo', '$form_skin', '$form_eyes_color', '$form_hair_color', '$form_hair_type', '$form_face_shape', '$form_notes', '$form_date', '$userId')";
+//         $result   = mysqli_query($conn, $query);
+//         if ($result) {
+//             header("Location: phenotypeFile.php?msg=Se han registrado las respuestas");
+//         } else {
+//             header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
+//         }
+//     } 
+// }
 
 ?>
 <main>
