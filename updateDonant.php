@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_FILES['image-1']['name'] = $code_img . "_1";
         $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
-            ['public_id' => $_FILES['image-1']['name'],
+            ['public_id' => 'RAFA',
             'overwrite' => true,
             'folder' => 'eggdonor']
         );
