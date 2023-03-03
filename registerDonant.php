@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 include "includes/app.php";
 $conn = connectDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

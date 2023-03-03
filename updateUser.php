@@ -1,5 +1,5 @@
 <?php
-
+include "includes/app.php";
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
@@ -7,9 +7,6 @@ if (!$_SESSION['login']) {
         header('location: /index.php');
     } 
 }
-
-session_start();
-include "includes/app.php";
 $conn = connectDB();
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $id = $_POST['id'];

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "includes/app.php";
 
 if (!$_SESSION['login']) {
