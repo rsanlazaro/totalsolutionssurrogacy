@@ -47,7 +47,6 @@ if (empty($username)) {
         // $row = mysqli_fetch_assoc($result);
 
         if ($row['username'] === $username && $auth) {
-            echo "Logged In";
             $_SESSION['username'] = $row['username'];
             $_SESSION['id'] = $row['id'];
             $_SESSION['login'] = true;
