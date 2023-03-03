@@ -1,35 +1,5 @@
 <?php
 
-function compressImage($source, $destination, $quality)
-{
-    // Get image info 
-    $imgInfo = getimagesize($source);
-    $mime = $imgInfo['mime'];
-
-    // Create a new image from file 
-    switch ($mime) {
-        case 'image/jpeg':
-            $image = imagecreatefromjpeg($source);
-            imagejpeg($image, $destination, $quality);
-            break;
-        case 'image/png':
-            $image = imagecreatefrompng($source);
-            imagepng($image, $destination, $quality);
-            break;
-        case 'image/gif':
-            $image = imagecreatefromgif($source);
-            imagegif($image, $destination, $quality);
-            break;
-        default:
-            $image = imagecreatefromjpeg($source);
-            imagejpeg($image, $destination, $quality);
-    }
-
-
-    // Return compressed image 
-    return $destination;
-}
-
 session_start();
 
 if (!$_SESSION['login']) {
@@ -76,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_FILES['image-1']['name'])) {
-        $compressedImage = compressImage($_FILES['image-1']['tmp_name'], $_FILES['image-1']['tmp_name'], 25);
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
         $ext_img_1 = $path['extension'];
@@ -84,13 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
             [
-                'public_id' => 'RAFA',
+                'public_id' => $_FILES['image-1']['name'],
                 'overwrite' => true,
                 'folder' => 'eggdonor'
             ]
         );
     }
-    if (($_FILES['image-2']['size'] > 0)) {
+    if (isset($_FILES['image-2']['name'])) {
         $file2 = $_FILES['image-2']['name'];
         $path2 = pathinfo($file2);
         $ext_img_2 = $path2['extension'];
@@ -104,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]
         );
     }
-    if (($_FILES['image-3']['size'] > 0)) {
+    if (isset($_FILES['image-3']['name'])) {
         $file3 = $_FILES['image-3']['name'];
         $path3 = pathinfo($file3);
         $ext_img_3 = $path3['extension'];
@@ -118,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]
         );
     }
-    if (($_FILES['image-4']['size'] > 0)) {
+    if (isset($_FILES['image-4']['name'])) {
         $file4 = $_FILES['image-4']['name'];
         $path4 = pathinfo($file4);
         $ext_img_4 = $path4['extension'];
@@ -133,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
     }
 }
-// if ($id) {
-//     $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}', ext_img_1='${ext_img_1}', ext_img_2='${ext_img_2}', ext_img_3='${ext_img_3}', ext_img_4='${ext_img_4}' WHERE id = ${id}";
-//     $result = mysqli_query($conn, $query);
-//     header("Location: donants.php?msg=Los datos se han actualizado correctamente");
-// }
+if ($id) {
+    $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}', ext_img_1='${ext_img_1}', ext_img_2='${ext_img_2}', ext_img_3='${ext_img_3}', ext_img_4='${ext_img_4}' WHERE id = ${id}";
+    $result = mysqli_query($conn, $query);
+    header("Location: donants.php?msg=Los datos se han actualizado correctamente");
+}
