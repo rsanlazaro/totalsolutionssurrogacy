@@ -12,8 +12,6 @@ if (!$_SESSION['login']) {
 
 include "includes/app.php";
 $conn = connectDB();
-var_dump($_FILES);
-var_dump($_POST);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -50,12 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path = pathinfo($file);
         $ext_img_1 = $path['extension'];
         $_FILES['image-1']['name'] = $code_img . "_1";
-        $cloudinary->uploadApi()->upload(
+        $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
             [
                 'public_id' => $_FILES['image-1']['name'],
                 'overwrite' => true,
-                'folder' => 'eggdonor'
+                'folder' => 'eggdonor',
+                'format' => 'png',
+                'invalidate' => true
             ]
         );
     }
@@ -64,12 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path2 = pathinfo($file2);
         $ext_img_2 = $path2['extension'];
         $_FILES['image-2']['name'] = $code_img . "_2";
-        $cloudinary->uploadApi()->upload(
+        $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-2']['tmp_name'],
             [
                 'public_id' => $_FILES['image-2']['name'],
                 'overwrite' => true,
-                'folder' => 'eggdonor'
+                'folder' => 'eggdonor',
+                'format' => 'png',
+                'invalidate' => true
             ]
         );
     }
@@ -78,12 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path3 = pathinfo($file3);
         $ext_img_3 = $path3['extension'];
         $_FILES['image-3']['name'] = $code_img . "_3";
-        $cloudinary->uploadApi()->upload(
+        $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-3']['tmp_name'],
             [
                 'public_id' => $_FILES['image-3']['name'],
                 'overwrite' => true,
-                'folder' => 'eggdonor'
+                'folder' => 'eggdonor',
+                'format' => 'png',
+                'invalidate' => true
             ]
         );
     }
@@ -92,18 +96,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path4 = pathinfo($file4);
         $ext_img_4 = $path4['extension'];
         $_FILES['image-4']['name'] = $code_img . "_4";
-        $cloudinary->uploadApi()->upload(
+        $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-4']['tmp_name'],
             [
                 'public_id' => $_FILES['image-4']['name'],
                 'overwrite' => true,
-                'folder' => 'eggdonor'
+                'folder' => 'eggdonor',
+                'format' => 'png',
+                'invalidate' => true
             ]
         );
     }
 }
 if ($id) {
-    $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}', ext_img_1='${ext_img_1}', ext_img_2='${ext_img_2}', ext_img_3='${ext_img_3}', ext_img_4='${ext_img_4}' WHERE id = ${id}";
+    $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}' WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
     header("Location: donants.php?msg=Los datos se han actualizado correctamente");
 }

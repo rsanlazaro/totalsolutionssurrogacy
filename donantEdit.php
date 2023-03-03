@@ -218,7 +218,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                         </div>
                         <?php if (!($profile === 'Fenotipe')) { ?>
-                            <div class="image-load">
+                            <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 1:</label>
                                     <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" />
@@ -228,7 +228,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="image-load">
+                            <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 2:</label>
                                     <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" />
@@ -238,7 +238,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="image-load">
+                            <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 3:</label>
                                     <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" />
@@ -248,7 +248,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="image-load">
+                            <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Imagen 4:</label>
                                     <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" />
