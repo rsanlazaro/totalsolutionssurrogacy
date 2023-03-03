@@ -42,18 +42,18 @@ if (isset($_REQUEST['form_name'])) {
         $query = "UPDATE form SET form_name='${form_name}', form_last_name='${form_last_name}', form_age='${form_age}', form_size='${form_size}', form_weight='${form_weight}', form_race='${form_race}', form_morfo='${form_morfo}', form_skin='${form_skin}', form_eyes_color='${form_eyes_color}', form_hair_color='${form_hair_color}', form_hair_type='${form_hair_type}', form_face_shape='${form_face_shape}', form_notes='${form_notes}', form_date='${form_date}' WHERE userId = ${userId}";
         $result   = mysqli_query($conn, $query);
         if ($result) {
-            header("Location: phenotypeFile.php?msg=Se han actualizado las respuestas");
+            header("Location: phenotypeFIle.php?msg=Se han actualizado las respuestas");
         } else {
-            header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
+            header("Location: phenotypeFIle.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
         }
     } else {
         $query    = "INSERT into `form` (form_name, form_last_name, form_age, form_size, form_weight, form_race, form_morfo, form_skin, form_eyes_color, form_hair_color, form_hair_type, form_face_shape, form_notes, form_date, userId)
                     VALUES ('$form_name', '$form_last_name', '$form_age', '$form_size', '$form_weight', '$form_race', '$form_morfo', '$form_skin', '$form_eyes_color', '$form_hair_color', '$form_hair_type', '$form_face_shape', '$form_notes', '$form_date', '$userId')";
         $result   = mysqli_query($conn, $query);
         if ($result) {
-            header("Location: phenotypeFile.php?msg=Se han registrado las respuestas");
+            header("Location: phenotypeFIle.php?msg=Se han registrado las respuestas");
         } else {
-            header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
+            header("Location: phenotypeFIle.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
         }
     } 
 }

@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php } ?>
     <!-- <div class="esthetics-options"> -->
     <?php if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) { 
-        header('location: phenotypeFile.php');
+        header('location: phenotypeFIle.php');
      } ?>
     <!-- 
         <div class="esthetics-options-grid">

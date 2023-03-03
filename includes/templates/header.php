@@ -102,7 +102,7 @@
             <?php } else if ($_SESSION['type'] == "user") { ?>
               <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && (!(isset($codeUser)) || $codeUser === "-")) { ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="phenotypeFile.php">
+                  <a class="nav-link" href="phenotypeFIle.php">
                     <p>Formulario</p>
                   </a>
                 </li>
@@ -129,7 +129,7 @@
               </li>
             <?php } else { ?>
               <li class="nav-item">
-                <a class="nav-link" href="phenotypeFile.php">
+                <a class="nav-link" href="phenotypeFIle.php">
                   <p>Formulario</p>
                 </a>
               </li>
