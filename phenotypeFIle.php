@@ -1,10 +1,6 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-// estaAutenticado();
-if (!($_SESSION['login'])) {
-    header('location: /index.php');
-}
 $conn = connectDB();
 if (isset($_REQUEST['form_name'])) {
     $form_name = stripslashes($_REQUEST['form_name']);
@@ -56,8 +52,7 @@ if (isset($_REQUEST['form_name'])) {
         } else {
             header("Location: phenotypeFile.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
         }
-    }
-    // object(mysqli_result)#31 (5) { ["current_field"]=> int(0) ["field_count"]=> int(16) ["lengths"]=> NULL ["num_rows"]=> int(0) ["type"]=> int(0) } 
+    } 
 }
 
 ?>
