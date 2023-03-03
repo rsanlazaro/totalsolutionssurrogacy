@@ -1,4 +1,35 @@
 <?php
+
+function compressImage($source, $destination, $quality)
+{
+    // Get image info 
+    $imgInfo = getimagesize($source);
+    $mime = $imgInfo['mime'];
+
+    // Create a new image from file 
+    switch ($mime) {
+        case 'image/jpeg':
+            $image = imagecreatefromjpeg($source);
+            imagejpeg($image, $destination, $quality);
+            break;
+        case 'image/png':
+            $image = imagecreatefrompng($source);
+            imagepng($image, $destination, $quality);
+            break;
+        case 'image/gif':
+            $image = imagecreatefromgif($source);
+            imagegif($image, $destination, $quality);
+            break;
+        default:
+            $image = imagecreatefromjpeg($source);
+            imagejpeg($image, $destination, $quality);
+    }
+
+
+    // Return compressed image 
+    return $destination;
+}
+
 session_start();
 
 if (!$_SESSION['login']) {
@@ -44,16 +75,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ext_img_4 = $row['ext_img_4'];
     }
 
-    if (($_FILES['image-1']['size'] > 0)) {
+    if (isset($_FILES['image-1']['name'])) {
+        $compressedImage = compressImage($_FILES['image-1']['tmp_name'], $_FILES['image-1']['tmp_name'], 25);
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
         $ext_img_1 = $path['extension'];
         $_FILES['image-1']['name'] = $code_img . "_1";
         $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
-            ['public_id' => 'RAFA',
-            'overwrite' => true,
-            'folder' => 'eggdonor']
+            [
+                'public_id' => 'RAFA',
+                'overwrite' => true,
+                'folder' => 'eggdonor'
+            ]
         );
     }
     if (($_FILES['image-2']['size'] > 0)) {
@@ -63,9 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_FILES['image-2']['name'] = $code_img . "_2";
         $cloudinary->uploadApi()->upload(
             $_FILES['image-2']['tmp_name'],
-            ['public_id' => $_FILES['image-2']['name'],
-            'overwrite' => true,
-            'folder' => 'eggdonor']
+            [
+                'public_id' => $_FILES['image-2']['name'],
+                'overwrite' => true,
+                'folder' => 'eggdonor'
+            ]
         );
     }
     if (($_FILES['image-3']['size'] > 0)) {
@@ -75,9 +111,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_FILES['image-3']['name'] = $code_img . "_3";
         $cloudinary->uploadApi()->upload(
             $_FILES['image-3']['tmp_name'],
-            ['public_id' => $_FILES['image-3']['name'],
-            'overwrite' => true,
-            'folder' => 'eggdonor']
+            [
+                'public_id' => $_FILES['image-3']['name'],
+                'overwrite' => true,
+                'folder' => 'eggdonor'
+            ]
         );
     }
     if (($_FILES['image-4']['size'] > 0)) {
@@ -87,9 +125,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_FILES['image-4']['name'] = $code_img . "_4";
         $cloudinary->uploadApi()->upload(
             $_FILES['image-4']['tmp_name'],
-            ['public_id' => $_FILES['image-4']['name'],
-            'overwrite' => true,
-            'folder' => 'eggdonor']
+            [
+                'public_id' => $_FILES['image-4']['name'],
+                'overwrite' => true,
+                'folder' => 'eggdonor'
+            ]
         );
     }
 }
