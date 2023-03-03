@@ -3,6 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
+use Intervention\Image\ImageManagerStatic as Image;
 use Cloudinary\Cloudinary;
 $cloudinary = new Cloudinary(
     [
@@ -12,13 +13,6 @@ $cloudinary = new Cloudinary(
             'api_secret' => 'pXH_jkaQUJf7aHL4gVKd7VUb11g',
         ],
     ]
-);
-
-$cloudinary->uploadApi()->upload(
-    'https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg',
-    ['public_id' => 'olympic_flag',
-     'overwrite' => true,
-     'folder' => 'eggdonor']
 );
 
 require 'functions.php';
