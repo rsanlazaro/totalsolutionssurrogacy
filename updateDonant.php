@@ -12,7 +12,6 @@ if (!$_SESSION['login']) {
 include "includes/app.php";
 $conn = connectDB();
 var_dump($_FILES);
-var_dump($_SERVER);
 var_dump($_POST);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
