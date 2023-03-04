@@ -1,7 +1,6 @@
 <?php
 include "includes/app.php";
 $conn = connectDB();
-
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = $_POST['code'];
@@ -9,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query1 = "SELECT donant_1 FROM users WHERE id='${id}' AND donant_1 IS NULL OR donant_1 = ''";
     $result1 = mysqli_query($conn, $query1);
     $exists1 = $result1->num_rows;
-    var_dump($exists1);
     if ($exists1 > 1) {
         $query = "UPDATE users SET donant_1='${code}' WHERE id='${id}'";
         $result = mysqli_query($conn, $query);
