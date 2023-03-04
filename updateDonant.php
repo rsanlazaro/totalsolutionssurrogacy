@@ -55,7 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
         $_FILES['image-1']['name'] = $code_img . "_1";
-        // if (($_FILES['image-1']['size']) > 0) {
+        if (($_FILES['image-1']['size']) > 0) {
+            echo "IMG-1-AAAH";
         //     $result = $cloudinary->uploadApi()->upload(
         //         $_FILES['image-1']['tmp_name'],
         //         [
@@ -71,13 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //     $secureUrl = $array['secure_url'];
         //     $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
         //     $result   = mysqli_query($db, $query);
-        // }
+        }
     }
     if (isset($_FILES['image-2']['name'])) {
         $file2 = $_FILES['image-2']['name'];
         $path2 = pathinfo($file2);
         $_FILES['image-2']['name'] = $code_img . "_2";
-        // if (($_FILES['image-2']['size']) > 0) {
+        if (($_FILES['image-2']['size']) > 0) {
+            echo "IMG-2-AAAH";
         //     $result = $cloudinary->uploadApi()->upload(
         //         $_FILES['image-2']['tmp_name'],
         //         [
@@ -93,13 +95,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //     $secureUrl = $array['secure_url'];
         //     $query = "UPDATE donants SET ext_img_2='{$secureUrl}' WHERE id = {$id}";
         //     $result   = mysqli_query($db, $query);
-        // }
+        }
     }
     if (isset($_FILES['image-3']['name'])) {
         $file3 = $_FILES['image-3']['name'];
         $path3 = pathinfo($file3);
         $_FILES['image-3']['name'] = $code_img . "_3";
-        // if (($_FILES['image-3']['size']) > 0) {
+        if (($_FILES['image-3']['size']) > 0) {
+            echo "IMG-3-AAAH";
         //     $result = $cloudinary->uploadApi()->upload(
         //         $_FILES['image-3']['tmp_name'],
         //         [
@@ -115,13 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //     $secureUrl = $array['secure_url'];
         //     $query = "UPDATE donants SET ext_img_3='{$secureUrl}' WHERE id = {$id}";
         //     $result   = mysqli_query($db, $query);
-        // }
+        }
     }
     if (isset($_FILES['image-4']['name'])) {
         $file4 = $_FILES['image-4']['name'];
         $path4 = pathinfo($file4);
         $_FILES['image-4']['name'] = $code_img . "_4";
-        // if (isset($_FILES['image-4']['size']) > 0) {
+        if (isset($_FILES['image-4']['size']) > 0) {
+            echo "IMG-4-AAAH";
         //     $result = $cloudinary->uploadApi()->upload(
         //         $_FILES['image-4']['tmp_name'],
         //         [
@@ -137,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //     $secureUrl = $array['secure_url'];
         //     $query = "UPDATE donants SET ext_img_4='{$secureUrl}' WHERE id = {$id}";
         //     $result   = mysqli_query($db, $query);
-        // }
+        }
     }
 }
 // if ($id) {
