@@ -51,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image-1']['name'])) {
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
-        $ext_img_1 = $path['extension'];
         $_FILES['image-1']['name'] = $code_img . "_1";
         $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-1']['tmp_name'],
@@ -72,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image-2']['name'])) {
         $file2 = $_FILES['image-2']['name'];
         $path2 = pathinfo($file2);
-        $ext_img_2 = $path2['extension'];
         $_FILES['image-2']['name'] = $code_img . "_2";
         $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-2']['tmp_name'],
@@ -93,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image-3']['name'])) {
         $file3 = $_FILES['image-3']['name'];
         $path3 = pathinfo($file3);
-        $ext_img_3 = $path3['extension'];
         $_FILES['image-3']['name'] = $code_img . "_3";
         $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-3']['tmp_name'],
@@ -114,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image-4']['name'])) {
         $file4 = $_FILES['image-4']['name'];
         $path4 = pathinfo($file4);
-        $ext_img_4 = $path4['extension'];
         $_FILES['image-4']['name'] = $code_img . "_4";
         $result = $cloudinary->uploadApi()->upload(
             $_FILES['image-4']['tmp_name'],
