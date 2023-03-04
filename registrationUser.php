@@ -22,7 +22,7 @@ $db = new mysqli(
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['username'])) {
     $usernameCheck = $_REQUEST['username'];
-    $sql = "SELECT * FROM users WHERE username='${usernameCheck}'";
+    $sql = "SELECT * FROM users WHERE username='{$usernameCheck}'";
     $result = mysqli_query($db, $sql);
     $repeat = $result->num_rows;
     if ($repeat > 0) {

@@ -102,7 +102,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             $vip[$i] = 0;
                             $plus[$i] = 0;
                             $elite[$i] = 0;
-                            $query = "UPDATE users SET vip=0, plus=0, elite=0 WHERE id = ${idOff}";
+                            $query = "UPDATE users SET vip=0, plus=0, elite=0 WHERE id = {$idOff}";
                             $result = mysqli_query($db, $query);
                         }
                     } ?>

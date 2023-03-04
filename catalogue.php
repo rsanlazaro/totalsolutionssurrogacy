@@ -42,23 +42,23 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 $idUser = $_SESSION['id'];
 $codeUser = $_SESSION['code'];
-$query = "SELECT * FROM users WHERE id='${idUser}'";
+$query = "SELECT * FROM users WHERE id='{$idUser}'";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeR1 = $row['donant_1'];
 }
-$query = "SELECT donant_2 FROM users WHERE id='${idUser}'";
+$query = "SELECT donant_2 FROM users WHERE id='{$idUser}'";
 $result2 = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result2)) {
     $codeR2 = $row['donant_2'];
 }
-$query = "SELECT donant_3 FROM users WHERE id='${idUser}'";
+$query = "SELECT donant_3 FROM users WHERE id='{$idUser}'";
 $result3 = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result3)) {
     $codeR3 = $row['donant_3'];
 }
 $codeUser = $_SESSION['code'];
-$query = "SELECT * FROM donants WHERE code='${codeUser}'";
+$query = "SELECT * FROM donants WHERE code='{$codeUser}'";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeUserId = $row['id'];

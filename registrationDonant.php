@@ -43,7 +43,7 @@ if (isset($_REQUEST['nationality'])) {
         $_SESSION['price'] = $_REQUEST['price'];
         // header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
     } else {
-        $sql = "SELECT * FROM donants WHERE code='${code}'";
+        $sql = "SELECT * FROM donants WHERE code='{$code}'";
         $result = mysqli_query($db, $sql);
         $repeat = $result->num_rows;
         if ($repeat > 0) {

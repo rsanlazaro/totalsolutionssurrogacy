@@ -41,11 +41,11 @@ if (isset($_REQUEST['form_name'])) {
     $form_date = stripslashes($_REQUEST['form_date']);
     $form_date = mysqli_real_escape_string($db, $form_date);
     $userId = $_SESSION['id'];
-    $query = "SELECT * FROM form WHERE userId='${userId}'";
+    $query = "SELECT * FROM form WHERE userId='{$userId}'";
     $result   = mysqli_query($db, $query);
     $repeat = $result->num_rows;
     if ($repeat > 0) {
-        $query = "UPDATE form SET form_name='${form_name}', form_last_name='${form_last_name}', form_age='${form_age}', form_size='${form_size}', form_weight='${form_weight}', form_race='${form_race}', form_morfo='${form_morfo}', form_skin='${form_skin}', form_eyes_color='${form_eyes_color}', form_hair_color='${form_hair_color}', form_hair_type='${form_hair_type}', form_face_shape='${form_face_shape}', form_notes='${form_notes}', form_date='${form_date}' WHERE userId = ${userId}";
+        $query = "UPDATE form SET form_name='{$form_name}', form_last_name='{$form_last_name}', form_age='{$form_age}', form_size='{$form_size}', form_weight='{$form_weight}', form_race='{$form_race}', form_morfo='{$form_morfo}', form_skin='{$form_skin}', form_eyes_color='{$form_eyes_color}', form_hair_color='{$form_hair_color}', form_hair_type='{$form_hair_type}', form_face_shape='{$form_face_shape}', form_notes='{$form_notes}', form_date='{$form_date}' WHERE userId = {$userId}";
         $result   = mysqli_query($db, $query);
         if ($result) {
             header("Location: phenotypeFIle.php?msg=Se han actualizado las respuestas");

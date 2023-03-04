@@ -18,7 +18,7 @@ $db = new mysqli(
         $_ENV['DB_BD']);
 
     
-$sql = "SELECT * FROM users WHERE id=${id}";
+$sql = "SELECT * FROM users WHERE id={$id}";
 $result = mysqli_query($db, $sql);
 if (!$result->num_rows) {
     header('location: /');

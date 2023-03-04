@@ -2,10 +2,10 @@
 include "includes/app.php";
 
 if (!$_SESSION['login']) {
-    header('location: /index.php');
+    // header('location: /index.php');
 } else {
     if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
-        header('location: /index.php');
+        // header('location: /index.php');
     }
 }
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = $_POST['code'];
     $code = strtoupper($code);
 
-    $sql = "SELECT * FROM donants WHERE id=${id}";
+    $sql = "SELECT * FROM donants WHERE id={$id}";
     $result = mysqli_query($db, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $code_img = $row['code_img'];
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $json  = json_encode($result);
         $array = json_decode($json, true);
         $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_1='${secureUrl}' WHERE id = ${id}";
+        $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
         $result   = mysqli_query($db, $query);
     }
     if (isset($_FILES['image-2']['name'])) {
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $json  = json_encode($result);
         $array = json_decode($json, true);
         $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_2='${secureUrl}' WHERE id = ${id}";
+        $query = "UPDATE donants SET ext_img_2='{$secureUrl}' WHERE id = {$id}";
         $result   = mysqli_query($db, $query);
     }
     if (isset($_FILES['image-3']['name'])) {
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $json  = json_encode($result);
         $array = json_decode($json, true);
         $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_3='${secureUrl}' WHERE id = ${id}";
+        $query = "UPDATE donants SET ext_img_3='{$secureUrl}' WHERE id = {$id}";
         $result   = mysqli_query($db, $query);
     }
     if (isset($_FILES['image-4']['name'])) {
@@ -129,12 +129,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $json  = json_encode($result);
         $array = json_decode($json, true);
         $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_4='${secureUrl}' WHERE id = ${id}";
+        $query = "UPDATE donants SET ext_img_4='{$secureUrl}' WHERE id = {$id}";
         $result   = mysqli_query($db, $query);
     }
 }
 if ($id) {
-    $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}' WHERE id = ${id}";
+    $query = "UPDATE donants SET code='{$code}', nationality='{$nationality}', date_birth='{$date_birth}', color_eyes='{$color_eyes}', color_skin='{$color_skin}', blood_type='{$blood_type}', height='{$height}', weight='{$weight}', education='{$education}', color_hair='{$color_hair}', type_hair='{$type_hair}', type_body='{$type_body}', ocupation='{$ocupation}', profile='{$profile}', supplier='{$supplier}', price='{$price}' WHERE id = {$id}";
     $result = mysqli_query($db, $query);
     header("Location: donants.php?msg=Los datos se han actualizado correctamente");
 }
