@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file4 = $_FILES['image-4']['name'];
         $path4 = pathinfo($file4);
         $_FILES['image-4']['name'] = $code_img . "_4";
-        if (isset($_FILES['image-4']['size']) > 0) {
+        if (($_FILES['image-4']['size']) > 0) {
             echo "IMG-4-AAAH";
         //     $result = $cloudinary->uploadApi()->upload(
         //         $_FILES['image-4']['tmp_name'],
