@@ -48,9 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ext_img_3 = $row['ext_img_3'];
         $ext_img_4 = $row['ext_img_4'];
     }
-
-    var_dump($_FILES);
-
     if (isset($_FILES['image-1']['name'])) {
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
