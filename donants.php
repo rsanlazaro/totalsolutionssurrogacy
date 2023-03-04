@@ -10,9 +10,15 @@ if (!$_SESSION['login']) {
     }
 }
 
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    
 $sql = "SELECT * FROM donants";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($db, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $id[++$index] = $row['id'];

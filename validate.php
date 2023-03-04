@@ -1,16 +1,21 @@
 <?php
-session_start();
 include "includes/app.php";
 
-if (!$_SESSION['login']) {
-    header('location: /index.php');
-} else {
-    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
-        header('location: /index.php');
-    }
-}
+// if (!$_SESSION['login']) {
+//     header('location: /index.php');
+// } else {
+//     if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+//         header('location: /index.php');
+//     }
+// }
 
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     function validate($data)
@@ -37,7 +42,7 @@ if (empty($username)) {
 
     // $sql = "SELECT * FROM users WHERE username='$username' AND password ='$password'";
     $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($password === $row['password']) {
         $auth = 1;
@@ -47,7 +52,6 @@ if (empty($username)) {
         // $row = mysqli_fetch_assoc($result);
 
         if ($row['username'] === $username && $auth) {
-            echo "Logged In";
             $_SESSION['username'] = $row['username'];
             $_SESSION['id'] = $row['id'];
             $_SESSION['login'] = true;

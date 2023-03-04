@@ -1,17 +1,22 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-// estaAutenticado();
-if (!$_SESSION['login']) {
-    header('location: /index.php');
-} else {
-    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
-        header('location: /index.php');
-    }
-}
-$conn = connectDB();
+// if (!$_SESSION['login']) {
+//     header('location: /index.php');
+// } else {
+//     if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
+//         header('location: /index.php');
+//     }
+// }
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    
 $sql = "SELECT * FROM donants";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($db, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $id[++$index] = $row['id'];
@@ -37,24 +42,24 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 $idUser = $_SESSION['id'];
 $codeUser = $_SESSION['code'];
-$query = "SELECT * FROM users WHERE id='${idUser}'";
-$result = mysqli_query($conn, $query);
+$query = "SELECT * FROM users WHERE id='{$idUser}'";
+$result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeR1 = $row['donant_1'];
 }
-$query = "SELECT donant_2 FROM users WHERE id='${idUser}'";
-$result2 = mysqli_query($conn, $query);
+$query = "SELECT donant_2 FROM users WHERE id='{$idUser}'";
+$result2 = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result2)) {
     $codeR2 = $row['donant_2'];
 }
-$query = "SELECT donant_3 FROM users WHERE id='${idUser}'";
-$result3 = mysqli_query($conn, $query);
+$query = "SELECT donant_3 FROM users WHERE id='{$idUser}'";
+$result3 = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result3)) {
     $codeR3 = $row['donant_3'];
 }
 $codeUser = $_SESSION['code'];
-$query = "SELECT * FROM donants WHERE code='${codeUser}'";
-$result = mysqli_query($conn, $query);
+$query = "SELECT * FROM donants WHERE code='{$codeUser}'";
+$result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeUserId = $row['id'];
 }

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "includes/app.php";
 
 if (!$_SESSION['login']) {
@@ -10,14 +9,20 @@ if (!$_SESSION['login']) {
     }
 }
 
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 }
 if ($id) {
-    $sql = "SELECT * FROM donants WHERE id=${id}";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM donants WHERE id={$id}";
+    $result = mysqli_query($db, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $code = $row['code'];
     }    
@@ -29,7 +34,7 @@ if ($id) {
     array_map('unlink', glob("{$dir}.*"));
     $dir = 'build/img/admin/donants/' . $code . "_4";
     array_map('unlink', glob("{$dir}.*"));
-    $query = "DELETE FROM donants WHERE id = ${id}";
-    $result = mysqli_query($conn, $query);
+    $query = "DELETE FROM donants WHERE id = {$id}";
+    $result = mysqli_query($db, $query);
     header("Location: donants.php?msg=El usuario se ha eliminado exitosamente");
 }
