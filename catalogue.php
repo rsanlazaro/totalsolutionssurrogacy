@@ -141,13 +141,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantPlus.php?id=<?php echo $id[$i]; ?>" class="column plus">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1 ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
@@ -163,13 +163,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1 ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
@@ -185,13 +185,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantElite.php?id=<?php echo $id[$i]; ?>" class="column elite">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1 ?> alt="picture">
+                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
