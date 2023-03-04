@@ -49,27 +49,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ext_img_4 = $row['ext_img_4'];
     }
 
+    var_dump($_FILES);
+
     if (isset($_FILES['image-1']['name'])) {
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
         $_FILES['image-1']['name'] = $code_img . "_1";
-        if (($_FILES['image-1']['size']) > 0) {
-            $result = $cloudinary->uploadApi()->upload(
-                $_FILES['image-1']['tmp_name'],
-                [
-                    'public_id' => $_FILES['image-1']['name'],
-                    'overwrite' => true,
-                    'folder' => 'eggdonor',
-                    'format' => 'png',
-                    'invalidate' => true
-                ]
-            );
-            $json  = json_encode($result);
-            $array = json_decode($json, true);
-            $secureUrl = $array['secure_url'];
-            $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
-            $result   = mysqli_query($db, $query);
-        }
+        // if (($_FILES['image-1']['size']) > 0) {
+        //     $result = $cloudinary->uploadApi()->upload(
+        //         $_FILES['image-1']['tmp_name'],
+        //         [
+        //             'public_id' => $_FILES['image-1']['name'],
+        //             'overwrite' => true,
+        //             'folder' => 'eggdonor',
+        //             'format' => 'png',
+        //             'invalidate' => true
+        //         ]
+        //     );
+        //     $json  = json_encode($result);
+        //     $array = json_decode($json, true);
+        //     $secureUrl = $array['secure_url'];
+        //     $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
+        //     $result   = mysqli_query($db, $query);
+        // }
     }
     if (isset($_FILES['image-2']['name'])) {
         $file2 = $_FILES['image-2']['name'];
@@ -138,8 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // }
     }
 }
-if ($id) {
-    $query = "UPDATE donants SET code='{$code}', nationality='{$nationality}', date_birth='{$date_birth}', color_eyes='{$color_eyes}', color_skin='{$color_skin}', blood_type='{$blood_type}', height='{$height}', weight='{$weight}', education='{$education}', color_hair='{$color_hair}', type_hair='{$type_hair}', type_body='{$type_body}', ocupation='{$ocupation}', profile='{$profile}', supplier='{$supplier}', price='{$price}' WHERE id = {$id}";
-    $result = mysqli_query($db, $query);
-    header("Location: donants.php?msg=Los datos se han actualizado correctamente");
-}
+// if ($id) {
+//     $query = "UPDATE donants SET code='{$code}', nationality='{$nationality}', date_birth='{$date_birth}', color_eyes='{$color_eyes}', color_skin='{$color_skin}', blood_type='{$blood_type}', height='{$height}', weight='{$weight}', education='{$education}', color_hair='{$color_hair}', type_hair='{$type_hair}', type_body='{$type_body}', ocupation='{$ocupation}', profile='{$profile}', supplier='{$supplier}', price='{$price}' WHERE id = {$id}";
+//     $result = mysqli_query($db, $query);
+//     header("Location: donants.php?msg=Los datos se han actualizado correctamente");
+// }
