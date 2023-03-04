@@ -1,7 +1,6 @@
 <?php
 include 'includes/templates/header.php';
 include 'includes/functions.php';
-// estaAutenticado();
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
