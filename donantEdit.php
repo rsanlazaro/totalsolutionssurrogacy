@@ -4,7 +4,6 @@ include 'includes/templates/header.php';
 <?php
 include "includes/app.php";
 
-session_start();
 if (!$_SESSION['login']) {
     header('location: /index.php');
 } else {
@@ -17,7 +16,7 @@ $id = $_GET['id'];
 $conn = connectDB();
 
     
-$sql = "SELECT * FROM donants WHERE id={$id}";
+$sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
     header('location: /');

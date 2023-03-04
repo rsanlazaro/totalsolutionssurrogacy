@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_var($id, FILTER_VALIDATE_INT);
 }
 if ($id) {
-    $sql = "SELECT * FROM donants WHERE id={$id}";
+    $sql = "SELECT * FROM donants WHERE id=${id}";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $code = $row['code'];
@@ -30,7 +30,7 @@ if ($id) {
     array_map('unlink', glob("{$dir}.*"));
     $dir = 'build/img/admin/donants/' . $code . "_4";
     array_map('unlink', glob("{$dir}.*"));
-    $query = "DELETE FROM donants WHERE id = {$id}";
+    $query = "DELETE FROM donants WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
     header("Location: donants.php?msg=El usuario se ha eliminado exitosamente");
 }

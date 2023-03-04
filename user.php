@@ -14,7 +14,7 @@ $id = $_GET['id'];
 $conn = connectDB();
 
     
-$sql = "SELECT * FROM users WHERE id={$id}";
+$sql = "SELECT * FROM users WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
     header('location: /');
