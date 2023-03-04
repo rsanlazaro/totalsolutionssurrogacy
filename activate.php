@@ -1,11 +1,7 @@
 <?php
 
 include "includes/app.php";
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 
@@ -24,25 +20,25 @@ if (isset($_GET['id'])) {
         $sql = "UPDATE `users` SET
 			`fenotipo`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($db, $sql);
+        mysqli_query($conn, $sql);
     }
     if ($type == "vip") {
         $sql = "UPDATE `users` SET
 			`vip`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($db, $sql);
+        mysqli_query($conn, $sql);
     }
     if ($type == "plus") {
         $sql = "UPDATE `users` SET
 			`plus`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($db, $sql);
+        mysqli_query($conn, $sql);
     }
     if ($type == "elite") {
         $sql = "UPDATE `users` SET
 			`elite`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($db, $sql);
+        mysqli_query($conn, $sql);
     }
 }
 

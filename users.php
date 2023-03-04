@@ -10,15 +10,11 @@ if (!$_SESSION['login']) {
     }
 }
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 $sql = "SELECT * FROM users";
-$result = mysqli_query($db, $sql);
+$result = mysqli_query($conn, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $user[++$index] = $row['username'];
@@ -103,7 +99,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             $plus[$i] = 0;
                             $elite[$i] = 0;
                             $query = "UPDATE users SET vip=0, plus=0, elite=0 WHERE id = {$idOff}";
-                            $result = mysqli_query($db, $query);
+                            $result = mysqli_query($conn, $query);
                         }
                     } ?>
                     <?php if (!($user[$i] == 'SaludConceptAdmin')) { ?>

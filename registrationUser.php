@@ -12,18 +12,14 @@ if (!$_SESSION['login']) {
     }
 }
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['username'])) {
     $usernameCheck = $_REQUEST['username'];
     $sql = "SELECT * FROM users WHERE username='{$usernameCheck}'";
-    $result = mysqli_query($db, $sql);
+    $result = mysqli_query($conn, $sql);
     $repeat = $result->num_rows;
     if ($repeat > 0) {
         header("location: /registrationUser.php?msg=El nombre de usuario ya ha sido registrado. Por favor, seleccione otro.");
@@ -31,29 +27,29 @@ if (isset($_REQUEST['username'])) {
         // removes backslashes
         $username = stripslashes($_REQUEST['username']);
         //escapes special characters in a string
-        $username = mysqli_real_escape_string($db, $username);
+        $username = mysqli_real_escape_string($conn, $username);
         $email    = stripslashes($_REQUEST['email']);
-        $email    = mysqli_real_escape_string($db, $email);
+        $email    = mysqli_real_escape_string($conn, $email);
         $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($db, $password);
+        $password = mysqli_real_escape_string($conn, $password);
         // $password = password_hash($password, PASSWORD_DEFAULT);
         $type = stripslashes($_REQUEST['type']);
-        $type = mysqli_real_escape_string($db, $type);
+        $type = mysqli_real_escape_string($conn, $type);
         $VIP = stripslashes($_REQUEST['VIP']);
-        $VIP = mysqli_real_escape_string($db, $VIP);
+        $VIP = mysqli_real_escape_string($conn, $VIP);
         $Plus = stripslashes($_REQUEST['Plus']);
-        $Plus = mysqli_real_escape_string($db, $Plus);
+        $Plus = mysqli_real_escape_string($conn, $Plus);
         $Elite = stripslashes($_REQUEST['Elite']);
-        $Elite = mysqli_real_escape_string($db, $Elite);
+        $Elite = mysqli_real_escape_string($conn, $Elite);
         $Fenotipe = stripslashes($_REQUEST['Fenotipe']);
-        $Fenotipe = mysqli_real_escape_string($db, $Fenotipe);
+        $Fenotipe = mysqli_real_escape_string($conn, $Fenotipe);
         $code = stripslashes($_REQUEST['code']);
-        $code = mysqli_real_escape_string($db, $code);
+        $code = mysqli_real_escape_string($conn, $code);
         date_default_timezone_set('America/Mexico_City');
         $create_datetime = date("y-m-d G:i:s");
         $query    = "INSERT into `users` (username, password, email, type, vip, plus, elite, fenotipo, code, date)
                     VALUES ('$username', '" . $password . "', '$email', '$type', '$VIP', '$Plus', '$Elite', '$Fenotipe', '$code', '$create_datetime')";
-        $result   = mysqli_query($db, $query);
+        $result   = mysqli_query($conn, $query);
         if ($result) {
             header("Location: users.php?msg=El usuario se ha creado exitosamente");
         } else {
@@ -62,7 +58,7 @@ if (isset($_REQUEST['username'])) {
     }
 } else {
     $sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
-    $result = mysqli_query($db, $sql);
+    $result = mysqli_query($conn, $sql);
     $index = 0;
     while ($row = mysqli_fetch_assoc($result)) {
         $code[$index++] = $row['code'];

@@ -11,15 +11,11 @@ if (!($_SESSION['login'])) {
 }
 
 $id = $_GET['id'];
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 $sql = "SELECT * FROM users WHERE id={$id}";
-$result = mysqli_query($db, $sql);
+$result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
     header('location: /');
 }
@@ -35,7 +31,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
-$result = mysqli_query($db, $sql);
+$result = mysqli_query($conn, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $codeDonants[$index++] = $row['code'];

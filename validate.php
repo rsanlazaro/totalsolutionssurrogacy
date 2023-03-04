@@ -1,19 +1,15 @@
 <?php
 include "includes/app.php";
 
-// if (!$_SESSION['login']) {
-//     header('location: /index.php');
-// } else {
-//     if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
-//         header('location: /index.php');
-//     }
-// }
+if (!$_SESSION['login']) {
+    header('location: /index.php');
+} else {
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+        header('location: /index.php');
+    }
+}
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 
@@ -42,7 +38,7 @@ if (empty($username)) {
 
     // $sql = "SELECT * FROM users WHERE username='$username' AND password ='$password'";
     $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($db, $sql);
+    $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($password === $row['password']) {
         $auth = 1;

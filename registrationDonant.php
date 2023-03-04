@@ -12,11 +12,7 @@ if (!$_SESSION['login']) {
     }
 }
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 // When form submitted, insert values into the database.
@@ -44,7 +40,7 @@ if (isset($_REQUEST['nationality'])) {
         // header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
     } else {
         $sql = "SELECT * FROM donants WHERE code='{$code}'";
-        $result = mysqli_query($db, $sql);
+        $result = mysqli_query($conn, $sql);
         $repeat = $result->num_rows;
         if ($repeat > 0) {
             $_SESSION['nationality'] = $_REQUEST['nationality'];
@@ -65,7 +61,7 @@ if (isset($_REQUEST['nationality'])) {
             // header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
         } else {
             $profile = stripslashes($_REQUEST['profile']);
-            $profile = mysqli_real_escape_string($db, $profile);
+            $profile = mysqli_real_escape_string($conn, $profile);
             // Upload image
             // if (!($profile === 'Fenotipe')) {
             // if (isset($_FILES)) {
@@ -116,38 +112,38 @@ if (isset($_REQUEST['nationality'])) {
             // }
             // removes backslashes
             $nationality = stripslashes($_REQUEST['nationality']);
-            $nationality = mysqli_real_escape_string($db, $nationality);
+            $nationality = mysqli_real_escape_string($conn, $nationality);
             $date_birth    = stripslashes($_REQUEST['date_birth']);
-            $date_birth    = mysqli_real_escape_string($db, $date_birth);
+            $date_birth    = mysqli_real_escape_string($conn, $date_birth);
             $color_eyes = stripslashes($_REQUEST['color_eyes']);
-            $color_eyes = mysqli_real_escape_string($db, $color_eyes);
+            $color_eyes = mysqli_real_escape_string($conn, $color_eyes);
             $color_skin = stripslashes($_REQUEST['color_skin']);
-            $color_skin = mysqli_real_escape_string($db, $color_skin);
+            $color_skin = mysqli_real_escape_string($conn, $color_skin);
             $blood_type = stripslashes($_REQUEST['blood_type']);
-            $blood_type = mysqli_real_escape_string($db, $blood_type);
+            $blood_type = mysqli_real_escape_string($conn, $blood_type);
             $height = stripslashes($_REQUEST['height']);
-            $height = mysqli_real_escape_string($db, $height);
+            $height = mysqli_real_escape_string($conn, $height);
             $weight = stripslashes($_REQUEST['weight']);
-            $weight = mysqli_real_escape_string($db, $weight);
+            $weight = mysqli_real_escape_string($conn, $weight);
             $education = stripslashes($_REQUEST['education']);
-            $education = mysqli_real_escape_string($db, $education);
+            $education = mysqli_real_escape_string($conn, $education);
             $color_hair = stripslashes($_REQUEST['color_hair']);
-            $color_hair = mysqli_real_escape_string($db, $color_hair);
+            $color_hair = mysqli_real_escape_string($conn, $color_hair);
             $type_hair = stripslashes($_REQUEST['type_hair']);
-            $type_hair = mysqli_real_escape_string($db, $type_hair);
+            $type_hair = mysqli_real_escape_string($conn, $type_hair);
             $type_body = stripslashes($_REQUEST['type_body']);
-            $type_body = mysqli_real_escape_string($db, $type_body);
+            $type_body = mysqli_real_escape_string($conn, $type_body);
             $ocupation = stripslashes($_REQUEST['ocupation']);
-            $ocupation = mysqli_real_escape_string($db, $ocupation);
+            $ocupation = mysqli_real_escape_string($conn, $ocupation);
             $supplier = stripslashes($_REQUEST['supplier']);
-            $supplier = mysqli_real_escape_string($db, $supplier);
+            $supplier = mysqli_real_escape_string($conn, $supplier);
             $price = stripslashes($_REQUEST['price']);
-            $price = mysqli_real_escape_string($db, $price);
+            $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
             $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img)
                     VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img')";
-            $result   = mysqli_query($db, $query);
+            $result   = mysqli_query($conn, $query);
             if ($result) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");
             } else {

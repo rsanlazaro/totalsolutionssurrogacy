@@ -14,4 +14,5 @@ $cloudinary = new Cloudinary(
         ],
     ]
 );
+session_start();
 ?>

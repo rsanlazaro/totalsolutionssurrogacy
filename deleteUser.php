@@ -9,11 +9,7 @@ if (!$_SESSION['login']) {
     } 
 }
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -23,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 if ($id) {
     $query = "DELETE FROM users WHERE id = {$id}";
-    $result = mysqli_query($db, $query);
+    $result = mysqli_query($conn, $query);
     header("Location: users.php?msg=El usuario se ha eliminado exitosamente");
 }
 ?>

@@ -12,11 +12,7 @@ if (!$_SESSION['login']) {
     } 
 }
 
-$db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+$conn = connectDB();
 
     
 // When form submitted, insert values into the database.
@@ -24,16 +20,16 @@ if (isset($_REQUEST['username'])) {
     // removes backslashes
     $username = stripslashes($_REQUEST['username']);
     //escapes special characters in a string
-    $username = mysqli_real_escape_string($db, $username);
+    $username = mysqli_real_escape_string($conn, $username);
     $email    = stripslashes($_REQUEST['email']);
-    $email    = mysqli_real_escape_string($db, $email);
+    $email    = mysqli_real_escape_string($conn, $email);
     $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($db, $password);
+    $password = mysqli_real_escape_string($conn, $password);
     // $password = password_hash($password,PASSWORD_DEFAULT);
     $create_datetime = date("Y-m-d H:i:s");
     $query    = "INSERT into `users` (username, password, email)
                      VALUES ('$username', '" . $password . "', '$email')";
-    $result   = mysqli_query($db, $query);
+    $result   = mysqli_query($conn, $query);
     if ($result) {
         echo "<div class='form'>
                   <h3>You are registered successfully.</h3><br/>
