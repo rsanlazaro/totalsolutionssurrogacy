@@ -11,12 +11,13 @@ if (!$_SESSION['login']) {
 
 include "includes/app.php";
 $db = new mysqli(
-        $_ENV['DB_HOST'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS'] ?? '',
-        $_ENV['DB_BD']);
+    $_ENV['DB_HOST'],
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASS'] ?? '',
+    $_ENV['DB_BD']
+);
 
-    
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -52,81 +53,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file = $_FILES['image-1']['name'];
         $path = pathinfo($file);
         $_FILES['image-1']['name'] = $code_img . "_1";
-        $result = $cloudinary->uploadApi()->upload(
-            $_FILES['image-1']['tmp_name'],
-            [
-                'public_id' => $_FILES['image-1']['name'],
-                'overwrite' => true,
-                'folder' => 'eggdonor',
-                'format' => 'png',
-                'invalidate' => true
-            ]
-        );
-        $json  = json_encode($result);
-        $array = json_decode($json, true);
-        $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
-        $result   = mysqli_query($db, $query);
+        if (isset($_FILES['image-1']['tmp_name'])) {
+            $result = $cloudinary->uploadApi()->upload(
+                $_FILES['image-1']['tmp_name'],
+                [
+                    'public_id' => $_FILES['image-1']['name'],
+                    'overwrite' => true,
+                    'folder' => 'eggdonor',
+                    'format' => 'png',
+                    'invalidate' => true
+                ]
+            );
+            $json  = json_encode($result);
+            $array = json_decode($json, true);
+            $secureUrl = $array['secure_url'];
+            $query = "UPDATE donants SET ext_img_1='{$secureUrl}' WHERE id = {$id}";
+            $result   = mysqli_query($db, $query);
+        }
     }
     if (isset($_FILES['image-2']['name'])) {
         $file2 = $_FILES['image-2']['name'];
         $path2 = pathinfo($file2);
         $_FILES['image-2']['name'] = $code_img . "_2";
-        $result = $cloudinary->uploadApi()->upload(
-            $_FILES['image-2']['tmp_name'],
-            [
-                'public_id' => $_FILES['image-2']['name'],
-                'overwrite' => true,
-                'folder' => 'eggdonor',
-                'format' => 'png',
-                'invalidate' => true
-            ]
-        );
-        $json  = json_encode($result);
-        $array = json_decode($json, true);
-        $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_2='{$secureUrl}' WHERE id = {$id}";
-        $result   = mysqli_query($db, $query);
+        if (isset($_FILES['image-2']['tmp_name'])) {
+            $result = $cloudinary->uploadApi()->upload(
+                $_FILES['image-2']['tmp_name'],
+                [
+                    'public_id' => $_FILES['image-2']['name'],
+                    'overwrite' => true,
+                    'folder' => 'eggdonor',
+                    'format' => 'png',
+                    'invalidate' => true
+                ]
+            );
+            $json  = json_encode($result);
+            $array = json_decode($json, true);
+            $secureUrl = $array['secure_url'];
+            $query = "UPDATE donants SET ext_img_2='{$secureUrl}' WHERE id = {$id}";
+            $result   = mysqli_query($db, $query);
+        }
     }
     if (isset($_FILES['image-3']['name'])) {
         $file3 = $_FILES['image-3']['name'];
         $path3 = pathinfo($file3);
         $_FILES['image-3']['name'] = $code_img . "_3";
-        $result = $cloudinary->uploadApi()->upload(
-            $_FILES['image-3']['tmp_name'],
-            [
-                'public_id' => $_FILES['image-3']['name'],
-                'overwrite' => true,
-                'folder' => 'eggdonor',
-                'format' => 'png',
-                'invalidate' => true
-            ]
-        );
-        $json  = json_encode($result);
-        $array = json_decode($json, true);
-        $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_3='{$secureUrl}' WHERE id = {$id}";
-        $result   = mysqli_query($db, $query);
+        if (isset($_FILES['image-3']['tmp_name'])) {
+            $result = $cloudinary->uploadApi()->upload(
+                $_FILES['image-3']['tmp_name'],
+                [
+                    'public_id' => $_FILES['image-3']['name'],
+                    'overwrite' => true,
+                    'folder' => 'eggdonor',
+                    'format' => 'png',
+                    'invalidate' => true
+                ]
+            );
+            $json  = json_encode($result);
+            $array = json_decode($json, true);
+            $secureUrl = $array['secure_url'];
+            $query = "UPDATE donants SET ext_img_3='{$secureUrl}' WHERE id = {$id}";
+            $result   = mysqli_query($db, $query);
+        }
     }
     if (isset($_FILES['image-4']['name'])) {
         $file4 = $_FILES['image-4']['name'];
         $path4 = pathinfo($file4);
         $_FILES['image-4']['name'] = $code_img . "_4";
-        $result = $cloudinary->uploadApi()->upload(
-            $_FILES['image-4']['tmp_name'],
-            [
-                'public_id' => $_FILES['image-4']['name'],
-                'overwrite' => true,
-                'folder' => 'eggdonor',
-                'format' => 'png',
-                'invalidate' => true
-            ]
-        );
-        $json  = json_encode($result);
-        $array = json_decode($json, true);
-        $secureUrl = $array['secure_url'];
-        $query = "UPDATE donants SET ext_img_4='{$secureUrl}' WHERE id = {$id}";
-        $result   = mysqli_query($db, $query);
+        if (isset($_FILES['image-4']['tmp_name'])) {
+            $result = $cloudinary->uploadApi()->upload(
+                $_FILES['image-4']['tmp_name'],
+                [
+                    'public_id' => $_FILES['image-4']['name'],
+                    'overwrite' => true,
+                    'folder' => 'eggdonor',
+                    'format' => 'png',
+                    'invalidate' => true
+                ]
+            );
+            $json  = json_encode($result);
+            $array = json_decode($json, true);
+            $secureUrl = $array['secure_url'];
+            $query = "UPDATE donants SET ext_img_4='{$secureUrl}' WHERE id = {$id}";
+            $result   = mysqli_query($db, $query);
+        }
     }
 }
 if ($id) {
