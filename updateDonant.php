@@ -1,6 +1,6 @@
 <?php
-include "includes/app.php";
 
+session_start();
 if (!$_SESSION['login']) {
     // header('location: /index.php');
 } else {
@@ -10,6 +10,7 @@ if (!$_SESSION['login']) {
 }
 
 include "includes/app.php";
+
 $conn = connectDB();
 
 
