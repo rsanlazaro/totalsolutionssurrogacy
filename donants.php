@@ -11,7 +11,6 @@ if (!$_SESSION['login']) {
 }
 
 $conn = connectDB();
-
     
 $sql = "SELECT * FROM donants";
 $result = mysqli_query($conn, $sql);
