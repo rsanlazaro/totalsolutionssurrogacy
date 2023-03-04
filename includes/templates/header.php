@@ -77,7 +77,7 @@
             </ul>
           </li>
           <?php
-          include "includes/app.php";
+          session_start();
           if (!(isset($_SESSION['type']))) { ?>
             <li class="nav-item">
               <a class="nav-link" href="login.php">

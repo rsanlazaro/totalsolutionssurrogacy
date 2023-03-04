@@ -14,6 +14,9 @@ $cloudinary = new Cloudinary(
         ],
     ]
 );
+
+// require 'functions.php';
 require 'config/database.php';
-session_start();
+// ini_set('upload_max_filesize', '10M');
+
 ?>
