@@ -31,10 +31,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     $profile[$index] = $row['profile'];
     $code[$index] = $row['code'];
     $code_img[$index] = $row['code_img'];
-    $ext_img_1 = $row['ext_img_1'];
-    $ext_img_2 = $row['ext_img_2'];
-    $ext_img_3 = $row['ext_img_3'];
-    $ext_img_4 = $row['ext_img_4'];
+    $ext_img_1[$index] = $row['ext_img_1'];
+    $ext_img_2[$index] = $row['ext_img_2'];
+    $ext_img_3[$index] = $row['ext_img_3'];
+    $ext_img_4[$index] = $row['ext_img_4'];
 }
 $idUser = $_SESSION['id'];
 $codeUser = $_SESSION['code'];
@@ -147,7 +147,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
@@ -169,7 +169,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
@@ -191,7 +191,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <p><?php echo $nationality[$i] ?></p>
                             <?php if ($codeR1 === $code[$i] || $codeR2 === $code[$i] || $codeR3 === $code[$i]) { ?>
                                 <form class="form-select-btn" action="registerDonant.php" method="POST">
-                                    <input type="hidden" name="code" value="<?php echo $code[$i] ?>">
+                                    <input type="hidden" name="code" value="<?php echo $ext_img_1[$i] ?>">
                                     <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
                                 </form>
                             <?php } else { ?>
