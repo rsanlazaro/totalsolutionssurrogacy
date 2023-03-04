@@ -13,7 +13,16 @@ if (!$_SESSION['login']) {
 }
 
 $id = $_GET['id'];
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    if(!$db) {
+        echo "Error, no se pudo conectar";
+        exit;
+    }
 $sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {

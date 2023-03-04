@@ -1,6 +1,15 @@
 <?php
 include "includes/app.php";
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    if(!$db) {
+        echo "Error, no se pudo conectar";
+        exit;
+    }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = $_POST['code'];
     $id = $_SESSION['id'];

@@ -4,7 +4,16 @@ include "includes/app.php";
 if (!($_SESSION['login'])) {
     header('location: /index.php');
 }
-$conn = connectDB();
+$db = new mysqli(
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS'] ?? '',
+        $_ENV['DB_BD']);
+
+    if(!$db) {
+        echo "Error, no se pudo conectar";
+        exit;
+    }
 if (isset($_REQUEST['form_name'])) {
     $form_name = stripslashes($_REQUEST['form_name']);
     $form_name = mysqli_real_escape_string($conn, $form_name);

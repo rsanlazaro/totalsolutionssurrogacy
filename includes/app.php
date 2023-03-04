@@ -14,8 +14,4 @@ $cloudinary = new Cloudinary(
         ],
     ]
 );
-
-require 'config/database.php';
-// session_start();
-
 ?>
