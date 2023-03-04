@@ -27,16 +27,16 @@ if (isset($_REQUEST['username'])) {
     // removes backslashes
     $username = stripslashes($_REQUEST['username']);
     //escapes special characters in a string
-    $username = mysqli_real_escape_string($conn, $username);
+    $username = mysqli_real_escape_string($db, $username);
     $email    = stripslashes($_REQUEST['email']);
-    $email    = mysqli_real_escape_string($conn, $email);
+    $email    = mysqli_real_escape_string($db, $email);
     $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($conn, $password);
+    $password = mysqli_real_escape_string($db, $password);
     // $password = password_hash($password,PASSWORD_DEFAULT);
     $create_datetime = date("Y-m-d H:i:s");
     $query    = "INSERT into `users` (username, password, email)
                      VALUES ('$username', '" . $password . "', '$email')";
-    $result   = mysqli_query($conn, $query);
+    $result   = mysqli_query($db, $query);
     if ($result) {
         echo "<div class='form'>
                   <h3>You are registered successfully.</h3><br/>

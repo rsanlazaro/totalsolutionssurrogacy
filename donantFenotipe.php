@@ -21,7 +21,7 @@ $db = new mysqli(
         exit;
     }
 $sql = "SELECT * FROM donants WHERE id={$id}";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($db, $sql);
 if (!$result->num_rows) {
     header('location: /');
 }

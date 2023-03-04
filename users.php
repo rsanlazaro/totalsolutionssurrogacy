@@ -21,7 +21,7 @@ $db = new mysqli(
         exit;
     }
 $sql = "SELECT * FROM users";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($db, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $user[++$index] = $row['username'];
@@ -106,7 +106,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             $plus[$i] = 0;
                             $elite[$i] = 0;
                             $query = "UPDATE users SET vip=0, plus=0, elite=0 WHERE id = ${idOff}";
-                            $result = mysqli_query($conn, $query);
+                            $result = mysqli_query($db, $query);
                         }
                     } ?>
                     <?php if (!($user[$i] == 'SaludConceptAdmin')) { ?>

@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 if ($id) {
     $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', donant_1='${donant_1}', donant_2='${donant_2}', donant_3='${donant_3}', code='${code}' WHERE id = ${id}";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($db, $query);
     header("Location: users.php?msg=Los datos se han actualizado correctamente");
 }
 ?>

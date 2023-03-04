@@ -27,25 +27,25 @@ if (isset($_GET['id'])) {
         $sql = "UPDATE `users` SET
 			`fenotipo`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($conn, $sql);
+        mysqli_query($db, $sql);
     }
     if ($type == "vip") {
         $sql = "UPDATE `users` SET
 			`vip`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($conn, $sql);
+        mysqli_query($db, $sql);
     }
     if ($type == "plus") {
         $sql = "UPDATE `users` SET
 			`plus`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($conn, $sql);
+        mysqli_query($db, $sql);
     }
     if ($type == "elite") {
         $sql = "UPDATE `users` SET
 			`elite`=1 WHERE id='$val_id'";
         // Execute the query
-        mysqli_query($conn, $sql);
+        mysqli_query($db, $sql);
     }
 }
 

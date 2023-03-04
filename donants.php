@@ -21,7 +21,7 @@ $db = new mysqli(
         exit;
     }
 $sql = "SELECT * FROM donants";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($db, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $id[++$index] = $row['id'];

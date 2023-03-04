@@ -45,7 +45,7 @@ if (empty($username)) {
 
     // $sql = "SELECT * FROM users WHERE username='$username' AND password ='$password'";
     $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($password === $row['password']) {
         $auth = 1;

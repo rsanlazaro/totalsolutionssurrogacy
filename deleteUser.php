@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 if ($id) {
     $query = "DELETE FROM users WHERE id = ${id}";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($db, $query);
     header("Location: users.php?msg=El usuario se ha eliminado exitosamente");
 }
 ?>
