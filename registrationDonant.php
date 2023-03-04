@@ -18,10 +18,7 @@ $db = new mysqli(
         $_ENV['DB_PASS'] ?? '',
         $_ENV['DB_BD']);
 
-    if(!$db) {
-        echo "Error, no se pudo conectar";
-        exit;
-    }
+    
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['nationality'])) {
     $code = $_REQUEST['code'];

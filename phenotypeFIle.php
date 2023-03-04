@@ -10,10 +10,7 @@ $db = new mysqli(
         $_ENV['DB_PASS'] ?? '',
         $_ENV['DB_BD']);
 
-    if(!$db) {
-        echo "Error, no se pudo conectar";
-        exit;
-    }
+    
 if (isset($_REQUEST['form_name'])) {
     $form_name = stripslashes($_REQUEST['form_name']);
     $form_name = mysqli_real_escape_string($db, $form_name);

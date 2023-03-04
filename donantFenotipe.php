@@ -16,10 +16,7 @@ $db = new mysqli(
         $_ENV['DB_PASS'] ?? '',
         $_ENV['DB_BD']);
 
-    if(!$db) {
-        echo "Error, no se pudo conectar";
-        exit;
-    }
+    
 $sql = "SELECT * FROM donants WHERE id={$id}";
 $result = mysqli_query($db, $sql);
 if (!$result->num_rows) {
