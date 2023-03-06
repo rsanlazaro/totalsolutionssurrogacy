@@ -11,7 +11,7 @@ if (!$_SESSION['login']) {
 }
 
 $conn = connectDB();
-    
+
 $sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql);
 $index = 0;
@@ -117,32 +117,35 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </td>
                             <td data-title="VIP">
                                 <?php
-                                if ($vip[$i] == "1")
+                                if ($vip[$i] == "1") {
                                     echo
-                                    "<a href=deactivate.php?id=" . $id[$i] . "&type=vip class='btn-gray'></a>";
-                                else
+                                    "<a onclick='ActivateBtnVIP($id[$i])' id='vip-" . $id[$i] . "' class='btn-green'></a>";
+                                } else {
                                     echo
-                                    "<a href=activate.php?id=" . $id[$i] . "&type=vip class='btn-green'></a>";
+                                    "<a onclick='ActivateBtnVIP($id[$i])' id='vip-" . $id[$i] . "' class='btn-gray'></a>";
+                                }
                                 ?>
                             </td>
                             <td data-title="Plus">
                                 <?php
-                                if ($plus[$i] == "1")
+                                if ($plus[$i] == "1") {
                                     echo
-                                    "<a href=deactivate.php?id=" . $id[$i] . "&type=plus class='btn-gray'></a>";
-                                else
+                                    "<a onclick='ActivateBtnPlus($id[$i])' id='plus-" . $id[$i] . "' class='btn-green'></a>";
+                                } else {
                                     echo
-                                    "<a href=activate.php?id=" . $id[$i] . "&type=plus class='btn-green'></a>";
+                                    "<a onclick='ActivateBtnPlus($id[$i])' id='plus-" . $id[$i] . "' class='btn-gray'></a>";
+                                }
                                 ?>
                             </td>
                             <td data-title="Elite">
                                 <?php
-                                if ($elite[$i] == "1")
+                                if ($elite[$i] == "1") {
                                     echo
-                                    "<a href=deactivate.php?id=" . $id[$i] . "&type=elite class='btn-gray'></a>";
-                                else
+                                    "<a onclick='ActivateBtnElite($id[$i])' id='elite-" . $id[$i] . "' class='btn-green'></a>";
+                                } else {
                                     echo
-                                    "<a href=activate.php?id=" . $id[$i] . "&type=elite class='btn-green'></a>";
+                                    "<a onclick='ActivateBtnElite($id[$i])' id='elite-" . $id[$i] . "' class='btn-gray'></a>";
+                                }
                                 ?>
                             </td>
                             <td data-title="ID Fenotipo"><?php if (isset($code[$i])) {
@@ -272,6 +275,87 @@ while ($row = mysqli_fetch_assoc($result)) {
                         switching = true;
                     }
                 }
+            }
+        }
+
+        function ActivateBtnPlus(i) {
+            btn = document.getElementById('plus-' + i);
+            btn2 = document.querySelector(".btn-green" + "#plus-" + i);
+            var date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+            document.cookie = "id" + "=" + i + expires + "; path=/";
+            document.cookie = "type" + "=" + "Plus" + expires + "; path=/";
+            if (btn2 === null) {
+                btn.classList.remove("btn-gray");
+                btn.classList.add("btn-green");
+                fetch("activateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
+            } else {
+                btn.classList.add("btn-gray");
+                btn.classList.remove("btn-green");
+                fetch("deactivateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
+            }
+        }
+
+        function ActivateBtnElite(i) {
+            btn = document.getElementById('elite-' + i);
+            btn2 = document.querySelector(".btn-green" + "#elite-" + i);
+            var date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+            document.cookie = "id" + "=" + i + expires + "; path=/";
+            document.cookie = "type" + "=" + "Elite" + expires + "; path=/";
+            if (btn2 === null) {
+                btn.classList.remove("btn-gray");
+                btn.classList.add("btn-green");
+                fetch("activateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
+            } else {
+                btn.classList.add("btn-gray");
+                btn.classList.remove("btn-green");
+                fetch("deactivateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
+            }
+        }
+
+        function ActivateBtnVIP(i) {
+            btn = document.getElementById('vip-' + i);
+            btn2 = document.querySelector(".btn-green" + "#vip-" + i);
+            var date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+            document.cookie = "id" + "=" + i + expires + "; path=/";
+            document.cookie = "type" + "=" + "VIP" + expires + "; path=/";
+            if (btn2 === null) {
+                btn.classList.remove("btn-gray");
+                btn.classList.add("btn-green");
+                fetch("activateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
+            } else {
+                btn.classList.add("btn-gray");
+                btn.classList.remove("btn-green");
+                fetch("deactivateBtn.php")
+                    .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                return false;
             }
         }
     </script>

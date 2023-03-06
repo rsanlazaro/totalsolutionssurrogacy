@@ -44,3 +44,5 @@ if (isset($_GET['id'])) {
 
 // Go back to course-page.php
 header('location: users.php');
+
+?>
