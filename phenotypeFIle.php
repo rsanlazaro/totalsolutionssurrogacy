@@ -1,12 +1,11 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-if (!($_SESSION['login'])) {
+if ((!($_SESSION['login'])) || $_SESSION['form'])  {
     header('location: /index.php');
 }
 $conn = connectDB();
 
-    
 if (isset($_REQUEST['form_name'])) {
     $form_name = stripslashes($_REQUEST['form_name']);
     $form_name = mysqli_real_escape_string($conn, $form_name);
@@ -57,7 +56,7 @@ if (isset($_REQUEST['form_name'])) {
         } else {
             header("Location: phenotypeFIle.php?msg=Hubo un problema con el registro. Por favor, intente nuevamente");
         }
-    } 
+    }
 }
 
 ?>
@@ -168,7 +167,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Races et Phènotypes </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_race" type="radio" value="caucasico" id="caucasico">
+                            <input class="form-check-input" name="form_race" type="radio" value="caucasico" id="caucasico" required>
                             <label class="form-check-label" for="caucasico">
                                 <div class="spanish">Caucásico blanco // </div>
                                 <div class="space"> </div>
@@ -246,7 +245,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Peau </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_skin" type="radio" value="muy_palido" id="muy_palido">
+                            <input class="form-check-input" name="form_skin" type="radio" value="muy_palido" id="muy_palido" required>
                             <label class="form-check-label" for="muy_palido">
                                 <div class="spanish">Muy pálida // </div>
                                 <div class="space"> </div>
@@ -292,7 +291,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Couleur des yeux </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_eyes_color" type="radio" value="gris" id="gris">
+                            <input class="form-check-input" name="form_eyes_color" type="radio" value="gris" id="gris" required>
                             <label class="form-check-label" for="gris">
                                 <div class="spanish">Gris // </div>
                                 <div class="space"> </div>
@@ -348,7 +347,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Morphologie </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_morfo" type="radio" value="muy_delgada" id="muy_delgada">
+                            <input class="form-check-input" name="form_morfo" type="radio" value="muy_delgada" id="muy_delgada" required>
                             <label class="form-check-label" for="muy_delgada">
                                 <div class="spanish">Muy delgada // </div>
                                 <div class="space"> </div>
@@ -394,7 +393,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Cheveux (couleur) </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_hair_color" type="radio" value="rubio" id="rubio">
+                            <input class="form-check-input" name="form_hair_color" type="radio" value="rubio" id="rubio" required>
                             <label class="form-check-label" for="rubio">
                                 <div class="spanish">Rubio // </div>
                                 <div class="space"> </div>
@@ -440,7 +439,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Cheveux (type) </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_hair_type" type="radio" value="liso" id="liso">
+                            <input class="form-check-input" name="form_hair_type" type="radio" value="liso" id="liso" required>
                             <label class="form-check-label" for="liso">
                                 <div class="spanish">Liso // </div>
                                 <div class="space"> </div>
@@ -478,7 +477,7 @@ if (isset($_REQUEST['form_name'])) {
                             <div class="french">Forme du visage </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="form_face_shape" type="radio" value="ovalada" id="ovalada">
+                            <input class="form-check-input" name="form_face_shape" type="radio" value="ovalada" id="ovalada" required>
                             <label class="form-check-label" for="ovalada">
                                 <div class="spanish">Ovalada // </div>
                                 <div class="space"> </div>
@@ -557,5 +556,12 @@ if (isset($_REQUEST['form_name'])) {
                 </button>
             </div>
         </form>
+        <div class="menu-users">
+            <div class="logout">
+                <a href="logout.php">
+                    Cerrar sesión
+                </a>
+            </div>
+        </div>
     <?php } ?>
 </main>

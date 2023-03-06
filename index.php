@@ -6,8 +6,8 @@ include 'includes/templates/header.php';
   <div class="hero-img">
     <div class="img-container">
       <img src="build/img/hero/home.webp" alt="hero-image" />
-      <img src="build/img/hero/home2.webp" alt="hero-image" />
-      <img src="build/img/hero/home3.webp" alt="hero-image" />
+      <!-- <img src="build/img/hero/home2.webp" alt="hero-image" />
+      <img src="build/img/hero/home3.webp" alt="hero-image" /> -->
     </div>
     <div class="hero-text">
       <p>Donar la alegría de <span>formar una familia</span></p>

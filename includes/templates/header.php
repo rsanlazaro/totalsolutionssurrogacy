@@ -92,15 +92,18 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="users.php">Usuarios</a>
+                    <a class="dropdown-item" href="users.php">Perfiles</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="donants.php">Donantes</a>
                   </li>
+                  <li>
+                    <a class="dropdown-item" href="catalogue.php">Catálogo</a>
+                  </li>
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>
-              <?php if ($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && (!(isset($codeUser)) || $codeUser === "-")) { ?>
+              <?php if (($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form']) ) { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="phenotypeFIle.php">
                     <p>Formulario</p>
@@ -120,10 +123,13 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="users.php">IPs</a>
+                    <a class="dropdown-item" href="users.php">Perfiles</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="donants.php">Donantes</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="catalogue.php">Catálogo</a>
                   </li>
                 </ul>
               </li>

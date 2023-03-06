@@ -41,6 +41,22 @@ while ($row = mysqli_fetch_assoc($result)) {
     $ext_img_3 = $row['ext_img_3'];
     $ext_img_4 = $row['ext_img_4'];
 }
+
+$imagesQty = 0;
+
+if ($ext_img_1 !== "") {
+    $imagesQty = $imagesQty + 1;
+}
+if ($ext_img_2 !== "") {
+    $imagesQty = $imagesQty + 1;
+}
+if ($ext_img_3 !== "") {
+    $imagesQty = $imagesQty + 1;
+}
+if ($ext_img_4 !== "") {
+    $imagesQty = $imagesQty + 1;
+}
+
 ?>
 
 <main class="donant-info">
@@ -53,7 +69,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php if ($profile === "Plus") { ?>
             <div class="donant parent">
                 <div class="img-1 div1">
-                    <img src=<?php echo $ext_img_1 ?> alt="picture">
+                    <img src=<?php if ($ext_img_1 !== "") { echo $ext_img_1; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                 </div>
                 <div class="donant-data div2">
                     <ul>
@@ -74,13 +90,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </ul>
                 </div>
                 <div class="img-2 div3">
-                    <img src=<?php echo $ext_img_2 ?> alt="picture">
+                    <img src=<?php if ($ext_img_2 !== "") { echo $ext_img_2; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                 </div>
                 <div class="img-3 div4">
-                    <img src=<?php echo $ext_img_3 ?> alt="picture">
+                    <img src=<?php if ($ext_img_3 !== "") { echo $ext_img_3; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                 </div>
                 <div class="img-4 div5">
-                    <img src=<?php echo $ext_img_4 ?> alt="picture">
+                    <img src=<?php if ($ext_img_4 !== "") { echo $ext_img_4; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                 </div>
             </div>
         <?php } ?>

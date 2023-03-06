@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="menu-users">
         <div class="create-user">
             <a href="registrationDonant.php">
-                Nuevo usuario
+                Nueva donante
             </a>
         </div>
         <div class="logout">

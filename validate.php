@@ -12,7 +12,7 @@ if (!$_SESSION['login']) {
 
 $conn = connectDB();
 
-    
+
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     function validate($data)
@@ -58,6 +58,14 @@ if (empty($username)) {
             $_SESSION['elite'] = $row['elite'];
             $_SESSION['fenotipe'] = $row['fenotipo'];
             $_SESSION['code'] = $row['code'];
+            $checkId = $row['id'];
+            $sql = "SELECT * FROM form WHERE userId=${checkId}";
+            $result =  mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+                $_SESSION['form'] = true;
+            } else {
+                $_SESSION['form'] = false;
+            }
             if ($row['type'] == "admin") {
                 header("Location: admin.php");
             } else {
@@ -65,10 +73,8 @@ if (empty($username)) {
             }
             exit();
         } else {
-            echo "no";
             header("Location: login.php?error=Usuario o contraseña incorrecta");
             exit();
-            echo "INCORRECTO";
         }
     } else {
         header("Location: login.php?error=Usuario o contraseña incorrecta");

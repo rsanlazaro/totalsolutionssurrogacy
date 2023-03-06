@@ -10,7 +10,7 @@ include "includes/app.php";
 // }
 $conn = connectDB();
 
-    
+
 $sql = "SELECT * FROM donants";
 $result = mysqli_query($conn, $sql);
 $index = 0;
@@ -78,9 +78,11 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p class="error"><?php echo $_GET['msg']; ?></p>
     <?php } ?>
     <!-- <div class="esthetics-options"> -->
-    <?php if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) { 
+    <?php if (($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form'])) {
         header('location: phenotypeFIle.php');
-     } ?>
+    } else if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) { ?>
+        <p class="error">No hay accesos concedidos. Favor de comunicarse con el administrador.</p>
+    <?php } ?>
     <!-- 
         <div class="esthetics-options-grid">
             <?php if ($_SESSION['vip'] === "1") { ?>
@@ -141,7 +143,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantPlus.php?id=<?php echo $id[$i]; ?>" class="column plus">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -163,7 +165,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -185,7 +187,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantElite.php?id=<?php echo $id[$i]; ?>" class="column elite">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php echo $ext_img_1[$i] ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
