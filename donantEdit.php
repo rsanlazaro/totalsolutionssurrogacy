@@ -317,7 +317,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         reader.onloadend = function() {
             preview.src = reader.result;
-            img1 = reader.result;
+            preview.style.height = '25rem';
         };
 
         if (file) {
@@ -334,6 +334,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         reader.onloadend = function() {
             preview.src = reader.result;
+            preview.style.height = '25rem';
         };
 
         if (file) {
@@ -350,6 +351,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         reader.onloadend = function() {
             preview.src = reader.result;
+            preview.style.height = '25rem';
         };
 
         if (file) {
@@ -366,6 +368,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         reader.onloadend = function() {
             preview.src = reader.result;
+            preview.style.height = '25rem';
         };
 
         if (file) {
