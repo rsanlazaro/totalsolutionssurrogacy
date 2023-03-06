@@ -11,26 +11,26 @@ if (!$_SESSION['login']) {
 
 $conn = connectDB();
 
-    
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
+    $img1 = $id . "_1";
+    $img2 = $id . "_2";
+    $img3 = $id . "_3";
+    $img4 = $id . "_4";
 }
 if ($id) {
     $sql = "SELECT * FROM donants WHERE id=${id}";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $code = $row['code'];
-    }    
-    $dir = 'build/img/admin/donants/' . $code . "_1";
-    array_map('unlink', glob("{$dir}.*"));
-    $dir = 'build/img/admin/donants/' . $code . "_2";
-    array_map('unlink', glob("{$dir}.*"));
-    $dir = 'build/img/admin/donants/' . $code . "_3";
-    array_map('unlink', glob("{$dir}.*"));
-    $dir = 'build/img/admin/donants/' . $code . "_4";
-    array_map('unlink', glob("{$dir}.*"));
+    }
+    $cloudinary->uploadApi()->destroy($img1);
+    $cloudinary->uploadApi()->destroy($img2);
+    $cloudinary->uploadApi()->destroy($img3);
+    $cloudinary->uploadApi()->destroy($img4);
     $query = "DELETE FROM donants WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
-    header("Location: donants.php?msg=El usuario se ha eliminado exitosamente");
+    header("Location: donants.php?msg=La donante se ha eliminado exitosamente");
 }
