@@ -15,10 +15,10 @@ $conn = connectDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
-    $img1 = $id . "_1";
-    $img2 = $id . "_2";
-    $img3 = $id . "_3";
-    $img4 = $id . "_4";
+    $img1 = "eggdonor/" . $id . "_1";
+    $img2 = "eggdonor/" . $id . "_2";
+    $img3 = "eggdonor/" . $id . "_3";
+    $img4 = "eggdonor/" . $id . "_4";
 }
 if ($id) {
     $sql = "SELECT * FROM donants WHERE id=${id}";
