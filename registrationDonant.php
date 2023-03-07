@@ -37,7 +37,7 @@ if (isset($_REQUEST['nationality'])) {
         $_SESSION['profile'] = $_REQUEST['profile'];
         $_SESSION['supplier'] = $_REQUEST['supplier'];
         $_SESSION['price'] = $_REQUEST['price'];
-        // header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
+        header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
     } else {
         $sql = "SELECT * FROM donants WHERE code='${code}'";
         $result = mysqli_query($conn, $sql);
@@ -58,7 +58,7 @@ if (isset($_REQUEST['nationality'])) {
             $_SESSION['profile'] = $_REQUEST['profile'];
             $_SESSION['supplier'] = $_REQUEST['supplier'];
             $_SESSION['price'] = $_REQUEST['price'];
-            // header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
+            header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
         } else {
             $profile = stripslashes($_REQUEST['profile']);
             $profile = mysqli_real_escape_string($conn, $profile);
