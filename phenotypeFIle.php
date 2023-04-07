@@ -5,6 +5,7 @@ if ((!($_SESSION['login'])) || $_SESSION['form'])  {
     header('location: /index.php');
 }
 $conn = connectDB();
+// var_dump($_REQUEST);
 
 if (isset($_REQUEST['form_name'])) {
     $form_name = stripslashes($_REQUEST['form_name']);

@@ -12,7 +12,7 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-    
+
 $sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
@@ -34,30 +34,59 @@ while ($row = mysqli_fetch_assoc($result)) {
     $profile = $row['profile'];
     $price = $row['price'];
     $code = $row['code'];
+    $ext_img_1 = $row['ext_img_1'];
+    $ext_img_2 = $row['ext_img_2'];
+    $ext_img_3 = $row['ext_img_3'];
 }
 ?>
 
 <main class="donant-info">
     <div class="donants fenotipe">
         <?php if ($profile === "Fenotipe") { ?>
-            <div class="donant-data">
-                <ul>
-                    <li>Código: <?php echo $code ?></li>
-                    <li>Nacionalidad: <?php echo $nationality ?></li>
-                    <li>Fecha de nacimiento: <?php echo $date_birth ?></li>
-                    <li>Color de ojos: <?php echo $color_eyes ?></li>
-                    <li>Color de piel: <?php echo $color_skin ?></li>
-                    <li>Grupo sanguíneo: <?php echo $blood_type ?></li>
-                    <li>Estatura: <?php echo $height ?> m</li>
-                    <li>Peso: <?php echo $weight ?> kg</li>
-                    <li>Educación: <?php echo $education ?></li>
-                    <li>Color de pelo: <?php echo $color_hair ?></li>
-                    <li>TIpo de pelo: <?php echo $type_hair ?></li>
-                    <li>Tipo de cuerpo: <?php echo $type_body ?></li>
-                    <li>Ocupación: <?php echo $ocupation ?></li>
-                    <li>Precio: <?php if(isset($price)) { echo "$".$price;} ?></li>
-                </ul>
+            <div class="phenotype-parent donant">
+                <div class="img-1 div1">
+                    <img src=<?php if ($ext_img_1 !== "-") {
+                                    echo $ext_img_1;
+                                } else {
+                                    echo "build/img/admin/default.webp";
+                                }  ?> alt="picture">
+                </div>
+                <div class="img-2 div2">
+                    <img src=<?php if ($ext_img_2 !== "-") {
+                                    echo $ext_img_2;
+                                } else {
+                                    echo "build/img/admin/default.webp";
+                                }  ?> alt="picture">
+                </div>
+                <div class="img-3 div3">
+                    <img src=<?php if ($ext_img_3 !== "-") {
+                                    echo $ext_img_3;
+                                } else {
+                                    echo "build/img/admin/default.webp";
+                                }  ?> alt="picture">
+                </div>
+                <div class="donant-data div4">
+                    <ul>
+                        <li>Código: <?php echo $code ?></li>
+                        <li>Nacionalidad: <?php echo $nationality ?></li>
+                        <li>Fecha de nacimiento: <?php echo $date_birth ?></li>
+                        <li>Color de ojos: <?php echo $color_eyes ?></li>
+                        <li>Color de piel: <?php echo $color_skin ?></li>
+                        <li>Grupo sanguíneo: <?php echo $blood_type ?></li>
+                        <li>Estatura: <?php echo $height ?> m</li>
+                        <li>Peso: <?php echo $weight ?> kg</li>
+                        <li>Educación: <?php echo $education ?></li>
+                        <li>Color de pelo: <?php echo $color_hair ?></li>
+                        <li>TIpo de pelo: <?php echo $type_hair ?></li>
+                        <li>Tipo de cuerpo: <?php echo $type_body ?></li>
+                        <li>Ocupación: <?php echo $ocupation ?></li>
+                        <li>Precio: <?php if (isset($price)) {
+                                        echo "$" . $price;
+                                    } ?></li>
+                    </ul>
+                </div>
             </div>
+
         <?php } ?>
     </div>
 </main>

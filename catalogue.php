@@ -65,7 +65,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="register-info">
         <h3>Catálogo</h3>
     </div>
-    <?php if (isset($codeUser)) {
+    <?php
+    var_dump($codeUser); 
+    if (isset($codeUser)) {
         if ((!($codeUser === "" || $codeUser === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
             <div class="menu-users">
                 <div class="create-user">
