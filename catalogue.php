@@ -1,13 +1,13 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-// if (!$_SESSION['login']) {
-//     header('location: /index.php');
-// } else {
-//     if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
-//         header('location: /index.php');
-//     }
-// }
+if (!$_SESSION['login']) {
+    header('location: /index.php');
+} else {
+    if (!($_SESSION['type'] === 'user' || $_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') || $_SESSION['type'] === 'donant') {
+        header('location: /index.php');
+    }
+}
 $conn = connectDB();
 
 
@@ -66,7 +66,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         <h3>Catálogo</h3>
     </div>
     <?php
-    var_dump($codeUser); 
     if (isset($codeUser)) {
         if ((!($codeUser === "" || $codeUser === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
             <div class="menu-users">
@@ -125,6 +124,13 @@ while ($row = mysqli_fetch_assoc($result)) {
             <?php } ?>
         </div>
     </div> -->
+    <div class="menu-users">
+        <div class="logout">
+            <a href="logout.php">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
     <div class="catalogue">
         <div id="myBtnContainer">
             <?php if ($_SESSION['plus'] === "1") { ?>
@@ -208,13 +214,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </a>
                 <?php } ?>
             <?php } ?>
-        </div>
-    </div>
-    <div class="menu-users">
-        <div class="logout">
-            <a href="logout.php">
-                Cerrar sesión
-            </a>
         </div>
     </div>
 </main>

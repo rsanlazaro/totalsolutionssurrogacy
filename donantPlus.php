@@ -69,7 +69,7 @@ if ($ext_img_4 !== "") {
         <?php if ($profile === "Plus") { ?>
             <div class="donant parent">
                 <div class="img-1 div1">
-                    <img src=<?php if ($ext_img_1 !== "-") { echo $ext_img_1; } else { echo "build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_1 !== "-") { echo "src=" . $ext_img_1; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
                 </div>
                 <div class="donant-data div2">
                     <ul>
@@ -86,17 +86,16 @@ if ($ext_img_4 !== "") {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
-                        <li>Precio: <?php if(isset($price)) { echo "$".$price;} ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">
-                    <img src=<?php if ($ext_img_2 !== "-") { echo $ext_img_2; } else { echo "build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_2 !== "-") { echo "src=" . $ext_img_2; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
                 </div>
                 <div class="img-3 div4">
-                    <img src=<?php if ($ext_img_3 !== "-") { echo $ext_img_3; } else { echo "build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_3 !== "-") { echo "src=" . $ext_img_3; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
                 </div>
                 <div class="img-4 div5">
-                    <img src=<?php if ($ext_img_4 !== "-") { echo $ext_img_4; } else { echo "build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_4 !== "-") { echo "src=" . $ext_img_4; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
                 </div>
             </div>
         <?php } ?>

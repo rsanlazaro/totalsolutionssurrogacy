@@ -66,7 +66,7 @@ if (empty($username)) {
             } else {
                 $_SESSION['form'] = false;
             }
-            if ($row['type'] == "admin") {
+            if ($row['type'] == "admin" || $row['type'] == "admin-jr") {
                 header("Location: admin.php");
             } else {
                 header("Location: catalogue.php");

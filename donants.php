@@ -71,7 +71,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">ID</th>
-                    <th onclick="sortTable(1)">Nacionalidad</th>
+                    <th onclick="sortTable(1)">Origen/Etnia</th>
                     <th onclick="sortTable(2)">Año</th>
                     <th onclick="sortTable(3)">Color de ojos</th>
                     <th onclick="sortTable(4)">Color de piel</th>
@@ -93,7 +93,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
                     <tr>
                         <td scope="row"><?php if (isset($code[$i])) { echo $code[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Nacionalidad"><?php if (isset($nationality[$i])) { echo $nationality[$i]; } else { echo "-";} ?></td>
+                        <td data-title="Origen/Etnia"><?php if (isset($nationality[$i])) { echo $nationality[$i]; } else { echo "-";} ?></td>
                         <td data-title="Año de nacimiento"><?php if (isset($date_birth[$i])) { echo $date_birth[$i]; } else { echo "-";} ?></td>
                         <td data-title="Color de ojos"><?php if (isset($color_eyes[$i])) { echo $color_eyes[$i]; } else { echo "-";} ?></td>
                         <td data-title="Color de piel"><?php if (isset($color_skin[$i])) { echo $color_skin[$i]; } else { echo "-";} ?></td>
