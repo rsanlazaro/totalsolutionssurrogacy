@@ -89,6 +89,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         <?php } ?>
     </div>
+    <div class="menu-users">
+        <div class="logout">
+            <a href="logout.php">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
 </main>
 <?php include 'includes/templates/footer.php'; ?>
 </body>
