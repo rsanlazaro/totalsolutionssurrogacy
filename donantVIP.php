@@ -85,7 +85,12 @@ if ($ext_img_4 !== "") {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
-                        <li>Precio: <?php if (isset($price)) {
+                        <li>Precio: <?php
+                                    $pattern = "/DVIP/i";
+                                    if (isset($price)) {
+                                        if (preg_match($pattern, $code)) {
+                                            $price = 4000.00;
+                                        }
                                         echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
                                     } ?></li>
                     </ul>
