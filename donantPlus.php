@@ -12,7 +12,7 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-    
+
 $sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 $result = mysqli_query($conn, $sql);
@@ -69,7 +69,11 @@ if ($ext_img_4 !== "") {
         <?php if ($profile === "Plus") { ?>
             <div class="donant parent">
                 <div class="img-1 div1">
-                    <img <?php if ($ext_img_1 !== "-") { echo "src=" . $ext_img_1; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_1 !== "-") {
+                                echo "src=" . $ext_img_1;
+                            } else {
+                                echo "class='img-padding' src=build/img/admin/default.webp";
+                            }  ?> alt="picture">
                 </div>
                 <div class="donant-data div2">
                     <ul>
@@ -87,23 +91,35 @@ if ($ext_img_4 !== "") {
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
                         <li>Precio: <?php
-                        $pattern = "/DNFP/i";
-                        if (preg_match($pattern, $code)) {
-                            $price = 4000.00;
-                        }
-                        if (isset($price)) {
-                            echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
-                        } ?></li>
+                                    $pattern = "/DPLUS/i";
+                                    if (isset($price)) {
+                                        if (preg_match($pattern, $code)) {
+                                            $price = 4000.00;
+                                        }
+                                        echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                    } ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">
-                    <img <?php if ($ext_img_2 !== "-") { echo "src=" . $ext_img_2; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_2 !== "-") {
+                                echo "src=" . $ext_img_2;
+                            } else {
+                                echo "class='img-padding' src=build/img/admin/default.webp";
+                            }  ?> alt="picture">
                 </div>
                 <div class="img-3 div4">
-                    <img <?php if ($ext_img_3 !== "-") { echo "src=" . $ext_img_3; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_3 !== "-") {
+                                echo "src=" . $ext_img_3;
+                            } else {
+                                echo "class='img-padding' src=build/img/admin/default.webp";
+                            }  ?> alt="picture">
                 </div>
                 <div class="img-4 div5">
-                    <img <?php if ($ext_img_4 !== "-") { echo "src=" . $ext_img_4; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
+                    <img <?php if ($ext_img_4 !== "-") {
+                                echo "src=" . $ext_img_4;
+                            } else {
+                                echo "class='img-padding' src=build/img/admin/default.webp";
+                            }  ?> alt="picture">
                 </div>
             </div>
         <?php } ?>
