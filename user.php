@@ -161,7 +161,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <select name="code_2" class="selector" id="ID-select">
                                     <option value="-">-</option>
                                         <?php for ($i = 0; $i <= $index - 1; $i++) {
-                                            if ($codeDonants[$i] === $code) { ?>
+                                            if ($codeDonants[$i] === $code_2) { ?>
                                                 <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
                                             <?php } else { ?>
                                                 <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
@@ -181,7 +181,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <select name="code_3" class="selector" id="ID-select">
                                     <option value="-">-</option>
                                         <?php for ($i = 0; $i <= $index - 1; $i++) {
-                                            if ($codeDonants[$i] === $code) { ?>
+                                            if ($codeDonants[$i] === $code_3) { ?>
                                                 <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
                                             <?php } else { ?>
                                                 <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
