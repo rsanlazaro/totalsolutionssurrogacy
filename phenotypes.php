@@ -78,7 +78,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="row">
             <?php for ($i = 1; $i <= $index; $i++) { ?>
                 <?php if ($profile[$i] === "Fenotipe") { ?>
-                    <a href="donantFenotipe.php?id=<?php echo $id[$i]; ?>" class="column plus">
+                    <a href="donantFenotipe.php?id=<?php echo $id[$i]; ?>" class="column plus show">
                         <div class="content">
                             <div class="catalogue-img-container">
                                 <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") {
