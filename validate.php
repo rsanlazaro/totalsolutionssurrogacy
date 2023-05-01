@@ -58,6 +58,8 @@ if (empty($username)) {
             $_SESSION['elite'] = $row['elite'];
             $_SESSION['fenotipe'] = $row['fenotipo'];
             $_SESSION['code'] = $row['code'];
+            $_SESSION['code_2'] = $row['code_2'];
+            $_SESSION['code_3'] = $row['code_3'];
             $checkId = $row['id'];
             $sql = "SELECT * FROM form WHERE userId=${checkId}";
             $result =  mysqli_query($conn, $sql);

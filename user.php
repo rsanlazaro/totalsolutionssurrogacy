@@ -28,6 +28,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $donant_2 = $row['donant_2'];
     $donant_3 = $row['donant_3'];
     $code = $row['code'];
+    $code_2 = $row['code_2'];
+    $code_3 = $row['code_3'];
 }
 
 $sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
@@ -137,6 +139,46 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <label class="label-form" for="ID-select">Referencia de fenotipo</label>
                                 <div class="form-control">
                                     <select name="code" class="selector" id="ID-select">
+                                    <option value="-">-</option>
+                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
+                                            if ($codeDonants[$i] === $code) { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } else { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <div>Seleccione un ID de fenotipo</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
+                                <div class="form-control">
+                                    <select name="code_2" class="selector" id="ID-select">
+                                    <option value="-">-</option>
+                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
+                                            if ($codeDonants[$i] === $code) { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } else { ?>
+                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <div>Seleccione un ID de fenotipo</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
+                                <div class="form-control">
+                                    <select name="code_3" class="selector" id="ID-select">
                                     <option value="-">-</option>
                                         <?php for ($i = 0; $i <= $index - 1; $i++) {
                                             if ($codeDonants[$i] === $code) { ?>

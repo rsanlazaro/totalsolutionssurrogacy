@@ -38,6 +38,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 $idUser = $_SESSION['id'];
 $codeUser = $_SESSION['code'];
+$codeUser_2 = $_SESSION['code_2'];
+$codeUser_3 = $_SESSION['code_3'];
 $query = "SELECT * FROM users WHERE id='${idUser}'";
 $result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_assoc($result)) {
@@ -54,10 +56,22 @@ while ($row = mysqli_fetch_assoc($result3)) {
     $codeR3 = $row['donant_3'];
 }
 $codeUser = $_SESSION['code'];
+$codeUser_2 = $_SESSION['code_2'];
+$codeUser_3 = $_SESSION['code_3'];
 $query = "SELECT * FROM donants WHERE code='${codeUser}'";
 $result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeUserId = $row['id'];
+}
+$query = "SELECT * FROM donants WHERE code='${codeUser_2}'";
+$result = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result)) {
+    $codeUserId_2 = $row['id'];
+}
+$query = "SELECT * FROM donants WHERE code='${codeUser_3}'";
+$result = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result)) {
+    $codeUserId_3 = $row['id'];
 }
 ?>
 
@@ -66,64 +80,43 @@ while ($row = mysqli_fetch_assoc($result)) {
         <h3>Catálogo</h3>
     </div>
     <?php
-    if (isset($codeUser)) {
-        if ((!($codeUser === "" || $codeUser === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
-            <div class="menu-users">
-                <div class="create-user">
-                    <a href=<?php echo "donantFenotipe.php?id=" . $codeUserId ?>>Ver fenotipo <?php echo $codeUser; ?></a>
+    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+        if (isset($codeUser)) {
+            if ((!($codeUser === "" || $codeUser === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
+                <div class="menu-users">
+                    <div class="create-user">
+                        <a href=<?php echo "donantFenotipe.php?id=" . $codeUserId ?>>Ver fenotipo <?php echo $codeUser; ?></a>
+                    </div>
                 </div>
-            </div>
-    <?php }
-    } ?>
-    <?php if (isset($_GET['msg'])) { ?>
-        <p class="error"><?php echo $_GET['msg']; ?></p>
+            <?php } ?>
+        <?php } ?>
+        <?php if (isset($codeUser_2)) {
+            if ((!($codeUser_2 === "" || $codeUser_2 === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
+                <div class="menu-users">
+                    <div class="create-user">
+                        <a href=<?php echo "donantFenotipe.php?id=" . $codeUserId_2 ?>>Ver fenotipo <?php echo $codeUser_2; ?></a>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+        <?php if (isset($codeUser_3)) {
+            if ((!($codeUser_3 === "" || $codeUser_3 === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
+                <div class="menu-users">
+                    <div class="create-user">
+                        <a href=<?php echo "donantFenotipe.php?id=" . $codeUserId_3 ?>>Ver fenotipo <?php echo $codeUser_3; ?></a>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+        <?php if (isset($_GET['msg'])) { ?>
+            <p class="error"><?php echo $_GET['msg']; ?></p>
+        <?php } ?>
+        <?php if (($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form'])) {
+            header('location: phenotypeFIle.php');
+        } else if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) { ?>
+            <p class="error">Recibimos tu formulario. En breve habilitaremos el perfil según los criterios de selección.</p>
+        <?php } ?>
     <?php } ?>
-    <!-- <div class="esthetics-options"> -->
-    <?php if (($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form'])) {
-        header('location: phenotypeFIle.php');
-    } else if ($_SESSION['vip'] === "0" && $_SESSION['plus'] === "0" && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) { ?>
-        <p class="error">Recibimos tu formulario. En breve habilitaremos el perfil según los criterios de selección.</p>
-    <?php } ?>
-    <!-- 
-        <div class="esthetics-options-grid">
-            <?php if ($_SESSION['vip'] === "1") { ?>
-                <a href="vip.php" class="esthetics-options-treatments">
-                    <div class="esthetics-options-img">
-                        <img src="build/img/admin/users.webp" alt="donants" />
-                    </div>
-                    <div class="esthetics-options-bg">
-                        <div class="esthetics-title">
-                            <h2>VIP<br /> <span></span></h2>
-                        </div>
-                    </div>
-                </a>
-            <?php } ?>
-            <?php if ($_SESSION['plus'] === "1") { ?>
-                <a href="plus.php" class="esthetics-packages">
-                    <div class="esthetics-options-img">
-                        <img src="build/img/admin/users.webp" alt="users" />
-                    </div>
-                    <div class="esthetics-options-bg">
-                        <div class="esthetics-title">
-                            <h2>Plus<br /> <span></span></h2>
-                        </div>
-                    </div>
-                </a>
-            <?php } ?>
-            <?php if ($_SESSION['elite'] === "1") { ?>
-                <a href="elite.php" class="esthetics-packages">
-                    <div class="esthetics-options-img">
-                        <img src="build/img/admin/users.webp" alt="users" />
-                    </div>
-                    <div class="esthetics-options-bg">
-                        <div class="esthetics-title">
-                            <h2>Elite<br /> <span></span></h2>
-                        </div>
-                    </div>
-                </a>
-            <?php } ?>
-        </div>
-    </div> -->
     <div class="menu-users">
         <div class="logout">
             <a href="logout.php">
@@ -131,6 +124,15 @@ while ($row = mysqli_fetch_assoc($result)) {
             </a>
         </div>
     </div>
+    <?php if ($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr') { ?>
+        <div class="menu-users">
+            <div>
+                <a class="submit-ok" href="phenotypes.php">
+                    Ver fenotipos
+                </a>
+            </div>
+        </div>
+    <?php } ?>
     <div class="catalogue">
         <div id="myBtnContainer">
             <?php if ($_SESSION['plus'] === "1") { ?>
@@ -151,7 +153,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantPlus.php?id=<?php echo $id[$i]; ?>" class="column plus">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") {
+                                                                    echo $ext_img_1[$i];
+                                                                } else {
+                                                                    echo "build/img/admin/phenotype.webp";
+                                                                }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -173,7 +179,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantVIP.php?id=<?php echo $id[$i]; ?>" class="column vip">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") {
+                                                                    echo $ext_img_1[$i];
+                                                                } else {
+                                                                    echo "build/img/admin/phenotype.webp";
+                                                                }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
@@ -195,7 +205,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a href="donantElite.php?id=<?php echo $id[$i]; ?>" class="column elite">
                         <div class="content">
                             <div class="catalogue-img-container">
-                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") { echo $ext_img_1[$i]; } else { echo "build/img/admin/phenotype.webp"; }  ?> alt="picture">
+                                <img class="catalogue-img" src=<?php if ($ext_img_1[$i] !== "-") {
+                                                                    echo $ext_img_1[$i];
+                                                                } else {
+                                                                    echo "build/img/admin/phenotype.webp";
+                                                                }  ?> alt="picture">
                             </div>
                             <h4>ID: <?php echo $code[$i] ?></h4>
                             <p><?php echo $nationality[$i] ?></p>
