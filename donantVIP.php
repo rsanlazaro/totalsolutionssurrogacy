@@ -89,9 +89,11 @@ if ($ext_img_4 !== "") {
                                     $pattern = "/DVIP/i";
                                     if (isset($price)) {
                                         if (preg_match($pattern, $code)) {
-                                            $price = 4000.00;
+                                            // $price = 4000.00;
+                                            $price = 4000;
                                         }
-                                        echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                        // echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                        echo $price . " " . "\xE2\x82\xAc";
                                     } ?></li>
                     </ul>
                 </div>
