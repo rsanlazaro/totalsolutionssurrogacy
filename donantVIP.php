@@ -90,9 +90,10 @@ if ($ext_img_4 !== "") {
                                     if (isset($price)) {
                                         if (preg_match($pattern, $code)) {
                                             // $price = 4000.00;
-                                            $price = 4000;
+                                            $price = 4000.00;
                                         }
                                         // echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                        $price = substr($price, 0, -3);
                                         echo $price . " " . "\xE2\x82\xAc";
                                     } ?></li>
                     </ul>
