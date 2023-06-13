@@ -88,7 +88,7 @@ if ($ext_img_4 !== "") {
                         <li>Precio: <?php if (isset($price)) {
                                         // echo "$" . " " . number_format($price, 2, ',', '.');
                                         $price = substr($price, 0, -3);
-                                        echo "$" . " " . $price;
+                                        echo "$" . " " . $price . " " . "MXN";
                                     } ?></li>
                     </ul>
                 </div>
