@@ -27,6 +27,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 if ($id) {
     $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', code='${code}', code_2='${code_2}', code_3='${code_3}' WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
-    header("Location: users.php?msg=Los datos se han actualizado correctamente");
+    header("Location: profile_ip.php?msg=Los datos se han actualizado correctamente");
 }
 ?>
