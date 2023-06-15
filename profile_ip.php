@@ -82,14 +82,16 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th>VIP</th>
                     <th>Plus</th>
                     <th>Elite</th>
-                    <th onclick="sortTable(8)">ID fenotipo</th>
+                    <th onclick="sortTable(8)">ID fenotipo (1)</th>
+                    <th onclick="sortTable(9)">ID fenotipo (2)</th>
+                    <th onclick="sortTable(10)">ID fenotipo (3)</th>
                     <th colspan="3">Donantes seleccionadas</th>
                     <?php if ($_SESSION['type'] === 'admin') { ?>
                         <th colspan="2">Acciones</th>
                     <?php } else { ?>
                         <th>Editar</th>
                     <?php } ?>
-                    <th onclick="sortTable(11)">Creación</th>
+                    <th onclick="sortTable(13)">Creación</th>
                 </tr>
             </thead>
             <tbody>
@@ -181,6 +183,24 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                                         echo "-";
                                                                     } else {
                                                                         echo $code[$i];
+                                                                    }
+                                                                } else {
+                                                                    echo "-";
+                                                                } ?></td>
+                                <td data-title="ID Fenotipo"><?php if (isset($code_2[$i])) {
+                                                                    if ($code_2[$i] === "") {
+                                                                        echo "-";
+                                                                    } else {
+                                                                        echo $code_2[$i];
+                                                                    }
+                                                                } else {
+                                                                    echo "-";
+                                                                } ?></td>
+                                <td data-title="ID Fenotipo"><?php if (isset($code_3[$i])) {
+                                                                    if ($code_3[$i] === "") {
+                                                                        echo "-";
+                                                                    } else {
+                                                                        echo $code_3[$i];
                                                                     }
                                                                 } else {
                                                                     echo "-";
