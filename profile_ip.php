@@ -29,6 +29,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $donante_2[$index] = $row['donant_2'];
     $donante_3[$index] = $row['donant_3'];
     $code[$index] = $row['code'];
+    $code_2[$index] = $row['code_2'];
+    $code_3[$index] = $row['code_3'];
     $date[$index] = $row['date'];
 }
 
