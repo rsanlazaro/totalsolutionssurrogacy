@@ -21,8 +21,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $Plus = $_POST['Plus'];
     $Elite = $_POST['Elite'];
     $code = $_POST['code'];
-    $code = $_POST['code_2'];
-    $code = $_POST['code_3'];
+    $code_2 = $_POST['code_2'];
+    $code_3 = $_POST['code_3'];
 }
 if ($id) {
     $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', code='${code}', code_2='${code_2}', code_3='${code_3}' WHERE id = ${id}";
