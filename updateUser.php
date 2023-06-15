@@ -21,9 +21,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $Plus = $_POST['Plus'];
     $Elite = $_POST['Elite'];
     $code = $_POST['code'];
+    $code = $_POST['code_2'];
+    $code = $_POST['code_3'];
+    $code = $_POST['donant_1'];
+    $code = $_POST['donant_2'];
+    $code = $_POST['donant_3'];
 }
 if ($id) {
-    $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', code='${code}' WHERE id = ${id}";
+    $query = "UPDATE users SET username='${user}', password='${pass}', email='${mail}', type='${type}', VIP='${VIP}', Elite='${Elite}', Plus='${Plus}', code='${code}', code_2='${code_2}', code_3='${code_3}', donant_1='${donant_1}', donant_2='${donant_2}', donant_3='${donant_3}' WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
     header("Location: users.php?msg=Los datos se han actualizado correctamente");
 }
