@@ -112,9 +112,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 } else {
                                     $pattern = "/DVIP/i";
                                     if (preg_match($pattern, $code[$i])) {
-                                        echo "4.000,00" . "\xE2\x82\xAc";
+                                        echo "4.000 " . "\xE2\x82\xAc";
                                     } else {
-                                        echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                        if ($profile[$i] == "Elite") {
+                                            echo number_format($price[$i], 2, ',', '.') . " MXN";
+                                        } else {
+                                            echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                        }
                                     }
                                 }
                             } 
