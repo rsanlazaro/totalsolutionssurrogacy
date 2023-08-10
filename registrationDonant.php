@@ -21,24 +21,24 @@ if (isset($_REQUEST['nationality'])) {
     $code = strtoupper($code);
     $code_img = $code;
     $pattern = "/^[A-Za-z]+-\\d+$/";
-    if (!(preg_match($pattern, $code))) {
-        $_SESSION['nationality'] = $_REQUEST['nationality'];
-        $_SESSION['date_birth'] = $_REQUEST['date_birth'];
-        $_SESSION['color_eyes'] = $_REQUEST['color_eyes'];
-        $_SESSION['color_skin'] = $_REQUEST['color_skin'];
-        $_SESSION['blood_type'] = $_REQUEST['blood_type'];
-        $_SESSION['height'] = $_REQUEST['height'];
-        $_SESSION['weight'] = $_REQUEST['weight'];
-        $_SESSION['education'] = $_REQUEST['education'];
-        $_SESSION['color_hair'] = $_REQUEST['color_hair'];
-        $_SESSION['type_hair'] = $_REQUEST['type_hair'];
-        $_SESSION['type_body'] = $_REQUEST['type_body'];
-        $_SESSION['ocupation'] = $_REQUEST['ocupation'];
-        $_SESSION['profile'] = $_REQUEST['profile'];
-        $_SESSION['supplier'] = $_REQUEST['supplier'];
-        $_SESSION['price'] = $_REQUEST['price'];
-        header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
-    } else {
+    // if (!(preg_match($pattern, $code))) { //////////
+    //     $_SESSION['nationality'] = $_REQUEST['nationality'];
+    //     $_SESSION['date_birth'] = $_REQUEST['date_birth'];
+    //     $_SESSION['color_eyes'] = $_REQUEST['color_eyes'];
+    //     $_SESSION['color_skin'] = $_REQUEST['color_skin'];
+    //     $_SESSION['blood_type'] = $_REQUEST['blood_type'];
+    //     $_SESSION['height'] = $_REQUEST['height'];
+    //     $_SESSION['weight'] = $_REQUEST['weight'];
+    //     $_SESSION['education'] = $_REQUEST['education'];
+    //     $_SESSION['color_hair'] = $_REQUEST['color_hair'];
+    //     $_SESSION['type_hair'] = $_REQUEST['type_hair'];
+    //     $_SESSION['type_body'] = $_REQUEST['type_body'];
+    //     $_SESSION['ocupation'] = $_REQUEST['ocupation'];
+    //     $_SESSION['profile'] = $_REQUEST['profile'];
+    //     $_SESSION['supplier'] = $_REQUEST['supplier'];
+    //     $_SESSION['price'] = $_REQUEST['price'];
+    //     header("location: /registrationDonant.php?msg=El código de identificación no tiene el formato requerido (texto-números)");
+    // } else { /////////////
         $sql = "SELECT * FROM donants WHERE code='${code}'";
         $result = mysqli_query($conn, $sql);
         $repeat = $result->num_rows;
@@ -159,7 +159,7 @@ if (isset($_REQUEST['nationality'])) {
                 header("Location: donants.php?msg=Hubo un problema registrando al usuario. Por favor, intente nuevamente");
             }
         }
-    }
+    // }
 } else {
     if (!(isset($_GET['msg']))) {
         unset($_SESSION['nationality']);
