@@ -58,6 +58,12 @@ if (isset($_REQUEST['nationality'])) {
             $_SESSION['profile'] = $_REQUEST['profile'];
             $_SESSION['supplier'] = $_REQUEST['supplier'];
             $_SESSION['price'] = $_REQUEST['price'];
+            $_SESSION['hobbie'] = $_REQUEST['hobbie'];
+            $_SESSION['color_favorite'] = $_REQUEST['color_favorite'];
+            $_SESSION['animal_favorite'] = $_REQUEST['animal_favorite'];
+            $_SESSION['book_movie_favorite'] = $_REQUEST['book_movie_favorite'];
+            $_SESSION['goal'] = $_REQUEST['goal'];
+            $_SESSION['dream'] = $_REQUEST['dream'];
             header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
         } else {
             $profile = stripslashes($_REQUEST['profile']);
@@ -137,6 +143,18 @@ if (isset($_REQUEST['nationality'])) {
             $ocupation = mysqli_real_escape_string($conn, $ocupation);
             $supplier = stripslashes($_REQUEST['supplier']);
             $supplier = mysqli_real_escape_string($conn, $supplier);
+            $hobbie = stripslashes($_REQUEST['hobbie']);
+            $hobbie = mysqli_real_escape_string($conn, $hobbie);
+            $color_favorite = stripslashes($_REQUEST['color_favorite']);
+            $color_favorite = mysqli_real_escape_string($conn, $color_favorite);
+            $animal_favorite = stripslashes($_REQUEST['animal_favorite']);
+            $animal_favorite = mysqli_real_escape_string($conn, $animal_favorite);
+            $book_movie_favorite = stripslashes($_REQUEST['book_movie_favorite']);
+            $book_movie_favorite = mysqli_real_escape_string($conn, $book_movie_favorite);
+            $goal = stripslashes($_REQUEST['goal']);
+            $goal = mysqli_real_escape_string($conn, $goal);
+            $dream = stripslashes($_REQUEST['dream']);
+            $dream = mysqli_real_escape_string($conn, $dream);
             if ($profile == "Plus") {
                 $price = "EMPTY";
             } else {
@@ -150,8 +168,8 @@ if (isset($_REQUEST['nationality'])) {
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img)
-                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img')";
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, hobbie, color_favorite, animal_favorite, book_movie_favorite, goal, dream)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$hobbie', '$color_favorite', '$animal_favorite', '$book_movie_favorite', '$goal', '$dream')";
             $result   = mysqli_query($conn, $query);
             if ($result) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");
@@ -177,6 +195,12 @@ if (isset($_REQUEST['nationality'])) {
         unset($_SESSION['profile']);
         unset($_SESSION['supplier']);
         unset($_SESSION['price']);
+        unset($_SESSION['hobbie']);
+        unset($_SESSION['color_favorite']);
+        unset($_SESSION['animal_favorite']);
+        unset($_SESSION['book_movie_favorite']);
+        unset($_SESSION['goal']);
+        unset($_SESSION['dream']);
     }
 ?>
     <main class="register">
@@ -339,6 +363,72 @@ if (isset($_REQUEST['nationality'])) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Pasatiempo</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="hobbie" value="<?php if (isset($_SESSION['hobbie'])) {
+                                                                                                                                                                                    echo $_SESSION['hobbie'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el pasatiempo</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Color favorito</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="color_favorite" value="<?php if (isset($_SESSION['color_favorite'])) {
+                                                                                                                                                                                    echo $_SESSION['color_favorite'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el color favorito</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Animal favorito</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="animal_favorite" value="<?php if (isset($_SESSION['animal_favorite'])) {
+                                                                                                                                                                                    echo $_SESSION['animal_favorite'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el animal favorito</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Libro/película favorita</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="book_movie_favorite" value="<?php if (isset($_SESSION['book_movie_favorite'])) {
+                                                                                                                                                                                    echo $_SESSION['book_movie_favorite'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el libro o película</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Meta personal</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="goal" value="<?php if (isset($_SESSION['goal'])) {
+                                                                                                                                                                                    echo $_SESSION['goal'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la meta personal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Sueño personal</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="dream" value="<?php if (isset($_SESSION['dream'])) {
+                                                                                                                                                                                    echo $_SESSION['dream'];
+                                                                                                                                                                                } ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el sueño personal</div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="col-md-12">
                                 <div class="has-validation">
                                     <label class="label-form" for="validationCustomUsername">Precio</label>

@@ -43,6 +43,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     $ext_img_2 = $row['ext_img_2'];
     $ext_img_3 = $row['ext_img_3'];
     $ext_img_4 = $row['ext_img_4'];
+    $hobbie = $row['hobbie'];
+    $color_favorite = $row['color_favorite'];
+    $animal_favorite = $row['animal_favorite'];
+    $book_movie_favorite = $row['book_movie_favorite'];
+    $goal = $row['goal'];
+    $dream = $row['dream'];
 }
 ?>
 <main class="register">
@@ -178,6 +184,60 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="supplier" required value="<?php echo $supplier ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese el proveedor</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Pasatiempo</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="hobbie" value="<?php echo $hobbie ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el pasatiempo</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Color favorito</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="color_favorite" value="<?php echo $color_favorite ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el color favorito</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Animal favorito</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="animal_favorite" value="<?php echo $animal_favorite ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el animal favorito</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Libro/película favorita</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="book_movie_favorite" value="<?php echo $book_movie_favorite ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el libro o película</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Meta personal</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="goal" value="<?php echo $goal ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la meta personal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Sueño personal</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="dream" value="<?php echo $dream ?>" />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el sueño personal</div>
                                 </div>
                             </div>
                         </div>
