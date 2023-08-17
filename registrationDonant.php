@@ -63,7 +63,7 @@ if (isset($_REQUEST['nationality'])) {
             $_SESSION['animal_favorite'] = $_REQUEST['animal_favorite'];
             $_SESSION['book_movie_favorite'] = $_REQUEST['book_movie_favorite'];
             $_SESSION['goal'] = $_REQUEST['goal'];
-            $_SESSION['dream'] = $_REQUEST['dream'];
+            // $_SESSION['dream'] = $_REQUEST['dream'];
             header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
         } else {
             $profile = stripslashes($_REQUEST['profile']);
@@ -153,8 +153,8 @@ if (isset($_REQUEST['nationality'])) {
             $book_movie_favorite = mysqli_real_escape_string($conn, $book_movie_favorite);
             $goal = stripslashes($_REQUEST['goal']);
             $goal = mysqli_real_escape_string($conn, $goal);
-            $dream = stripslashes($_REQUEST['dream']);
-            $dream = mysqli_real_escape_string($conn, $dream);
+            // $dream = stripslashes($_REQUEST['dream']);
+            // $dream = mysqli_real_escape_string($conn, $dream);
             if ($profile == "Plus") {
                 $price = "EMPTY";
             } else {
@@ -168,8 +168,8 @@ if (isset($_REQUEST['nationality'])) {
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, hobbie, color_favorite, animal_favorite, book_movie_favorite, goal, dream)
-                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$hobbie', '$color_favorite', '$animal_favorite', '$book_movie_favorite', '$goal', '$dream')";
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, hobbie, color_favorite, animal_favorite, book_movie_favorite, goal)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$hobbie', '$color_favorite', '$animal_favorite', '$book_movie_favorite', '$goal')";
             $result   = mysqli_query($conn, $query);
             if ($result) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");
@@ -200,7 +200,7 @@ if (isset($_REQUEST['nationality'])) {
         unset($_SESSION['animal_favorite']);
         unset($_SESSION['book_movie_favorite']);
         unset($_SESSION['goal']);
-        unset($_SESSION['dream']);
+        // unset($_SESSION['dream']);
     }
 ?>
     <main class="register">
@@ -415,17 +415,6 @@ if (isset($_REQUEST['nationality'])) {
                                                                                                                                                                                 } ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese la meta personal</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Sueño personal</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="dream" value="<?php if (isset($_SESSION['dream'])) {
-                                                                                                                                                                                    echo $_SESSION['dream'];
-                                                                                                                                                                                } ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese el sueño personal</div>
                                 </div>
                             </div>
                         </div>

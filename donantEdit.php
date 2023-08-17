@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $animal_favorite = $row['animal_favorite'];
     $book_movie_favorite = $row['book_movie_favorite'];
     $goal = $row['goal'];
-    $dream = $row['dream'];
+    // $dream = $row['dream'];
 }
 ?>
 <main class="register">
@@ -229,15 +229,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="goal" value="<?php echo $goal ?>" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese la meta personal</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Sueño personal</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="dream" value="<?php echo $dream ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese el sueño personal</div>
                                 </div>
                             </div>
                         </div>
