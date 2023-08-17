@@ -83,6 +83,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th onclick="sortTable(10)">Proveedor</th>
                     <th onclick="sortTable(11)">Precio</th>
                     <th onclick="sortTable(12)">Familia</th>
+                    <th onclick="sortTable(12)">Demográficos</th>
                     <?php if ($_SESSION['type'] === 'admin') {?>
                         <th colspan="2">Acciones</th>
                     <?php } else { ?>
@@ -126,6 +127,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                             } else { echo "-";} ?></td>
                         <td>
                             <a href="donantFamily.php?id=<?php echo $id[$i]; ?>">Ver</a>
+                        </td>
+                        <td>
+                            <a href="donantDemographics.php?id=<?php echo $id[$i]; ?>">Ver</a>
                         </td>
                         <td>
                             <a href="donantEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
