@@ -86,18 +86,19 @@ if ($ext_img_4 !== "") {
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
                         <li>Precio: <?php
-                                    $pattern = "/DVIP/i";
-                                    if (isset($price)) {
-                                        if (preg_match($pattern, $code)) {
-                                            // $price = 4000.00;
-                                            $price = 4000;
-                                        } else {
-                                            $price = substr($price, 0, -3);
-                                        }
+                                    // $pattern = "/DVIP/i";
+                                    // if (isset($price)) {
+                                    //     if (preg_match($pattern, $code)) {
+                                    //         // $price = 4000.00;
+                                    //         $price = 4000;
+                                    //     } else {
+                                    //         $price = substr($price, 0, -3);
+                                    //     }
                                         // echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
                                         // $price = substr($price, 0, -3);
-                                        echo $price . " " . "\xE2\x82\xAc";
-                                    } ?></li>
+                                        // echo $price . " " . "\xE2\x82\xAc";
+                                        echo $price;
+                                    // } ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">

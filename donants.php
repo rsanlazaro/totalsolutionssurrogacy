@@ -105,25 +105,27 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td data-title="Tipo de cabello"><?php if (isset($type_hair[$i])) { echo $type_hair[$i]; } else { echo "-";} ?></td>
                         <td data-title="Perfil"><?php if (isset($profile[$i])) { if($profile[$i] === "Fenotipe") {echo "Fenotipo";} else {echo $profile[$i]; } } else { echo "-";} ?></td>
                         <td data-title="Proveedor"><?php if (isset($supplier[$i])) { echo $supplier[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Precio"><?php if (isset($price[$i])) {
-                            if ($price[$i] == 0) {
-                                echo "-";
-                            } else {
-                                if ($profile[$i] == "Plus") {
-                                    echo "-";
-                                } else {
-                                    $pattern = "/DVIP/i";
-                                    if (preg_match($pattern, $code[$i])) {
-                                        echo "4.000 " . "\xE2\x82\xAc";
-                                    } else {
-                                        if ($profile[$i] == "Elite") {
-                                            echo number_format($price[$i], 2, ',', '.') . " MXN";
-                                        } else {
-                                            echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
-                                        }
-                                    }
-                                }
-                            } 
+                        <td data-title="Precio"><?php 
+                        if (isset($price[$i])) {
+                            // if ($price[$i] == 0) {
+                            //     echo "-";
+                            // } else {
+                            //     if ($profile[$i] == "Plus") {
+                            //         echo "-";
+                            //     } else {
+                            //         $pattern = "/DVIP/i";
+                            //         if (preg_match($pattern, $code[$i])) {
+                            //             echo "4.000 " . "\xE2\x82\xAc";
+                            //         } else {
+                            //             if ($profile[$i] == "Elite") {
+                            //                 echo number_format($price[$i], 2, ',', '.') . " MXN";
+                            //             } else {
+                            //                 echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
+                            //             }
+                            //         }
+                            //     }
+                            // } 
+                            echo $price;
                             } else { echo "-";} ?></td>
                         <td>
                             <a href="donantFamily.php?id=<?php echo $id[$i]; ?>">Ver</a>

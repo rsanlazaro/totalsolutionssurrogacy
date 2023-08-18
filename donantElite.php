@@ -84,11 +84,13 @@ if ($ext_img_4 !== "") {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
-                        <li>Precio: <?php if (isset($price)) {
+                        <li>Precio: <?php 
+                        // if (isset($price)) {
                                         // echo "$" . " " . number_format($price, 2, ',', '.');
-                                        $price = substr($price, 0, -3);
-                                        echo "$" . " " . $price . " " . "MXN";
-                                    } ?></li>
+                                        // $price = substr($price, 0, -3);
+                                        // echo "$" . " " . $price . " " . "MXN";
+                                        echo $price;
+                                    // } ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">

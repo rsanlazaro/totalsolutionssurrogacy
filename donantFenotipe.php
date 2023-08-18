@@ -80,9 +80,12 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
-                        <li>Precio: <?php if (isset($price)) {
-                                        echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
-                                    } ?></li>
+                        <li>Precio: <?php 
+                        // if (isset($price)) {
+                        //                 echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                        //             }
+                        echo $price;
+                                    ?></li>
                     </ul>
                 </div>
             </div>

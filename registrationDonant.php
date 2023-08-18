@@ -155,16 +155,16 @@ if (isset($_REQUEST['nationality'])) {
             $goal = mysqli_real_escape_string($conn, $goal);
             // $dream = stripslashes($_REQUEST['dream']);
             // $dream = mysqli_real_escape_string($conn, $dream);
-            if ($profile == "Plus") {
-                $price = "EMPTY";
-            } else {
-                $pattern = "/DVIP/i";
-                if (preg_match($pattern, $code)) {
-                    $price = 4000.00;
-                } else {
-                    $price = stripslashes($_REQUEST['price']);
-                }
-            }
+            // if ($profile == "Plus") {
+            //     $price = "EMPTY";
+            // } else {
+            //     $pattern = "/DVIP/i";
+            //     if (preg_match($pattern, $code)) {
+            //         $price = 4000.00;
+            //     } else {
+            //         $price = stripslashes($_REQUEST['price']);
+            //     }
+            // }
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
