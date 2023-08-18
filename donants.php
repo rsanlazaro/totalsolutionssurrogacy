@@ -125,7 +125,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             //         }
                             //     }
                             // } 
-                            echo $price;
+                            echo $price[$i];
                             } else { echo "-";} ?></td>
                         <td>
                             <a href="donantFamily.php?id=<?php echo $id[$i]; ?>">Ver</a>
