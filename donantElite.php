@@ -103,6 +103,17 @@ if ($ext_img_4 !== "") {
                     <img <?php if ($ext_img_4 !== "-") { echo "src=" . $ext_img_4; } else { echo "class='img-padding' src=build/img/admin/default.webp"; }  ?> alt="picture">
                 </div>
             </div>
+            <div class="catalogue-buttons">
+                <div class="catalogue-button">
+                    <a href=<?php echo "medical.php?id=" . $id ?>>Datos médicos</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "family.php?id=" . $id ?>>Familia</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "hobbies.php?id=" . $id ?>>Intereses/Hobbies</a>
+                </div>
+            </div>
         <?php } ?>
     </div>
 </main>

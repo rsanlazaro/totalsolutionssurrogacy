@@ -90,6 +90,7 @@ if ($ext_img_4 !== "") {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
+                        <li>Precio: <?php echo $price ?></li>
                     </ul>
                 </div>
                 <div class="img-2 div3">
@@ -112,6 +113,17 @@ if ($ext_img_4 !== "") {
                             } else {
                                 echo "class='img-padding' src=build/img/admin/default.webp";
                             }  ?> alt="picture">
+                </div>
+            </div>
+            <div class="catalogue-buttons">
+                <div class="catalogue-button">
+                    <a href=<?php echo "medical.php?id=" . $id ?>>Datos médicos</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "family.php?id=" . $id ?>>Familia</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "hobbies.php?id=" . $id ?>>Intereses/Hobbies</a>
                 </div>
             </div>
         <?php } ?>
