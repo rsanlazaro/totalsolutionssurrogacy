@@ -45,29 +45,65 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php if ($profile === "Fenotipe") { ?>
             <div class="phenotype-parent donant">
                 <div class="img-1 div1">
-                    <img src=<?php if ($ext_img_1 !== "-") {
-                                    echo $ext_img_1;
-                                } else {
-                                    echo "build/img/admin/default.webp";
-                                }  ?> alt="picture">
+                    <?php if ($ext_img_1 !== "-") { ?>
+                        <img id="myImg1" <?php echo "src=" . $ext_img_1 ?> alt="img" style="width:100%">
+                        <div id="myModal1" class="modal">
+
+                            <!-- The Close Button -->
+                            <span class="close1">&times;</span>
+
+                            <!-- Modal Content (The Image) -->
+                            <img <?php if ($ext_img_1 !== "-") {
+                                        echo "class='modal-img'src=" . $ext_img_1;
+                                    } else {
+                                        echo "class='img-padding' src=build/img/admin/default.webp";
+                                    }  ?> alt="picture">
+                        </div>
+                    <?php } else { ?>
+                        <img <?php echo "class='img-padding' src=build/img/admin/default.webp"; ?> alt="picture">
+                    <?php } ?>
                 </div>
                 <div class="img-2 div2">
-                    <img src=<?php if ($ext_img_2 !== "-") {
-                                    echo $ext_img_2;
-                                } else {
-                                    echo "build/img/admin/default.webp";
-                                }  ?> alt="picture">
+                    <?php if ($ext_img_2 !== "-") { ?>
+                        <img id="myImg2" <?php echo "src=" . $ext_img_2 ?> alt="img" style="width:100%">
+                        <div id="myModal2" class="modal">
+
+                            <!-- The Close Button -->
+                            <span class="close2">&times;</span>
+
+                            <!-- Modal Content (The Image) -->
+                            <img <?php if ($ext_img_2 !== "-") {
+                                        echo "class='modal-img'src=" . $ext_img_2;
+                                    } else {
+                                        echo "class='img-padding' src=build/img/admin/default.webp";
+                                    }  ?> alt="picture">
+                        </div>
+                    <?php } else { ?>
+                        <img <?php echo "class='img-padding' src=build/img/admin/default.webp"; ?> alt="picture">
+                    <?php } ?>
                 </div>
                 <div class="img-3 div3">
-                    <img src=<?php if ($ext_img_3 !== "-") {
-                                    echo $ext_img_3;
-                                } else {
-                                    echo "build/img/admin/default.webp";
-                                }  ?> alt="picture">
+                    <?php if ($ext_img_3 !== "-") { ?>
+                        <img id="myImg3" <?php echo "src=" . $ext_img_3 ?> alt="img" style="width:100%">
+                        <div id="myModal3" class="modal">
+
+                            <!-- The Close Button -->
+                            <span class="close3">&times;</span>
+
+                            <!-- Modal Content (The Image) -->
+                            <img <?php if ($ext_img_3 !== "-") {
+                                        echo "class='modal-img'src=" . $ext_img_3;
+                                    } else {
+                                        echo "class='img-padding' src=build/img/admin/default.webp";
+                                    }  ?> alt="picture">
+                        </div>
+                    <?php } else { ?>
+                        <img <?php echo "class='img-padding' src=build/img/admin/default.webp"; ?> alt="picture">
+                    <?php } ?>
                 </div>
                 <div class="donant-data div4">
+                    <p>Código: <?php echo $code ?></p>
                     <ul>
-                        <li>Código: <?php echo $code ?></li>
                         <li>Nacionalidad: <?php echo $nationality ?></li>
                         <li>Fecha de nacimiento: <?php echo $date_birth ?></li>
                         <li>Color de ojos: <?php echo $color_eyes ?></li>
@@ -80,11 +116,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>
                         <li>Tipo de cuerpo: <?php echo $type_body ?></li>
                         <li>Ocupación: <?php echo $ocupation ?></li>
-                        <li>Precio: <?php 
-                        // if (isset($price)) {
-                        //                 echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
-                        //             }
-                        echo $price;
+                        <li>Precio: <?php
+                                    // if (isset($price)) {
+                                    //                 echo number_format($price, 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                    //             }
+                                    echo $price . " " . "\xE2\x82\xAc";
                                     ?></li>
                     </ul>
                 </div>
