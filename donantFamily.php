@@ -91,7 +91,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     } ?> </td>
                             <td data-title="Estado de salud"><?php echo $health[$i] ?></td>
                             <td>
-                                <a href="FamilyEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
+                                <a href="familyEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
                             </td>
                             <?php if ($_SESSION['type'] === 'admin') { ?>
                                 <td>

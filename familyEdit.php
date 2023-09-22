@@ -15,19 +15,19 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-// $sql = "SELECT * FROM family WHERE id=${id}";
-// $result = mysqli_query($conn, $sql);
-// // if (!$result->num_rows) {
-// //     header('location: /');
-// // }
-// while ($row = mysqli_fetch_assoc($result)) {
-//     $member = $row['member'];
-//     $color_eyes = $row['color_eyes'];
-//     $color_hair = $row['color_hair'];
-//     $height = $row['height'];
-//     $weight = $row['weight'];
-//     $health = $row['health'];
-// }
+$sql = "SELECT * FROM family WHERE id=${id}";
+$result = mysqli_query($conn, $sql);
+if (!$result->num_rows) {
+    header('location: /');
+}
+while ($row = mysqli_fetch_assoc($result)) {
+    $member = $row['member'];
+    $color_eyes = $row['color_eyes'];
+    $color_hair = $row['color_hair'];
+    $height = $row['height'];
+    $weight = $row['weight'];
+    $health = $row['health'];
+}
 ?>
 <main class="register">
     <div class="register-info">
