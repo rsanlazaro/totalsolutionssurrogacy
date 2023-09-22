@@ -15,19 +15,19 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-$sql = "SELECT * FROM family WHERE id=${id}";
-$result = mysqli_query($conn, $sql);
-// if (!$result->num_rows) {
-//     header('location: /');
+// $sql = "SELECT * FROM family WHERE id=${id}";
+// $result = mysqli_query($conn, $sql);
+// // if (!$result->num_rows) {
+// //     header('location: /');
+// // }
+// while ($row = mysqli_fetch_assoc($result)) {
+//     $member = $row['member'];
+//     $color_eyes = $row['color_eyes'];
+//     $color_hair = $row['color_hair'];
+//     $height = $row['height'];
+//     $weight = $row['weight'];
+//     $health = $row['health'];
 // }
-while ($row = mysqli_fetch_assoc($result)) {
-    $member = $row['member'];
-    $color_eyes = $row['color_eyes'];
-    $color_hair = $row['color_hair'];
-    $height = $row['height'];
-    $weight = $row['weight'];
-    $health = $row['health'];
-}
 ?>
 <main class="register">
     <div class="register-info">
@@ -104,75 +104,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 <script src="build/js/bundle.min.js"></script>
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-    function previewFile() {
-        var preview = document.querySelector(".img-1-pre");
-        var file = document.querySelector(".img-1-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-            preview.style.height = '25rem';
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile2() {
-        var preview = document.querySelector(".img-2-pre");
-        var file = document.querySelector(".img-2-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-            preview.style.height = '25rem';
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile3() {
-        var preview = document.querySelector(".img-3-pre");
-        var file = document.querySelector(".img-3-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-            preview.style.height = '25rem';
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile4() {
-        var preview = document.querySelector(".img-4-pre");
-        var file = document.querySelector(".img-4-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-            preview.style.height = '25rem';
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-</script>
 </body>
 
 </html>
