@@ -17,9 +17,9 @@ $conn = connectDB();
 
 $sql = "SELECT * FROM family WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
-if (!$result->num_rows) {
-    header('location: /');
-}
+// if (!$result->num_rows) {
+//     header('location: /');
+// }
 while ($row = mysqli_fetch_assoc($result)) {
     $member = $row['member'];
     $color_eyes = $row['color_eyes'];
