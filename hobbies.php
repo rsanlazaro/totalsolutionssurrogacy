@@ -52,7 +52,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <li>Animal favorito: <?php echo $animal_favorite ?></li>
                         <li>Película/Libro favorito: <?php echo $book_movie_favorite ?></li>
                         <li>Meta: <?php echo $goal ?></li>
-                        <li>Sueño: <?php echo $dream ?></li>
                     </ul>
                 </div>
             </div>
