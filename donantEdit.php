@@ -15,7 +15,6 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-
 $sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 if (!$result->num_rows) {
@@ -354,6 +353,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </div>
                     </form>
             </div>
+        </div>
+    </div>
+    <div class="menu-users">
+        <div class="create-user">
+            <a href=<?php echo "donants.php?code=".$code?>>
+                Regresar
+            </a>
         </div>
     </div>
 </main>

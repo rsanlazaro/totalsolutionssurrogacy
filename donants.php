@@ -11,7 +11,10 @@ if (!$_SESSION['login']) {
 }
 
 $conn = connectDB();
-    
+if (isset($_GET['code'])) {
+    $donant_code_search = $_GET['code'];
+}
+
 $sql = "SELECT * FROM donants";
 $result = mysqli_query($conn, $sql);
 $index = 0;
@@ -63,7 +66,8 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div class="body">
                 <div class="input-group">
                     <label for="searchBox">Búsqueda</label>
-                    <input type="search" id="searchBox" placeholder="Filtrar..." />
+                    <input type="search" id="searchBox" placeholder="Filtrar..." value="<?php if (isset($donant_code_search)) {
+                        echo $donant_code_search; } ?>"/>
                 </div>
             </div>
         </div>
@@ -84,7 +88,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th onclick="sortTable(11)">Precio</th>
                     <th onclick="sortTable(12)">Familia</th>
                     <th onclick="sortTable(12)">Demográficos</th>
-                    <?php if ($_SESSION['type'] === 'admin') {?>
+                    <?php if ($_SESSION['type'] === 'admin') { ?>
                         <th colspan="2">Acciones</th>
                     <?php } else { ?>
                         <th>Editar</th>
@@ -94,39 +98,85 @@ while ($row = mysqli_fetch_assoc($result)) {
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
                     <tr>
-                        <td scope="row"><?php if (isset($code[$i])) { echo $code[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Origen/Etnia"><?php if (isset($nationality[$i])) { echo $nationality[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Año de nacimiento"><?php if (isset($date_birth[$i])) { echo $date_birth[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Color de ojos"><?php if (isset($color_eyes[$i])) { echo $color_eyes[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Color de piel"><?php if (isset($color_skin[$i])) { echo $color_skin[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Altura"><?php if (isset($height[$i])) { echo $height[$i]; } else { echo "-";} ?> </td>
-                        <td data-title="Peso"><?php if (isset($weight[$i])) { echo $weight[$i]; } else { echo "-";} ?> </td>
+                        <td scope="row"><?php if (isset($code[$i])) {
+                                            echo $code[$i];
+                                        } else {
+                                            echo "-";
+                                        } ?></td>
+                        <td data-title="Origen/Etnia"><?php if (isset($nationality[$i])) {
+                                                            echo $nationality[$i];
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
+                        <td data-title="Año de nacimiento"><?php if (isset($date_birth[$i])) {
+                                                                echo $date_birth[$i];
+                                                            } else {
+                                                                echo "-";
+                                                            } ?></td>
+                        <td data-title="Color de ojos"><?php if (isset($color_eyes[$i])) {
+                                                            echo $color_eyes[$i];
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
+                        <td data-title="Color de piel"><?php if (isset($color_skin[$i])) {
+                                                            echo $color_skin[$i];
+                                                        } else {
+                                                            echo "-";
+                                                        } ?></td>
+                        <td data-title="Altura"><?php if (isset($height[$i])) {
+                                                    echo $height[$i];
+                                                } else {
+                                                    echo "-";
+                                                } ?> </td>
+                        <td data-title="Peso"><?php if (isset($weight[$i])) {
+                                                    echo $weight[$i];
+                                                } else {
+                                                    echo "-";
+                                                } ?> </td>
                         <td data-title="Color de cabello"><?php echo $color_hair[$i] ?></td>
-                        <td data-title="Tipo de cabello"><?php if (isset($type_hair[$i])) { echo $type_hair[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Perfil"><?php if (isset($profile[$i])) { if($profile[$i] === "Fenotipe") {echo "Fenotipo";} else {echo $profile[$i]; } } else { echo "-";} ?></td>
-                        <td data-title="Proveedor"><?php if (isset($supplier[$i])) { echo $supplier[$i]; } else { echo "-";} ?></td>
-                        <td data-title="Precio"><?php 
-                        if (isset($price[$i])) {
-                            // if ($price[$i] == 0) {
-                            //     echo "-";
-                            // } else {
-                            //     if ($profile[$i] == "Plus") {
-                            //         echo "-";
-                            //     } else {
-                            //         $pattern = "/DVIP/i";
-                            //         if (preg_match($pattern, $code[$i])) {
-                            //             echo "4.000 " . "\xE2\x82\xAc";
-                            //         } else {
-                            //             if ($profile[$i] == "Elite") {
-                            //                 echo number_format($price[$i], 2, ',', '.') . " MXN";
-                            //             } else {
-                            //                 echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
-                            //             }
-                            //         }
-                            //     }
-                            // } 
-                            echo $price[$i];
-                            } else { echo "-";} ?></td>
+                        <td data-title="Tipo de cabello"><?php if (isset($type_hair[$i])) {
+                                                                echo $type_hair[$i];
+                                                            } else {
+                                                                echo "-";
+                                                            } ?></td>
+                        <td data-title="Perfil"><?php if (isset($profile[$i])) {
+                                                    if ($profile[$i] === "Fenotipe") {
+                                                        echo "Fenotipo";
+                                                    } else {
+                                                        echo $profile[$i];
+                                                    }
+                                                } else {
+                                                    echo "-";
+                                                } ?></td>
+                        <td data-title="Proveedor"><?php if (isset($supplier[$i])) {
+                                                        echo $supplier[$i];
+                                                    } else {
+                                                        echo "-";
+                                                    } ?></td>
+                        <td data-title="Precio"><?php
+                                                if (isset($price[$i])) {
+                                                    // if ($price[$i] == 0) {
+                                                    //     echo "-";
+                                                    // } else {
+                                                    //     if ($profile[$i] == "Plus") {
+                                                    //         echo "-";
+                                                    //     } else {
+                                                    //         $pattern = "/DVIP/i";
+                                                    //         if (preg_match($pattern, $code[$i])) {
+                                                    //             echo "4.000 " . "\xE2\x82\xAc";
+                                                    //         } else {
+                                                    //             if ($profile[$i] == "Elite") {
+                                                    //                 echo number_format($price[$i], 2, ',', '.') . " MXN";
+                                                    //             } else {
+                                                    //                 echo number_format($price[$i], 2, ',', '.') . " " . "\xE2\x82\xAc";
+                                                    //             }
+                                                    //         }
+                                                    //     }
+                                                    // } 
+                                                    echo $price[$i];
+                                                } else {
+                                                    echo "-";
+                                                } ?></td>
                         <td>
                             <a href="donantFamily.php?id=<?php echo $id[$i]; ?>">Ver</a>
                         </td>
@@ -136,7 +186,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td>
                             <a href="donantEdit.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>
-                        <?php if ($_SESSION['type'] === 'admin') {?>
+                        <?php if ($_SESSION['type'] === 'admin') { ?>
                             <td>
                                 <form method="POST" class="form-table" action="deleteDonant.php">
                                     <input type="hidden" value="<?php echo $id[$i]; ?>" name="id">
@@ -157,8 +207,16 @@ while ($row = mysqli_fetch_assoc($result)) {
     </script>
     <!-- Custom JS -->
     <script src="build/js/bundle2.min.js"></script>
+    <script>
+        window.onload = function() {
+            const trs = document.querySelectorAll('.myTable' + ' tr:not(.header)');
+            trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
+        };
+    </script>
     <!-- Pagination -->
     <script>
+        const filter = document.querySelector('#searchBox').value;
+
         let options = {
             numberPerPage: 10, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
@@ -168,6 +226,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             el: "#searchBox", //Caja de texto para filtrar, puede ser una clase o un ID
         };
         paginate.init(".myTable", options, filterOptions);
+        const e2 = document.querySelector('#searchBox');
     </script>
 
     <script>
@@ -225,5 +284,5 @@ while ($row = mysqli_fetch_assoc($result)) {
                 }
             }
         }
-    </script>       
+    </script>
 </main>

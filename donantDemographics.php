@@ -13,6 +13,12 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
+$sql = "SELECT * FROM donants WHERE id=${id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $code = $row['code'];
+}
+
 $sql = "SELECT * FROM demographics WHERE donant_id=${id}";
 $result = mysqli_query($conn, $sql);
 if ($result->num_rows > 0) {
@@ -655,12 +661,20 @@ if ($result->num_rows > 0) {
                     </tr>
                 </tbody>
             </table>
+            <input type="hidden" value=<?php echo $code ?> name="code"/>
             <div class="form-btn">
                 <button class="btn btn-send" type="submit">
                     <div>Actualizar datos</div>
                 </button>
             </div>
         </form>
+    </div>
+    <div class="menu-users">
+        <div class="create-user">
+            <a href=<?php echo "donants.php?code=".$code?>>
+                Regresar
+            </a>
+        </div>
     </div>
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {

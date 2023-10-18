@@ -13,6 +13,7 @@ if (!$_SESSION['login']) {
 }
 
 $donant_id = $_SESSION['donant_id'];
+$id = $_GET['id'];
 
 $conn = connectDB();
 
@@ -117,6 +118,13 @@ if (isset($_REQUEST['member'])) {
                             </div>
                         </form>
                 </div>
+            </div>
+        </div>
+        <div class="menu-users">
+            <div class="create-user">
+                <a href="donantFamily.php?id=<?php echo $id; ?>">
+                    Regresar
+                </a>
             </div>
         </div>
     </main>

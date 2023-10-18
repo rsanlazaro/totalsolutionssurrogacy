@@ -67,11 +67,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $family_parkinson = $_POST['family_parkinson'];
     $family_diet = $_POST['family_diet'];
     $family_cigar = $_POST['family_cigar'];
+    $code = $_POST['code'];
 }
 if ($id) {
     $query = "UPDATE demographics SET donant_adict='${donant_adict}'
     , donant_alergy = '${donant_alergy}', donant_eyes = '${donant_eyes}', donant_dream = '${donant_dream}', donant_jewesh = '${donant_jewesh}', donant_autism = '${donant_autism}', donant_cancer = '${donant_cancer}', donant_cario = '${donant_cario}', donant_surgery = '${donant_surgery}', donant_congenit = '${donant_congenit}', donant_mental = '${donant_mental}', donant_diabetes = '${donant_diabetes}', donant_heart = '${donant_heart}', donant_inmune = '${donant_inmune}', donant_metabolic = '${donant_metabolic}', donant_skin = '${donant_skin}', donant_psycho = '${donant_psycho}', donant_renal = '${donant_renal}', donant_ets = '${donant_ets}', donant_esquizo = '${donant_esquizo}', donant_sx = '${donant_sx}', donant_hemo = '${donant_hemo}', donant_artery = '${donant_artery}', donant_parkinson = '${donant_parkinson}', donant_diet = '${donant_diet}', donant_cigar = '${donant_cigar}', family_adict = '${family_adict}', family_alergy = '${family_alergy}', family_eyes = '${family_eyes}', family_dream = '${family_dream}', family_jewesh = '${family_jewesh}', family_autism = '${family_autism}', family_cancer = '${family_cancer}', family_cario = '${family_cario}', family_surgery = '${family_surgery}', family_congenit = '${family_congenit}', family_mental = '${family_mental}', family_diabetes = '${family_diabetes}', family_heart = '${family_heart}', family_inmune = '${family_inmune}', family_metabolic = '${family_metabolic}', family_skin = '${family_skin}', family_psycho = '${family_psycho}', family_renal = '${family_renal}', family_ets = '${family_ets}', family_esquizo = '${family_esquizo}', family_sx = '${family_sx}', family_hemo = '${family_hemo}', family_artery = '${family_artery}', family_parkinson = '${family_parkinson}', family_diet = '${family_diet}', family_cigar = '${family_cigar}' WHERE donant_id = ${id}";
     $result = mysqli_query($conn, $query);
-    header("Location: donants.php?msg=Los datos se han actualizado correctamente");
+    header('Location: donants.php?msg=Los datos se han actualizado correctamente&code='.$code);
 }
 ?>

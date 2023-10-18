@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <link rel="icon" href="build/img/logo/icon.png" />
+  <!-- <link rel="icon" href="build/img/logo/icon.png" /> -->
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Primary Meta Tags -->

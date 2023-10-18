@@ -27,6 +27,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     $weight[$index] = $row['weight'];
     $health[$index] = $row['health'];
 }
+
+$sql = "SELECT * FROM donants WHERE id=${id_query}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $code = $row['code'];
+}
 ?>
 <main class="register">
     <div class="register-info">
@@ -106,6 +112,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <?php } ?>
             </tbody>
         </table>
+    </div>
+
+    <div class="menu-users">
+        <div class="create-user">
+            <a href=<?php echo "donants.php?code=" . $code ?>>
+                Regresar
+            </a>
+        </div>
     </div>
 
     <script language="JavaScript" type="text/javascript">
