@@ -63,6 +63,7 @@ if (isset($_REQUEST['nationality'])) {
             $_SESSION['animal_favorite'] = $_REQUEST['animal_favorite'];
             $_SESSION['book_movie_favorite'] = $_REQUEST['book_movie_favorite'];
             $_SESSION['goal'] = $_REQUEST['goal'];
+            $_SESSION['ovarian_reserve'] = $_REQUEST['ovarian_reserve'];
             // $_SESSION['dream'] = $_REQUEST['dream'];
             header("location: /registrationDonant.php?msg=El código de identificación ya ha sido registrado. Por favor, seleccione otro");
         } else {
@@ -153,6 +154,8 @@ if (isset($_REQUEST['nationality'])) {
             $book_movie_favorite = mysqli_real_escape_string($conn, $book_movie_favorite);
             $goal = stripslashes($_REQUEST['goal']);
             $goal = mysqli_real_escape_string($conn, $goal);
+            $ovarian_reserve = stripslashes($_REQUEST['ovarian_reserve']);
+            $ovarian_reserve = mysqli_real_escape_string($conn, $ovarian_reserve);
             // $dream = stripslashes($_REQUEST['dream']);
             // $dream = mysqli_real_escape_string($conn, $dream);
             // if ($profile == "Plus") {
@@ -165,11 +168,12 @@ if (isset($_REQUEST['nationality'])) {
             //         $price = stripslashes($_REQUEST['price']);
             //     }
             // }
+            $price = stripslashes($_REQUEST['price']);
             $price = mysqli_real_escape_string($conn, $price);
             date_default_timezone_set('America/Mexico_City');
             $create_datetime = date("y-m-d G:i:s");
-            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, hobbie, color_favorite, animal_favorite, book_movie_favorite, goal)
-                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$hobbie', '$color_favorite', '$animal_favorite', '$book_movie_favorite', '$goal')";
+            $query    = "INSERT into `donants` (nationality, date_birth, color_eyes, color_skin, blood_type, height, weight, education, color_hair, type_hair, type_body, ocupation, profile, supplier, price, code, code_img, hobbie, color_favorite, animal_favorite, book_movie_favorite, goal, ovarian_reserve)
+                    VALUES ('$nationality', '" . $date_birth . "', '$color_eyes', '$color_skin', '$blood_type', '$height', '$weight', '$education', '$color_hair', '$type_hair', '$type_body', '$ocupation', '$profile', '$supplier', '$price', '$code', '$code_img', '$hobbie', '$color_favorite', '$animal_favorite', '$book_movie_favorite', '$goal', '$ovarian_reserve')";
             $result   = mysqli_query($conn, $query);
             if ($result) {
                 header("Location: donants.php?msg=El usuario se ha creado exitosamente");
@@ -294,6 +298,17 @@ if (isset($_REQUEST['nationality'])) {
                                                                                                                                                                                 } ?>" min="0" step=".01" />
                                     <div class="invalid-feedback">
                                         <div>Ingrese el peso</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="has-validation">
+                                    <label class="label-form" for="validationCustomUsername">Reserva ovárica</label>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="ovarian_reserve" required value="<?php if (isset($_SESSION['ovarian_reserve'])) {
+                                                                                                                                                                                    echo $_SESSION['ovarian_reserve'];
+                                                                                                                                                                                } ?>" min="0" step=".01" />
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese la reserva ovárica</div>
                                     </div>
                                 </div>
                             </div>

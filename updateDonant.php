@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $animal_favorite = $_POST['animal_favorite'];
     $book_movie_favorite = $_POST['book_movie_favorite'];
     $goal = $_POST['goal'];
+    $ovarian_reserve = $_POST['ovarian_reserve'];
     $code = $_POST['code'];
     $code = strtoupper($code);
 
@@ -140,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 if ($id) {
     $query = "UPDATE donants SET code='${code}', nationality='${nationality}', date_birth='${date_birth}', color_eyes='${color_eyes}', color_skin='${color_skin}', blood_type='${blood_type}', height='${height}', weight='${weight}', education='${education}', color_hair='${color_hair}', type_hair='${type_hair}', type_body='${type_body}', ocupation='${ocupation}', profile='${profile}', supplier='${supplier}', price='${price}',
-    hobbie='${hobbie}', color_favorite='${color_favorite}', animal_favorite='${animal_favorite}', book_movie_favorite='${book_movie_favorite}', goal='${goal}'  WHERE id = ${id}";
+    hobbie='${hobbie}', color_favorite='${color_favorite}', animal_favorite='${animal_favorite}', book_movie_favorite='${book_movie_favorite}', goal='${goal}', ovarian_reserve='${ovarian_reserve}' WHERE id = ${id}";
     $result = mysqli_query($conn, $query);
     header('Location: donants.php?msg=Los datos se han actualizado correctamente&code='.$code);
 }

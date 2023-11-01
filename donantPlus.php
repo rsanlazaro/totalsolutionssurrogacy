@@ -12,7 +12,6 @@ if (!$_SESSION['login']) {
 $id = $_GET['id'];
 $conn = connectDB();
 
-
 $sql = "SELECT * FROM donants WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
 $result = mysqli_query($conn, $sql);
@@ -40,6 +39,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $ext_img_2 = $row['ext_img_2'];
     $ext_img_3 = $row['ext_img_3'];
     $ext_img_4 = $row['ext_img_4'];
+    $ovarian_reserve = $row['ovarian_reserve'];
 }
 
 $imagesQty = 0;
@@ -97,6 +97,7 @@ if ($ext_img_4 !== "") {
                         <li>Grupo sanguíneo: <?php echo $blood_type ?></li>
                         <li>Estatura: <?php echo $height ?> m</li>
                         <li>Peso: <?php echo $weight ?> kg</li>
+                        <li>Reserva ovárica: <?php echo $ovarian_reserve ?></li>
                         <li>Educación: <?php echo $education ?></li>
                         <li>Color de pelo: <?php echo $color_hair ?></li>
                         <li>TIpo de pelo: <?php echo $type_hair ?></li>

@@ -47,6 +47,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $animal_favorite = $row['animal_favorite'];
     $book_movie_favorite = $row['book_movie_favorite'];
     $goal = $row['goal'];
+    $ovarian_reserve = $row['ovarian_reserve'];
     // $dream = $row['dream'];
 }
 ?>
@@ -129,6 +130,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="weight" required value="<?php echo $weight ?>" min="0" step=".01" />
                                 <div class="invalid-feedback">
                                     <div>Ingrese el peso</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Reserva ovárica</label>
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="ovarian_reserve" required value="<?php echo $ovarian_reserve ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la reserva ovárica</div>
                                 </div>
                             </div>
                         </div>
