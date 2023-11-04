@@ -32,6 +32,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $code_2[$index] = $row['code_2'];
     $code_3[$index] = $row['code_3'];
     $date[$index] = $row['date'];
+    $phenotype_selected[$index] = $row['phenotype_selected'];
 }
 
 ?>
@@ -88,6 +89,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th onclick="sortTable(9)">ID fenotipo (2)</th>
                     <th onclick="sortTable(10)">ID fenotipo (3)</th>
                     <th colspan="3">Donantes seleccionadas</th>
+                    <th>Fenotipo selección</th>
                     <?php if ($_SESSION['type'] === 'admin') { ?>
                         <th colspan="2">Acciones</th>
                     <?php } else { ?>
@@ -230,6 +232,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                                     echo "-";
                                                                 } else {
                                                                     echo $donante_3[$i];
+                                                                }
+                                                            } else {
+                                                                echo "-";
+                                                            } ?></td>
+                                <td data-title="Fenotipo seleccionado"><?php if (isset($phenotype_selected[$i])) {
+                                                                if ($phenotype_selected[$i] === "") {
+                                                                    echo "-";
+                                                                } else {
+                                                                    echo $phenotype_selected[$i];
                                                                 }
                                                             } else {
                                                                 echo "-";

@@ -44,6 +44,7 @@ $query = "SELECT * FROM users WHERE id='${idUser}'";
 $result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $codeR1 = $row['donant_1'];
+    $phenotype_selected = $row['phenotype_selected'];
 }
 $query = "SELECT donant_2 FROM users WHERE id='${idUser}'";
 $result2 = mysqli_query($conn, $query);
@@ -89,6 +90,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
                 </div>
             <?php } ?>
+            <?php if ($codeUser === $phenotype_selected) { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser?>">
+                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                </form>
+            <?php } else { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser?>">
+                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante? Recuerde que sólo puede seleccionar 1 perfil')" type="submit">Seleccionar</button>
+                </form>
+            <?php } ?>
         <?php } ?>
         <?php if (isset($codeUser_2)) {
             if ((!($codeUser_2 === "" || $codeUser_2 === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
@@ -98,6 +110,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
                 </div>
             <?php } ?>
+            <?php if ($codeUser_2 === $phenotype_selected) { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser_2?>">
+                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                </form>
+            <?php } else { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser_2?>">
+                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante? Recuerde que sólo puede seleccionar 1 perfil')" type="submit">Seleccionar</button>
+                </form>
+            <?php } ?>
         <?php } ?>
         <?php if (isset($codeUser_3)) {
             if ((!($codeUser_3 === "" || $codeUser_3 === "-")) && ($_SESSION['vip'] === "0") && ($_SESSION['plus'] === "0") && ($_SESSION['elite'] === "0")) { ?>
@@ -106,6 +129,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <a href=<?php echo "donantFenotipe.php?id=" . $codeUserId_3 ?>>Ver fenotipo <?php echo $codeUser_3; ?></a>
                     </div>
                 </div>
+            <?php } ?>
+            <?php if ($codeUser_3 === $phenotype_selected) { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser_3?>">
+                    <button class="submit-disabled" type="submit" disabled>Seleccionada</button>
+                </form>
+            <?php } else { ?>
+                <form class="form-select-btn" action="registerPhenotype.php" method="POST">
+                    <input type="hidden" name="code" value="<?php echo $codeUser_3?>">
+                    <button class="submit-ok" onclick="return confirm('¿Deseas registrar a la donante? Recuerde que sólo puede seleccionar 1 perfil')" type="submit">Seleccionar</button>
+                </form>
             <?php } ?>
         <?php } ?>
         <?php if (isset($_GET['msg'])) { ?>
