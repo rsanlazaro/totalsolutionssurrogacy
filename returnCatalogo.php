@@ -30,4 +30,7 @@ if ($profile === "Plus") {
 if ($profile === "VIP") {
     header("Location: donantVIP.php?id=" . $id);
 }
+if ($profile === "Fenotipe") {
+    header("Location: donantFenotipe.php?id=" . $id);
+}
 ?>

@@ -33,19 +33,21 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
 <main class="donant-info">
-    <div class="hero-img">
-        <div class="img-container">
-            <?php if ($profile === "Elite") { ?>
-                <img src="build/img/hero/elite.webp" alt="hero-image" />
-            <?php } ?>
-            <?php if ($profile === "Plus") { ?>
-                <img src="build/img/hero/plus.webp" alt="hero-image" />
-            <?php } ?>
-            <?php if ($profile === "VIP") { ?>
-                <img src="build/img/hero/vip.webp" alt="hero-image" />
-            <?php } ?>
+    <?php if ($profile !== "Fenotipe") { ?>
+        <div class="hero-img">
+            <div class="img-container">
+                <?php if ($profile === "Elite") { ?>
+                    <img src="build/img/hero/elite.webp" alt="hero-image" />
+                <?php } ?>
+                <?php if ($profile === "Plus") { ?>
+                    <img src="build/img/hero/plus.webp" alt="hero-image" />
+                <?php } ?>
+                <?php if ($profile === "VIP") { ?>
+                    <img src="build/img/hero/vip.webp" alt="hero-image" />
+                <?php } ?>
+            </div>
         </div>
-    </div>
+    <?php } ?>
     <div class="donants">
         <div class="donant donant-extra">
             <div class="donant-data">

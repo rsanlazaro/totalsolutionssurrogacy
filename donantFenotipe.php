@@ -103,7 +103,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <?php } ?>
                 </div>
                 <div class="donant-data div4">
-                    <p>Código: <?php echo $code ?></p>
+                    <p class="phenotype-code">Código: <?php echo $code ?></p>
                     <ul>
                         <li>Nacionalidad: <?php echo $nationality ?></li>
                         <li>Fecha de nacimiento: <?php echo $date_birth ?></li>
@@ -127,7 +127,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </ul>
                 </div>
             </div>
-
+            <div class="catalogue-buttons-phenotype">
+                <div class="catalogue-button">
+                    <a href=<?php echo "medical.php?id=" . $id ?>>Datos médicos</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "family.php?id=" . $id ?>>Familia</a>
+                </div>
+                <div class="catalogue-button">
+                    <a href=<?php echo "hobbies.php?id=" . $id ?>>Intereses/Hobbies</a>
+                </div>
+            </div>
         <?php } ?>
     </div>
     <div class="menu-users">

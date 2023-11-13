@@ -30,36 +30,38 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
 <main class="donant-info">
-    <div class="hero-img">
-        <div class="img-container">
-            <?php if ($profile === "Elite") { ?>
-                <img src="build/img/hero/elite.webp" alt="hero-image" />
-            <?php } ?>
-            <?php if ($profile === "Plus") { ?>
-                <img src="build/img/hero/plus.webp" alt="hero-image" />
-            <?php } ?>
-            <?php if ($profile === "VIP") { ?>
-                <img src="build/img/hero/vip.webp" alt="hero-image" />
-            <?php } ?>
+    <?php if ($profile !== "Fenotipe") { ?>
+        <div class="hero-img">
+            <div class="img-container">
+                <?php if ($profile === "Elite") { ?>
+                    <img src="build/img/hero/elite.webp" alt="hero-image" />
+                <?php } ?>
+                <?php if ($profile === "Plus") { ?>
+                    <img src="build/img/hero/plus.webp" alt="hero-image" />
+                <?php } ?>
+                <?php if ($profile === "VIP") { ?>
+                    <img src="build/img/hero/vip.webp" alt="hero-image" />
+                <?php } ?>
+            </div>
         </div>
-    </div>
+    <?php } ?>
     <div class="donants">
-            <div class="donant donant-extra">
-                <div class="donant-data">
-                    <ul>
-                        <li>Hobbie: <?php echo $hobbie ?></li>
-                        <li>Color favorito: <?php echo $color_favorite ?></li>
-                        <li>Animal favorito: <?php echo $animal_favorite ?></li>
-                        <li>Película/Libro favorito: <?php echo $book_movie_favorite ?></li>
-                        <li>Meta: <?php echo $goal ?></li>
-                    </ul>
-                </div>
+        <div class="donant donant-extra">
+            <div class="donant-data">
+                <ul>
+                    <li>Hobbie: <?php echo $hobbie ?></li>
+                    <li>Color favorito: <?php echo $color_favorite ?></li>
+                    <li>Animal favorito: <?php echo $animal_favorite ?></li>
+                    <li>Película/Libro favorito: <?php echo $book_movie_favorite ?></li>
+                    <li>Meta: <?php echo $goal ?></li>
+                </ul>
             </div>
-            <div class="catalogue-buttons center-button">
-                <div class="catalogue-button">
-                    <a href=<?php echo "returnCatalogo.php?id=" . $id ?>>Regresar</a>
-                </div>
+        </div>
+        <div class="catalogue-buttons center-button">
+            <div class="catalogue-button">
+                <a href=<?php echo "returnCatalogo.php?id=" . $id ?>>Regresar</a>
             </div>
+        </div>
     </div>
 </main>
 <?php include 'includes/templates/footer.php'; ?>
