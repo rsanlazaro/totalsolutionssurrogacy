@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 <main class="register">
     <div class="register-info">
-        <h3>Familia del donante</h3>
+        <h3>Familia del donante <?php echo $code; ?></h3>
     </div>
     <?php if (isset($_GET['msg'])) { ?>
         <p class="error"><?php echo $_GET['msg']; ?></p>
@@ -44,7 +44,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="menu-users">
         <div class="create-user">
             <a href="registrationFamily.php?id=<?php echo $id_query; ?>">
-                Nuevo familiar
+                Nuevo familiar 
             </a>
         </div>
     </div>

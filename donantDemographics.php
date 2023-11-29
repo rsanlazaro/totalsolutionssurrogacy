@@ -144,7 +144,7 @@ if ($result->num_rows > 0) {
 
 <main class="register">
     <div class="register-info">
-        <h3>Datos demográficos y físicos</h3>
+        <h3>Datos demográficos y físicos (<?php echo $code; ?>)</h3>
     </div>
 
     <?php if (isset($_GET['msg'])) { ?>
