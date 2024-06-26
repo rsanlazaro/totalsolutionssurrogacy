@@ -3,101 +3,25 @@ include 'includes/templates/header.php';
 ?>
 
 <main class="home">
-  <div class="hero-img">
-    <div class="img-container">
-      <img src="build/img/hero/home.webp" alt="hero-image" />
-      <!-- <img src="build/img/hero/home2.webp" alt="hero-image" />
-      <img src="build/img/hero/home3.webp" alt="hero-image" /> -->
-    </div>
-    <div class="hero-text">
-      <p>Donar la alegría de <span>formar una familia</span></p>
-      <div class="hero-button">
-        <a href="programs.php">Saber más</a>
-      </div>
-    </div>
-  </div>
-  <div class="home-info">
-    <div class="img-container">
-      <img src="build/img/icons/EggDonor.webp" alt="logo" />
-    </div>
-    <div class="home-info-text">
-      <p>
-        Somos una agencia de donación de óvulos dedicada a ayudarte en tu
-        sueño.
-      </p>
-      <p>
-        Nuestra pasión es ayudarte a cumplir sus sueños de tener o ayudar a
-        una familia. Con más de 25 años de experiencia en agencias de
-        subrogación y más de 1000 bebés nacidos, hemos visto cambiar
-        innumerables vidas, e incontables vidas creadas, debido al
-        desinterés de las gestantes subrogadas y las donantes de óvulos.
-        Nuestra gente y nuestros programas son lo que nos hace diferentes,
-        así que ya sea que desee formar su propia familia , convertirse en
-        madre subrogada o en donar óvulos , estamos aquí para hacer sus
-        sueños realidad.
-      </p>
-    </div>
-    <div class="heart-container">
-      <img src="build/img/icons/heartLogo.webp" alt="logo" />
-    </div>
-  </div>
-  <div class="home-section">
-    <h3>Nuestros <span>programas</span></h3>
-  </div>
-  <div class="home-programs">
-    <div class="home-section-program-1">
-      <div class="home-program-text">
-        <div class="home-program-description">
-          <h3>Donación de óvulos</h3>
-          <p>
-            Nuestro trabajo es guiar a la donante de óvulos a través del
-            proceso, aliviar las preocupaciones y hacer de esta una
-            experiencia placentera y satisfactoria.
-          </p>
+    <section>
+        <div class="img-text">
+            <div class="img-text-img">
+                <img src="build/img/home/baby.webp" alt="baby">
+            </div>
+            <div class="img-text-text">
+                <h3>Gestación subrogada en sin tabús</h3>
+                <p>Con el transcurso de los años, se empieza a entender con claridad todo lo que conlleva el proceso de una reproducción asistida con una gestación sustituta. Se conoce desde hace mucho tiempo las "madres de alquiler" como un tabú, hoy vamos a aclarar la idea y traer su atención a nuestra filosofía, a través de visión que tenemos en Total Solutions Surrogacy, con nuestra sensibilidad que transimitimos a los futuros padres y a quién nos pide la ayuda en este proceso.</p>
+                <p>Mucho más que toda la burocracia, temas económicos y cosas que hacen emprender este viaje, sea algo frío sobre todo muy técnico, enmascara toda la sensibilidad que está por detrás. </p>
+                <p>La verdad de eso es que estamos hablando de amor, ilusión y otros sentimientos de todas las partes implicadas.</p>
+                <p>Incluso el nuestro por tamaña atención se emplea entre los dos lados:</p>
+                <p>Futuros padres y gestante.</p>
+            </div>
         </div>
-        <div class="grid-button">
-          <a href="donation.php" class="home-program-btn">Saber más</a>
-        </div>
-      </div>
-      <div class="home-program-img">
-        <img src="build/img/home/donation.webp" alt="img" />
-      </div>
-    </div>
-    <div class="home-section-program-2">
-      <div class="home-program-text">
-        <div class="home-program-description">
-          <h3>Selecciona tu donante</h3>
-          <p>
-            Encontrar un donante es una experiencia muy personal, estamos
-            para ayudarte en ese proceso.
-          </p>
-        </div>
-        <div class="grid-button">
-          <a href="donantBank.php" class="home-program-btn">Saber más</a>
-        </div>
-      </div>
-      <div class="home-program-img">
-        <img src="build/img/home/donant.webp" alt="img" />
-      </div>
-    </div>
-    <div class="home-section-program-1 home-section-program-3">
-      <div class="home-program-text">
-        <div class="home-program-description">
-          <h3>Congelación de óvulos</h3>
-          <p>
-            Nuestro programa de donantes le brinda acceso a una gran
-            selección de óvulos de donantes congelados.
-          </p>
-        </div>
-        <div class="grid-button">
-          <a href="freezing.php" class="home-program-btn">Saber más</a>
-        </div>
-      </div>
-      <div class="home-program-img">
-        <img src="build/img/home/freezing.webp" alt="img" />
-      </div>
-    </div>
-  </div>
+    </section>
+    <section class="img-process">
+        <img src="build/img/home/process-1.webp" alt="process-1">
+        <img src="build/img/home/process-2.webp" alt="process-2">
+    </section>
 </main>
 
 <?php

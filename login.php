@@ -3,11 +3,11 @@ include 'includes/templates/header.php';
 ?>
 
 <main class="register">
-  <div class="hero-img">
+  <!-- <div class="hero-img">
     <div class="img-container">
       <img src="build/img/hero/register.webp" alt="hero-image" />
     </div>
-  </div>
+  </div> -->
   <div class="register-info">
     <h3>Mi cuenta</h3>
     <p>

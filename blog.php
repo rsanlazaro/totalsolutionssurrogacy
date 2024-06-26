@@ -2,7 +2,8 @@
 include 'includes/templates/header.php';
 ?>
 
-<main class="program">
+<main class="home">
+    <section class="temporary">Sitio en construcción...</section>
 </main>
 
 <?php
