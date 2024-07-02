@@ -10,9 +10,9 @@ include 'includes/templates/header.php';
   </div> -->
   <div class="register-info">
     <h3>Mi cuenta</h3>
-    <p>
+    <!-- <p>
       Para poder acceder al catálogo de gestantes, es necesario tener una cuenta.
-    </p>
+    </p> -->
   </div>
   <div class="register-form">
     <div class="form-body">
@@ -38,6 +38,11 @@ include 'includes/templates/header.php';
               <div class="invalid-feedback">
                 <div>Ingrese su contraseña</div>
               </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div>
+              <label class="label-form" for="validationCustomUsername"><a href="#">Cree una cuenta</a></label>
             </div>
           </div>
 

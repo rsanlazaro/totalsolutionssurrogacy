@@ -1,0 +1,216 @@
+<?php
+// Include Composer's autoload file
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Create an instance of mPDF
+$mpdf = new \Mpdf\Mpdf();
+$form_name = ucfirst($_POST['form_name']);
+$form_date = ucfirst($_POST['form_date']);
+$form_age = ucfirst($_POST['form_age']);
+$form_birth_place = ucfirst($_POST['form_birth_place']);
+$form_status = ucfirst($_POST['form_status']);
+$form_employment = ucfirst($_POST['form_employment']);
+$form_height = ucfirst($_POST['form_height']);
+$form_weight = ucfirst($_POST['form_weight']);
+$form_hand = ucfirst($_POST['form_hand']);
+$form_blood = ucfirst($_POST['form_blood']);
+$form_implant = ucfirst($_POST['form_implant']);
+$form_diu = ucfirst($_POST['form_diu']);
+$form_risk_notes = ucfirst($_POST['form_risk_notes']);
+$form_anemy = ucfirst($_POST['form_anemy']);
+$form_diabetes = ucfirst($_POST['form_diabetes']);
+$form_transfusion = ucfirst($_POST['form_transfusion']);
+$form_hipertension = ucfirst($_POST['form_hipertension']);
+$form_cancer = ucfirst($_POST['form_cancer']);
+$form_dislexia = ucfirst($_POST['form_dislexia']);
+$form_waist = ucfirst($_POST['form_waist']);
+$form_migraine = ucfirst($_POST['form_migraine']);
+$form_smoke = ucfirst($_POST['form_smoke']);
+$form_smoke_times = ucfirst($_POST['form_smoke_times']);
+$form_smoke_qty = ucfirst($_POST['form_smoke_qty']);
+$form_alcohol = ucfirst($_POST['form_alcohol']);
+$form_alcohol_freq = ucfirst($_POST['form_alcohol_freq']);
+$form_fracture = ucfirst($_POST['form_fracture']);
+$form_surgery = ucfirst($_POST['form_surgery']);
+$form_fracture_info = ucfirst($_POST['form_fracture_info']);
+$form_surgery_info = ucfirst($_POST['form_surgery_info']);
+
+
+$form_type_pregnant_1 = ucfirst($_POST['form_type_pregnant_1']);
+$form_height_pregnant_1 = ucfirst($_POST['form_height_pregnant_1']);
+$form_weight_pregnant_1 = ucfirst($_POST['form_weight_pregnant_1']);
+$form_term_pregnant_1 = ucfirst($_POST['form_term_pregnant_1']);
+$form_week_pregnant_1 = ucfirst($_POST['form_week_pregnant_1']);
+$form_year_pregnant_1 = ucfirst($_POST['form_year_pregnant_1']);
+$form_comments_pregnant_1 = ucfirst($_POST['form_comments_pregnant_1']);
+$form_type_pregnant_2 = ucfirst($_POST['form_type_pregnant_2']);
+$form_height_pregnant_2 = ucfirst($_POST['form_height_pregnant_2']);
+$form_weight_pregnant_2 = ucfirst($_POST['form_weight_pregnant_2']);
+$form_term_pregnant_2 = ucfirst($_POST['form_term_pregnant_2']);
+$form_week_pregnant_2 = ucfirst($_POST['form_week_pregnant_2']);
+$form_year_pregnant_2 = ucfirst($_POST['form_year_pregnant_2']);
+$form_comments_pregnant_2 = ucfirst($_POST['form_comments_pregnant_2']);
+$form_type_pregnant_3 = ucfirst($_POST['form_type_pregnant_3']);
+$form_height_pregnant_3 = ucfirst($_POST['form_height_pregnant_3']);
+$form_weight_pregnant_3 = ucfirst($_POST['form_weight_pregnant_3']);
+$form_term_pregnant_3 = ucfirst($_POST['form_term_pregnant_3']);
+$form_week_pregnant_3 = ucfirst($_POST['form_week_pregnant_3']);
+$form_year_pregnant_3 = ucfirst($_POST['form_year_pregnant_3']);
+$form_comments_pregnant_3 = ucfirst($_POST['form_comments_pregnant_3']);
+$form_type_pregnant_4 = ucfirst($_POST['form_type_pregnant_4']);
+$form_height_pregnant_4 = ucfirst($_POST['form_height_pregnant_4']);
+$form_weight_pregnant_4 = ucfirst($_POST['form_weight_pregnant_4']);
+$form_term_pregnant_4 = ucfirst($_POST['form_term_pregnant_4']);
+$form_week_pregnant_4 = ucfirst($_POST['form_week_pregnant_4']);
+$form_year_pregnant_4 = ucfirst($_POST['form_year_pregnant_4']);
+$form_comments_pregnant_4 = ucfirst($_POST['form_comments_pregnant_4']);
+$form_type_pregnant_5 = ucfirst($_POST['form_type_pregnant_5']);
+$form_height_pregnant_5 = ucfirst($_POST['form_height_pregnant_5']);
+$form_weight_pregnant_5 = ucfirst($_POST['form_weight_pregnant_5']);
+$form_term_pregnant_5 = ucfirst($_POST['form_term_pregnant_5']);
+$form_week_pregnant_5 = ucfirst($_POST['form_week_pregnant_5']);
+$form_year_pregnant_5 = ucfirst($_POST['form_year_pregnant_5']);
+$form_comments_pregnant_5 = ucfirst($_POST['form_comments_pregnant_5']);
+$form_type_pregnant_6 = ucfirst($_POST['form_type_pregnant_6']);
+$form_height_pregnant_6 = ucfirst($_POST['form_height_pregnant_6']);
+$form_weight_pregnant_6 = ucfirst($_POST['form_weight_pregnant_6']);
+$form_term_pregnant_6 = ucfirst($_POST['form_term_pregnant_6']);
+$form_week_pregnant_6 = ucfirst($_POST['form_week_pregnant_6']);
+$form_year_pregnant_6 = ucfirst($_POST['form_year_pregnant_6']);
+$form_comments_pregnant_6 = ucfirst($_POST['form_comments_pregnant_6']);
+$form_type_abort_1 = ucfirst($_POST['form_type_abort_1']);
+$form_year_abort_1 = ucfirst($_POST['form_year_abort_1']);
+$form_week_abort_1 = ucfirst($_POST['form_week_abort_1']);
+$form_comments_abort_1 = ucfirst($_POST['form_comments_abort_1']);
+$form_type_abort_2 = ucfirst($_POST['form_type_abort_2']);
+$form_year_abort_2 = ucfirst($_POST['form_year_abort_2']);
+$form_week_abort_2 = ucfirst($_POST['form_week_abort_2']);
+$form_comments_abort_2 = ucfirst($_POST['form_comments_abort_2']);
+$form_type_abort_3 = ucfirst($_POST['form_type_abort_3']);
+$form_year_abort_3 = ucfirst($_POST['form_year_abort_3']);
+$form_week_abort_3 = ucfirst($_POST['form_week_abort_3']);
+$form_comments_abort_3 = ucfirst($_POST['form_comments_abort_3']);
+$form_coded_comments_pregnant_1 = ucfirst($_POST['form_coded_comments_pregnant_1']);
+$form_coded_comments_pregnant_2 = ucfirst($_POST['form_coded_comments_pregnant_2']);
+$form_coded_comments_pregnant_3 = ucfirst($_POST['form_coded_comments_pregnant_3']);
+$form_coded_comments_pregnant_4 = ucfirst($_POST['form_coded_comments_pregnant_4']);
+$form_coded_comments_pregnant_5 = ucfirst($_POST['form_coded_comments_pregnant_5']);
+$form_coded_comments_pregnant_6 = ucfirst($_POST['form_coded_comments_pregnant_6']);
+$family_alergy = ucfirst($_POST['family_alergy']);
+$family_apoplejia = ucfirst($_POST['family_apoplejia']);
+$family_cardiopathy = ucfirst($_POST['family_cardiopathy']);
+$family_catarata = ucfirst($_POST['family_catarata']);
+$family_cirrosis = ucfirst($_POST['family_cirrosis']);
+$family_convulsive = ucfirst($_POST['family_convulsive']);
+$family_distrophy = ucfirst($_POST['family_distrophy']);
+$family_enfisem = ucfirst($_POST['family_enfisem']);
+$family_epilepsy = ucfirst($_POST['family_epilepsy']);
+$family_glaucom = ucfirst($_POST['family_glaucom']);
+$family_hemofilia = ucfirst($_POST['family_hemofilia']);
+$family_ictericia = ucfirst($_POST['family_ictericia']);
+$family_migraine = ucfirst($_POST['family_migraine']);
+$family_varicocele = ucfirst($_POST['family_varicocele']);
+$family_equinovaro = ucfirst($_POST['family_equinovaro']);
+$family_mental = ucfirst($_POST['family_mental']);
+$family_drugs = ucfirst($_POST['family_drugs']);
+$family_esquizo = ucfirst($_POST['family_esquizo']);
+$family_alcohol = ucfirst($_POST['family_alcohol']);
+$family_diabetes_young = ucfirst($_POST['family_diabetes_young']);
+$family_bocio = ucfirst($_POST['family_bocio']);
+$family_blind = ucfirst($_POST['family_blind']);
+$family_daltonic = ucfirst($_POST['family_daltonic']);
+$family_diabetes = ucfirst($_POST['family_diabetes']);
+$family_psiquiatric = ucfirst($_POST['family_psiquiatric']);
+$family_endometriosis = ucfirst($_POST['family_endometriosis']);
+$family_fibrosis = ucfirst($_POST['family_fibrosis']);
+$family_gota = ucfirst($_POST['family_gota']);
+$family_hipertension = ucfirst($_POST['family_hipertension']);
+$family_paladar = ucfirst($_POST['family_paladar']);
+$family_kidney = ucfirst($_POST['family_kidney']);
+$family_circulation = ucfirst($_POST['family_circulation']);
+$family_psoriasis = ucfirst($_POST['family_psoriasis']);
+$family_deaf = ucfirst($_POST['family_deaf']);
+$family_alzheimer = ucfirst($_POST['family_alzheimer']);
+$family_parkinson = ucfirst($_POST['family_parkinson']);
+
+// Sample HTML content
+$html = '
+    <html>
+
+<head>
+    <title>PDF report</title>
+    <style>
+    body {
+        margin: 2rem;
+    }
+    .signature {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin-top: 4rem;
+        margin-left: 30rem;
+    }
+    .line {
+        width: 15rem;
+        border-bottom: 1px solid black;
+    }
+    .name {
+        margin-top: 0.5rem;
+        width: 15rem;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+    <h1>Datos de la gestante </h1>
+    <p> Nombre completo: ' . $form_name . '</p>
+    <p> Fecha de nacimiento: ' . $form_date . '</p>
+    <p> Edad: ' . $form_age . '</p>
+    <p> Lugar de nacimiento: ' . $form_birth_place . '</p>
+    <p> Estado civil: ' . $form_status . '</p>
+    <p> Ocupación: ' . $form_employment . '</p>
+    <div class="signature">
+        <div class="line"></div>
+        <div class="name">Firma de la gestante</div>
+    </div>
+</body>
+
+</html>
+';
+
+$form_name = $_POST['form_name'];
+$form_date = $_POST['form_date'];
+$form_age = $_POST['form_age'];
+$form_birth_place = $_POST['form_birth_place'];
+$form_status = $_POST['form_status'];
+$form_employment = $_POST['form_employment'];
+$form_height = $_POST['form_height'];
+$form_weight = $_POST['form_weight'];
+$form_hand = $_POST['form_hand'];
+$form_blood = $_POST['form_blood'];
+$form_implant = $_POST['form_implant'];
+$form_diu = $_POST['form_diu'];
+$form_risk_notes = $_POST['form_risk_notes'];
+$form_anemy = $_POST['form_anemy'];
+$form_diabetes = $_POST['form_diabetes'];
+$form_transfusion = $_POST['form_transfusion'];
+$form_hipertension = $_POST['form_hipertension'];
+$form_cancer = $_POST['form_cancer'];
+$form_dislexia = $_POST['form_dislexia'];
+$form_waist = $_POST['form_waist'];
+$form_migraine = $_POST['form_migraine'];
+$form_smoke = $_POST['form_smoke'];
+$form_smoke_times = $_POST['form_smoke_times'];
+$form_smoke_qty = $_POST['form_smoke_qty'];
+$form_alcohol = $_POST['form_alcohol'];
+$form_alcohol_freq = $_POST['form_alcohol_freq'];
+$form_fracture = $_POST['form_fracture'];
+$form_surgery = $_POST['form_surgery'];
+$form_fracture_info = $_POST['form_fracture_info'];
+
+// Add HTML content to mPDF
+$mpdf->WriteHTML($html);
+
+// Output PDF
+$mpdf->Output('sample.pdf', 'D'); // D = force download, I = inline display, F = save to file

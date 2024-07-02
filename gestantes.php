@@ -2,13 +2,13 @@
 include 'includes/templates/header.php';
 include "includes/app.php";
 
-if (!$_SESSION['login']) {
-    header('location: /index.php');
-} else {
-    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
-        header('location: /index.php');
-    }
-}
+// if (!$_SESSION['login']) {
+//     header('location: /index.php');
+// } else {
+//     if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
+//         header('location: /index.php');
+//     }
+// }
 ?>
 
 <main class="register">

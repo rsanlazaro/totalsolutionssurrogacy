@@ -19,6 +19,7 @@ include 'includes/templates/header.php';
         </div>
     </section>
     <section class="img-process">
+        <h3>Sencillo, rápido y seguro. El proceso...</h3>
         <img src="build/img/home/process-1.webp" alt="process-1">
         <img src="build/img/home/process-2.webp" alt="process-2">
     </section>

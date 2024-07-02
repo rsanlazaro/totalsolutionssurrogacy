@@ -5,7 +5,11 @@ include "includes/app.php";
 if ($_POST['username'] == 'test' && $_POST['password'] == 'test') {
     header('location: /form.php');
 } else {
-    header('location: /index.php');
+    if ($_POST['username'] == 'admin' && $_POST['password'] == 'admin') {
+        header('location: /admin.php');
+    } else {
+        header('location: /index.php');
+    }
 }
 
 // if (!$_SESSION['login']) {

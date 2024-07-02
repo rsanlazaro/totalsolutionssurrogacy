@@ -3,21 +3,10 @@
     <div class="footer-1">
       <div class="form-info">
         <div class="img-container">
-          <img src="build/img/icons/scheduleWhite.webp" alt="time" />
-        </div>
-        <div class="info-text">
-          <p>
-            Lunes-Sábado: 9:00 a 18:00 hrs <br />
-            Domingo: Cerrado
-          </p>
-        </div>
-      </div>
-      <div class="form-info">
-        <div class="img-container">
           <img src="build/img/icons/mailWhite.webp" alt="mail" />
         </div>
         <div class="info-text">
-          <a href="mailto:elcorreoquequieres@correo.com">recepcion@saludconcept.mx</a>
+          <a href="mailto:reclutamiento@totalsolutionsurrogacy.com">reclutamiento@totalsolutionsurrogacy.com</a>
         </div>
       </div>
       <div class="form-info">
@@ -25,7 +14,7 @@
           <img src="build/img/icons/whatsappWhite.webp" alt="whatsapp" />
         </div>
         <div class="info-text">
-          <a href="https://wa.me/525559037194?">+52 55 5903 7194</a>
+          <a href="https://wa.me/525559037194?">55 6127 1008</a>
         </div>
       </div>
     </div>
@@ -49,13 +38,7 @@
     </div>
     <div class="footer-3">
       <div class="form-info-social-networks">
-        <div class="form-social-text">
-          <p>Síguenos en</p>
-        </div>
         <div class="form-social-icons">
-          <div class="img-container">
-            <img src="build/img/icons/instagramWhite.webp" alt="instagram" />
-          </div>
           <div class="img-container">
             <img src="build/img/icons/facebook2White.webp" alt="facebook" />
           </div>

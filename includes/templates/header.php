@@ -28,14 +28,11 @@
         <div class="img-container">
           <img src="build/img/icons/phoneWhite.webp" alt="phone" />
         </div>
-        <p>55 5922 3371</p>
+        <p>55 6127 1008</p>
       </div>
       <div class="header-social-media">
         <a href="https://www.facebook.com/" class="img-container facebook">
           <img src="build/img/icons/facebookWhite.webp" alt="facebook" />
-        </a>
-        <a href="https://www.instagram.com/" class="img-container instagram">
-          <img src="build/img/icons/instagramWhite.webp" alt="instagram" />
         </a>
         <a href="mailto:recepcion@saludconcept.mx" class="img-container mail">
           <img src="build/img/icons/mailWhite.webp" alt="mail" />
@@ -59,17 +56,17 @@
             <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <p>Blog</p>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
                 <a class="dropdown-item" href="donation.php">Categoría 1</a>
-              </li>
+              </li> -->
               <!-- <li>
                 <a class="dropdown-item" href="donantBank.php">Selecciona tu donante</a>
               </li>
               <li>
                 <a class="dropdown-item" href="freezing.php">Congelación de óvulos</a>
               </li> -->
-            </ul>
+            <!-- </ul> -->
           </li>
           <?php
           session_start();
