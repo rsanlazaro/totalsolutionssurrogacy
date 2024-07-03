@@ -104,7 +104,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="col-md-6 form-top-element">
                     <label for="validationDefault01">
                         <div class="spanish">
-                            Estatura:
+                            Estatura (m):
                         </div>
                     </label>
                     <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height" value="<?php if (isset($_SESSION['form_height'])) { echo $_SESSION['form_height'];} ?>"/>
@@ -115,7 +115,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="col-md-6 form-top-element">
                     <label for="validationCustom01">
                         <div class="spanish">
-                            Peso:
+                            Peso (kg):
                         </div>
                     </label>
                     <input type="number" class="form-control-phenotype" step=".01" id="validationCustom01" name="form_weight" value="<?php if (isset($_SESSION['form_weight'])) { echo $_SESSION['form_weight'];} ?>"/>
@@ -219,10 +219,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_1" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_1" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -230,10 +230,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_1" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_1" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>
@@ -314,10 +314,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_2" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_2" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -325,10 +325,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_2" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_2" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>
@@ -409,10 +409,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_3" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_3" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -420,10 +420,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_3" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_3" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>
@@ -504,10 +504,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_4" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_4" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -515,10 +515,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_4" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_4" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>
@@ -599,10 +599,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_5" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_5" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -610,10 +610,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_5" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_5" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>
@@ -694,10 +694,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Estatura:
+                                Estatura (m):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_height_pregnant_6" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_6" />
                         <div class="invalid-feedback">
                             <div>Ingrese la estatura</div>
                         </div>
@@ -705,10 +705,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso:
+                                Peso (kg):
                             </div>
                         </label>
-                        <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_weight_pregnant_6" />
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_6" />
                         <div class="invalid-feedback">
                             <div>Ingrese el peso</div>
                         </div>

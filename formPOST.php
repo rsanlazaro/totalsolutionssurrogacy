@@ -652,7 +652,7 @@ for ($j = 0; $j < count($diseases); $j++) {
     // echo "  PRINT:  " . ${"family_$diseases[$j]"};
 }
 
-$query    = "INSERT into `candidates` 
+$query1 = "INSERT into `candidates` 
 (form_name, 
 form_date, 
 form_age, 
@@ -714,7 +714,7 @@ VALUES
 '$form_surgery',
 '$form_fracture_info',
 '$form_surgery_info')";
-$result1   = mysqli_query($conn, $query);
+$result1   = mysqli_query($conn, $query1);
 
 $query = "SELECT * FROM candidates ORDER BY ID DESC LIMIT 1";
 $result = mysqli_query($conn, $query);
@@ -723,7 +723,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $last_id = $row['id'];
 }
 
-$query = "INSERT into `pregnants`
+$query2 = "INSERT into `pregnants`
 (candidateId,
 form_type_pregnant_1,
 form_height_pregnant_1,
@@ -847,9 +847,9 @@ VALUES
 '$form_4',
 '$form_5',
 '$form_6')";
-$result2 = mysqli_query($conn, $query);
+$result2 = mysqli_query($conn, $query2);
 
-$query = "INSERT into `family`
+$query3 = "INSERT into `family`
 (candidateId,
 family_alergy,
 family_apoplejia,				
@@ -927,14 +927,7 @@ VALUES
 '$family_alzheimer',				
 '$family_parkinson'
 )";
-$result3 = mysqli_query($conn, $query);
-
-var_dump($form_1);
-var_dump($form_2);
-var_dump($form_3);
-var_dump($form_4);
-var_dump($form_5);
-var_dump($form_6);
+$result3 = mysqli_query($conn, $query3);
 
 include 'includes/templates/header.php';
 ?>

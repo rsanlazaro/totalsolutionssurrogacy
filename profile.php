@@ -374,7 +374,7 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Edad: <?php echo $form_age; ?>
+                        Edad: <?php echo $form_age . " años"; ?>
                     </div>
                 </label>
             </div>
@@ -406,14 +406,14 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Altura: <?php echo $form_height; ?>
+                        Altura: <?php echo $form_height . " m"; ?>
                     </div>
                 </label>
             </div>
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Peso: <?php echo $form_height; ?>
+                        Peso: <?php echo $form_weight . "kg"; ?>
                     </div>
                 </label>
             </div>
@@ -619,14 +619,14 @@ $family_diseases = array(
                 <div class="col-md-4">
                     <label for="validationDefault01">
                         <div class="spanish">
-                            Altura del embarazo 1: <?php echo $form_height_pregnant_1; ?>
+                            Altura del embarazo 1: <?php echo $form_height_pregnant_1 . " m"; ?>
                         </div>
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label for="validationDefault01">
                         <div class="spanish">
-                            Peso del embarazo 1: <?php echo $form_weight_pregnant_1; ?>
+                            Peso del embarazo 1: <?php echo $form_weight_pregnant_1 . " kg"; ?>
                         </div>
                     </label>
                 </div>
@@ -689,14 +689,14 @@ $family_diseases = array(
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Altura del embarazo 2: <?php echo $form_height_pregnant_2; ?>
+                                Altura del embarazo 2: <?php echo $form_height_pregnant_2 . " m"; ?>
                             </div>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso del embarazo 2: <?php echo $form_weight_pregnant_2; ?>
+                                Peso del embarazo 2: <?php echo $form_weight_pregnant_2 . " kg"; ?>
                             </div>
                         </label>
                     </div>
@@ -760,14 +760,14 @@ $family_diseases = array(
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Altura del embarazo 3: <?php echo $form_height_pregnant_3; ?>
+                                Altura del embarazo 3: <?php echo $form_height_pregnant_3 . " m"; ?>
                             </div>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso del embarazo 3: <?php echo $form_weight_pregnant_3; ?>
+                                Peso del embarazo 3: <?php echo $form_weight_pregnant_3 . " kg"; ?>
                             </div>
                         </label>
                     </div>
@@ -831,14 +831,14 @@ $family_diseases = array(
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Altura del embarazo 4: <?php echo $form_height_pregnant_4; ?>
+                                Altura del embarazo 4: <?php echo $form_height_pregnant_4 . " m"; ?>
                             </div>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso del embarazo 4: <?php echo $form_weight_pregnant_4; ?>
+                                Peso del embarazo 4: <?php echo $form_weight_pregnant_4 . " kg"; ?>
                             </div>
                         </label>
                     </div>
@@ -902,14 +902,14 @@ $family_diseases = array(
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Altura del embarazo 5: <?php echo $form_height_pregnant_5; ?>
+                                Altura del embarazo 5: <?php echo $form_height_pregnant_5 . " m"; ?>
                             </div>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso del embarazo 5: <?php echo $form_weight_pregnant_5; ?>
+                                Peso del embarazo 5: <?php echo $form_weight_pregnant_5 . " kg"; ?>
                             </div>
                         </label>
                     </div>
@@ -973,14 +973,14 @@ $family_diseases = array(
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Altura del embarazo 6: <?php echo $form_height_pregnant_6; ?>
+                                Altura del embarazo 6: <?php echo $form_height_pregnant_6 . " m"; ?>
                             </div>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
-                                Peso del embarazo 6: <?php echo $form_weight_pregnant_6; ?>
+                                Peso del embarazo 6: <?php echo $form_weight_pregnant_6 . " kg"; ?>
                             </div>
                         </label>
                     </div>
