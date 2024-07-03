@@ -4,6 +4,9 @@ use Symfony\Component\VarDumper\VarDumper;
 
 include 'includes/templates/header.php';
 include "includes/app.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $conn = connectDB();
 if (isset($_POST['form_name'])) {

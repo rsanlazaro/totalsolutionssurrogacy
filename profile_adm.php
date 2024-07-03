@@ -1,6 +1,10 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $conn = connectDB();
 
 // if (!$_SESSION['login']) {

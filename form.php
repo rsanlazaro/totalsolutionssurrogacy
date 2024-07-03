@@ -1,5 +1,8 @@
 <?php
 include 'includes/templates/header.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <main>
     <?php if (isset($_GET['msg'])) { ?>

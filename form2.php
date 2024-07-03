@@ -1,6 +1,9 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (isset($_POST['pregnancyNum'])) { $prenancy_num = $_POST['pregnancyNum']; }
 $conn = connectDB();
 if (isset($_POST['form_name'])) {$form_name = $_POST['form_name']; $_SESSION['form_name'] = $form_name;}
