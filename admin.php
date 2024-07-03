@@ -1,7 +1,7 @@
 <?php
 include 'includes/templates/header.php';
 include "includes/app.php";
-$conn = connectDB();
+// $conn = connectDB();
 ?>
 
 <main class="register">
