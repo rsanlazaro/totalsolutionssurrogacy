@@ -6,7 +6,7 @@ if ($_POST['username'] == 'test' && $_POST['password'] == 'test') {
     header('location: /form.php');
 } else {
     if ($_POST['username'] == 'admin' && $_POST['password'] == 'admin') {
-        header('location: /admin.php');
+        header('location: /profile_adm.php');
     } else {
         header('location: /index.php');
     }
