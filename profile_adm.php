@@ -247,10 +247,12 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td data-title="Fecha de nacimiento"><?php echo $form_date[$i] ?></td>
                         <td data-title="Estatura (m)"><?php echo $form_height[$i] ?></td>
                         <td data-title="Peso (kg)"><?php echo $form_weight[$i] ?></td>
-                        <td data-title="IMC" <?php if((round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2)) > 28) { echo "class='red-label'";} else {echo "class='green-label'";} ?>><?php
-                                                if ($form_height[$i] != 0) {
-                                                    echo round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2);
-                                                }
+                        <td data-title="IMC" <?php if(($form_weight[$i] != 0) && ($form_height[$i] != 0)) {
+                                                    if((round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2)) > 28) { echo "class='red-label'";} else {echo "class='green-label'";} ?>><?php
+                                                        if ($form_height[$i] != 0) {
+                                                            echo round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2);
+                                                        }
+                                                    }
                                                 ?></td>
                         <td data-title="Embarazos"><?php if($num_ces > 2) {echo $num_pregnants . " embarazos <div class='yellow-label'>" . $num_ces . " cesáreas </div>";} else {echo $num_pregnants . " embarazos <br>" . $num_ces . " cesáreas";} ?></td>
                         <td data-title="Complicaciones"><?php
@@ -267,7 +269,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     echo " Implante ";
                                                 } ?></td>
                         <td data-title="Lugar de nacimiento"><?php
-                        // var_dump($form_birth_place);
                         $form_birth_place_eval = strtoupper($form_birth_place[1]);
                         $form_birth_place_eval = iconv('UTF-8', 'ASCII//TRANSLIT', $form_birth_place_eval);
                         if (
