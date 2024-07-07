@@ -40,11 +40,6 @@ include 'includes/templates/header.php';
               </div>
             </div>
           </div>
-          <div class="col-md-12">
-            <div>
-              <label class="label-form" for="validationCustomUsername"><a href="#">Cree una cuenta</a></label>
-            </div>
-          </div>
 
           <div>
             <div class="form-check">

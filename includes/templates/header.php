@@ -60,7 +60,7 @@
               <li>
                 <a class="dropdown-item" href="donation.php">Categoría 1</a>
               </li> -->
-              <!-- <li>
+            <!-- <li>
                 <a class="dropdown-item" href="donantBank.php">Selecciona tu donante</a>
               </li>
               <li>
@@ -69,7 +69,10 @@
             <!-- </ul> -->
           </li>
           <?php
-          session_start();
+
+          if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+          }
           if (!(isset($_SESSION['type']))) { ?>
             <li class="nav-item">
               <a class="nav-link" href="login.php">
@@ -84,18 +87,18 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="users.php">Perfiles</a>
+                    <a class="dropdown-item" href="users_adm.php">Usuarios</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="donants.php">Donantes</a>
+                    <a class="dropdown-item" href="profile_adm.php">Candidatas</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a class="dropdown-item" href="catalogue.php">Catálogo</a>
-                  </li>
+                  </li> -->
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>
-              <?php if (($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form']) ) { ?>
+              <?php if (($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form'])) { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="phenotypeFIle.php">
                     <p>Formulario</p>

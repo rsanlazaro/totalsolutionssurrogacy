@@ -1,9 +1,20 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+<?php
 include 'includes/templates/header.php';
 include "includes/app.php";
 
 $id = $_GET['id'];
 $conn = connectDB();
+
+if (!$_SESSION['login']) {
+    header('location: /index.php');
+}
+
 
 $sql = "SELECT * FROM candidates WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
@@ -88,14 +99,17 @@ while ($row = mysqli_fetch_assoc(($result))) {
     $form_type_abort_1 = $row['form_type_abort_1'];
     $form_year_abort_1 = $row['form_year_abort_1'];
     $form_week_abort_1 = $row['form_week_abort_1'];
+    $form_method_abort_1 = $row['form_method_abort_1'];
     $form_comments_abort_1 = $row['form_comments_abort_1'];
     $form_type_abort_2 = $row['form_type_abort_2'];
     $form_year_abort_2 = $row['form_year_abort_2'];
     $form_week_abort_2 = $row['form_week_abort_2'];
+    $form_method_abort_2 = $row['form_method_abort_2'];
     $form_comments_abort_2 = $row['form_comments_abort_2'];
     $form_type_abort_3 = $row['form_type_abort_3'];
     $form_year_abort_3 = $row['form_year_abort_3'];
     $form_week_abort_3 = $row['form_week_abort_3'];
+    $form_method_abort_3 = $row['form_method_abort_3'];
     $form_comments_abort_3 = $row['form_comments_abort_3'];
     $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
     $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
@@ -373,7 +387,11 @@ $family_diseases = array(
         <div class="form-top">
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
-                    <div class="spanish">
+                    <div <?php if ($form_age > 38) {
+                                echo "class='red-label'";
+                            } else {
+                                echo "class='green-label'";
+                            } ?>>
                         Edad: <?php echo $form_age . " años"; ?>
                     </div>
                 </label>
@@ -381,7 +399,23 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Lugar de nacimiento: <?php echo $form_birth_place; ?>
+                        Lugar de nacimiento: <?php
+                                                $form_birth_place_eval = strtoupper($form_birth_place);
+                                                $form_birth_place_eval = iconv('UTF-8', 'ASCII//TRANSLIT', $form_birth_place_eval);
+                                                if (
+                                                    $form_birth_place_eval == "CIUDAD DE MEXICO" ||
+                                                    $form_birth_place_eval == "CDMX" ||
+                                                    $form_birth_place_eval == "ESTADO DE MEXICO" ||
+                                                    $form_birth_place_eval == "EDO MEX" ||
+                                                    $form_birth_place_eval == "EDO. MEX" ||
+                                                    $form_birth_place_eval == "EDO. DE MEX" ||
+                                                    $form_birth_place_eval == "EDO DE MEX" ||
+                                                    $form_birth_place_eval == "EDOMEX"
+                                                ) {
+                                                    echo "<div class='green-label'>" . $form_birth_place . "</div>";
+                                                } else {
+                                                    echo "<div class='red-label'>" . $form_birth_place . "</div>";
+                                                } ?>
                     </div>
                 </label>
             </div>
@@ -421,6 +455,21 @@ $family_diseases = array(
         <div class="form-top">
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
+                    <div <?php if ((round(($form_weight) / ($form_height * $form_height), 2)) > 28) {
+                                echo "class='red-label'";
+                            } else {
+                                echo "class='green-label'";
+                            } ?>>
+                        IMC: <?php if ($form_height != 0) {
+                                    echo round(($form_weight) / ($form_height * $form_height), 2);
+                                } ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
                     <div class="spanish">
                         Mano predominante: <?php echo $form_hand; ?>
                     </div>
@@ -428,7 +477,11 @@ $family_diseases = array(
             </div>
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
-                    <div class="spanish">
+                    <div <?php if ($form_blood == "A-" || $form_blood == "B-" || $form_blood == "O-" || $form_blood == "AB-") {
+                                echo "class='yellow-label'";
+                            } else {
+                                echo "class='green-label'";
+                            } ?>>
                         Tipo de sangre: <?php echo $form_blood; ?>
                     </div>
                 </label>
@@ -461,7 +514,11 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tiene anemia: <?php echo $form_anemy; ?>
+                        <?php if ($form_anemy == "sí") {
+                            echo "<div class='yellow-label'> Tiene anemia: " . $form_anemy . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene anemia: " . $form_anemy . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -470,30 +527,22 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tiene diabetes: <?php echo $form_diabetes; ?>
+                        <?php if ($form_diabetes == "sí") {
+                            echo "<div class='red-label'> Tiene diabetes: " . $form_diabetes . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene diabetes: " . $form_diabetes . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tuvo alguna transfusión: <?php echo $form_transfusion; ?>
-                    </div>
-                </label>
-            </div>
-        </div>
-        <div class="form-top">
-            <div class="col-md-6 form-top-element">
-                <label for="validationDefault01">
-                    <div class="spanish">
-                        Tiene hipertensión: <?php echo $form_hipertension; ?>
-                    </div>
-                </label>
-            </div>
-            <div class="col-md-6 form-top-element">
-                <label for="validationDefault01">
-                    <div class="spanish">
-                        Tiene cáncer: <?php echo $form_cancer; ?>
+                        <?php if ($form_transfusion == "sí") {
+                            echo "<div class='red-label'> Tuvo alguna transfusión: " . $form_transfusion . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tuvo alguna transfusión: " . $form_transfusion . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -502,14 +551,22 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tiene dislexia: <?php echo $form_dislexia; ?>
+                        <?php if ($form_hipertension == "sí") {
+                            echo "<div class='red-label'> Tiene hipertensión: " . $form_hipertension . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene hipertensión: " . $form_hipertension . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tiene lesión en la cadera: <?php echo $form_waist; ?>
+                        <?php if ($form_cancer == "sí") {
+                            echo "<div class='red-label'> Tiene cáncer: " . $form_cancer . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene cáncer: " . $form_cancer . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -518,14 +575,46 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tiene migraña: <?php echo $form_migraine; ?>
+                        <?php if ($form_dislexia == "sí") {
+                            echo "<div class='yellow-label'> Tiene dislexia: " . $form_dislexia . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene dislexia: " . $form_dislexia . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Fuma: <?php echo $form_smoke; ?>
+                        <?php if ($form_waist == "sí") {
+                            echo "<div class='yellow-label'> Tiene dislocación en la cadera: " . $form_waist . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene dislocación en la cadera: " . $form_waist . "</div>";
+                        } ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        <?php if ($form_migraine == "sí") {
+                            echo "<div class='yellow-label'> Tiene migraña: " . $form_migraine . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tiene migraña: " . $form_migraine . "</div>";
+                        } ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        <?php if ($form_smoke == "sí") {
+                            echo "<div class='yellow-label'> Fuma: " . $form_smoke . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Fuma: " . $form_smoke . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -552,7 +641,11 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Toma alcohol: <?php echo $form_alcohol; ?>
+                        <?php if ($form_alcohol == "sí") {
+                            echo "<div class='yellow-label'> Toma alcohol: " . $form_alcohol . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Toma alcohol: " . $form_alcohol . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -570,7 +663,11 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tuvo fractura: <?php echo $form_fracture; ?>
+                        <?php if ($form_fracture == "sí") {
+                            echo "<div class='yellow-label'> Tuvo fractura: " . $form_fracture . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tuvo fractura: " . $form_fracture . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -588,7 +685,11 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
-                        Tuvo cirugía: <?php echo $form_surgery; ?>
+                        <?php if ($form_surgery == "sí") {
+                            echo "<div class='yellow-label'> Tuvo cirugía: " . $form_surgery . "</div>";
+                        } else {
+                            echo "<div class='green-label'> Tuvo cirugía: " . $form_surgery . "</div>";
+                        } ?>
                     </div>
                 </label>
             </div>
@@ -671,7 +772,22 @@ $family_diseases = array(
                         </div>
                         <?php for ($i = 1; $i <= 20; $i++) {
                             if (${"codes_1_$i"} == 2) {
-                                echo "<div>" .  $codes_array[$i - 1] . "</div>";
+                                if (
+                                    $codes_array[$i - 1] == "Hemorragia obstétrica" ||
+                                    $codes_array[$i - 1] == "Obesidad con IMC > 37" ||
+                                    $codes_array[$i - 1] == "Obesidad con IMC > 37" ||
+                                    $codes_array[$i - 1] == "Comorbilidades preexistentes que compliquen el embarazo y al neonato (endocrinológicas, cardiológicas e inmunológicas)" ||
+                                    $codes_array[$i - 1] == "Enfermedades hipertensivas" ||
+                                    $codes_array[$i - 1] == "Enfermedades infectocontagiosas (VIH, Hepatitis B y C)" ||
+                                    $codes_array[$i - 1] == "Sepsis" ||
+                                    $codes_array[$i - 1] == "Síndrome de Hellp" ||
+                                    $codes_array[$i - 1] == "Sospecha de placenta acreta o placenta percreta" ||
+                                    $codes_array[$i - 1] == "Sin control prenatal en los embarazos"
+                                ) {
+                                    echo "<div class='red-label'>" .  $codes_array[$i - 1] . "</div>";
+                                } else {
+                                    echo "<div class='yellow-label'>" .  $codes_array[$i - 1] . "</div>";
+                                }
                             }
                         } ?>
                     </label>
@@ -1063,7 +1179,14 @@ $family_diseases = array(
                 </div>
             </div>
             <div class="form-top">
-                <div class="col-md-12">
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Método: <?php echo $form_method_abort_1; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-8">
                     <label for="validationDefault01">
                         <div class="spanish">
                             Comentarios del aborto 1: <?php echo $form_comments_abort_1; ?>
@@ -1096,7 +1219,14 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Método: <?php echo $form_method_abort_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-8">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del aborto 2: <?php echo $form_comments_abort_2; ?>
@@ -1130,7 +1260,14 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Método: <?php echo $form_method_abort_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-8">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del aborto 3: <?php echo $form_comments_abort_3; ?>
@@ -1165,142 +1302,145 @@ $family_diseases = array(
                                 }
                             }
                         }
-                        echo "<div>" .  $family_diseases[$i - 1] . ": " . $selected . "</div> </br>";
+                        if ($selected == " ") {
+                            $selected = "Ninguno";
+                        }
+                        echo "<div>" .  $family_diseases[$i - 1] . ": " . "<div class='inline-bold'>" . $selected . "</div> </div> </br>";
                     } ?>
                 </label>
             </div>
         </div>
+        <input type="hidden" name="form_name" value="<?php echo $form_name ?>">
+        <input type="hidden" name="form_date" value="<?php echo $form_date ?>">
+        <input type="hidden" name="form_age" value="<?php echo $form_age ?>">
+        <input type="hidden" name="form_birth_place" value="<?php echo $form_birth_place ?>">
+        <input type="hidden" name="form_status" value="<?php echo $form_status ?>">
+        <input type="hidden" name="form_employment" value="<?php echo $form_employment ?>">
+        <input type="hidden" name="form_height" value="<?php echo $form_height ?>">
+        <input type="hidden" name="form_weight" value="<?php echo $form_weight ?>">
+        <input type="hidden" name="form_hand" value="<?php echo $form_hand ?>">
+        <input type="hidden" name="form_blood" value="<?php echo $form_blood ?>">
+        <input type="hidden" name="form_implant" value="<?php echo $form_implant ?>">
+        <input type="hidden" name="form_diu" value="<?php echo $form_diu ?>">
+        <input type="hidden" name="form_risk_notes" value="<?php echo $form_risk_notes ?>">
+        <input type="hidden" name="form_anemy" value="<?php echo $form_anemy ?>">
+        <input type="hidden" name="form_diabetes" value="<?php echo $form_diabetes ?>">
+        <input type="hidden" name="form_transfusion" value="<?php echo $form_transfusion ?>">
+        <input type="hidden" name="form_hipertension" value="<?php echo $form_hipertension ?>">
+        <input type="hidden" name="form_cancer" value="<?php echo $form_cancer ?>">
+        <input type="hidden" name="form_dislexia" value="<?php echo $form_dislexia ?>">
+        <input type="hidden" name="form_waist" value="<?php echo $form_waist ?>">
+        <input type="hidden" name="form_migraine" value="<?php echo $form_migraine ?>">
+        <input type="hidden" name="form_smoke" value="<?php echo $form_smoke ?>">
+        <input type="hidden" name="form_smoke_times" value="<?php echo $form_smoke_times ?>">
+        <input type="hidden" name="form_smoke_qty" value="<?php echo $form_smoke_qty ?>">
+        <input type="hidden" name="form_alcohol" value="<?php echo $form_alcohol ?>">
+        <input type="hidden" name="form_alcohol_freq" value="<?php echo $form_alcohol_freq ?>">
+        <input type="hidden" name="form_fracture" value="<?php echo $form_fracture ?>">
+        <input type="hidden" name="form_surgery" value="<?php echo $form_surgery ?>">
+        <input type="hidden" name="form_fracture_info" value="<?php echo $form_fracture_info ?>">
+        <input type="hidden" name="form_surgery_info" value="<?php echo $form_surgery_info ?>">
+        <input type="hidden" name="form_type_pregnant_1" value="<?php echo $form_type_pregnant_1 ?>">
+        <input type="hidden" name="form_height_pregnant_1" value="<?php echo $form_height_pregnant_1 ?>">
+        <input type="hidden" name="form_weight_pregnant_1" value="<?php echo $form_weight_pregnant_1 ?>">
+        <input type="hidden" name="form_term_pregnant_1" value="<?php echo $form_term_pregnant_1 ?>">
+        <input type="hidden" name="form_week_pregnant_1" value="<?php echo $form_week_pregnant_1 ?>">
+        <input type="hidden" name="form_year_pregnant_1" value="<?php echo $form_year_pregnant_1 ?>">
+        <input type="hidden" name="form_comments_pregnant_1" value="<?php echo $form_comments_pregnant_1 ?>">
+        <input type="hidden" name="form_type_pregnant_2" value="<?php echo $form_type_pregnant_2 ?>">
+        <input type="hidden" name="form_height_pregnant_2" value="<?php echo $form_height_pregnant_2 ?>">
+        <input type="hidden" name="form_weight_pregnant_2" value="<?php echo $form_weight_pregnant_2 ?>">
+        <input type="hidden" name="form_term_pregnant_2" value="<?php echo $form_term_pregnant_2 ?>">
+        <input type="hidden" name="form_week_pregnant_2" value="<?php echo $form_week_pregnant_2 ?>">
+        <input type="hidden" name="form_year_pregnant_2" value="<?php echo $form_year_pregnant_2 ?>">
+        <input type="hidden" name="form_comments_pregnant_2" value="<?php echo $form_comments_pregnant_2 ?>">
+        <input type="hidden" name="form_type_pregnant_3" value="<?php echo $form_type_pregnant_3 ?>">
+        <input type="hidden" name="form_height_pregnant_3" value="<?php echo $form_height_pregnant_3 ?>">
+        <input type="hidden" name="form_weight_pregnant_3" value="<?php echo $form_weight_pregnant_3 ?>">
+        <input type="hidden" name="form_term_pregnant_3" value="<?php echo $form_term_pregnant_3 ?>">
+        <input type="hidden" name="form_week_pregnant_3" value="<?php echo $form_week_pregnant_3 ?>">
+        <input type="hidden" name="form_year_pregnant_3" value="<?php echo $form_year_pregnant_3 ?>">
+        <input type="hidden" name="form_comments_pregnant_3" value="<?php echo $form_comments_pregnant_3 ?>">
+        <input type="hidden" name="form_type_pregnant_4" value="<?php echo $form_type_pregnant_4 ?>">
+        <input type="hidden" name="form_height_pregnant_4" value="<?php echo $form_height_pregnant_4 ?>">
+        <input type="hidden" name="form_weight_pregnant_4" value="<?php echo $form_weight_pregnant_4 ?>">
+        <input type="hidden" name="form_term_pregnant_4" value="<?php echo $form_term_pregnant_4 ?>">
+        <input type="hidden" name="form_week_pregnant_4" value="<?php echo $form_week_pregnant_4 ?>">
+        <input type="hidden" name="form_year_pregnant_4" value="<?php echo $form_year_pregnant_4 ?>">
+        <input type="hidden" name="form_comments_pregnant_4" value="<?php echo $form_comments_pregnant_4 ?>">
+        <input type="hidden" name="form_type_pregnant_5" value="<?php echo $form_type_pregnant_5 ?>">
+        <input type="hidden" name="form_height_pregnant_5" value="<?php echo $form_height_pregnant_5 ?>">
+        <input type="hidden" name="form_weight_pregnant_5" value="<?php echo $form_weight_pregnant_5 ?>">
+        <input type="hidden" name="form_term_pregnant_5" value="<?php echo $form_term_pregnant_5 ?>">
+        <input type="hidden" name="form_week_pregnant_5" value="<?php echo $form_week_pregnant_5 ?>">
+        <input type="hidden" name="form_year_pregnant_5" value="<?php echo $form_year_pregnant_5 ?>">
+        <input type="hidden" name="form_comments_pregnant_5" value="<?php echo $form_comments_pregnant_5 ?>">
+        <input type="hidden" name="form_type_pregnant_6" value="<?php echo $form_type_pregnant_6 ?>">
+        <input type="hidden" name="form_height_pregnant_6" value="<?php echo $form_height_pregnant_6 ?>">
+        <input type="hidden" name="form_weight_pregnant_6" value="<?php echo $form_weight_pregnant_6 ?>">
+        <input type="hidden" name="form_term_pregnant_6" value="<?php echo $form_term_pregnant_6 ?>">
+        <input type="hidden" name="form_week_pregnant_6" value="<?php echo $form_week_pregnant_6 ?>">
+        <input type="hidden" name="form_year_pregnant_6" value="<?php echo $form_year_pregnant_6 ?>">
+        <input type="hidden" name="form_comments_pregnant_6" value="<?php echo $form_comments_pregnant_6 ?>">
+        <input type="hidden" name="form_type_abort_1" value="<?php echo $form_type_abort_1 ?>">
+        <input type="hidden" name="form_year_abort_1" value="<?php echo $form_year_abort_1 ?>">
+        <input type="hidden" name="form_week_abort_1" value="<?php echo $form_week_abort_1 ?>">
+        <input type="hidden" name="form_comments_abort_1" value="<?php echo $form_comments_abort_1 ?>">
+        <input type="hidden" name="form_type_abort_2" value="<?php echo $form_type_abort_2 ?>">
+        <input type="hidden" name="form_year_abort_2" value="<?php echo $form_year_abort_2 ?>">
+        <input type="hidden" name="form_week_abort_2" value="<?php echo $form_week_abort_2 ?>">
+        <input type="hidden" name="form_comments_abort_2" value="<?php echo $form_comments_abort_2 ?>">
+        <input type="hidden" name="form_type_abort_3" value="<?php echo $form_type_abort_3 ?>">
+        <input type="hidden" name="form_year_abort_3" value="<?php echo $form_year_abort_3 ?>">
+        <input type="hidden" name="form_week_abort_3" value="<?php echo $form_week_abort_3 ?>">
+        <input type="hidden" name="form_comments_abort_3" value="<?php echo $form_comments_abort_3 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_1" value="<?php echo $form_coded_comments_pregnant_1 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_2" value="<?php echo $form_coded_comments_pregnant_2 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_3" value="<?php echo $form_coded_comments_pregnant_3 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_4" value="<?php echo $form_coded_comments_pregnant_4 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_5" value="<?php echo $form_coded_comments_pregnant_5 ?>">
+        <input type="hidden" name="form_coded_comments_pregnant_6" value="<?php echo $form_coded_comments_pregnant_6 ?>">
+        <input type="hidden" name="family_alergy" value="<?php echo $family_alergy ?>">
+        <input type="hidden" name="family_apoplejia" value="<?php echo $family_apoplejia ?>">
+        <input type="hidden" name="family_cardiopathy" value="<?php echo $family_cardiopathy ?>">
+        <input type="hidden" name="family_catarata" value="<?php echo $family_catarata ?>">
+        <input type="hidden" name="family_cirrosis" value="<?php echo $family_cirrosis ?>">
+        <input type="hidden" name="family_convulsive" value="<?php echo $family_convulsive ?>">
+        <input type="hidden" name="family_distrophy" value="<?php echo $family_distrophy ?>">
+        <input type="hidden" name="family_enfisem" value="<?php echo $family_enfisem ?>">
+        <input type="hidden" name="family_epilepsy" value="<?php echo $family_epilepsy ?>">
+        <input type="hidden" name="family_glaucom" value="<?php echo $family_glaucom ?>">
+        <input type="hidden" name="family_hemofilia" value="<?php echo $family_hemofilia ?>">
+        <input type="hidden" name="family_ictericia" value="<?php echo $family_ictericia ?>">
+        <input type="hidden" name="family_migraine" value="<?php echo $family_migraine ?>">
+        <input type="hidden" name="family_varicocele" value="<?php echo $family_varicocele ?>">
+        <input type="hidden" name="family_equinovaro" value="<?php echo $family_equinovaro ?>">
+        <input type="hidden" name="family_mental" value="<?php echo $family_mental ?>">
+        <input type="hidden" name="family_drugs" value="<?php echo $family_drugs ?>">
+        <input type="hidden" name="family_esquizo" value="<?php echo $family_esquizo ?>">
+        <input type="hidden" name="family_alcohol" value="<?php echo $family_alcohol ?>">
+        <input type="hidden" name="family_diabetes_young" value="<?php echo $family_diabetes_young ?>">
+        <input type="hidden" name="family_bocio" value="<?php echo $family_bocio ?>">
+        <input type="hidden" name="family_blind" value="<?php echo $family_blind ?>">
+        <input type="hidden" name="family_daltonic" value="<?php echo $family_daltonic ?>">
+        <input type="hidden" name="family_diabetes" value="<?php echo $family_diabetes ?>">
+        <input type="hidden" name="family_psiquiatric" value="<?php echo $family_psiquiatric ?>">
+        <input type="hidden" name="family_endometriosis" value="<?php echo $family_endometriosis ?>">
+        <input type="hidden" name="family_fibrosis" value="<?php echo $family_fibrosis ?>">
+        <input type="hidden" name="family_gota" value="<?php echo $family_gota ?>">
+        <input type="hidden" name="family_hipertension" value="<?php echo $family_hipertension ?>">
+        <input type="hidden" name="family_paladar" value="<?php echo $family_paladar ?>">
+        <input type="hidden" name="family_kidney" value="<?php echo $family_kidney ?>">
+        <input type="hidden" name="family_circulation" value="<?php echo $family_circulation ?>">
+        <input type="hidden" name="family_psoriasis" value="<?php echo $family_psoriasis ?>">
+        <input type="hidden" name="family_deaf" value="<?php echo $family_deaf ?>">
+        <input type="hidden" name="family_alzheimer" value="<?php echo $family_alzheimer ?>">
+        <input type="hidden" name="family_parkinson" value="<?php echo $family_parkinson ?>">
         <div class="form-btn btn-arrange">
             <button class="btn btn-send" type="submit">
                 <div>Generar PDF</div>
             </button>
         </div>
-        <input type="hidden" name="form_name" value=<?php echo $form_name ?>>
-        <input type="hidden" name="form_date" value=<?php echo $form_date ?>>
-        <input type="hidden" name="form_age" value=<?php echo $form_age ?>>
-        <input type="hidden" name="form_birth_place" value=<?php echo $form_birth_place ?>>
-        <input type="hidden" name="form_status" value=<?php echo $form_status ?>>
-        <input type="hidden" name="form_employment" value=<?php echo $form_employment ?>>
-        <input type="hidden" name="form_height" value=<?php echo $form_height ?>>
-        <input type="hidden" name="form_weight" value=<?php echo $form_weight ?>>
-        <input type="hidden" name="form_hand" value=<?php echo $form_hand ?>>
-        <input type="hidden" name="form_blood" value=<?php echo $form_blood ?>>
-        <input type="hidden" name="form_implant" value=<?php echo $form_implant ?>>
-        <input type="hidden" name="form_diu" value=<?php echo $form_diu ?>>
-        <input type="hidden" name="form_risk_notes" value=<?php echo $form_risk_notes ?>>
-        <input type="hidden" name="form_anemy" value=<?php echo $form_anemy ?>>
-        <input type="hidden" name="form_diabetes" value=<?php echo $form_diabetes ?>>
-        <input type="hidden" name="form_transfusion" value=<?php echo $form_transfusion ?>>
-        <input type="hidden" name="form_hipertension" value=<?php echo $form_hipertension ?>>
-        <input type="hidden" name="form_cancer" value=<?php echo $form_cancer ?>>
-        <input type="hidden" name="form_dislexia" value=<?php echo $form_dislexia ?>>
-        <input type="hidden" name="form_waist" value=<?php echo $form_waist ?>>
-        <input type="hidden" name="form_migraine" value=<?php echo $form_migraine ?>>
-        <input type="hidden" name="form_smoke" value=<?php echo $form_smoke ?>>
-        <input type="hidden" name="form_smoke_times" value=<?php echo $form_smoke_times ?>>
-        <input type="hidden" name="form_smoke_qty" value=<?php echo $form_smoke_qty ?>>
-        <input type="hidden" name="form_alcohol" value=<?php echo $form_alcohol ?>>
-        <input type="hidden" name="form_alcohol_freq" value=<?php echo $form_alcohol_freq ?>>
-        <input type="hidden" name="form_fracture" value=<?php echo $form_fracture ?>>
-        <input type="hidden" name="form_surgery" value=<?php echo $form_surgery ?>>
-        <input type="hidden" name="form_fracture_info" value=<?php echo $form_fracture_info ?>>
-        <input type="hidden" name="form_surgery_info" value=<?php echo $form_surgery_info ?>>
-        <input type="hidden" name="form_type_pregnant_1" value=<?php echo $form_type_pregnant_1 ?>>
-        <input type="hidden" name="form_height_pregnant_1" value=<?php echo $form_height_pregnant_1 ?>>
-        <input type="hidden" name="form_weight_pregnant_1" value=<?php echo $form_weight_pregnant_1 ?>>
-        <input type="hidden" name="form_term_pregnant_1" value=<?php echo $form_term_pregnant_1 ?>>
-        <input type="hidden" name="form_week_pregnant_1" value=<?php echo $form_week_pregnant_1 ?>>
-        <input type="hidden" name="form_year_pregnant_1" value=<?php echo $form_year_pregnant_1 ?>>
-        <input type="hidden" name="form_comments_pregnant_1" value=<?php echo $form_comments_pregnant_1 ?>>
-        <input type="hidden" name="form_type_pregnant_2" value=<?php echo $form_type_pregnant_2 ?>>
-        <input type="hidden" name="form_height_pregnant_2" value=<?php echo $form_height_pregnant_2 ?>>
-        <input type="hidden" name="form_weight_pregnant_2" value=<?php echo $form_weight_pregnant_2 ?>>
-        <input type="hidden" name="form_term_pregnant_2" value=<?php echo $form_term_pregnant_2 ?>>
-        <input type="hidden" name="form_week_pregnant_2" value=<?php echo $form_week_pregnant_2 ?>>
-        <input type="hidden" name="form_year_pregnant_2" value=<?php echo $form_year_pregnant_2 ?>>
-        <input type="hidden" name="form_comments_pregnant_2" value=<?php echo $form_comments_pregnant_2 ?>>
-        <input type="hidden" name="form_type_pregnant_3" value=<?php echo $form_type_pregnant_3 ?>>
-        <input type="hidden" name="form_height_pregnant_3" value=<?php echo $form_height_pregnant_3 ?>>
-        <input type="hidden" name="form_weight_pregnant_3" value=<?php echo $form_weight_pregnant_3 ?>>
-        <input type="hidden" name="form_term_pregnant_3" value=<?php echo $form_term_pregnant_3 ?>>
-        <input type="hidden" name="form_week_pregnant_3" value=<?php echo $form_week_pregnant_3 ?>>
-        <input type="hidden" name="form_year_pregnant_3" value=<?php echo $form_year_pregnant_3 ?>>
-        <input type="hidden" name="form_comments_pregnant_3" value=<?php echo $form_comments_pregnant_3 ?>>
-        <input type="hidden" name="form_type_pregnant_4" value=<?php echo $form_type_pregnant_4 ?>>
-        <input type="hidden" name="form_height_pregnant_4" value=<?php echo $form_height_pregnant_4 ?>>
-        <input type="hidden" name="form_weight_pregnant_4" value=<?php echo $form_weight_pregnant_4 ?>>
-        <input type="hidden" name="form_term_pregnant_4" value=<?php echo $form_term_pregnant_4 ?>>
-        <input type="hidden" name="form_week_pregnant_4" value=<?php echo $form_week_pregnant_4 ?>>
-        <input type="hidden" name="form_year_pregnant_4" value=<?php echo $form_year_pregnant_4 ?>>
-        <input type="hidden" name="form_comments_pregnant_4" value=<?php echo $form_comments_pregnant_4 ?>>
-        <input type="hidden" name="form_type_pregnant_5" value=<?php echo $form_type_pregnant_5 ?>>
-        <input type="hidden" name="form_height_pregnant_5" value=<?php echo $form_height_pregnant_5 ?>>
-        <input type="hidden" name="form_weight_pregnant_5" value=<?php echo $form_weight_pregnant_5 ?>>
-        <input type="hidden" name="form_term_pregnant_5" value=<?php echo $form_term_pregnant_5 ?>>
-        <input type="hidden" name="form_week_pregnant_5" value=<?php echo $form_week_pregnant_5 ?>>
-        <input type="hidden" name="form_year_pregnant_5" value=<?php echo $form_year_pregnant_5 ?>>
-        <input type="hidden" name="form_comments_pregnant_5" value=<?php echo $form_comments_pregnant_5 ?>>
-        <input type="hidden" name="form_type_pregnant_6" value=<?php echo $form_type_pregnant_6 ?>>
-        <input type="hidden" name="form_height_pregnant_6" value=<?php echo $form_height_pregnant_6 ?>>
-        <input type="hidden" name="form_weight_pregnant_6" value=<?php echo $form_weight_pregnant_6 ?>>
-        <input type="hidden" name="form_term_pregnant_6" value=<?php echo $form_term_pregnant_6 ?>>
-        <input type="hidden" name="form_week_pregnant_6" value=<?php echo $form_week_pregnant_6 ?>>
-        <input type="hidden" name="form_year_pregnant_6" value=<?php echo $form_year_pregnant_6 ?>>
-        <input type="hidden" name="form_comments_pregnant_6" value=<?php echo $form_comments_pregnant_6 ?>>
-        <input type="hidden" name="form_type_abort_1" value=<?php echo $form_type_abort_1 ?>>
-        <input type="hidden" name="form_year_abort_1" value=<?php echo $form_year_abort_1 ?>>
-        <input type="hidden" name="form_week_abort_1" value=<?php echo $form_week_abort_1 ?>>
-        <input type="hidden" name="form_comments_abort_1" value=<?php echo $form_comments_abort_1 ?>>
-        <input type="hidden" name="form_type_abort_2" value=<?php echo $form_type_abort_2 ?>>
-        <input type="hidden" name="form_year_abort_2" value=<?php echo $form_year_abort_2 ?>>
-        <input type="hidden" name="form_week_abort_2" value=<?php echo $form_week_abort_2 ?>>
-        <input type="hidden" name="form_comments_abort_2" value=<?php echo $form_comments_abort_2 ?>>
-        <input type="hidden" name="form_type_abort_3" value=<?php echo $form_type_abort_3 ?>>
-        <input type="hidden" name="form_year_abort_3" value=<?php echo $form_year_abort_3 ?>>
-        <input type="hidden" name="form_week_abort_3" value=<?php echo $form_week_abort_3 ?>>
-        <input type="hidden" name="form_comments_abort_3" value=<?php echo $form_comments_abort_3 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_1" value=<?php echo $form_coded_comments_pregnant_1 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_2" value=<?php echo $form_coded_comments_pregnant_2 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_3" value=<?php echo $form_coded_comments_pregnant_3 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_4" value=<?php echo $form_coded_comments_pregnant_4 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_5" value=<?php echo $form_coded_comments_pregnant_5 ?>>
-        <input type="hidden" name="form_coded_comments_pregnant_6" value=<?php echo $form_coded_comments_pregnant_6 ?>>
-        <input type="hidden" name="family_alergy" value=<?php echo $family_alergy ?>>
-        <input type="hidden" name="family_apoplejia" value=<?php echo $family_apoplejia ?>>
-        <input type="hidden" name="family_cardiopathy" value=<?php echo $family_cardiopathy ?>>
-        <input type="hidden" name="family_catarata" value=<?php echo $family_catarata ?>>
-        <input type="hidden" name="family_cirrosis" value=<?php echo $family_cirrosis ?>>
-        <input type="hidden" name="family_convulsive" value=<?php echo $family_convulsive ?>>
-        <input type="hidden" name="family_distrophy" value=<?php echo $family_distrophy ?>>
-        <input type="hidden" name="family_enfisem" value=<?php echo $family_enfisem ?>>
-        <input type="hidden" name="family_epilepsy" value=<?php echo $family_epilepsy ?>>
-        <input type="hidden" name="family_glaucom" value=<?php echo $family_glaucom ?>>
-        <input type="hidden" name="family_hemofilia" value=<?php echo $family_hemofilia ?>>
-        <input type="hidden" name="family_ictericia" value=<?php echo $family_ictericia ?>>
-        <input type="hidden" name="family_migraine" value=<?php echo $family_migraine ?>>
-        <input type="hidden" name="family_varicocele" value=<?php echo $family_varicocele ?>>
-        <input type="hidden" name="family_equinovaro" value=<?php echo $family_equinovaro ?>>
-        <input type="hidden" name="family_mental" value=<?php echo $family_mental ?>>
-        <input type="hidden" name="family_drugs" value=<?php echo $family_drugs ?>>
-        <input type="hidden" name="family_esquizo" value=<?php echo $family_esquizo ?>>
-        <input type="hidden" name="family_alcohol" value=<?php echo $family_alcohol ?>>
-        <input type="hidden" name="family_diabetes_young" value=<?php echo $family_diabetes_young ?>>
-        <input type="hidden" name="family_bocio" value=<?php echo $family_bocio ?>>
-        <input type="hidden" name="family_blind" value=<?php echo $family_blind ?>>
-        <input type="hidden" name="family_daltonic" value=<?php echo $family_daltonic ?>>
-        <input type="hidden" name="family_diabetes" value=<?php echo $family_diabetes ?>>
-        <input type="hidden" name="family_psiquiatric" value=<?php echo $family_psiquiatric ?>>
-        <input type="hidden" name="family_endometriosis" value=<?php echo $family_endometriosis ?>>
-        <input type="hidden" name="family_fibrosis" value=<?php echo $family_fibrosis ?>>
-        <input type="hidden" name="family_gota" value=<?php echo $family_gota ?>>
-        <input type="hidden" name="family_hipertension" value=<?php echo $family_hipertension ?>>
-        <input type="hidden" name="family_paladar" value=<?php echo $family_paladar ?>>
-        <input type="hidden" name="family_kidney" value=<?php echo $family_kidney ?>>
-        <input type="hidden" name="family_circulation" value=<?php echo $family_circulation ?>>
-        <input type="hidden" name="family_psoriasis" value=<?php echo $family_psoriasis ?>>
-        <input type="hidden" name="family_deaf" value=<?php echo $family_deaf ?>>
-        <input type="hidden" name="family_alzheimer" value=<?php echo $family_alzheimer ?>>
-        <input type="hidden" name="family_parkinson" value=<?php echo $family_parkinson ?>>
     </form>
     <div class="menu-users">
         <div class="logout">

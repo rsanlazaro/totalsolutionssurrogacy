@@ -2,17 +2,16 @@
 include 'includes/templates/header.php';
 include "includes/app.php";
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$conn = connectDB();
+
 if (!($_SESSION['login'])) {
     header('location: /index.php');
-} else {
-    if (!($_SESSION['type'] === 'admin' || $_SESSION['type'] === 'admin-jr')) {
-        header('location: /index.php');
-    }
 }
 
 $id = $_GET['id'];
-$conn = connectDB();
-
     
 $sql = "SELECT * FROM users WHERE id=${id}";
 $result = mysqli_query($conn, $sql);
@@ -20,23 +19,18 @@ if (!$result->num_rows) {
     header('location: /');
 }
 while ($row = mysqli_fetch_assoc($result)) {
+    $id = $row['id'];
     $user = $row['username'];
     $pass = $row['password'];
-    $mail = $row['email'];
-    $type = $row['type'];
-    $donant_1 = $row['donant_1'];
-    $donant_2 = $row['donant_2'];
-    $donant_3 = $row['donant_3'];
-    $code = $row['code'];
-    $code_2 = $row['code_2'];
-    $code_3 = $row['code_3'];
-}
-
-$sql = "SELECT * FROM donants WHERE profile='Fenotipe'";
-$result = mysqli_query($conn, $sql);
-$index = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    $codeDonants[$index++] = $row['code'];
+    $type = $row['profile'];
+    // $mail = $row['email'];
+    // $type = $row['type'];
+    // $donant_1 = $row['donant_1'];
+    // $donant_2 = $row['donant_2'];
+    // $donant_3 = $row['donant_3'];
+    // $code = $row['code'];
+    // $code_2 = $row['code_2'];
+    // $code_3 = $row['code_3'];
 }
 ?>
 <main class="register">
@@ -58,15 +52,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </div>
                         <div class="col-md-12">
                             <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Correo electrónico</label>
-                                <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="mail" required value="<?php echo $mail ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese su correo electrónico</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Contraseña</label>
                                 <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="pass" required value="<?php echo $pass ?>" />
                                 <div class="invalid-feedback">
@@ -81,24 +66,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <select name="type" class="selector" id="type-select">
                                         <?php if ($type === 'user') { ?>
                                             <option value="user" selected>Usuario</option>
-                                            <option value="donant">Donante</option>
                                             <option value="admin">Admin</option>
-                                            <option value="admin-jr">Admin Jr</option>
-                                        <?php } elseif ($type === 'donant') { ?>
-                                            <option value="user">Usuario</option>
-                                            <option value="donant" selected>Donante</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="admin-jr">Admin Jr</option>
                                         <?php } elseif ($type === 'admin') { ?>
                                             <option value="user">Usuario</option>
-                                            <option value="donant">Donante</option>
                                             <option value="admin" selected>Admin</option>
-                                            <option value="admin-jr">Admin Jr</option>
-                                        <?php } else { ?>
-                                            <option value="user">Usuario</option>
-                                            <option value="donant">Donante</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="admin-jr" selected>Admin Jr</option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -107,102 +78,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Donante 1:</label>
-                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_1" value="<?php echo $donant_1 ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese la donante 1</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Donante 2:</label>
-                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_2" value="<?php echo $donant_2 ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese la donante 2</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Donante 3:</label>
-                                <input type="text" class="form-control" disabled id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="donant_3" value="<?php echo $donant_3 ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese la donante 3</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
-                                <div class="form-control">
-                                    <select name="code" class="selector" id="ID-select">
-                                    <option value="-">-</option>
-                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
-                                            if ($codeDonants[$i] === $code) { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } else { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <div>Seleccione un ID de fenotipo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
-                                <div class="form-control">
-                                    <select name="code_2" class="selector" id="ID-select">
-                                    <option value="-">-</option>
-                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
-                                            if ($codeDonants[$i] === $code_2) { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } else { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <div>Seleccione un ID de fenotipo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="ID-select">Referencia de fenotipo</label>
-                                <div class="form-control">
-                                    <select name="code_3" class="selector" id="ID-select">
-                                    <option value="-">-</option>
-                                        <?php for ($i = 0; $i <= $index - 1; $i++) {
-                                            if ($codeDonants[$i] === $code_3) { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>" selected> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } else { ?>
-                                                <option value="<?php echo $codeDonants[$i] ?>"> <?php echo $codeDonants[$i] ?> </option>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <div>Seleccione un ID de fenotipo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Referencia de fenotipo</label>
-                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="code" value="<?php echo $code ?>" />
-                                <div class="invalid-feedback">
-                                    <div>Ingrese el ID del fenotipo</div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="form-btn">
                             <button class="btn btn-send" type="submit">
                                 <div>Actualizar datos</div>

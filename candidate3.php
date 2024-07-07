@@ -11,14 +11,165 @@ if (!$_SESSION['login']) {
     header('location: /index.php');
 }
 
+$id = $_POST['id'];
+$form_risk_notes = $_POST['form_risk_notes'];
+$pregnancyNum = $_POST['pregnancyNum'];
+$id = $_POST['id'];
+$form_risk_notes = $_POST['form_risk_notes'];
+$form_anemy = $_POST['form_anemy']; 
+$form_diabetes = $_POST['form_diabetes']; 
+$form_transfusion = $_POST['form_transfusion']; 
+$form_hipertension = $_POST['form_hipertension']; 
+$form_cancer = $_POST['form_cancer']; 
+$form_dislexia = $_POST['form_dislexia']; 
+$form_waist = $_POST['form_waist']; 
+$form_migraine = $_POST['form_migraine']; 
+$form_smoke = $_POST['form_smoke']; 
+$form_smoke_times = $_POST['form_smoke_times']; 
+$form_smoke_qty = $_POST['form_smoke_qty']; 
+$form_alcohol = $_POST['form_alcohol']; 
+$form_alcohol_freq = $_POST['form_alcohol_freq']; 
+$form_fracture = $_POST['form_fracture']; 
+$form_surgery = $_POST['form_surgery']; 
+$form_fracture_info = $_POST['form_fracture_info']; 
+$form_surgery_info = $_POST['form_surgery_info']; 
+// $form_coded_comments_pregnant_1 = $_POST['form_coded_comments_pregnant_1']; 
+// $form_coded_comments_pregnant_2 = $_POST['form_coded_comments_pregnant_2']; 
+// $form_coded_comments_pregnant_3 = $_POST['form_coded_comments_pregnant_3']; 
+// $form_coded_comments_pregnant_4 = $_POST['form_coded_comments_pregnant_4']; 
+// $form_coded_comments_pregnant_5 = $_POST['form_coded_comments_pregnant_5']; 
+// $form_coded_comments_pregnant_6 = $_POST['form_coded_comments_pregnant_6'];
+$family_alergy = $_POST['family_alergy'];
+$family_apoplejia = $_POST['family_apoplejia'];
+$family_cardiopathy = $_POST['family_cardiopathy'];
+$family_catarata = $_POST['family_catarata'];
+$family_cirrosis = $_POST['family_cirrosis'];
+$family_convulsive = $_POST['family_convulsive'];
+$family_distrophy = $_POST['family_distrophy'];
+$family_enfisem = $_POST['family_enfisem'];
+$family_epilepsy = $_POST['family_epilepsy'];
+$family_glaucom = $_POST['family_glaucom'];
+$family_hemofilia = $_POST['family_hemofilia'];
+$family_ictericia = $_POST['family_ictericia'];
+$family_migraine = $_POST['family_migraine'];
+$family_varicocele = $_POST['family_varicocele'];
+$family_equinovaro = $_POST['family_equinovaro'];
+$family_mental = $_POST['family_mental'];
+$family_drugs = $_POST['family_drugs'];
+$family_esquizo = $_POST['family_esquizo'];
+$family_alcohol = $_POST['family_alcohol'];
+$family_diabetes_young = $_POST['family_diabetes_young'];
+$family_bocio = $_POST['family_bocio'];
+$family_blind = $_POST['family_blind'];
+$family_daltonic = $_POST['family_daltonic'];
+$family_diabetes = $_POST['family_diabetes'];
+$family_psiquiatric = $_POST['family_psiquiatric'];
+$family_endometriosis = $_POST['family_endometriosis'];
+$family_fibrosis = $_POST['family_fibrosis'];
+$family_gota = $_POST['family_gota'];
+$family_hipertension = $_POST['family_hipertension'];
+$family_paladar = $_POST['family_paladar'];
+$family_kidney = $_POST['family_kidney'];
+$family_circulation = $_POST['family_circulation'];
+$family_psoriasis = $_POST['family_psoriasis'];
+$family_deaf = $_POST['family_deaf'];
+$family_alzheimer = $_POST['family_alzheimer'];
+$family_parkinson = $_POST['family_parkinson'];
+
+$family_variables = array(
+    "family_alergy",
+    "family_apoplejia",
+    "family_cardiopathy",
+    "family_catarata",
+    "family_cirrosis",
+    "family_convulsive",
+    "family_distrophy",
+    "family_enfisem",
+    "family_epilepsy",
+    "family_glaucom",
+    "family_hemofilia",
+    "family_ictericia",
+    "family_migraine",
+    "family_varicocele",
+    "family_equinovaro",
+    "family_mental",
+    "family_drugs",
+    "family_esquizo",
+    "family_alcohol",
+    "family_diabetes_young",
+    "family_bocio",
+    "family_blind",
+    "family_daltonic",
+    "family_diabetes",
+    "family_psiquiatric",
+    "family_endometriosis",
+    "family_fibrosis",
+    "family_gota",
+    "family_hipertension",
+    "family_paladar",
+    "family_kidney",
+    "family_circulation",
+    "family_psoriasis",
+    "family_deaf",
+    "family_alzheimer",
+    "family_parkinson"
+);
+
+$family_select = array(
+    "Ninguno",
+    "Madre",
+    "Padre",
+    "Abuelos maternos",
+    "Abuelos paternos"
+);
+
+$family_diseases = array(
+    "Alergias",
+    "Apoplejia",
+    "Cardiopatía",
+    "Cataratas",
+    "Cirrosis",
+    "Desorden convulsivo",
+    "Distrofia muscular",
+    "Enfisema",
+    "Epilepsia",
+    "Glaucoma",
+    "Hemofilia",
+    "Ictericia",
+    "Migraña",
+    "Varicocele",
+    "Pie equinovaro",
+    "Retraso mental",
+    "Uso de drogas",
+    "Esquizofrenia",
+    "Alcoholismo",
+    "Diabetes juvenil",
+    "Bocio",
+    "Ceguera",
+    "Daltonismo",
+    "Diabetes",
+    "Enfermedad psiquiátrica",
+    "Endometriosis",
+    "Fibrosis quística",
+    "Gota",
+    "Hipertensión",
+    "Labio/Paladar Hendido",
+    "Crisis Renales",
+    "Circulación",
+    "Psoriasis",
+    "Sordera",
+    "Alzheimer",
+    "Parkinson"
+);
+
 $conn = connectDB();
-if (isset($_POST['form_name'])) {
-    $form_name = $_POST['form_name'];
-    $_SESSION['form_name'] = $form_name;
-}
 if (isset($_POST['form_curp'])) {
     $form_curp = $_POST['form_curp'];
     $_SESSION['form_curp'] = $form_curp;
+}
+if (isset($_POST['form_name'])) {
+    $form_name = $_POST['form_name'];
+    $_SESSION['form_name'] = $form_name;
 }
 if (isset($_POST['form_date'])) {
     $form_date = $_POST['form_date'];
@@ -365,11 +516,11 @@ if (isset($_POST['form_surgery_info'])) {
     $_SESSION['form_surgery_info'] = $form_surgery_info;
 }
 
-if (isset($_SESSION['form_name'])) {
-    $form_name = $_SESSION['form_name'];
-}
 if (isset($_SESSION['form_curp'])) {
     $form_curp = $_SESSION['form_curp'];
+}
+if (isset($_SESSION['form_name'])) {
+    $form_name = $_SESSION['form_name'];
 }
 if (isset($_SESSION['form_date'])) {
     $form_date = $_SESSION['form_date'];
@@ -695,7 +846,6 @@ for ($x = 1; $x <= 20; $x++) {
     }
     $form_6 = $form_6 . $value;
 }
-
 ?>
 <main>
     <?php if (isset($_GET['msg'])) { ?>
@@ -711,7 +861,7 @@ for ($x = 1; $x <= 20; $x++) {
                 </div>
             </div>
         </div>
-        <form class="form form-phenotype" action="formPOST.php" method="post" enctype="multipart/form-data">
+        <form class="form form-phenotype" action="formEDIT.php" method="post" enctype="multipart/form-data">
             <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
@@ -729,16 +879,16 @@ for ($x = 1; $x <= 20; $x++) {
                             <input type="checkbox" id="alergy-none" name="alergy-none" value="alergy-none" class="form-check-input">
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="alergy-mom" name="alergy-mom" value="alergy-mom" class="form-check-input">
+                            <input type="checkbox" id="alergy-mom" name="alergy-mom" value="alergy-mom" class="form-check-input" <?php if ((string)$family_alergy[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="alergy-dad" name="alergy-dad" value="alergy-dad" class="form-check-input">
+                            <input type="checkbox" id="alergy-dad" name="alergy-dad" value="alergy-dad" class="form-check-input" <?php if ((string)$family_alergy[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="alergy-mom-grandpas" name="alergy-mom-grandpas" value="alergy-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alergy-mom-grandpas" name="alergy-mom-grandpas" value="alergy-mom-grandpas" class="form-check-input" <?php if ((string)$family_alergy[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="alergy-dad-grandpas" name="alergy-dad-grandpas" value="alergy-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alergy-dad-grandpas" name="alergy-dad-grandpas" value="alergy-dad-grandpas" class="form-check-input" <?php if ((string)$family_alergy[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -747,16 +897,16 @@ for ($x = 1; $x <= 20; $x++) {
                             <input type="checkbox" id="apoplejia-none" name="apoplejia-none" value="apoplejia-none" class="form-check-input">
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="apoplejia-mom" name="apoplejia-mom" value="apoplejia-mom" class="form-check-input">
+                            <input type="checkbox" id="apoplejia-mom" name="apoplejia-mom" value="apoplejia-mom" class="form-check-input" <?php if ((string)$family_apoplejia[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="apoplejia-dad" name="apoplejia-dad" value="apoplejia-dad" class="form-check-input">
+                            <input type="checkbox" id="apoplejia-dad" name="apoplejia-dad" value="apoplejia-dad" class="form-check-input" <?php if ((string)$family_apoplejia[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="apoplejia-mom-grandpas" name="apoplejia-mom-grandpas" value="apoplejia-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="apoplejia-mom-grandpas" name="apoplejia-mom-grandpas" value="apoplejia-mom-grandpas" class="form-check-input" <?php if ((string)$family_apoplejia[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="apoplejia-dad-grandpas" name="apoplejia-dad-grandpas" value="apoplejia-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="apoplejia-dad-grandpas" name="apoplejia-dad-grandpas" value="apoplejia-dad-grandpas" class="form-check-input" <?php if ((string)$family_apoplejia[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -765,16 +915,16 @@ for ($x = 1; $x <= 20; $x++) {
                             <input type="checkbox" id="cardiopathy-none" name="cardiopathy-none" value="cardiopathy-none" class="form-check-input">
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="cardiopathy-mom" name="cardiopathy-mom" value="cardiopathy-mom" class="form-check-input">
+                            <input type="checkbox" id="cardiopathy-mom" name="cardiopathy-mom" value="cardiopathy-mom" class="form-check-input" <?php if ((string)$family_cardiopathy[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="cardiopathy-dad" name="cardiopathy-dad" value="cardiopathy-dad" class="form-check-input">
+                            <input type="checkbox" id="cardiopathy-dad" name="cardiopathy-dad" value="cardiopathy-dad" class="form-check-input" <?php if ((string)$family_cardiopathy[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="cardiopathy-mom-grandpas" name="cardiopathy-mom-grandpas" value="cardiopathy-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="cardiopathy-mom-grandpas" name="cardiopathy-mom-grandpas" value="cardiopathy-mom-grandpas" class="form-check-input" <?php if ((string)$family_cardiopathy[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="cardiopathy-dad-grandpas" name="cardiopathy-dad-grandpas" value="cardiopathy-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="cardiopathy-dad-grandpas" name="cardiopathy-dad-grandpas" value="cardiopathy-dad-grandpas" class="form-check-input" <?php if ((string)$family_cardiopathy[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -783,596 +933,598 @@ for ($x = 1; $x <= 20; $x++) {
                             <input type="checkbox" id="catarata-none" name="catarata-none" value="catarata-none" class="form-check-input">
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="catarata-mom" name="catarata-mom" value="catarata-mom" class="form-check-input">
+                            <input type="checkbox" id="catarata-mom" name="catarata-mom" value="catarata-mom" class="form-check-input" <?php if ((string)$family_catarata[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="catarata-dad" name="catarata-dad" value="catarata-dad" class="form-check-input">
+                            <input type="checkbox" id="catarata-dad" name="catarata-dad" value="catarata-dad" class="form-check-input" <?php if ((string)$family_catarata[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="catarata-mom-grandpas" name="catarata-mom-grandpas" value="catarata-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="catarata-mom-grandpas" name="catarata-mom-grandpas" value="catarata-mom-grandpas" class="form-check-input" <?php if ((string)$family_catarata[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="catarata-dad-grandpas" name="catarata-dad-grandpas" value="catarata-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="catarata-dad-grandpas" name="catarata-dad-grandpas" value="catarata-dad-grandpas" class="form-check-input" <?php if ((string)$family_catarata[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Cirrosis </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="cirrosis-none" name="cirrosis-none" value="cirrosis-none" class="form-check-input">
+                            <input type="checkbox" id="cirrosis-none" name="cirrosis-none" value="cirrosis-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="cirrosis-mom" name="cirrosis-mom" value="cirrosis-mom" class="form-check-input">
+                            <input type="checkbox" id="cirrosis-mom" name="cirrosis-mom" value="cirrosis-mom" class="form-check-input"  <?php if ((string)$family_cirrosis[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="cirrosis-dad" name="cirrosis-dad" value="cirrosis-dad" class="form-check-input">
+                            <input type="checkbox" id="cirrosis-dad" name="cirrosis-dad" value="cirrosis-dad" class="form-check-input"  <?php if ((string)$family_cirrosis[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="cirrosis-mom-grandpas" name="cirrosis-mom-grandpas" value="cirrosis-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="cirrosis-mom-grandpas" name="cirrosis-mom-grandpas" value="cirrosis-mom-grandpas" class="form-check-input"  <?php if ((string)$family_cirrosis[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="cirrosis-dad-grandpas" name="cirrosis-dad-grandpas" value="cirrosis-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="cirrosis-dad-grandpas" name="cirrosis-dad-grandpas" value="cirrosis-dad-grandpas" class="form-check-input"  <?php if ((string)$family_cirrosis[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Desorden convulsivo </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="convulsive-none" name="convulsive-none" value="convulsive-none" class="form-check-input">
+                            <input type="checkbox" id="convulsive-none" name="convulsive-none" value="convulsive-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="convulsive-mom" name="convulsive-mom" value="convulsive-mom" class="form-check-input">
+                            <input type="checkbox" id="convulsive-mom" name="convulsive-mom" value="convulsive-mom" class="form-check-input"  <?php if ((string)$family_convulsive[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="convulsive-dad" name="convulsive-dad" value="convulsive-dad" class="form-check-input">
+                            <input type="checkbox" id="convulsive-dad" name="convulsive-dad" value="convulsive-dad" class="form-check-input"  <?php if ((string)$family_convulsive[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="convulsive-mom-grandpas" name="convulsive-mom-grandpas" value="convulsive-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="convulsive-mom-grandpas" name="convulsive-mom-grandpas" value="convulsive-mom-grandpas" class="form-check-input"  <?php if ((string)$family_convulsive[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="convulsive-dad-grandpas" name="convulsive-dad-grandpas" value="convulsive-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="convulsive-dad-grandpas" name="convulsive-dad-grandpas" value="convulsive-dad-grandpas" class="form-check-input"  <?php if ((string)$family_convulsive[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Distrofia muscular </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="distrophy-none" name="distrophy-none" value="distrophy-none" class="form-check-input">
+                            <input type="checkbox" id="distrophy-none" name="distrophy-none" value="distrophy-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="distrophy-mom" name="distrophy-mom" value="distrophy-mom" class="form-check-input">
+                            <input type="checkbox" id="distrophy-mom" name="distrophy-mom" value="distrophy-mom" class="form-check-input"  <?php if ((string)$family_distrophy[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="distrophy-dad" name="distrophy-dad" value="distrophy-dad" class="form-check-input">
+                            <input type="checkbox" id="distrophy-dad" name="distrophy-dad" value="distrophy-dad" class="form-check-input"  <?php if ((string)$family_distrophy[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="distrophy-mom-grandpas" name="distrophy-mom-grandpas" value="distrophy-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="distrophy-mom-grandpas" name="distrophy-mom-grandpas" value="distrophy-mom-grandpas" class="form-check-input"  <?php if ((string)$family_distrophy[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="distrophy-dad-grandpas" name="distrophy-dad-grandpas" value="distrophy-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="distrophy-dad-grandpas" name="distrophy-dad-grandpas" value="distrophy-dad-grandpas" class="form-check-input"  <?php if ((string)$family_distrophy[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Enfisema </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="enfisem-none" name="enfisem-none" value="enfisem-none" class="form-check-input">
+                            <input type="checkbox" id="enfisem-none" name="enfisem-none" value="enfisem-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="enfisem-mom" name="enfisem-mom" value="enfisem-mom" class="form-check-input">
+                            <input type="checkbox" id="enfisem-mom" name="enfisem-mom" value="enfisem-mom" class="form-check-input"  <?php if ((string)$family_enfisem[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="enfisem-dad" name="enfisem-dad" value="enfisem-dad" class="form-check-input">
+                            <input type="checkbox" id="enfisem-dad" name="enfisem-dad" value="enfisem-dad" class="form-check-input"  <?php if ((string)$family_enfisem[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="enfisem-mom-grandpas" name="enfisem-mom-grandpas" value="enfisem-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="enfisem-mom-grandpas" name="enfisem-mom-grandpas" value="enfisem-mom-grandpas" class="form-check-input"  <?php if ((string)$family_enfisem[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="enfisem-dad-grandpas" name="enfisem-dad-grandpas" value="enfisem-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="enfisem-dad-grandpas" name="enfisem-dad-grandpas" value="enfisem-dad-grandpas" class="form-check-input"  <?php if ((string)$family_enfisem[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Epilepsia </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="epilepsy-none" name="epilepsy-none" value="epilepsy-none" class="form-check-input">
+                            <input type="checkbox" id="epilepsy-none" name="epilepsy-none" value="epilepsy-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="epilepsy-mom" name="epilepsy-mom" value="epilepsy-mom" class="form-check-input">
+                            <input type="checkbox" id="epilepsy-mom" name="epilepsy-mom" value="epilepsy-mom" class="form-check-input"  <?php if ((string)$family_epilepsy[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="epilepsy-dad" name="epilepsy-dad" value="epilepsy-dad" class="form-check-input">
+                            <input type="checkbox" id="epilepsy-dad" name="epilepsy-dad" value="epilepsy-dad" class="form-check-input"  <?php if ((string)$family_epilepsy[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="epilepsy-mom-grandpas" name="epilepsy-mom-grandpas" value="epilepsy-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="epilepsy-mom-grandpas" name="epilepsy-mom-grandpas" value="epilepsy-mom-grandpas" class="form-check-input"  <?php if ((string)$family_epilepsy[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="epilepsy-dad-grandpas" name="epilepsy-dad-grandpas" value="epilepsy-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="epilepsy-dad-grandpas" name="epilepsy-dad-grandpas" value="epilepsy-dad-grandpas" class="form-check-input"  <?php if ((string)$family_epilepsy[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Glaucoma </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="glaucom-none" name="glaucom-none" value="glaucom-none" class="form-check-input">
+                            <input type="checkbox" id="glaucom-none" name="glaucom-none" value="glaucom-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="glaucom-mom" name="glaucom-mom" value="glaucom-mom" class="form-check-input">
+                            <input type="checkbox" id="glaucom-mom" name="glaucom-mom" value="glaucom-mom" class="form-check-input"  <?php if ((string)$family_glaucom[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="glaucom-dad" name="glaucom-dad" value="glaucom-dad" class="form-check-input">
+                            <input type="checkbox" id="glaucom-dad" name="glaucom-dad" value="glaucom-dad" class="form-check-input"  <?php if ((string)$family_glaucom[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="glaucom-mom-grandpas" name="glaucom-mom-grandpas" value="glaucom-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="glaucom-mom-grandpas" name="glaucom-mom-grandpas" value="glaucom-mom-grandpas" class="form-check-input"  <?php if ((string)$family_glaucom[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="glaucom-dad-grandpas" name="glaucom-dad-grandpas" value="glaucom-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="glaucom-dad-grandpas" name="glaucom-dad-grandpas" value="glaucom-dad-grandpas" class="form-check-input"  <?php if ((string)$family_glaucom[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Hemofilia </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="hemofilia-none" name="hemofilia-none" value="hemofilia-none" class="form-check-input">
+                            <input type="checkbox" id="hemofilia-none" name="hemofilia-none" value="hemofilia-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="hemofilia-mom" name="hemofilia-mom" value="hemofilia-mom" class="form-check-input">
+                            <input type="checkbox" id="hemofilia-mom" name="hemofilia-mom" value="hemofilia-mom" class="form-check-input"  <?php if ((string)$family_hemofilia[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="hemofilia-dad" name="hemofilia-dad" value="hemofilia-dad" class="form-check-input">
+                            <input type="checkbox" id="hemofilia-dad" name="hemofilia-dad" value="hemofilia-dad" class="form-check-input"  <?php if ((string)$family_hemofilia[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="hemofilia-mom-grandpas" name="hemofilia-mom-grandpas" value="hemofilia-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="hemofilia-mom-grandpas" name="hemofilia-mom-grandpas" value="hemofilia-mom-grandpas" class="form-check-input"  <?php if ((string)$family_hemofilia[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="hemofilia-dad-grandpas" name="hemofilia-dad-grandpas" value="hemofilia-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="hemofilia-dad-grandpas" name="hemofilia-dad-grandpas" value="hemofilia-dad-grandpas" class="form-check-input"  <?php if ((string)$family_hemofilia[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Ictericia </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="ictericia-none" name="ictericia-none" value="ictericia-none" class="form-check-input">
+                            <input type="checkbox" id="ictericia-none" name="ictericia-none" value="ictericia-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="ictericia-mom" name="ictericia-mom" value="ictericia-mom" class="form-check-input">
+                            <input type="checkbox" id="ictericia-mom" name="ictericia-mom" value="ictericia-mom" class="form-check-input"  <?php if ((string)$family_ictericia[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="ictericia-dad" name="ictericia-dad" value="ictericia-dad" class="form-check-input">
+                            <input type="checkbox" id="ictericia-dad" name="ictericia-dad" value="ictericia-dad" class="form-check-input"  <?php if ((string)$family_ictericia[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="ictericia-mom-grandpas" name="ictericia-mom-grandpas" value="ictericia-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="ictericia-mom-grandpas" name="ictericia-mom-grandpas" value="ictericia-mom-grandpas" class="form-check-input"  <?php if ((string)$family_ictericia[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="ictericia-dad-grandpas" name="ictericia-dad-grandpas" value="ictericia-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="ictericia-dad-grandpas" name="ictericia-dad-grandpas" value="ictericia-dad-grandpas" class="form-check-input"  <?php if ((string)$family_ictericia[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Migraña </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="migraine-none" name="migraine-none" value="migraine-none" class="form-check-input">
+                            <input type="checkbox" id="migraine-none" name="migraine-none" value="migraine-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="migraine-mom" name="migraine-mom" value="migraine-mom" class="form-check-input">
+                            <input type="checkbox" id="migraine-mom" name="migraine-mom" value="migraine-mom" class="form-check-input"  <?php if ((string)$family_migraine[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="migraine-dad" name="migraine-dad" value="migraine-dad" class="form-check-input">
+                            <input type="checkbox" id="migraine-dad" name="migraine-dad" value="migraine-dad" class="form-check-input"  <?php if ((string)$family_migraine[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="migraine-mom-grandpas" name="migraine-mom-grandpas" value="migraine-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="migraine-mom-grandpas" name="migraine-mom-grandpas" value="migraine-mom-grandpas" class="form-check-input"  <?php if ((string)$family_migraine[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="migraine-dad-grandpas" name="migraine-dad-grandpas" value="migraine-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="migraine-dad-grandpas" name="migraine-dad-grandpas" value="migraine-dad-grandpas" class="form-check-input"  <?php if ((string)$family_migraine[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Varicocele </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="varicocele-none" name="varicocele-none" value="varicocele-none" class="form-check-input">
+                            <input type="checkbox" id="varicocele-none" name="varicocele-none" value="varicocele-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="varicocele-mom" name="varicocele-mom" value="varicocele-mom" class="form-check-input">
+                            <input type="checkbox" id="varicocele-mom" name="varicocele-mom" value="varicocele-mom" class="form-check-input"  <?php if ((string)$family_varicocele[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="varicocele-dad" name="varicocele-dad" value="varicocele-dad" class="form-check-input">
+                            <input type="checkbox" id="varicocele-dad" name="varicocele-dad" value="varicocele-dad" class="form-check-input"  <?php if ((string)$family_varicocele[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="varicocele-mom-grandpas" name="varicocele-mom-grandpas" value="varicocele-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="varicocele-mom-grandpas" name="varicocele-mom-grandpas" value="varicocele-mom-grandpas" class="form-check-input"  <?php if ((string)$family_varicocele[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="varicocele-dad-grandpas" name="varicocele-dad-grandpas" value="varicocele-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="varicocele-dad-grandpas" name="varicocele-dad-grandpas" value="varicocele-dad-grandpas" class="form-check-input"  <?php if ((string)$family_varicocele[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Pie equinovaro </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="equinovaro-none" name="equinovaro-none" value="equinovaro-none" class="form-check-input">
+                            <input type="checkbox" id="equinovaro-none" name="equinovaro-none" value="equinovaro-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="equinovaro-mom" name="equinovaro-mom" value="equinovaro-mom" class="form-check-input">
+                            <input type="checkbox" id="equinovaro-mom" name="equinovaro-mom" value="equinovaro-mom" class="form-check-input"  <?php if ((string)$family_equinovaro[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="equinovaro-dad" name="equinovaro-dad" value="equinovaro-dad" class="form-check-input">
+                            <input type="checkbox" id="equinovaro-dad" name="equinovaro-dad" value="equinovaro-dad" class="form-check-input"  <?php if ((string)$family_equinovaro[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="equinovaro-mom-grandpas" name="equinovaro-mom-grandpas" value="equinovaro-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="equinovaro-mom-grandpas" name="equinovaro-mom-grandpas" value="equinovaro-mom-grandpas" class="form-check-input"  <?php if ((string)$family_equinovaro[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="equinovaro-dad-grandpas" name="equinovaro-dad-grandpas" value="equinovaro-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="equinovaro-dad-grandpas" name="equinovaro-dad-grandpas" value="equinovaro-dad-grandpas" class="form-check-input"  <?php if ((string)$family_equinovaro[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Retraso mental </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="mental-none" name="mental-none" value="mental-none" class="form-check-input">
+                            <input type="checkbox" id="mental-none" name="mental-none" value="mental-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="mental-mom" name="mental-mom" value="mental-mom" class="form-check-input">
+                            <input type="checkbox" id="mental-mom" name="mental-mom" value="mental-mom" class="form-check-input"  <?php if ((string)$family_mental[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="mental-dad" name="mental-dad" value="mental-dad" class="form-check-input">
+                            <input type="checkbox" id="mental-dad" name="mental-dad" value="mental-dad" class="form-check-input"  <?php if ((string)$family_mental[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="mental-mom-grandpas" name="mental-mom-grandpas" value="mental-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="mental-mom-grandpas" name="mental-mom-grandpas" value="mental-mom-grandpas" class="form-check-input"  <?php if ((string)$family_mental[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="mental-dad-grandpas" name="mental-dad-grandpas" value="mental-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="mental-dad-grandpas" name="mental-dad-grandpas" value="mental-dad-grandpas" class="form-check-input"  <?php if ((string)$family_mental[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Uso de drogas </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="drugs-none" name="drugs-none" value="drugs-none" class="form-check-input">
+                            <input type="checkbox" id="drugs-none" name="drugs-none" value="drugs-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="drugs-mom" name="drugs-mom" value="drugs-mom" class="form-check-input">
+                            <input type="checkbox" id="drugs-mom" name="drugs-mom" value="drugs-mom" class="form-check-input"  <?php if ((string)$family_drugs[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="drugs-dad" name="drugs-dad" value="drugs-dad" class="form-check-input">
+                            <input type="checkbox" id="drugs-dad" name="drugs-dad" value="drugs-dad" class="form-check-input"  <?php if ((string)$family_drugs[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="drugs-mom-grandpas" name="drugs-mom-grandpas" value="drugs-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="drugs-mom-grandpas" name="drugs-mom-grandpas" value="drugs-mom-grandpas" class="form-check-input"  <?php if ((string)$family_drugs[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="drugs-dad-grandpas" name="drugs-dad-grandpas" value="drugs-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="drugs-dad-grandpas" name="drugs-dad-grandpas" value="drugs-dad-grandpas" class="form-check-input"  <?php if ((string)$family_drugs[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Esquizofrenia </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="esquizo-none" name="esquizo-none" value="esquizo-none" class="form-check-input">
+                            <input type="checkbox" id="esquizo-none" name="esquizo-none" value="esquizo-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="esquizo-mom" name="esquizo-mom" value="esquizo-mom" class="form-check-input">
+                            <input type="checkbox" id="esquizo-mom" name="esquizo-mom" value="esquizo-mom" class="form-check-input"  <?php if ((string)$family_esquizo[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="esquizo-dad" name="esquizo-dad" value="esquizo-dad" class="form-check-input">
+                            <input type="checkbox" id="esquizo-dad" name="esquizo-dad" value="esquizo-dad" class="form-check-input"  <?php if ((string)$family_esquizo[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="esquizo-mom-grandpas" name="esquizo-mom-grandpas" value="esquizo-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="esquizo-mom-grandpas" name="esquizo-mom-grandpas" value="esquizo-mom-grandpas" class="form-check-input"  <?php if ((string)$family_esquizo[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="esquizo-dad-grandpas" name="esquizo-dad-grandpas" value="esquizo-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="esquizo-dad-grandpas" name="esquizo-dad-grandpas" value="esquizo-dad-grandpas" class="form-check-input"  <?php if ((string)$family_esquizo[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Alcoholismo </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="alcohol-none" name="alcohol-none" value="alcohol-none" class="form-check-input">
+                            <input type="checkbox" id="alcohol-none" name="alcohol-none" value="alcohol-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="alcohol-mom" name="alcohol-mom" value="alcohol-mom" class="form-check-input">
+                            <input type="checkbox" id="alcohol-mom" name="alcohol-mom" value="alcohol-mom" class="form-check-input"  <?php if ((string)$family_alcohol[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="alcohol-dad" name="alcohol-dad" value="alcohol-dad" class="form-check-input">
+                            <input type="checkbox" id="alcohol-dad" name="alcohol-dad" value="alcohol-dad" class="form-check-input"  <?php if ((string)$family_alcohol[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="alcohol-mom-grandpas" name="alcohol-mom-grandpas" value="alcohol-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alcohol-mom-grandpas" name="alcohol-mom-grandpas" value="alcohol-mom-grandpas" class="form-check-input"  <?php if ((string)$family_alcohol[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="alcohol-dad-grandpas" name="alcohol-dad-grandpas" value="alcohol-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alcohol-dad-grandpas" name="alcohol-dad-grandpas" value="alcohol-dad-grandpas" class="form-check-input"  <?php if ((string)$family_alcohol[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Diabetes juvenil </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="diabetes_young-none" name="diabetes_young-none" value="diabetes_young-none" class="form-check-input">
+                            <input type="checkbox" id="diabetes_young-none" name="diabetes_young-none" value="diabetes_young-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="diabetes_young-mom" name="diabetes_young-mom" value="diabetes_young-mom" class="form-check-input">
+                            <input type="checkbox" id="diabetes_young-mom" name="diabetes_young-mom" value="diabetes_young-mom" class="form-check-input"  <?php if ((string)$family_diabetes_young[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="diabetes_young-dad" name="diabetes_young-dad" value="diabetes_young-dad" class="form-check-input">
+                            <input type="checkbox" id="diabetes_young-dad" name="diabetes_young-dad" value="diabetes_young-dad" class="form-check-input"  <?php if ((string)$family_diabetes_young[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="diabetes_young-mom-grandpas" name="diabetes_young-mom-grandpas" value="diabetes_young-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="diabetes_young-mom-grandpas" name="diabetes_young-mom-grandpas" value="diabetes_young-mom-grandpas" class="form-check-input"  <?php if ((string)$family_diabetes_young[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="diabetes_young-dad-grandpas" name="diabetes_young-dad-grandpas" value="diabetes_young-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="diabetes_young-dad-grandpas" name="diabetes_young-dad-grandpas" value="diabetes_young-dad-grandpas" class="form-check-input"  <?php if ((string)$family_diabetes_young[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Bocio </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="bocio-none" name="bocio-none" value="bocio-none" class="form-check-input">
+                            <input type="checkbox" id="bocio-none" name="bocio-none" value="bocio-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="bocio-mom" name="bocio-mom" value="bocio-mom" class="form-check-input">
+                            <input type="checkbox" id="bocio-mom" name="bocio-mom" value="bocio-mom" class="form-check-input"  <?php if ((string)$family_bocio[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="bocio-dad" name="bocio-dad" value="bocio-dad" class="form-check-input">
+                            <input type="checkbox" id="bocio-dad" name="bocio-dad" value="bocio-dad" class="form-check-input"  <?php if ((string)$family_bocio[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="bocio-mom-grandpas" name="bocio-mom-grandpas" value="bocio-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="bocio-mom-grandpas" name="bocio-mom-grandpas" value="bocio-mom-grandpas" class="form-check-input"  <?php if ((string)$family_bocio[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="bocio-dad-grandpas" name="bocio-dad-grandpas" value="bocio-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="bocio-dad-grandpas" name="bocio-dad-grandpas" value="bocio-dad-grandpas" class="form-check-input"  <?php if ((string)$family_bocio[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Ceguera </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="blind-none" name="blind-none" value="blind-none" class="form-check-input">
+                            <input type="checkbox" id="blind-none" name="blind-none" value="blind-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="blind-mom" name="blind-mom" value="blind-mom" class="form-check-input">
+                            <input type="checkbox" id="blind-mom" name="blind-mom" value="blind-mom" class="form-check-input"  <?php if ((string)$family_blind[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="blind-dad" name="blind-dad" value="blind-dad" class="form-check-input">
+                            <input type="checkbox" id="blind-dad" name="blind-dad" value="blind-dad" class="form-check-input"  <?php if ((string)$family_blind[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="blind-mom-grandpas" name="blind-mom-grandpas" value="blind-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="blind-mom-grandpas" name="blind-mom-grandpas" value="blind-mom-grandpas" class="form-check-input"  <?php if ((string)$family_blind[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="blind-dad-grandpas" name="blind-dad-grandpas" value="blind-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="blind-dad-grandpas" name="blind-dad-grandpas" value="blind-dad-grandpas" class="form-check-input"  <?php if ((string)$family_blind[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Daltonismo </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="daltonic-none" name="daltonic-none" value="daltonic-none" class="form-check-input">
+                            <input type="checkbox" id="daltonic-none" name="daltonic-none" value="daltonic-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="daltonic-mom" name="daltonic-mom" value="daltonic-mom" class="form-check-input">
+                            <input type="checkbox" id="daltonic-mom" name="daltonic-mom" value="daltonic-mom" class="form-check-input"  <?php if ((string)$family_daltonic[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="daltonic-dad" name="daltonic-dad" value="daltonic-dad" class="form-check-input">
+                            <input type="checkbox" id="daltonic-dad" name="daltonic-dad" value="daltonic-dad" class="form-check-input"  <?php if ((string)$family_daltonic[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="daltonic-mom-grandpas" name="daltonic-mom-grandpas" value="daltonic-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="daltonic-mom-grandpas" name="daltonic-mom-grandpas" value="daltonic-mom-grandpas" class="form-check-input"  <?php if ((string)$family_daltonic[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="daltonic-dad-grandpas" name="daltonic-dad-grandpas" value="daltonic-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="daltonic-dad-grandpas" name="daltonic-dad-grandpas" value="daltonic-dad-grandpas" class="form-check-input"  <?php if ((string)$family_daltonic[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Diabetes </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="diabetes-none" name="diabetes-none" value="diabetes-none" class="form-check-input">
+                            <input type="checkbox" id="diabetes-none" name="diabetes-none" value="diabetes-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="diabetes-mom" name="diabetes-mom" value="diabetes-mom" class="form-check-input">
+                            <input type="checkbox" id="diabetes-mom" name="diabetes-mom" value="diabetes-mom" class="form-check-input"  <?php if ((string)$family_diabetes[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="diabetes-dad" name="diabetes-dad" value="diabetes-dad" class="form-check-input">
+                            <input type="checkbox" id="diabetes-dad" name="diabetes-dad" value="diabetes-dad" class="form-check-input"  <?php if ((string)$family_diabetes[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="diabetes-mom-grandpas" name="diabetes-mom-grandpas" value="diabetes-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="diabetes-mom-grandpas" name="diabetes-mom-grandpas" value="diabetes-mom-grandpas" class="form-check-input"  <?php if ((string)$family_diabetes[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="diabetes-dad-grandpas" name="diabetes-dad-grandpas" value="diabetes-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="diabetes-dad-grandpas" name="diabetes-dad-grandpas" value="diabetes-dad-grandpas" class="form-check-input"  <?php if ((string)$family_diabetes[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Enfermedad psiquiátrica </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="psiquiatric-none" name="psiquiatric-none" value="psiquiatric-none" class="form-check-input">
+                            <input type="checkbox" id="psiquiatric-none" name="psiquiatric-none" value="psiquiatric-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="psiquiatric-mom" name="psiquiatric-mom" value="psiquiatric-mom" class="form-check-input">
+                            <input type="checkbox" id="psiquiatric-mom" name="psiquiatric-mom" value="psiquiatric-mom" class="form-check-input"  <?php if ((string)$family_psiquiatric[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="psiquiatric-dad" name="psiquiatric-dad" value="psiquiatric-dad" class="form-check-input">
+                            <input type="checkbox" id="psiquiatric-dad" name="psiquiatric-dad" value="psiquiatric-dad" class="form-check-input"  <?php if ((string)$family_psiquiatric[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="psiquiatric-mom-grandpas" name="psiquiatric-mom-grandpas" value="psiquiatric-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="psiquiatric-mom-grandpas" name="psiquiatric-mom-grandpas" value="psiquiatric-mom-grandpas" class="form-check-input"  <?php if ((string)$family_psiquiatric[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="psiquiatric-dad-grandpas" name="psiquiatric-dad-grandpas" value="psiquiatric-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="psiquiatric-dad-grandpas" name="psiquiatric-dad-grandpas" value="psiquiatric-dad-grandpas" class="form-check-input"  <?php if ((string)$family_psiquiatric[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Endometriosis </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="endometriosis-none" name="endometriosis-none" value="endometriosis-none" class="form-check-input">
+                            <input type="checkbox" id="endometriosis-none" name="endometriosis-none" value="endometriosis-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="endometriosis-mom" name="endometriosis-mom" value="endometriosis-mom" class="form-check-input">
+                            <input type="checkbox" id="endometriosis-mom" name="endometriosis-mom" value="endometriosis-mom" class="form-check-input"  <?php if ((string)$family_endometriosis[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="endometriosis-dad" name="endometriosis-dad" value="endometriosis-dad" class="form-check-input">
+                            <input type="checkbox" id="endometriosis-dad" name="endometriosis-dad" value="endometriosis-dad" class="form-check-input"  <?php if ((string)$family_endometriosis[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="endometriosis-mom-grandpas" name="endometriosis-mom-grandpas" value="endometriosis-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="endometriosis-mom-grandpas" name="endometriosis-mom-grandpas" value="endometriosis-mom-grandpas" class="form-check-input"  <?php if ((string)$family_endometriosis[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="endometriosis-dad-grandpas" name="endometriosis-dad-grandpas" value="endometriosis-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="endometriosis-dad-grandpas" name="endometriosis-dad-grandpas" value="endometriosis-dad-grandpas" class="form-check-input"  <?php if ((string)$family_endometriosis[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Fibrosis quística </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="fibrosis-none" name="fibrosis-none" value="fibrosis-none" class="form-check-input">
+                            <input type="checkbox" id="fibrosis-none" name="fibrosis-none" value="fibrosis-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="fibrosis-mom" name="fibrosis-mom" value="fibrosis-mom" class="form-check-input">
+                            <input type="checkbox" id="fibrosis-mom" name="fibrosis-mom" value="fibrosis-mom" class="form-check-input"  <?php if ((string)$family_fibrosis[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="fibrosis-dad" name="fibrosis-dad" value="fibrosis-dad" class="form-check-input">
+                            <input type="checkbox" id="fibrosis-dad" name="fibrosis-dad" value="fibrosis-dad" class="form-check-input"  <?php if ((string)$family_fibrosis[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="fibrosis-mom-grandpas" name="fibrosis-mom-grandpas" value="fibrosis-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="fibrosis-mom-grandpas" name="fibrosis-mom-grandpas" value="fibrosis-mom-grandpas" class="form-check-input"  <?php if ((string)$family_fibrosis[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="fibrosis-dad-grandpas" name="fibrosis-dad-grandpas" value="fibrosis-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="fibrosis-dad-grandpas" name="fibrosis-dad-grandpas" value="fibrosis-dad-grandpas" class="form-check-input"  <?php if ((string)$family_fibrosis[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Gota </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="gota-none" name="gota-none" value="gota-none" class="form-check-input">
+                            <input type="checkbox" id="gota-none" name="gota-none" value="gota-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="gota-mom" name="gota-mom" value="gota-mom" class="form-check-input">
+                            <input type="checkbox" id="gota-mom" name="gota-mom" value="gota-mom" class="form-check-input"  <?php if ((string)$family_gota[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="gota-dad" name="gota-dad" value="gota-dad" class="form-check-input">
+                            <input type="checkbox" id="gota-dad" name="gota-dad" value="gota-dad" class="form-check-input"  <?php if ((string)$family_gota[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="gota-mom-grandpas" name="gota-mom-grandpas" value="gota-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="gota-mom-grandpas" name="gota-mom-grandpas" value="gota-mom-grandpas" class="form-check-input"  <?php if ((string)$family_gota[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="gota-dad-grandpas" name="gota-dad-grandpas" value="gota-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="gota-dad-grandpas" name="gota-dad-grandpas" value="gota-dad-grandpas" class="form-check-input"  <?php if ((string)$family_gota[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Hipertensión </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="hipertension-none" name="hipertension-none" value="hipertension-none" class="form-check-input">
+                            <input type="checkbox" id="hipertension-none" name="hipertension-none" value="hipertension-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="hipertension-mom" name="hipertension-mom" value="hipertension-mom" class="form-check-input">
+                            <input type="checkbox" id="hipertension-mom" name="hipertension-mom" value="hipertension-mom" class="form-check-input"  <?php if ((string)$family_hipertension[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="hipertension-dad" name="hipertension-dad" value="hipertension-dad" class="form-check-input">
+                            <input type="checkbox" id="hipertension-dad" name="hipertension-dad" value="hipertension-dad" class="form-check-input"  <?php if ((string)$family_hipertension[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="hipertension-mom-grandpas" name="hipertension-mom-grandpas" value="hipertension-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="hipertension-mom-grandpas" name="hipertension-mom-grandpas" value="hipertension-mom-grandpas" class="form-check-input"  <?php if ((string)$family_hipertension[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="hipertension-dad-grandpas" name="hipertension-dad-grandpas" value="hipertension-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="hipertension-dad-grandpas" name="hipertension-dad-grandpas" value="hipertension-dad-grandpas" class="form-check-input"  <?php if ((string)$family_hipertension[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Labio/Paladar Hendido </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="paladar-none" name="paladar-none" value="paladar-none" class="form-check-input">
+                            <input type="checkbox" id="paladar-none" name="paladar-none" value="paladar-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="paladar-mom" name="paladar-mom" value="paladar-mom" class="form-check-input">
+                            <input type="checkbox" id="paladar-mom" name="paladar-mom" value="paladar-mom" class="form-check-input"  <?php if ((string)$family_paladar[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="paladar-dad" name="paladar-dad" value="paladar-dad" class="form-check-input">
+                            <input type="checkbox" id="paladar-dad" name="paladar-dad" value="paladar-dad" class="form-check-input"  <?php if ((string)$family_paladar[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="paladar-mom-grandpas" name="paladar-mom-grandpas" value="paladar-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="paladar-mom-grandpas" name="paladar-mom-grandpas" value="paladar-mom-grandpas" class="form-check-input"  <?php if ((string)$family_paladar[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="paladar-dad-grandpas" name="paladar-dad-grandpas" value="paladar-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="paladar-dad-grandpas" name="paladar-dad-grandpas" value="paladar-dad-grandpas" class="form-check-input"  <?php if ((string)$family_paladar[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Crisis Renales </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="kidney-none" name="kidney-none" value="kidney-none" class="form-check-input">
+                            <input type="checkbox" id="kidney-none" name="kidney-none" value="kidney-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="kidney-mom" name="kidney-mom" value="kidney-mom" class="form-check-input">
+                            <input type="checkbox" id="kidney-mom" name="kidney-mom" value="kidney-mom" class="form-check-input"  <?php if ((string)$family_kidney[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="kidney-dad" name="kidney-dad" value="kidney-dad" class="form-check-input">
+                            <input type="checkbox" id="kidney-dad" name="kidney-dad" value="kidney-dad" class="form-check-input"  <?php if ((string)$family_kidney[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="kidney-mom-grandpas" name="kidney-mom-grandpas" value="kidney-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="kidney-mom-grandpas" name="kidney-mom-grandpas" value="kidney-mom-grandpas" class="form-check-input"  <?php if ((string)$family_kidney[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="kidney-dad-grandpas" name="kidney-dad-grandpas" value="kidney-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="kidney-dad-grandpas" name="kidney-dad-grandpas" value="kidney-dad-grandpas" class="form-check-input"  <?php if ((string)$family_kidney[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Circulación </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="circulation-none" name="circulation-none" value="circulation-none" class="form-check-input">
+                            <input type="checkbox" id="circulation-none" name="circulation-none" value="circulation-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="circulation-mom" name="circulation-mom" value="circulation-mom" class="form-check-input">
+                            <input type="checkbox" id="circulation-mom" name="circulation-mom" value="circulation-mom" class="form-check-input"  <?php if ((string)$family_circulation[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="circulation-dad" name="circulation-dad" value="circulation-dad" class="form-check-input">
+                            <input type="checkbox" id="circulation-dad" name="circulation-dad" value="circulation-dad" class="form-check-input"  <?php if ((string)$family_circulation[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="circulation-mom-grandpas" name="circulation-mom-grandpas" value="circulation-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="circulation-mom-grandpas" name="circulation-mom-grandpas" value="circulation-mom-grandpas" class="form-check-input"  <?php if ((string)$family_circulation[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="circulation-dad-grandpas" name="circulation-dad-grandpas" value="circulation-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="circulation-dad-grandpas" name="circulation-dad-grandpas" value="circulation-dad-grandpas" class="form-check-input"  <?php if ((string)$family_circulation[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Psoriasis </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="psoriasis-none" name="psoriasis-none" value="psoriasis-none" class="form-check-input">
+                            <input type="checkbox" id="psoriasis-none" name="psoriasis-none" value="psoriasis-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="psoriasis-mom" name="psoriasis-mom" value="psoriasis-mom" class="form-check-input">
+                            <input type="checkbox" id="psoriasis-mom" name="psoriasis-mom" value="psoriasis-mom" class="form-check-input"  <?php if ((string)$family_psoriasis[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="psoriasis-dad" name="psoriasis-dad" value="psoriasis-dad" class="form-check-input">
+                            <input type="checkbox" id="psoriasis-dad" name="psoriasis-dad" value="psoriasis-dad" class="form-check-input"  <?php if ((string)$family_psoriasis[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="psoriasis-mom-grandpas" name="psoriasis-mom-grandpas" value="psoriasis-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="psoriasis-mom-grandpas" name="psoriasis-mom-grandpas" value="psoriasis-mom-grandpas" class="form-check-input"  <?php if ((string)$family_psoriasis[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="psoriasis-dad-grandpas" name="psoriasis-dad-grandpas" value="psoriasis-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="psoriasis-dad-grandpas" name="psoriasis-dad-grandpas" value="psoriasis-dad-grandpas" class="form-check-input"  <?php if ((string)$family_psoriasis[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Sordera </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="deaf-none" name="deaf-none" value="deaf-none" class="form-check-input">
+                            <input type="checkbox" id="deaf-none" name="deaf-none" value="deaf-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="deaf-mom" name="deaf-mom" value="deaf-mom" class="form-check-input">
+                            <input type="checkbox" id="deaf-mom" name="deaf-mom" value="deaf-mom" class="form-check-input"  <?php if ((string)$family_deaf[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="deaf-dad" name="deaf-dad" value="deaf-dad" class="form-check-input">
+                            <input type="checkbox" id="deaf-dad" name="deaf-dad" value="deaf-dad" class="form-check-input"  <?php if ((string)$family_deaf[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="deaf-mom-grandpas" name="deaf-mom-grandpas" value="deaf-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="deaf-mom-grandpas" name="deaf-mom-grandpas" value="deaf-mom-grandpas" class="form-check-input"  <?php if ((string)$family_deaf[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="deaf-dad-grandpas" name="deaf-dad-grandpas" value="deaf-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="deaf-dad-grandpas" name="deaf-dad-grandpas" value="deaf-dad-grandpas" class="form-check-input"  <?php if ((string)$family_deaf[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Alzheimer </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="alzheimer-none" name="alzheimer-none" value="alzheimer-none" class="form-check-input">
+                            <input type="checkbox" id="alzheimer-none" name="alzheimer-none" value="alzheimer-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="alzheimer-mom" name="alzheimer-mom" value="alzheimer-mom" class="form-check-input">
+                            <input type="checkbox" id="alzheimer-mom" name="alzheimer-mom" value="alzheimer-mom" class="form-check-input"  <?php if ((string)$family_alzheimer[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="alzheimer-dad" name="alzheimer-dad" value="alzheimer-dad" class="form-check-input">
+                            <input type="checkbox" id="alzheimer-dad" name="alzheimer-dad" value="alzheimer-dad" class="form-check-input"  <?php if ((string)$family_alzheimer[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="alzheimer-mom-grandpas" name="alzheimer-mom-grandpas" value="alzheimer-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alzheimer-mom-grandpas" name="alzheimer-mom-grandpas" value="alzheimer-mom-grandpas" class="form-check-input"  <?php if ((string)$family_alzheimer[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="alzheimer-dad-grandpas" name="alzheimer-dad-grandpas" value="alzheimer-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="alzheimer-dad-grandpas" name="alzheimer-dad-grandpas" value="alzheimer-dad-grandpas" class="form-check-input"  <?php if ((string)$family_alzheimer[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                     <tr>
                         <td data-title="Contraseña"> Parkinson </td>
                         <td data-title="Ninguno" class="display-none">
-                            <input type="checkbox" id="parkinson-none" name="parkinson-none" value="parkinson-none" class="form-check-input">
+                            <input type="checkbox" id="parkinson-none" name="parkinson-none" value="parkinson-none" class="form-check-input" >
                         </td>
                         <td data-title="Madre">
-                            <input type="checkbox" id="parkinson-mom" name="parkinson-mom" value="parkinson-mom" class="form-check-input">
+                            <input type="checkbox" id="parkinson-mom" name="parkinson-mom" value="parkinson-mom" class="form-check-input"  <?php if ((string)$family_parkinson[1] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Padre">
-                            <input type="checkbox" id="parkinson-dad" name="parkinson-dad" value="parkinson-dad" class="form-check-input">
+                            <input type="checkbox" id="parkinson-dad" name="parkinson-dad" value="parkinson-dad" class="form-check-input"  <?php if ((string)$family_parkinson[2] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos maternos">
-                            <input type="checkbox" id="parkinson-mom-grandpas" name="parkinson-mom-grandpas" value="parkinson-mom-grandpas" class="form-check-input">
+                            <input type="checkbox" id="parkinson-mom-grandpas" name="parkinson-mom-grandpas" value="parkinson-mom-grandpas" class="form-check-input"  <?php if ((string)$family_parkinson[3] == "2") { echo "checked";} ?>>
                         </td>
                         <td data-title="Abuelos paternos">
-                            <input type="checkbox" id="parkinson-dad-grandpas" name="parkinson-dad-grandpas" value="parkinson-dad-grandpas" class="form-check-input">
+                            <input type="checkbox" id="parkinson-dad-grandpas" name="parkinson-dad-grandpas" value="parkinson-dad-grandpas" class="form-check-input"  <?php if ((string)$family_parkinson[4] == "2") { echo "checked";} ?>>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <input type="hidden" name="id" value="<?php echo $id ?>">
+            <input type="hidden" name="pregnancyNum" value="<?php echo $pregnancyNum ?>">
             <input type="hidden" name="form_curp" value="<?php echo $form_curp ?>">
             <input type="hidden" name="form_name" value="<?php echo $form_name ?>">
             <input type="hidden" name="form_date" value="<?php echo $form_date ?>">
@@ -1468,9 +1620,6 @@ for ($x = 1; $x <= 20; $x++) {
             <input type="hidden" name="form_5" value="<?php echo $form_5 ?>">
             <input type="hidden" name="form_6" value="<?php echo $form_6 ?>">
             <div class="form-btn btn-arrange">
-                <button class="btn btn-send" id="return2">
-                    <div>Anterior</div>
-                </button>
                 <button class="btn btn-send" type="submit">
                     <div>Finalizar</div>
                 </button>
