@@ -243,7 +243,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td data-title="Gestante" scope="row">
                             <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
                         </td>
-                        <td data-title="Edad" <?php if($form_age>38) { echo "class='red-label'";} else {echo "class='green-label'";} ?>><?php echo $form_age[$i] ?></td>
+                        <td data-title="Edad" <?php if($form_age[$i]>38) { echo "class='red-label'";} else {echo "class='green-label'";} ?>><?php echo $form_age[$i] ?></td>
                         <td data-title="Fecha de nacimiento"><?php echo $form_date[$i] ?></td>
                         <td data-title="Estatura (m)"><?php echo $form_height[$i] ?></td>
                         <td data-title="Peso (kg)"><?php echo $form_weight[$i] ?></td>

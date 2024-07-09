@@ -71,7 +71,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <tr>
                         <td data-title="Nombre de usuario" scope="row"><?php echo $user[$i] ?></td>
                         <td data-title="Contraseña"><?php echo $pass[$i] ?></td>
-                        <td data-title="Perfil"><?php echo $profile[$i] ?></td>
+                        <td data-title="Perfil"><?php if ($profile[$i] == "user") { echo "reclutadora"; } else { echo $profile[$i]; } ?></td>
                         <td>
                             <a href="user.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>

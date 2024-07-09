@@ -65,10 +65,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <div class="form-control">
                                     <select name="type" class="selector" id="type-select">
                                         <?php if ($type === 'user') { ?>
-                                            <option value="user" selected>Usuario</option>
+                                            <option value="user" selected>Reclutadora</option>
                                             <option value="admin">Admin</option>
                                         <?php } elseif ($type === 'admin') { ?>
-                                            <option value="user">Usuario</option>
+                                            <option value="user">Reclutadora</option>
                                             <option value="admin" selected>Admin</option>
                                         <?php } ?>
                                     </select>

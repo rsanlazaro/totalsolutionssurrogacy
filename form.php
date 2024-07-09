@@ -53,14 +53,14 @@ if (!$_SESSION['login']) {
                 </div>
             </div>
             <div class="col-md-6 form-top-element">
-                <label for="validationCustom01">
+                <label for="form_date">
                     <div class="spanish">
                         Fecha de nacimiento:
                     </div>
                 </label>
-                <input type="date" class="form-control-phenotype" id="validationCustom01" name="form_date" value="<?php if (isset($_SESSION['form_date'])) {
+                <input type="date" class="form-control-phenotype" id="form_date" name="form_date" value="<?php if (isset($_SESSION['form_date'])) {
                                                                                                                         echo $_SESSION['form_date'];
-                                                                                                                    } ?>" />
+                                                                                                                    } ?>" onchange="formClick()"/>
                 <div class="invalid-feedback">
                     <div>Ingrese la fecha de nacimiento</div>
                 </div>
@@ -68,12 +68,12 @@ if (!$_SESSION['login']) {
         </div>
         <div class="form-top">
             <div class="col-md-6 form-top-element">
-                <label for="validationDefault01">
+                <label for="form_age">
                     <div class="spanish">
                         Edad:
                     </div>
                 </label>
-                <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_age" value="<?php if (isset($_SESSION['form_age'])) {
+                <input type="number" class="form-control-phenotype" id="form_age" name="form_age" value="<?php if (isset($_SESSION['form_age'])) {
                                                                                                                         echo $_SESSION['form_age'];
                                                                                                                     } ?>" />
                 <div class="invalid-feedback">

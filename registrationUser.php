@@ -77,7 +77,7 @@ if (isset($_REQUEST['username'])) {
                                 <label class="label-form" for="type-select">Tipo de usuario</label>
                                 <div class="form-control">
                                     <select name="type" class="selector" id="type-select">
-                                        <option value="user">user</option>
+                                        <option value="user">Reclutadora</option>
                                         <option value="admin">Admin</option>
                                     </select>
                                 </div>
