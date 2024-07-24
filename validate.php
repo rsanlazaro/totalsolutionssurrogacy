@@ -56,12 +56,17 @@ if (empty($username)) {
         if ($row['username'] === $username && $auth) {
             $_SESSION['id'] = $row['id'];
             $_SESSION['login'] = true;
+            $_SESSION['type'] = $row['profile'];
+            $_SESSION['user'] = $row['username'];
             if ($row['profile'] === "admin") {
-                $_SESSION['type'] = $row['profile'];
                 header('location: /admin.php');
                 echo $_SESSION['login'];
+            } elseif ($row['profile'] == 'candidate') {
+                header('location: /candidateCalendar.php');
             } else {
-                header('location: /form.php');
+                // profile_candidates
+                // header('location: /form.php');
+                header('location: /recruiter.php');
             }
             exit();
         } else {

@@ -8,6 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // session_start();
 include "includes/app.php";
 $conn = connectDB();
+$form_recluter = $_SESSION['user'];
 
 if (!isset($_SESSION['login'])) {
     header('location: /index.php');
@@ -720,7 +721,8 @@ form_fracture,
 form_surgery,
 form_fracture_info,
 form_surgery_info,
-form_curp) 
+form_curp,
+form_recluter) 
 VALUES 
 ('$form_name', 
 '$form_date', 
@@ -752,7 +754,8 @@ VALUES
 '$form_surgery',
 '$form_fracture_info',
 '$form_surgery_info',
-'$form_curp')";
+'$form_curp',
+'$form_recluter')";
 $result1   = mysqli_query($conn, $query1);
 
 $query = "SELECT * FROM candidates ORDER BY ID DESC LIMIT 1";
@@ -974,12 +977,24 @@ VALUES
 )";
 $result3 = mysqli_query($conn, $query3);
 
+$query4 = "INSERT into `payments`
+(candidateId)
+VALUES
+('$last_id')";
+$result4 = mysqli_query($conn, $query4);
+
+$query5 = "INSERT into `users`
+(username, password, profile)
+VALUES
+('$form_name', '$form_name','candidate')";
+$result5 = mysqli_query($conn, $query5);
+
 include 'includes/templates/header.php';
 ?>
 
 <main class="home">
     <section class="temporary">
-        <?php if ($result1 == 1 && $result2 == 1 && $result3 == 1) {
+        <?php if ($result1 == 1 && $result2 == 1 && $result3 == 1 && $result4 == 1 && $result5 == 1) {
             echo "Los datos han sido guardados correctamente";
         } ?>
     </section>

@@ -1467,6 +1467,7 @@ for ($x = 1; $x <= 20; $x++) {
             <input type="hidden" name="form_4" value="<?php echo $form_4 ?>">
             <input type="hidden" name="form_5" value="<?php echo $form_5 ?>">
             <input type="hidden" name="form_6" value="<?php echo $form_6 ?>">
+            <input type="hidden" name="form_recluter" value="<?php echo $_SESSION['user'] ?>">
             <div class="form-btn btn-arrange">
                 <button class="btn btn-send" id="return2">
                     <div>Anterior</div>

@@ -3,7 +3,7 @@ include 'includes/templates/header.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-if (!$_SESSION['login']) {
+if (!$_SESSION['login'] && (($_SESSION['type'] == "user") || $_SESSION['type'] == "admin")) {
     header('location: /index.php');
 }
 ?>

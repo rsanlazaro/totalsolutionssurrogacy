@@ -49,6 +49,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $form_surgery = $row['form_surgery'];
     $form_fracture_info = $row['form_fracture_info'];
     $form_surgery_info = $row['form_surgery_info'];
+    $form_curp = $row['form_curp'];
+    $form_recluter = $row['form_recluter'];
 }
 
 $sql = "SELECT * FROM pregnants WHERE candidateId={$id}";
@@ -372,6 +374,22 @@ $family_diseases = array(
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
+                        CURP: <?php echo $form_curp; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Reclutadora: <?php echo $form_recluter; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
                         Nombre completo: <?php echo $form_name; ?>
                     </div>
                 </label>
@@ -455,15 +473,19 @@ $family_diseases = array(
         <div class="form-top">
             <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
-                    <div <?php if ((round(($form_weight) / ($form_height * $form_height), 2)) > 28) {
-                                echo "class='red-label'";
-                            } else {
-                                echo "class='green-label'";
-                            } ?>>
-                        IMC: <?php if ($form_height != 0) {
-                                    echo round(($form_weight) / ($form_height * $form_height), 2);
-                                } ?>
-                    </div>
+                    <?php if (($form_height != 0) && ($form_weight != 0)) { ?>
+                        <div <?php if ((round(($form_weight) / ($form_height * $form_height), 2)) > 28) {
+                                    echo "class='red-label'";
+                                } else {
+                                    echo "class='green-label'";
+                                } ?>>
+                            IMC: <?php if ($form_height != 0) {
+                                        echo round(($form_weight) / ($form_height * $form_height), 2);
+                                    } ?>
+                        </div>
+                    <?php } else { ?>
+                        <div> IMC: Ingrese datos para peso y altura</div>
+                    <?php } ?>
                 </label>
             </div>
         </div>

@@ -72,6 +72,7 @@ $family_psoriasis = $_POST['family_psoriasis'];
 $family_deaf = $_POST['family_deaf'];
 $family_alzheimer = $_POST['family_alzheimer'];
 $family_parkinson = $_POST['family_parkinson'];
+$form_scheme = $_POST['form_scheme'];
 
 $codes_array = array(
     "Cirugía uterina previa",
@@ -201,6 +202,7 @@ if (isset($_POST['form_year_abort_3'])) {$form_year_abort_3 = $_POST['form_year_
 if (isset($_POST['form_method_abort_3'])) {$form_method_abort_3 = $_POST['form_method_abort_3']; $_SESSION['form_method_abort_3'] = $form_method_abort_3;}
 if (isset($_POST['form_week_abort_3'])) {$form_week_abort_3 = $_POST['form_week_abort_3']; $_SESSION['form_week_abort_3'] = $form_week_abort_3;}
 if (isset($_POST['form_comments_abort_3'])) {$form_comments_abort_3 = $_POST['form_comments_abort_3']; $_SESSION['form_comments_abort_3'] = $form_comments_abort_3;}
+if (isset($_POST['form_scheme'])) {$form_scheme = $_POST['form_scheme']; $_SESSION['form_scheme'] = $form_scheme;}
 
 if (isset($_SESSION['form_name'])) { $form_name = $_SESSION['form_name']; }
 if (isset($_SESSION['form_curp'])) { $form_curp = $_SESSION['form_curp']; }
@@ -272,6 +274,7 @@ if (isset($_SESSION['form_year_abort_3'])) { $form_year_abort_3 = $_SESSION['for
 if (isset($_SESSION['form_method_abort_3'])) { $form_method_abort_3 = $_SESSION['form_method_abort_3']; }
 if (isset($_SESSION['form_week_abort_3'])) { $form_week_abort_3 = $_SESSION['form_week_abort_3']; }
 if (isset($_SESSION['form_comments_abort_3'])) { $form_comments_abort_3 = $_SESSION['form_comments_abort_3']; }
+if (isset($_SESSION['form_scheme'])) { $form_scheme = $_SESSION['form_scheme']; }
 
 ?>
 <main>
@@ -947,6 +950,7 @@ if (isset($_SESSION['form_comments_abort_3'])) { $form_comments_abort_3 = $_SESS
             <input type="hidden" name="form_method_abort_3" value="<?php echo $form_method_abort_3 ?>">
             <input type="hidden" name="form_week_abort_3" value="<?php echo $form_week_abort_3 ?>">
             <input type="hidden" name="form_comments_abort_3" value="<?php echo $form_comments_abort_3 ?>">
+            <input type="hidden" name="form_scheme" value="<?php echo $form_scheme ?>">
             <input type="hidden" id="pregnancyNum" name="pregnancyNum" value="<?php echo $num_pregnants; ?>">
             <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
             <input type="hidden" id="family_alergy" name="family_alergy" value="<?php echo $family_alergy; ?>">

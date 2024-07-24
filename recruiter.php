@@ -17,33 +17,23 @@ if (!($_SESSION['login'])) {
     </div>
     <div class="esthetics-options">
         <div class="esthetics-options-grid">
-            <a href="users_adm.php" class="esthetics-packages">
+            <a href="form.php" class="esthetics-packages">
                 <div class="esthetics-options-img">
                     <img src="build/img/admin/users.webp" alt="users" />
                 </div>
                 <div class="esthetics-options-bg">
                     <div class="esthetics-title">
-                        <h2>Usuarios<br /> <span></span></h2>
+                        <h2>Registro de nueva candidata<br /> <span></span></h2>
                     </div>
                 </div>
             </a>
-            <a href="profile_adm.php" class="esthetics-options-treatments">
+            <a href="profile_candidates.php" class="esthetics-options-treatments">
                 <div class="esthetics-options-img">
                     <img src="build/img/admin/users.webp" alt="donants" />
                 </div>
                 <div class="esthetics-options-bg">
                     <div class="esthetics-title">
                         <h2>Candidatas<br /> <span></span></h2>
-                    </div>
-                </div>
-            </a>
-            <a href="assurance_adm.php" class="esthetics-options-treatments">
-                <div class="esthetics-options-img">
-                    <img src="build/img/admin/users.webp" alt="donants" />
-                </div>
-                <div class="esthetics-options-bg">
-                    <div class="esthetics-title">
-                        <h2>Seguros<br /> <span></span></h2>
                     </div>
                 </div>
             </a>

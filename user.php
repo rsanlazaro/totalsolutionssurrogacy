@@ -66,10 +66,16 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <select name="type" class="selector" id="type-select">
                                         <?php if ($type === 'user') { ?>
                                             <option value="user" selected>Reclutadora</option>
+                                            <option value="candidate">Candidata</option>
                                             <option value="admin">Admin</option>
                                         <?php } elseif ($type === 'admin') { ?>
                                             <option value="user">Reclutadora</option>
+                                            <option value="candidate">Candidata</option>
                                             <option value="admin" selected>Admin</option>
+                                        <?php } else { ?>
+                                            <option value="user">Reclutadora</option>
+                                            <option value="candidate" selected>Candidata</option>
+                                            <option value="admin">Admin</option>
                                         <?php } ?>
                                     </select>
                                 </div>

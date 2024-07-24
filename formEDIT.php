@@ -391,6 +391,10 @@ if (isset($_POST['form_6'])) {
     $form_6 = $_POST['form_6'];
     $_SESSION['form_6'] = $form_6;
 }
+if (isset($_POST['form_scheme'])) {
+    $form_scheme = $_POST['form_scheme'];
+    $_SESSION['form_scheme'] = $form_scheme;
+}
 
 if (isset($_SESSION['form_curp'])) {
     $form_curp = $_SESSION['form_curp'];
@@ -674,6 +678,9 @@ if (isset($_SESSION['form_5'])) {
 if (isset($_SESSION['form_6'])) {
     $form_6 = $_SESSION['form_6'];
 }
+if (isset($_SESSION['form_scheme'])) {
+    $form_scheme = $_SESSION['form_scheme'];
+}
 
 $family = array("none", "mom", "dad", "mom-grandpas", "dad-grandpas");
 $diseases = array("alergy","apoplejia","cardiopathy","catarata","cirrosis","convulsive","distrophy","enfisem","epilepsy","glaucom","hemofilia","ictericia","migraine","varicocele","equinovaro","mental","drugs","esquizo","alcohol","diabetes_young","bocio","blind","daltonic","diabetes","psiquiatric","endometriosis","fibrosis","gota","hipertension","paladar","kidney","circulation","psoriasis","deaf","alzheimer","parkinson");
@@ -722,7 +729,8 @@ form_alcohol_freq='$form_alcohol_freq',
 form_fracture='$form_fracture',
 form_surgery='$form_surgery',
 form_fracture_info='$form_fracture_info',
-form_surgery_info='$form_surgery_info'
+form_surgery_info='$form_surgery_info',
+form_scheme='$form_scheme'
 WHERE id = $id";
 $result1   = mysqli_query($conn, $query1);
 

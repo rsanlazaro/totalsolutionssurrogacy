@@ -47,6 +47,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $form_surgery = $row['form_surgery'];
     $form_fracture_info = $row['form_fracture_info'];
     $form_surgery_info = $row['form_surgery_info'];
+    $form_scheme = $row['form_scheme'];
 }
 
 $sql = "SELECT * FROM pregnants WHERE candidateId={$id}";
@@ -354,7 +355,7 @@ echo $num_aborts;
     </div>
     <form class="form form-phenotype" action="candidate2.php" method="post" enctype="multipart/form-data">
         <div class="form-top">
-            <div class="col-md-12 form-top-element">
+            <div class="col-md-6 form-top-element">
                 <label for="validationDefault01">
                     <div class="spanish">
                         CURP:
@@ -363,6 +364,36 @@ echo $num_aborts;
                 <input type="text" class="form-control-phenotype" id="validationDefault01" name="form_curp" value="<?php echo $form_curp; ?>" required />
                 <div class="invalid-feedback">
                     <div>Ingrese el CURP</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Esquema:
+                    </div>
+                </label>
+                <!-- <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_age" /> -->
+                <select name="form_scheme">
+                    <?php if ($form_scheme == "375") { ?>
+                        <option value="375" selected>375</option>
+                        <option value="400">400</option>
+                        <option value="425">425</option>
+                    <?php } elseif ($form_scheme == "400") { ?>
+                        <option value="375">375</option>
+                        <option value="400" selected>400</option>
+                        <option value="425">425</option>
+                    <?php } elseif ($form_scheme == "425") { ?>
+                        <option value="375">375</option>
+                        <option value="400">400</option>
+                        <option value="425" selected>425</option>
+                    <?php } else { ?>
+                        <option value="375">375</option>
+                        <option value="400">400</option>
+                        <option value="425">425</option>
+                    <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Ingrese la ocupación</div>
                 </div>
             </div>
         </div>

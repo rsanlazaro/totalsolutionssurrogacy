@@ -20,8 +20,9 @@ if (!($_SESSION['login'])) {
 // }
 
 // $conn = connectDB();
+$user = $_SESSION['user'];
 
-$sql = "SELECT * FROM candidates";
+$sql = "SELECT * FROM candidates WHERE form_recluter='${user}'";
 $result = mysqli_query($conn, $sql);
 $indexOK = 0;
 
@@ -102,9 +103,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <!-- <th>Enfermedades</th> -->
                     <th>Esquema</th>
                     <th>Lugar de nacimiento</th>
-                    <th>Pagos</th>
-                    <th>Reclutadora</th>
-                    <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -246,7 +244,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <tr>
                         <td data-title="Gestante" scope="row">
-                            <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
+                            <?php echo $form_name[$i] ?>
                         </td>
                         <td data-title="Edad" <?php if($form_age[$i]>38) { echo "class='red-label'";} else {echo "class='green-label'";} ?>><?php echo $form_age[$i] ?></td>
                         <td data-title="Fecha de nacimiento"><?php echo $form_date[$i] ?></td>
@@ -289,20 +287,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                          ) { echo "<div class='green-label'>" . $form_birth_place[$i] . "</div>"; } else {
                             echo "<div class='red-label'>" . $form_birth_place[$i] . "</div>";
                          }?></td>
-                         <td data-title="Calendario" scope="row">
-                            <a href="candidateCalendarEdit.php?id=<?php echo $id[$i]; ?>">Pagos</a>
-                        </td>
-                        <td><?php echo $form_recluter[$i]; ?></td>
-                        <td>
-                            <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
-                        </td>
-                        <td>
-                            <form method="POST" class="form-table" action="deleteCandidate.php">
-                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
-                                <input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Eliminar">
-                            </form>
-                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

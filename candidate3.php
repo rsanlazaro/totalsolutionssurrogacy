@@ -33,6 +33,7 @@ $form_fracture = $_POST['form_fracture'];
 $form_surgery = $_POST['form_surgery']; 
 $form_fracture_info = $_POST['form_fracture_info']; 
 $form_surgery_info = $_POST['form_surgery_info']; 
+$form_scheme = $_POST['form_scheme']; 
 // $form_coded_comments_pregnant_1 = $_POST['form_coded_comments_pregnant_1']; 
 // $form_coded_comments_pregnant_2 = $_POST['form_coded_comments_pregnant_2']; 
 // $form_coded_comments_pregnant_3 = $_POST['form_coded_comments_pregnant_3']; 
@@ -515,6 +516,10 @@ if (isset($_POST['form_surgery_info'])) {
     $form_surgery_info = $_POST['form_surgery_info'];
     $_SESSION['form_surgery_info'] = $form_surgery_info;
 }
+if (isset($_POST['form_scheme'])) {
+    $form_scheme = $_POST['form_scheme'];
+    $_SESSION['form_scheme'] = $form_scheme;
+}
 
 if (isset($_SESSION['form_curp'])) {
     $form_curp = $_SESSION['form_curp'];
@@ -779,6 +784,9 @@ if (isset($_SESSION['form_fracture_info'])) {
 }
 if (isset($_SESSION['form_surgery_info'])) {
     $form_surgery_info = $_SESSION['form_surgery_info'];
+}
+if (isset($_SESSION['form_scheme'])) {
+    $form_scheme = $_SESSION['form_scheme'];
 }
 
 $form_1 = "";
@@ -1619,6 +1627,7 @@ for ($x = 1; $x <= 20; $x++) {
             <input type="hidden" name="form_4" value="<?php echo $form_4 ?>">
             <input type="hidden" name="form_5" value="<?php echo $form_5 ?>">
             <input type="hidden" name="form_6" value="<?php echo $form_6 ?>">
+            <input type="hidden" name="form_scheme" value="<?php echo $form_scheme ?>">
             <div class="form-btn btn-arrange">
                 <button class="btn btn-send" type="submit">
                     <div>Finalizar</div>

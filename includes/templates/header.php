@@ -92,47 +92,24 @@
                   <li>
                     <a class="dropdown-item" href="profile_adm.php">Candidatas</a>
                   </li>
-                  <!-- <li>
-                    <a class="dropdown-item" href="catalogue.php">Catálogo</a>
-                  </li> -->
+                  <li>
+                    <a class="dropdown-item" href="assurance_adm.php">Seguros</a>
+                  </li>
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>
-              <?php if (($_SESSION['vip'] === '0' && $_SESSION['plus'] === '0' && $_SESSION['elite'] === "0" && (!(isset($codeUser)) || $codeUser === "-")) && (!$_SESSION['form'])) { ?>
-                <li class="nav-item">
-                  <a class="nav-link" href="phenotypeFIle.php">
-                    <p>Formulario</p>
-                  </a>
-                </li>
-              <?php } else { ?>
-                <li class="nav-item dropdown">
-                  <a class="nav-link " href="catalogue.php" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
-                    <p>Catálogo</p>
-                  </a>
-                </li>
-              <?php } ?>
-            <?php } else if ($_SESSION['type'] === 'admin-jr') { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="admin.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <p>Usuario</p>
+                <a class="nav-link dropdown-toggle" href="recruiter.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <p>Reclutadora</p>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="users.php">Perfiles</a>
+                    <a class="dropdown-item" href="form.php">Nueva Candidata</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="donants.php">Donantes</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="catalogue.php">Catálogo</a>
+                    <a class="dropdown-item" href="profile_candidates.php">Candidatas</a>
                   </li>
                 </ul>
-              </li>
-            <?php } else { ?>
-              <li class="nav-item">
-                <a class="nav-link" href="phenotypeFIle.php">
-                  <p>Formulario</p>
-                </a>
               </li>
             <?php } ?>
           <?php } ?>
