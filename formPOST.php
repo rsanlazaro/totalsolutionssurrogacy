@@ -986,15 +986,28 @@ $result4 = mysqli_query($conn, $query4);
 $query5 = "INSERT into `users`
 (username, password, profile)
 VALUES
-('$form_name', '$form_name','candidate')";
+('$form_curp', '$form_curp','candidate')";
 $result5 = mysqli_query($conn, $query5);
+
+$query6 = "SELECT * FROM `users` WHERE username='${form_curp}'";
+$result6 = mysqli_query($conn, $query6);
+
+while ($row = mysqli_fetch_assoc($result6)) {
+    $userId = $row['id'];
+}
+
+$query7 = "UPDATE candidates SET
+userId='$userId'
+WHERE id = $last_id";
+$result7 = mysqli_query($conn, $query7);
+
 
 include 'includes/templates/header.php';
 ?>
 
 <main class="home">
     <section class="temporary">
-        <?php if ($result1 == 1 && $result2 == 1 && $result3 == 1 && $result4 == 1 && $result5 == 1) {
+        <?php if ($result1 == 1 && $result2 == 1 && $result3 == 1 && $result4 == 1 && $result5 == 1 && $result7 == 1) {
             echo "Los datos han sido guardados correctamente";
         } ?>
     </section>

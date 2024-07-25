@@ -13,7 +13,8 @@ if (!($_SESSION['login'])) {
 }
 
 $user = $_SESSION['user'];
-$sql = "SELECT * FROM candidates WHERE form_name='${user}'";
+$id = $_SESSION['id'];
+$sql = "SELECT * FROM candidates WHERE userId='${id}'";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $id = $row['id'];
@@ -22,30 +23,30 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $sql = "SELECT * FROM payments WHERE candidateId=${id}";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        $extra1 = $row['extra1'];
-        $extra2 = $row['extra2'];
-        $extra3 = $row['extra3'];
-        $test1 = $row['test1'];
-        $test2 = $row['test2'];
-        $test3 = $row['test3'];
-        $test4 = $row['test4'];
-        $test5 = $row['test5'];
-        $week1 = $row['week1'];
-        $week2 = $row['week2'];
-        $week3 = $row['week3'];
-        $week4 = $row['week4'];
-        $week5 = $row['week5'];
-        $week6 = $row['week6'];
-        $week7 = $row['week7'];
-        $week8 = $row['week8'];
-        $week9 = $row['week9'];
-        $week10 = $row['week10'];
-        $gest1 = $row['gest1'];
-        $gest2 = $row['gest2'];
-        $gest3 = $row['gest3'];
-    }
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $extra1 = $row['extra1'];
+    $extra2 = $row['extra2'];
+    $extra3 = $row['extra3'];
+    $test1 = $row['test1'];
+    $test2 = $row['test2'];
+    $test3 = $row['test3'];
+    $test4 = $row['test4'];
+    $test5 = $row['test5'];
+    $week1 = $row['week1'];
+    $week2 = $row['week2'];
+    $week3 = $row['week3'];
+    $week4 = $row['week4'];
+    $week5 = $row['week5'];
+    $week6 = $row['week6'];
+    $week7 = $row['week7'];
+    $week8 = $row['week8'];
+    $week9 = $row['week9'];
+    $week10 = $row['week10'];
+    $gest1 = $row['gest1'];
+    $gest2 = $row['gest2'];
+    $gest3 = $row['gest3'];
+}
 
 $scheme = $form_scheme;
 
@@ -53,7 +54,7 @@ $scheme = $form_scheme;
 
 <main class="register">
     <div class="register-info">
-        <h3>Registro de pagos para <?php echo $user; ?></h3>
+        <h3>Registro de pagos para <p></p> <?php echo $form_name; ?></h3>
     </div>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -89,10 +90,10 @@ $scheme = $form_scheme;
                 <tr class="thead">
                     <td><?php echo "$" . number_format($scheme * 1000, 2); ?></td>
                     <td><?php $totalPorPagar = (int)$extra1 + (int)$extra2 + (int)$extra3 + ((int)$scheme * 1000);
-                            echo "$" . number_format($totalPorPagar, 2); ?></td>
-                        <td><?php $totalPagado = (int)$extra1 + (int)$extra2 + (int)$extra3 + (int)$test1 + (int)$test2 + (int)$test3 + (int)$test4 + (int)$test5 + (int)$week1 + (int)$week2 + (int)$week3 + (int)$week4 + (int)$week5 + (int)$week6 + (int)$week7 + (int)$week8 + (int)$week9 + (int)$week10 + (int)$gest1 + (int)$gest2 + (int)$gest3;
-                            echo "$" . number_format($totalPagado, 2);
-                            ?></td>
+                        echo "$" . number_format($totalPorPagar, 2); ?></td>
+                    <td><?php $totalPagado = (int)$extra1 + (int)$extra2 + (int)$extra3 + (int)$test1 + (int)$test2 + (int)$test3 + (int)$test4 + (int)$test5 + (int)$week1 + (int)$week2 + (int)$week3 + (int)$week4 + (int)$week5 + (int)$week6 + (int)$week7 + (int)$week8 + (int)$week9 + (int)$week10 + (int)$gest1 + (int)$gest2 + (int)$gest3;
+                        echo "$" . number_format($totalPagado, 2);
+                        ?></td>
                 </tr>
             </tbody>
         </table>
@@ -106,24 +107,32 @@ $scheme = $form_scheme;
             </thead>
             <tbody>
                 <tr>
-                    <td>PGTO EXTRA - Embarazo a la Primera</td>
+                    <td>PGTO EXTRA 1</td>
                     <td>$5,000.00</td>
-                    <td><?php if (isset($extra1)) { echo "$" . number_format($extra1, 2); }?></td>
+                    <td><?php if (isset($extra1)) {
+                            echo "$" . number_format($extra1, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>PGTO EXTRA - Gemelar</td>
+                    <td>PGTO EXTRA 2</td>
                     <td>$20,000.00</td>
-                    <td><?php if (isset($extra2)) { echo "$" . number_format($extra2, 2); }?></td>
+                    <td><?php if (isset($extra2)) {
+                            echo "$" . number_format($extra2, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>PGTO EXTRA - VIH</td>
+                    <td>PGTO EXTRA 3</td>
                     <td>$50,000.00</td>
-                    <td><?php if (isset($extra3)) { echo "$" . number_format($extra3, 2); }?></td>
+                    <td><?php if (isset($extra3)) {
+                            echo "$" . number_format($extra3, 2);
+                        } ?></td>
                 </tr>
                 <tr class="thead">
                     <td></td>
                     <td>Total de extras</td>
-                    <td><?php if(isset($extra1) && isset($extra2) && isset($extra3)) { echo "$" . number_format($extra1+$extra2+$extra3, 2); } else echo "$0.00"?></td>
+                    <td><?php if (isset($extra1) && isset($extra2) && isset($extra3)) {
+                            echo "$" . number_format($extra1 + $extra2 + $extra3, 2);
+                        } else echo "$0.00" ?></td>
                 </tr>
             </tbody>
         </table>
@@ -140,32 +149,54 @@ $scheme = $form_scheme;
                 <tr>
                     <td>Prueba de embarazo</td>
                     <td>$1,000.00</td>
-                    <td><?php if(isset($test1)) { echo "$" . number_format($test1, 2); }?></td>
+                    <td><?php if (isset($test1)) {
+                            echo "$" . number_format($test1, 2);
+                        } ?></td>
                 </tr>
-                <tr>
-                    <td>Prueba de embarazo</td>
-                    <td>$1,000.00</td>
-                    <td><?php if(isset($test2)) { echo "$" . number_format($test2, 2); }?></td>
-                </tr>
-                <tr>
-                    <td>Prueba de embarazo</td>
-                    <td>$1,000.00</td>
-                    <td><?php if(isset($test3)) { echo "$" . number_format($test3, 2); }?></td>
-                </tr>
-                <tr>
-                    <td>Prueba de embarazo</td>
-                    <td>$1,000.00</td>
-                    <td><?php if(isset($test4)) { echo "$" . number_format($test4, 2); }?></td>
-                </tr>
-                <tr>
-                    <td>Prueba de embarazo</td>
-                    <td>$1,000.00</td>
-                    <td><?php if(isset($test5)) { echo "$" . number_format($test5, 2); }?></td>
-                </tr>
+                <?php if (isset($test2)) { ?>
+                    <tr>
+                        <td>Prueba de embarazo</td>
+                        <td>$1,000.00</td>
+                        <td><?php if (isset($test2)) {
+                                echo "$" . number_format($test2, 2);
+                            } ?></td>
+                    </tr>
+                <?php } ?>
+                <?php if (isset($test3)) { ?>
+                    <tr>
+                        <td>Prueba de embarazo</td>
+                        <td>$1,000.00</td>
+                        <td><?php if (isset($test3)) {
+                                echo "$" . number_format($test3, 2);
+                            } ?></td>
+                    </tr>
+                <?php } ?>
+                <?php if (isset($test4)) { ?>
+                    <tr>
+                        <td>Prueba de embarazo</td>
+                        <td>$1,000.00</td>
+                        <td><?php if (isset($test4)) {
+                                echo "$" . number_format($test4, 2);
+                            } ?></td>
+                    </tr>
+                <?php } ?>
+                <?php if (isset($test5)) { ?>
+                    <tr>
+                        <td>Prueba de embarazo</td>
+                        <td>$1,000.00</td>
+                        <td><?php if (isset($test5)) {
+                                echo "$" . number_format($test5, 2);
+                            } ?></td>
+                    </tr>
+                <?php } ?>
                 <tr class="thead">
                     <td></td>
                     <td>Total de pruebas de embarazo</td>
-                    <td><?php if(isset($test1) && isset($test2) && isset($test3) && isset($test4) && isset($test5)) { echo "$" . number_format($test1+$test2+$test3+$test4+$test5, 2); } else { echo "$0.00"; }?></td>
+                    <td><?php if (isset($test1) && isset($test2) && isset($test3) && isset($test4) && isset($test5)) {
+                            echo "$" . number_format($test1 + $test2 + $test3 + $test4 + $test5, 2);
+                        } else {
+                            echo "$0.00";
+                        } ?></td>
                 </tr>
             </tbody>
         </table>
@@ -180,59 +211,83 @@ $scheme = $form_scheme;
             </thead>
             <tbody>
                 <tr>
-                    <td>Beta positiva</td>
+                    <td>Primer pago</td>
                     <td>$2,000.00</td>
-                    <td><?php if(isset($week1)) { echo "$" . number_format($week1, 2);}?></td>
+                    <td><?php if (isset($week1)) {
+                            echo "$" . number_format($week1, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 8</td>
+                    <td>Pago 1</td>
                     <td>$5,000.00</td>
-                    <td><?php if(isset($week2)) { echo "$" . number_format($week2, 2);}?></td>
+                    <td><?php if (isset($week2)) {
+                            echo "$" . number_format($week2, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 10</td>
+                    <td>Pago 2</td>
                     <td>$5,000.00</td>
-                    <td><?php if(isset($week3)) { echo "$" . number_format($week3, 2);}?></td>
+                    <td><?php if (isset($week3)) {
+                            echo "$" . number_format($week3, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 12</td>
+                    <td>Pago 3</td>
                     <td>$10,000.00</td>
-                    <td><?php if(isset($week4)) { echo "$" . number_format($week4, 2);}?></td>
+                    <td><?php if (isset($week4)) {
+                            echo "$" . number_format($week4, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 16</td>
+                    <td>Pago 4</td>
                     <td>$15,000.00</td>
-                    <td><?php if(isset($week5)) { echo "$" . number_format($week5, 2);}?></td>
+                    <td><?php if (isset($week5)) {
+                            echo "$" . number_format($week5, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 20</td>
+                    <td>Pago 5</td>
                     <td>$20,000.00</td>
-                    <td><?php if(isset($week6)) { echo "$" . number_format($week6, 2);}?></td>
+                    <td><?php if (isset($week6)) {
+                            echo "$" . number_format($week6, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 24</td>
+                    <td>Pago 6</td>
                     <td>$20,000.00</td>
-                    <td><?php if(isset($week7)) { echo "$" . number_format($week7, 2);}?></td>
+                    <td><?php if (isset($week7)) {
+                            echo "$" . number_format($week7, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 28</td>
+                    <td>Pago 7</td>
                     <td>$20,000.00</td>
-                    <td><?php if(isset($week8)) { echo "$" . number_format($week8, 2);}?></td>
+                    <td><?php if (isset($week8)) {
+                            echo "$" . number_format($week8, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 32</td>
+                    <td>Pago 8</td>
                     <td>$24,000.00</td>
-                    <td><?php if(isset($week9)) { echo "$" . number_format($week9, 2);}?></td>
+                    <td><?php if (isset($week9)) {
+                            echo "$" . number_format($week9, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>Semana 36</td>
+                    <td>Pago 9</td>
                     <td>$24,000.00</td>
-                    <td><?php if(isset($week10)) { echo "$" . number_format($week10, 2);}?></td>
+                    <td><?php if (isset($week10)) {
+                            echo "$" . number_format($week10, 2);
+                        } ?></td>
                 </tr>
                 <tr class="thead">
                     <td></td>
                     <td>Total de semanas de gestación</td>
-                    <td><?php if (isset($week1) && isset($week2) && isset($week3) && isset($week4) && isset($week5) && isset($week6) && isset($week7) && isset($week8) && isset($week9) && isset($week10)) { echo "$" . number_format($week1+$week2+$week3+$week4+$week5+$week6+$week7+$week8+$week9+$week10, 2); } else {echo "$0.00"; }?></td>
+                    <td><?php if (isset($week1) && isset($week2) && isset($week3) && isset($week4) && isset($week5) && isset($week6) && isset($week7) && isset($week8) && isset($week9) && isset($week10)) {
+                            echo "$" . number_format($week1 + $week2 + $week3 + $week4 + $week5 + $week6 + $week7 + $week8 + $week9 + $week10, 2);
+                        } else {
+                            echo "$0.00";
+                        } ?></td>
                 </tr>
             </tbody>
         </table>
@@ -247,7 +302,7 @@ $scheme = $form_scheme;
             </thead>
             <tbody>
                 <tr>
-                    <td>1° PGTO - Nacimiento del bebe</td>
+                    <td>1° PGTO</td>
                     <td><?php switch ($scheme) {
                             case 375:
                                 echo "$48,000.00";
@@ -259,10 +314,12 @@ $scheme = $form_scheme;
                                 echo "$50,000.00";
                                 break;
                         } ?></td>
-                    <td><?php if (isset($gest1)) { echo "$" . number_format($gest1, 2); }?></td>
+                    <td><?php if (isset($gest1)) {
+                            echo "$" . number_format($gest1, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>2° PGTO - Cita del registro civil</td>
+                    <td>2° PGTO</td>
                     <td><?php switch ($scheme) {
                             case 375:
                                 echo "$50,000.00";
@@ -274,10 +331,12 @@ $scheme = $form_scheme;
                                 echo "$70,000.00";
                                 break;
                         } ?></td>
-                    <td><?php if (isset($gest2)) { echo "$" . number_format($gest2, 2); }?></td>
+                    <td><?php if (isset($gest2)) {
+                            echo "$" . number_format($gest2, 2);
+                        } ?></td>
                 </tr>
                 <tr>
-                    <td>3° PGTO - Salida viaje de regreso de IPs</td>
+                    <td>3° PGTO</td>
                     <td><?php switch ($scheme) {
                             case 375:
                                 echo "$100,000.00";
@@ -289,30 +348,36 @@ $scheme = $form_scheme;
                                 echo "$130,000.00";
                                 break;
                         } ?></td>
-                    <td><?php if (isset($gest3)) { echo "$" . number_format($gest3, 2); }?></td>
+                    <td><?php if (isset($gest3)) {
+                            echo "$" . number_format($gest3, 2);
+                        } ?></td>
                 </tr>
                 <tr class="thead">
                     <td></td>
                     <td>Total de pagos hasta la fecha</td>
                     <td>
-                    <?php if(isset($gest1) && isset($gest2) && isset($gest3)) { echo "$" . number_format($gest1+$gest2+$gest3, 2); } else { echo "$0.00"; }?>
+                        <?php if (isset($gest1) && isset($gest2) && isset($gest3)) {
+                            echo "$" . number_format($gest1 + $gest2 + $gest3, 2);
+                        } else {
+                            echo "$0.00";
+                        } ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Consentimiento de adopción</td>
                     <td><?php $totalRestante = $totalPorPagar - $totalPagado;
-                            echo "$" . number_format($totalRestante, 2); ?></td>
+                        echo "$" . number_format($totalRestante, 2); ?></td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
         <div class="menu-users">
-        <div class="logout">
-            <a href="logout.php">
-                Cerrar sesión
-            </a>
+            <div class="logout">
+                <a href="logout.php">
+                    Cerrar sesión
+                </a>
+            </div>
         </div>
-    </div>
     </div>
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {
