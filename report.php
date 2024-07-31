@@ -250,7 +250,7 @@ if ($form_alcohol == "No") {
 
 $pregnants = '';
 
-for ($j=1;$j<=$num_pregnants;$j++) {
+for ($j = 1; $j <= $num_pregnants; $j++) {
     $pregnants = $pregnants . '
     <p> Tipo de embarazo ' . $j . ": " . ${"form_type_pregnant_$j"} . '<br>
     Altura del embarazo ' . $j . ": " . ${"form_height_pregnant_$j"} . " m" . '<br>
@@ -269,7 +269,7 @@ for ($j=1;$j<=$num_pregnants;$j++) {
 
 $aborts = '';
 
-for ($j=1;$j<=$num_aborts;$j++) {
+for ($j = 1; $j <= $num_aborts; $j++) {
     $aborts = $aborts . '
     <p> Tipo de aborto ' . $j . ": " . ${"form_type_abort_$j"} . '<br>
     Semana del aborto ' . $j . ": " . ${"form_week_abort_$j"} . '<br>
@@ -364,9 +364,10 @@ $family_diseases = array(
     "Parkinson"
 );
 
-$family = '<p>';
+// $family = '<p>';
+$family = '<table class="table">';
 
-for ($i = 1; $i <= 36; $i++) {
+for ($i = 1; $i <= 18; $i++) {
     $selected = " ";
     $selected_idx = 0;
     $ic = $i - 1;
@@ -384,94 +385,209 @@ for ($i = 1; $i <= 36; $i++) {
         }
     }
     if ($selected == " ") {
-        $selected = "Ninguno";  
+        $selected = "Ninguno";
     }
-    $family =  $family .  $family_diseases[$i - 1] . ': ' . $selected . '<br>';
+    $family =  $family . '<tr>
+            <td class="question">
+                <div>
+                    <p>' . $family_diseases[$i - 1] . ': </p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $selected . '</div>
+            </td>';
+            $selected = " ";
+    $selected_idx = 0;
+    $j = $i * 2;
+    $jc = $j - 1;
+    $family_code = ${"$family_variables[$jc]"};
+    $codes = (string)$family_code;
+    for ($m = 1; $m <= 5; $m++) {
+        ${"code_$m"} = $codes[$m - 1];
+        if (${"code_$m"} == 2) {
+            if ($selected_idx > 0) {
+                $selected = $selected . ", " . $family_select[$m - 1];
+            } else {
+                $selected = $selected . $family_select[$m - 1];
+                ++$selected_idx;
+            }
+        }
+    }
+    if ($selected == " ") {
+        $selected = "Ninguno";
+    }
+    $family =  $family . '<td class="question spacing">
+                <p>' .  $family_diseases[$j - 1] . ': </p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $selected . '</p>
+            </td>';
 }
 
-$family = $family . '</p>';
+// for ($i = 1; $i <= 18; $i++) {
+//     $selected = " ";
+//     $selected_idx = 0;
+//     $j = $i * 2;
+//     $jc = $j - 1;
+//     $family_code = ${"$family_variables[$jc]"};
+//     $codes = (string)$family_code;
+//     for ($m = 1; $m <= 5; $m++) {
+//         ${"code_$m"} = $codes[$m - 1];
+//         if (${"code_$m"} == 2) {
+//             if ($selected_idx > 0) {
+//                 $selected = $selected . ", " . $family_select[$m - 1];
+//             } else {
+//                 $selected = $selected . $family_select[$m - 1];
+//                 ++$selected_idx;
+//             }
+//         }
+//     }
+//     if ($selected == " ") {
+//         $selected = "Ninguno";
+//     }
+//     $family =  $family .  $family_diseases[$j - 1] . ': ' . $selected . '<br>';
+// }
+
+// $family = $family . '</p>';
+$family = $family . '</table>';
 
 // Sample HTML content
-$html = '
-    <html>
+// $html = '
+//     <html>
 
-<head>
-    <title>PDF report</title>
-    <style>
-    body {
-        margin: 2rem;
-    }
-    .signature {
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        margin-top: 4rem;
-        margin-left: 30rem;
-    }
-    .line {
-        width: 15rem;
-        border-bottom: 1px solid black;
-    }
-    .name {
-        margin-top: 0.5rem;
-        width: 15rem;
-        text-align: center;
-    }
-</style>
-</head>
+// <head>
+//     <title>PDF report</title>
+//     <style>
+//         body {
+//             margin: 2rem;
+//             font-family: Arial, Helvetica, sans-serif;
+//         }
 
-<body>
-    <h2>Datos de la gestante </h2>
-    <p> Nombre completo: ' . $form_name . '<br>
-    Fecha de nacimiento: ' . $form_date . '<br>
-    Edad: ' . $form_age . " años" . '<br>
-    Lugar de nacimiento: ' . $form_birth_place . '<br>
-    Estado civil: ' . $form_status . '<br>
-    Ocupación: ' . $form_employment . '<br>
-    Altura: ' . $form_height . " m" . '<br>
-    Peso: ' . $form_weight . " kg" . '<br>
-    Mano predominante: ' . $form_hand . '<br>
-    Tipo de sangre: ' . $form_blood . '<br>
-    Tiene implante: ' . $form_implant . '<br>
-    Tiene DIU: ' . $form_diu . '<br>
-    Notas adicionales de riesgo: ' . $form_risk_notes . '<br>
-    Tiene anemia: ' . $form_anemy . '<br>
-    Tiene diabetes: ' . $form_diabetes . '<br>
-    Tuvo alguna transfusión: ' . $form_transfusion . '<br>
-    Tiene hipertensión: ' . $form_hipertension . '<br>
-    Tiene cáncer: ' . $form_cancer . '<br>
-    Tiene dislexia: ' . $form_dislexia . '<br>
-    Tiene lesión en la cadera: ' . $form_waist . '<br>
-    Tiene migraña: ' . $form_migraine . '<br>
-    Fuma: ' . $form_smoke . '<br>
-    Con qué frecuencia fuma: ' . $form_smoke_times . '<br>
-    Cuántos cigarros fuma: ' . $form_smoke_qty . '<br>
-    Toma alcohol: ' . $form_alcohol . '<br>
-    Con qué frecuencia toma alcohol: ' . $form_alcohol_freq . '<br>
-    Tuvo fractura: ' . $form_fracture . '<br>
-    Detalles de la fractura: ' . $form_fracture_info . '<br>
-    Tuvo cirugía: ' . $form_cirugía . '<br>
-    Detalles de la cirugía: ' . $form_surgery_info . '</p>
-    <h2>Datos de los embarazos</h2>
-    <p> Número de embarazos: ' . $num_pregnants . '<br>
-    </p>' 
-    . $pregnants .
-    '<p>
-    <h2>Datos de los abortos</h2>
-    <p> Número de abortos: ' . $num_aborts . '<br>
-    </p>'
-    . $aborts .
-    '<h2>Datos de los familiares</h2>'
-    . $family .
-    '<div class="signature">
-        <div class="line"></div>
-        <div class="name">Firma de la gestante</div>
-        <div class="name">' . date("l, F j, Y") . '</div>
-    </div>
-</body>
+//         .signature {
+//             display: flex;
+//             flex-direction: column;
+//             align-items: end;
+//             margin-top: 4rem;
+//             margin-left: 30rem;
+//         }
 
-</html>
-';
+//         .line {
+//             width: 15rem;
+//             border-bottom: 1px solid black;
+//         }
+
+//         .name {
+//             margin-top: 0.5rem;
+//             width: 15rem;
+//             text-align: center;
+//         }
+
+//         h2 {
+//             width: 100%;
+//             text-align: center;
+//             background-color: #CDE1F4;
+//             font-size: 1.25rem;
+//             padding: 0.25rem;
+//         }
+
+//         .column {
+//             float: left;
+//             width: 47%;
+//             padding: 10px;
+//         }
+
+//         .row:after {
+//             content: "";
+//             display: table;
+//             clear: both;
+//         }
+
+//         .data {
+//             color: red;
+//             display: flex;
+//             flex-direction: row;
+//         }
+
+//         .question {
+//             display: inline-block;
+//         }
+
+//         .answer {
+//             display: inline-block;
+//             background-color: #CDE1F4;
+//             height: 20px;
+//         }
+//     </style>
+// </head>
+
+// <body>
+//     <h1>Historia clínica </h1>
+//     <p> Nombre completo: ' . $form_name . '<br>
+//         Fecha de nacimiento: ' . $form_date . '<br>
+//         Edad: ' . $form_age . " años" . '<br>
+//         Estado civil: ' . $form_status . '<br>
+//         Ocupación: ' . $form_employment . '<br>
+//         Lugar de nacimiento: ' . $form_birth_place . '</p>
+//     <h2>Datos de la gestante </h2>
+//     <div class="row">
+//         <div class="column">
+//             <div class="data">
+//                 <div class="question"> Altura: </div>
+//                 <div class="answer">' . $form_height . " m" . ' </div>
+//             </div>
+//             <div class="data">
+//                 Peso: <div class="answer"> ' . $form_weight . " kg" . ' </div>
+//             </div>
+//             <div class="data">Mano predominante: <div class="answer"> ' . $form_hand . '</div> </div>
+//             <div class="data">Tipo de sangre: <div class="answer"> ' . $form_blood . '</div> </div>
+//             <div class="data">Tiene implante: <div class="answer"> ' . $form_implant . '</div> </div>
+//             <div class="data">Tiene DIU: <div class="answer"> ' . $form_diu . '</div> </div>
+//             <div class="data">Notas adicionales de riesgo: <div class="answer"> ' . $form_risk_notes . '</div> </div>
+//             <div class="data">Tiene anemia: <div class="answer"> ' . $form_anemy . '</div> </div>
+//             <div class="data">Tiene diabetes: <div class="answer"> ' . $form_diabetes . '</div> </div>
+//             <div class="data">Tuvo alguna transfusión: <div class="answer"> ' . $form_transfusion . '</div> </div>
+//             <div class="data">Tiene hipertensión: <div class="answer"> ' . $form_hipertension . '</div> </div>
+//             <div class="data">Tiene cáncer: <div class="answer"> ' . $form_cancer . '</div> </div>
+//             <div class="data">Tiene dislexia: <div class="answer"> ' . $form_dislexia . '</div> </div>
+//             <div class="data">Tiene lesión en la cadera: <div class="answer"> ' . $form_waist . '</div> </div>
+//             <div class="data">Tiene migraña: <div class="answer"> ' . $form_migraine . '</div> </div>
+//             </p>
+//         </div>
+//         <div class="column">
+//             Fuma:
+//             <div class="answer"> ' . $form_smoke . '</div> <br>
+//             Con qué frecuencia fuma: <div class="answer"> ' . $form_smoke_times . '</div> <br>
+//             Cuántos cigarros fuma: <div class="answer"> ' . $form_smoke_qty . '</div> <br>
+//             Toma alcohol: <div class="answer"> ' . $form_alcohol . '</div> <br>
+//             Con qué frecuencia toma alcohol: <div class="answer"> ' . $form_alcohol_freq . '</div> <br>
+//             Tuvo fractura: <div class="answer"> ' . $form_fracture . '</div> <br>
+//             Detalles de la fractura: <div class="answer"> ' . $form_fracture_info . '</div> <br>
+//             Tuvo cirugía: <div class="answer"> ' . $form_cirugía . '</div> <br>
+//             Detalles de la cirugía: <div class="answer"> ' . $form_surgery_info . '</div>
+//         </div>
+//     </div>
+//     <h2>Datos de los embarazos</h2>
+//     <p> Número de embarazos: ' . $num_pregnants . '<br>
+//     </p>'
+//     . $pregnants .
+//     '<p>
+//     <h2>Datos de los abortos</h2>
+//     <p> Número de abortos: ' . $num_aborts . '<br>
+//     </p>'
+//     . $aborts .
+//     '<h2>Datos de los familiares</h2>
+//     <div class="two-row">'
+//         . $family .
+//         '</div>
+//     <div class="signature">
+//         <div class="line"></div>
+//         <div class="name">Firma de la gestante</div>
+//         <div class="name">' . date("l, F j, Y") . '</div>
+//     </div>
+// </body>
+
+// </html>
+// ';
 
 $form_name = $_POST['form_name'];
 $form_date = $_POST['form_date'];
@@ -503,8 +619,373 @@ $form_fracture = $_POST['form_fracture'];
 $form_surgery = $_POST['form_surgery'];
 $form_fracture_info = $_POST['form_fracture_info'];
 
+$stylesheet = "
+<style>
+    .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 1000px; /* Set horizontal and vertical spacing between rows */
+
+    }
+    .table td {
+        width: 100%;
+        font-size: 12px;
+    }
+    .table-c td {
+        font-size: 12px;
+    }
+    .td-white {
+        color: white;
+        background-color: white;
+    }
+    .spacer {
+        height: 10px; /* Height of the spacer row */
+        background-color: white; /* Background color to simulate space */
+    }
+    .answer {
+        background-color: #CDE1F4;
+        padding-left: 5px;
+        width: 100%;
+    }
+    .spacing {
+        padding-left: 10px;
+    }
+    .td-30 {
+        width: 30%;
+    }
+    .td-70 {
+        width: 70%;
+    }
+    body {
+        margin: 2rem;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .signature {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin-top: 4rem;
+        margin-left: 30rem;
+    }
+    .line {
+        width: 15rem;
+        border-bottom: 1px solid black;
+    }
+    .name {
+        margin-top: 0.5rem;
+        width: 15rem;
+        text-align: center;
+    }
+    h2 {
+        width: 100%;
+        text-align: center;
+        background-color: #CDE1F4;
+        font-size: 1.25rem;
+        padding: 0.25rem;
+    }
+</style>
+";
+
+$html = '
+    <h1>Historia clínica </h1>
+    <table class="table">
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Nombre completo:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_name . ' m</div>
+            </td>
+            <td class="question spacing">
+                <p>Fecha de nacimiento:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_date . '</p>
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Edad:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_age . ' m</div>
+            </td>
+            <td class="question spacing">
+                <p>Estado civil:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_status . '</p>
+            </td>
+            <td class="question spacing">
+                <p>Ocupación:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_employment . '</p>
+            </td>
+        </tr>
+    </table>
+    <table class="table-c">
+        <tr>
+            <td class="question td-30">
+                <div>
+                    <p>Lugar de nacimiento:</p>
+                </div>
+            </td>
+            <td class="answer td-70">
+                <div class="answer">' . $form_birth_place . ' m</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="question td-30 td-white">
+                <div td-white>
+                    <p>aaaaaaaaaaaaaaaa:</p>
+                </div>
+            </td>
+            <td class="td-70 td-white">
+                <div> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas </div>
+            </td>
+        </tr>
+    </table>
+    <h2>Datos de la gestante </h2>
+    <table class="table">
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Altura:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_height . ' m</div>
+            </td>
+            <td class="question spacing">
+                <p>Tiene dislexia:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_dislexia . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Peso:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_weight . ' kg</div>
+            </td>
+            <td class="question spacing">
+                <p>Tiene lesión en la cadera:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_waist . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Mano predominante:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_hand . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Tiene migraña:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_migraine . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tipo de sangre:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_blood . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Fuma:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_smoke . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene implante:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_implant . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Con qué frecuencia fuma:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_smoke_times . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene DIU:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_diu . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Cuántos cigarros fuma:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_smoke_qty . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Notas adicionales de riesgo:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_risk_notes . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Toma alcohol:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_alcohol . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene anemia:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_anemy . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Con qué frecuencia toma alcohol:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_alcohol_freq . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene diabetes:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_diabetes . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Tuvo fractura:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_fracture . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tuvo alguna transfusión:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_transfusion . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Detalles de la fractura:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_fracture_info . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene hipertensión:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_hipertension . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Tuvo cirugía:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_cirugía . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tiene cáncer:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_cancer . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Detalles de la cirugía:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_surgery_info . '</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+    <h2>Datos de los embarazos</h2>
+    <p> Número de embarazos: ' . $num_pregnants . '<br>
+    </p>'
+    . $pregnants .
+    '<p>
+    <h2>Datos de los abortos</h2>
+    <p> Número de abortos: ' . $num_aborts . '<br>
+    </p>'
+    . $aborts .
+    '<h2>Datos de los familiares</h2>
+    <div class="two-row">'
+    . $family .
+    '</div>
+    <div class="signature">
+        <div class="line"></div>
+        <div class="name">Firma de la gestante</div>
+        <div class="name">' . date("l, F j, Y") . '</div>
+    </div>
+';
+
+// Add the stylesheet and HTML content to mPDF
+$mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
+$mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+
 // Add HTML content to mPDF
-$mpdf->WriteHTML($html);
+// $mpdf->WriteHTML($html);
 
 // Output PDF
 $mpdf->Output('sample.pdf', 'I'); // D = force download, I = inline display, F = save to file
