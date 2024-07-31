@@ -250,32 +250,205 @@ if ($form_alcohol == "No") {
 
 $pregnants = '';
 
+// if ($num_pregnants > 0) {
+//     $pregnants = '<table class="table">';
+// }
+
 for ($j = 1; $j <= $num_pregnants; $j++) {
     $pregnants = $pregnants . '
-    <p> Tipo de embarazo ' . $j . ": " . ${"form_type_pregnant_$j"} . '<br>
-    Altura del embarazo ' . $j . ": " . ${"form_height_pregnant_$j"} . " m" . '<br>
-    Peso del embarazo ' . $j . ": " . ${"form_weight_pregnant_$j"} . " kg" . '<br>
-    Término del embarazo ' . $j . ": " . ${"form_term_pregnant_$j"} . '<br>
-    Semana del embarazo ' . $j . ": " . ${"form_week_pregnant_$j"} . '<br>
-    Año del embarazo ' . $j . ": " . ${"form_year_pregnant_$j"} . '<br>
-    Comentarios del embarazo ' . $j . ": " . ${"form_comments_pregnant_$j"} . '<br>';
+    <table class="table">
+    <tr>
+        <td class="question">
+            <div>
+                <p>Tipo de embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_type_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Altura del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_height_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Peso del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_weight_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Término del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_term_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Semana del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_week_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Año del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_year_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Comentarios del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_comments_pregnant_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+    <br>
+        <td class="question">
+            <div>
+                <p>Complicaciones del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td>
+            <div> </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>';
     for ($i = 1; $i <= 20; $i++) {
         if (${"codes_" . $j . "_" . $i} == 2) {
-            $pregnants = $pregnants . ' - ' .  $codes_array[$i - 1] . '<br>';
+            $pregnants = $pregnants . '
+            <tr>
+                <td class="question" colspan="3">
+                    <div>
+                        <p> - ' . $codes_array[$i - 1] . ': </p>
+                    </div>
+                </td>
+            </tr> 
+            ';
         }
-    }
-    $pregnants = $pregnants . '</p>';
+    }    
+    $pregnants = $pregnants . '</table><br>';
 }
 
 $aborts = '';
 
 for ($j = 1; $j <= $num_aborts; $j++) {
     $aborts = $aborts . '
-    <p> Tipo de aborto ' . $j . ": " . ${"form_type_abort_$j"} . '<br>
-    Semana del aborto ' . $j . ": " . ${"form_week_abort_$j"} . '<br>
-    Año del aborto ' . $j . ": " . ${"form_year_abort_$j"} . '<br>
-    Método del aborto ' . $j . ": " . ${"form_method_abort_$j"} . '<br>
-    Comentarios del aborto ' . $j . ": " . ${"form_comments_abort_$j"} . '</p>';
+    <table class="table">
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Tipo del aborto #' . $j . '::</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . ${"form_type_abort_$j"} . ' </div>
+            </td>
+            <td class="question spacing td-white">
+                <p>Fecha de nacimiento:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Semana del aborto #' . $j . '::</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . ${"form_week_abort_$j"} . ' </div>
+            </td>
+            <td class="question spacing td-white">
+                <p>Fecha de nacimiento:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Año del aborto #' . $j . '::</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . ${"form_year_abort_$j"} . ' </div>
+            </td>
+            <td class="question spacing td-white">
+                <p>Fecha de nacimiento:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Método del aborto #' . $j . '::</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . ${"form_method_abort_$j"} . ' </div>
+            </td>
+            <td class="question spacing td-white">
+                <p>Fecha de nacimiento:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Comentarios del aborto #' . $j . '::</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . ${"form_comments_abort_$j"} . ' </div>
+            </td>
+            <td class="question spacing td-white">
+                <p>Fecha de nacimiento:</p>
+            </td>
+        </tr>
+    </table><br>';
 }
 
 $family_variables = array(
@@ -396,7 +569,7 @@ for ($i = 1; $i <= 18; $i++) {
             <td class="answer">
                 <div class="answer">' . $selected . '</div>
             </td>';
-            $selected = " ";
+    $selected = " ";
     $selected_idx = 0;
     $j = $i * 2;
     $jc = $j - 1;
@@ -973,9 +1146,14 @@ $html = '
     <div class="two-row">'
     . $family .
     '</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="signature">
         <div class="line"></div>
-        <div class="name">Firma de la gestante</div>
+        <div class="name">Nombre y firma de la gestante</div>
         <div class="name">' . date("l, F j, Y") . '</div>
     </div>
 ';
