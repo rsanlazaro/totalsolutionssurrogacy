@@ -68,21 +68,23 @@ while ($row = mysqli_fetch_assoc($result)) {
             </thead>
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) { ?>
-                    <tr>
-                        <td data-title="Nombre de usuario" scope="row"><?php echo $user[$i] ?></td>
-                        <td data-title="Contraseña"><?php echo $pass[$i] ?></td>
-                        <td data-title="Perfil"><?php if ($profile[$i] == "user") { echo "reclutadora"; } else { echo $profile[$i]; } ?></td>
-                        <td>
-                            <a href="user.php?id=<?php echo $id[$i]; ?>">Editar</a>
-                        </td>
-                        <td>
-                            <form method="POST" class="form-table" action="deleteUser.php">
-                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
-                            </form>
-                        </td>
-                    </tr>
+                    <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
+                        <tr>
+                            <td data-title="Nombre de usuario" scope="row"><?php echo $user[$i] ?></td>
+                            <td data-title="Contraseña"><?php echo $pass[$i] ?></td>
+                            <td data-title="Perfil"><?php if ($profile[$i] == "user") { echo "reclutadora"; } else { echo $profile[$i]; } ?></td>
+                            <td>
+                                <a href="user.php?id=<?php echo $id[$i]; ?>">Editar</a>
+                            </td>
+                            <td>
+                                <form method="POST" class="form-table" action="deleteUser.php">
+                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                    <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
+                                    <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 <?php } ?>
             </tbody>
         </table>
