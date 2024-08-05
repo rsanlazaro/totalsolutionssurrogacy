@@ -86,9 +86,11 @@
                   <p>Administrador</p>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <a class="dropdown-item" href="users_adm.php">Usuarios</a>
-                  </li>
+                  <?php if ($_SESSION['type'] == "super-admin") { ?>
+                    <li>
+                      <a class="dropdown-item" href="users_adm.php">Usuarios</a>
+                    </li>
+                  <?php } ?>
                   <li>
                     <a class="dropdown-item" href="profile_adm.php">Candidatas</a>
                   </li>
