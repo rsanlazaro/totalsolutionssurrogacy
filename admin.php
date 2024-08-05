@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $conn = connectDB();
 
-if (!($_SESSION['login'])) {
+if ((!($_SESSION['login'])) && (($_SESSION['type'] != 'super-admin' ) || ($_SESSION['type'] != 'admin' ))) {
     header('location: /index.php');
 }
 ?>
@@ -17,16 +17,18 @@ if (!($_SESSION['login'])) {
     </div>
     <div class="esthetics-options">
         <div class="esthetics-options-grid">
-            <a href="users_adm.php" class="esthetics-packages">
-                <div class="esthetics-options-img">
-                    <img src="build/img/admin/users.webp" alt="users" />
-                </div>
-                <div class="esthetics-options-bg">
-                    <div class="esthetics-title">
-                        <h2>Usuarios<br /> <span></span></h2>
+            <?php if ($_SESSION['type'] == "super-admin") { ?>
+                <a href="users_adm.php" class="esthetics-packages">
+                    <div class="esthetics-options-img">
+                        <img src="build/img/admin/users.webp" alt="users" />
                     </div>
-                </div>
-            </a>
+                    <div class="esthetics-options-bg">
+                        <div class="esthetics-title">
+                            <h2>Usuarios<br /> <span></span></h2>
+                        </div>
+                    </div>
+                </a>
+            <?php } ?>
             <a href="profile_adm.php" class="esthetics-options-treatments">
                 <div class="esthetics-options-img">
                     <img src="build/img/admin/users.webp" alt="donants" />

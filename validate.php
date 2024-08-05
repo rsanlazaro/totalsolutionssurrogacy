@@ -58,7 +58,7 @@ if (empty($username)) {
             $_SESSION['login'] = true;
             $_SESSION['type'] = $row['profile'];
             $_SESSION['user'] = $row['username'];
-            if ($row['profile'] === "admin") {
+            if ($row['profile'] === "admin" || $row['profile'] === "super-admin") {
                 header('location: /admin.php');
                 echo $_SESSION['login'];
             } elseif ($row['profile'] == 'candidate') {
