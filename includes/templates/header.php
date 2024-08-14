@@ -80,7 +80,7 @@
               </a>
             </li>
             <?php } else {
-            if ($_SESSION['type'] == "admin") { ?>
+            if ($_SESSION['type'] == "admin" || $_SESSION['type'] == "super-admin") { ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="admin.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <p>Administrador</p>

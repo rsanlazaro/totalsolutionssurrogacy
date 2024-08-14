@@ -5,7 +5,7 @@ include "includes/app.php";
 if (!($_SESSION['login'])) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'admin')) {
+    if ((!($_SESSION['type'] === 'admin')) || (!($_SESSION['type'] === 'super-admin'))) {
         header('location: /index.php');
     }
 }
