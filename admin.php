@@ -49,6 +49,18 @@ if ((!($_SESSION['login'])) && (($_SESSION['type'] != 'super-admin' ) || ($_SESS
                     </div>
                 </div>
             </a>
+            <?php if ($_SESSION['type'] == "super-admin") { ?>
+                <a href="admin_payments.php" class="esthetics-packages">
+                    <div class="esthetics-options-img">
+                        <img src="build/img/admin/users.webp" alt="users" />
+                    </div>
+                    <div class="esthetics-options-bg">
+                        <div class="esthetics-title">
+                            <h2>Pagos<br /> <span></span></h2>
+                        </div>
+                    </div>
+                </a>
+            <?php } ?>
         </div>
     </div>
     <div class="menu-users">

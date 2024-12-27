@@ -1,4 +1,7 @@
 <?php
+
+use Symfony\Component\VarDumper\VarDumper;
+
 include 'includes/templates/header.php';
 include "includes/app.php";
 
@@ -20,21 +23,24 @@ while ($row = mysqli_fetch_assoc($result)) {
     $assurance_begin[$index] = $row['assurance_begin'];
     $assurance_payment1[$index] = $row['assurance_payment1'];
     $assurance_payment2[$index] = $row['assurance_payment2'];
+    $candidate[$index] = $row['candidate'];
+    $ip[$index] = $row['ip'];
+    $assurance_apply[$index] = $row['assurance_apply'];
 }
 
 $spanishMonths = array(
-    1 => 'enero',
-    2 => 'febrero',
-    3 => 'marzo',
-    4 => 'abril',
-    5 => 'mayo',
-    6 => 'junio',
-    7 => 'julio',
-    8 => 'agosto',
-    9 => 'septiembre',
-    10 => 'octubre',
-    11 => 'noviembre',
-    12 => 'diciembre'
+    1 => 'ene',
+    2 => 'feb',
+    3 => 'mar',
+    4 => 'abr',
+    5 => 'may',
+    6 => 'jun',
+    7 => 'jul',
+    8 => 'ago',
+    9 => 'sep',
+    10 => 'oct',
+    11 => 'nov',
+    12 => 'dic'
 );
 
 $day_today = date('d');
@@ -84,21 +90,38 @@ $date_today = new DateTime();
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">Póliza</th>
+                    <th onclick="sortTable(0)">Gestante</th>
+                    <th onclick="sortTable(0)">IP</th>
+                    <th onclick="sortTable(1)">Fecha de solicitud</th>
                     <th onclick="sortTable(1)">Inicio de vigencia</th>
+                    <th onclick="sortTable(1)">Liberación de seguro <br> (3 meses)</th>
                     <th onclick="sortTable(2)">Pagos realizados</th>
                     <th onclick="sortTable(3)">Siguiente pago</th>
                     <th onclick="sortTable(4)">Monto a pagar</th>
                     <th onclick="sortTable(5)">Días restantes para el pago</th>
-                    <th onclick="sortTable(6)">Vigencia activa</th>
+                    <th onclick="sortTable(6)">Cubre seguro <br> (10 meses)</th>
+                    <th onclick="sortTable(6)">Estatus</th>
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php for ($i = 1; $i <= $index; $i++) {
-                    $day = date('d', strtotime($assurance_begin[$i]));
+                    $today = new DateTime();
+                    $dayApply = date('d', strtotime($assurance_apply[$i]));
+                    $monthNmbrApply = date('n', strtotime($assurance_apply[$i]));
+                    $yearApply = date('Y', strtotime($assurance_apply[$i]));
+                    $monthApply = $spanishMonths[$monthNmbrApply];
+                    $day = intval(date('d', strtotime($assurance_begin[$i])));
                     $monthNmbr = date('n', strtotime($assurance_begin[$i]));
                     $year = date('Y', strtotime($assurance_begin[$i]));
                     $month = $spanishMonths[$monthNmbr];
+                    $monthThree = $monthNmbr > 9 ? $spanishMonths[$monthNmbr - 9] : $spanishMonths[$monthNmbr + 3];
+                    $monthTen = $monthNmbr > 2 ? $spanishMonths[$monthNmbr - 2] : $spanishMonths[$monthNmbr + 10];
+                    $beginDate = new DateTime($assurance_begin[$i]);
+                    $targetDateThree = new DateTime($assurance_begin[$i]);
+                    $targetDateThree->modify('+3 months');
+                    $targetDateTen = new DateTime($assurance_begin[$i]);
+                    $targetDateTen->modify('+10 months +1 day');
                     $first_payment_monthNmbr = date('n', strtotime($assurance_begin[$i])) + 1;
                     $first_year = $year;
                     $second_year = $year;
@@ -176,16 +199,38 @@ $date_today = new DateTime();
                 ?>
                     <tr>
                         <td data-title="Nombre de póliza" scope="row"><?php echo $assurance_name[$i] ?></td>
+                        <td data-title="Gestante" scope="row"><?php echo $candidate[$i] ?></td>
+                        <td data-title="IP" scope="row"><?php echo $ip[$i] ?></td>
+                        <td data-title="Fecha de solicitud"><?php echo $dayApply . " de " . $monthApply . " del " . $yearApply; ?></td>
                         <td data-title="Inicio de vigencia"><?php echo $day . " de " . $month . " del " . $year; ?></td>
+                        <?php if ($today >= $targetDateThree) {
+                            echo "<td data-title='Liberación del seguro' class='blue-label'>" . $day . " de " . $monthThree . " del " . date('Y', $targetDateThree->getTimestamp());
+                        } else {
+                            echo "<td data-title='Liberación del seguro' class='pink-label'>" . $day . " de " . $monthThree . " del " . date('Y', $targetDateThree->getTimestamp());
+                        } ?></td>
                         <td data-title="Pagos realizados"><?php echo $period; ?></td>
-                        <td data-title="Siguiente pago"><?php if (($payment_month == "-")) { echo $payment_month; } else { echo $day . " de " . $payment_month . " del " . $year; } ?></td>
-                        <td data-title="Monto a pagar"><?php if (is_numeric($payment_today)) { echo "$" . number_format($payment_today, 2); } else { echo $payment_today;} ?></td>
+                        <td data-title="Siguiente pago"><?php if (($payment_month == "-")) {
+                                                            echo $payment_month;
+                                                        } else {
+                                                            echo $day . " de " . $payment_month . " del " . $year;
+                                                        } ?></td>
+                        <td data-title="Monto a pagar"><?php if (is_numeric($payment_today)) {
+                                                            echo "$" . number_format($payment_today, 2);
+                                                        } else {
+                                                            echo $payment_today;
+                                                        } ?></td>
                         <td data-title="Días restantes"><?php echo $daysLeft; ?></td>
-                        <td data-title="Vigencia activa"><?php if (($monthsDifference) >= 10) {
-                                                                echo "Sí";
-                                                            } else {
-                                                                echo "No";
-                                                            } ?></td>
+                        <?php if ($today >= $targetDateTen) {
+                            echo "<td data-title='Vigencia activa' class='blue-label'>" . $day + 1 . " de " . $monthTen . " del " . date('Y', $targetDateTen->getTimestamp());
+                        } else {
+                            echo "<td data-title='Vigencia activa' class='pink-label'>" . $day + 1 . " de " . $monthTen . " del " . date('Y', $targetDateTen->getTimestamp());
+                        } ?></td>
+                        <?php
+                        if ($daysLeft < 13) {
+                            echo '<td data-title="Estatus" class="red-label"> Realizar pago';
+                        } else {
+                            echo '<td data-title="Estatus" class="green-label"> A tiempo';
+                        } ?></td>
                         <td>
                             <a href="assurance.php?id=<?php echo $id[$i]; ?>">Editar</a>
                         </td>

@@ -97,6 +97,11 @@
                   <li>
                     <a class="dropdown-item" href="assurance_adm.php">Seguros</a>
                   </li>
+                  <?php if ($_SESSION['type'] == "super-admin") { ?>
+                    <li>
+                      <a class="dropdown-item" href="admin_payments.php">Pagos</a>
+                    </li>
+                  <?php } ?>
                 </ul>
               </li>
             <?php } else if ($_SESSION['type'] == "user") { ?>

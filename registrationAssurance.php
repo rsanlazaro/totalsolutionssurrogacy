@@ -5,13 +5,20 @@ include "includes/app.php";
 if (!($_SESSION['login'])) {
     header('location: /index.php');
 } else {
-    if (!($_SESSION['type'] === 'admin')) {
+    if (!((($_SESSION['type'] == 'super-admin')) || (($_SESSION['type'] == 'admin')))) {
         header('location: /index.php');
     }
 }
 
 $conn = connectDB();
 
+$sql = "SELECT * FROM candidates";
+$result = mysqli_query($conn, $sql);
+$index = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    $form_name[++$index] = $row['form_name'];
+    $ip[$index] = $row['ip'];
+}
 
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['assurance_name'])) {
@@ -31,8 +38,16 @@ if (isset($_REQUEST['assurance_name'])) {
         $assurance_payment1 = mysqli_real_escape_string($conn, $assurance_payment1);
         $assurance_payment2 = stripslashes($_REQUEST['assurance_payment2']);
         $assurance_payment2 = mysqli_real_escape_string($conn, $assurance_payment2);
-        $query    = "INSERT into `assurance` (assurance_name, assurance_begin, assurance_payment1, assurance_payment2)
-                    VALUES ('$assurance_name', '$assurance_begin', '$assurance_payment1','$assurance_payment2')";
+        $candidate = stripslashes($_REQUEST['candidate']);
+        $candidate = mysqli_real_escape_string($conn, $candidate);
+        $assurance_apply = stripslashes($_REQUEST['assurance_apply']);
+        $assurance_apply = mysqli_real_escape_string($conn, $assurance_apply);
+        $sql = "SELECT * FROM candidates WHERE form_name='${candidate}'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $ip = $row['ip'];
+        $query    = "INSERT into `assurance` (assurance_name, assurance_begin, assurance_payment1, assurance_payment2, candidate, ip, assurance_apply)
+                    VALUES ('$assurance_name', '$assurance_begin', '$assurance_payment1','$assurance_payment2', '$candidate', '$ip', '$assurance_apply')";
         $result   = mysqli_query($conn, $query);
         if ($result) {
             header("Location: assurance_adm.php?msg=La póliza se ha registrado exitosamente");
@@ -61,6 +76,29 @@ if (isset($_REQUEST['assurance_name'])) {
                             <input type="text" class="form-control" id="validationCustom01" name="assurance_name" required />
                             <div class="invalid-feedback">
                                 <div>Ingrese un número de poliza</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Gestante</label>
+                                <select class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="candidate" required>
+                                    <?php foreach ($form_name as $index => $value) {
+                                        echo '<option value="' . $value . '">' . $value . '</option>';
+                                        ?>  
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <div>Seleccione una gestante</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="has-validation">
+                                <label class="label-form" for="validationCustomUsername">Fecha de solicitud</label>
+                                <input type="date" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="assurance_apply" required />
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la fecha de solicitud</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -8,7 +8,7 @@ if (!($_SESSION['login'])) {
     if ($_SESSION['type'] === 'admin') {
     } elseif ($_SESSION['type'] === 'super-admin') {
     } else {
-        header('location: /index.php');
+        header('location: /index.php'); 
     }
 }
 
