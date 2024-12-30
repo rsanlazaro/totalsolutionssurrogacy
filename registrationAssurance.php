@@ -40,14 +40,18 @@ if (isset($_REQUEST['assurance_name'])) {
         $assurance_payment2 = mysqli_real_escape_string($conn, $assurance_payment2);
         $candidate = stripslashes($_REQUEST['candidate']);
         $candidate = mysqli_real_escape_string($conn, $candidate);
+        $sql = "SELECT * FROM candidates WHERE form_name='${candidate}'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $candidate_id = $row['id'];
         $assurance_apply = stripslashes($_REQUEST['assurance_apply']);
         $assurance_apply = mysqli_real_escape_string($conn, $assurance_apply);
         $sql = "SELECT * FROM candidates WHERE form_name='${candidate}'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $ip = $row['ip'];
-        $query    = "INSERT into `assurance` (assurance_name, assurance_begin, assurance_payment1, assurance_payment2, candidate, ip, assurance_apply)
-                    VALUES ('$assurance_name', '$assurance_begin', '$assurance_payment1','$assurance_payment2', '$candidate', '$ip', '$assurance_apply')";
+        $query    = "INSERT into `assurance` (assurance_name, assurance_begin, assurance_payment1, assurance_payment2, candidate, ip, assurance_apply, candidate_id)
+                    VALUES ('$assurance_name', '$assurance_begin', '$assurance_payment1','$assurance_payment2', '$candidate', '$ip', '$assurance_apply', '$candidate_id')";
         $result   = mysqli_query($conn, $query);
         if ($result) {
             header("Location: assurance_adm.php?msg=La póliza se ha registrado exitosamente");
@@ -83,8 +87,15 @@ if (isset($_REQUEST['assurance_name'])) {
                                 <label class="label-form" for="validationCustomUsername">Gestante</label>
                                 <select class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="candidate" required>
                                     <?php foreach ($form_name as $index => $value) {
-                                        echo '<option value="' . $value . '">' . $value . '</option>';
-                                        ?>  
+                                        $sql = "SELECT * FROM assurance WHERE candidate='${value}'";
+                                        $result = mysqli_query($conn, $sql);
+                                        $repeat = $result->num_rows;
+                                        if ($repeat == 0) {
+                                            echo '<option value="' . $value . '">' . $value . '</option>';
+                                        } else {
+                                            echo '<option value="' . $value . '" disabled class="grey-bg">' . $value . '</option>';
+                                        }
+                                    ?>
                                     <?php } ?>
                                 </select>
                                 <div class="invalid-feedback">

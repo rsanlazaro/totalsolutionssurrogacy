@@ -23,9 +23,27 @@ while ($row = mysqli_fetch_assoc($result)) {
     $assurance_begin[$index] = $row['assurance_begin'];
     $assurance_payment1[$index] = $row['assurance_payment1'];
     $assurance_payment2[$index] = $row['assurance_payment2'];
+    $payment_1[$index] = $row['payment_1'];
+    $payment_2[$index] = $row['payment_2'];
+    $payment_3[$index] = $row['payment_3'];
+    $payment_4[$index] = $row['payment_4'];
     $candidate[$index] = $row['candidate'];
     $ip[$index] = $row['ip'];
     $assurance_apply[$index] = $row['assurance_apply'];
+    if (!($row['payment_1'] == null)) {
+        $numberPayments[$index] = 1;
+        if (!($row['payment_2'] == null)) {
+            $numberPayments[$index] = 2;
+            if (!($row['payment_3'] == null)) {
+                $numberPayments[$index] = 3;
+                if (!($row['payment_4'] == null)) {
+                    $numberPayments[$index] = 4;
+                }
+            }
+        }
+    } else {
+        $numberPayments[$index] = 0;
+    }
 }
 
 $spanishMonths = array(
@@ -90,17 +108,18 @@ $date_today = new DateTime();
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">Póliza</th>
-                    <th onclick="sortTable(0)">Gestante</th>
-                    <th onclick="sortTable(0)">IP</th>
-                    <th onclick="sortTable(1)">Fecha de solicitud</th>
-                    <th onclick="sortTable(1)">Inicio de vigencia</th>
-                    <th onclick="sortTable(1)">Liberación de seguro <br> (3 meses)</th>
-                    <th onclick="sortTable(2)">Pagos realizados</th>
-                    <th onclick="sortTable(3)">Siguiente pago</th>
-                    <th onclick="sortTable(4)">Monto a pagar</th>
-                    <th onclick="sortTable(5)">Días restantes para el pago</th>
-                    <th onclick="sortTable(6)">Cubre seguro <br> (10 meses)</th>
-                    <th onclick="sortTable(6)">Estatus</th>
+                    <th onclick="sortTable(1)">Gestante</th>
+                    <th onclick="sortTable(2)">IP</th>
+                    <th onclick="sortTable(3)">Fecha de solicitud</th>
+                    <th onclick="sortTable(4)">Inicio de vigencia</th>
+                    <th onclick="sortTable(5)">Liberación de seguro <br> (3 meses)</th>
+                    <th onclick="sortTable(6)">Pagos realizados</th>
+                    <th onclick="sortTable(7)">Pagos que debían estar realizados</th>
+                    <th onclick="sortTable(8)">Siguiente pago</th>
+                    <th onclick="sortTable(9)">Monto a pagar</th>
+                    <th onclick="sortTable(10)">Días restantes para el siguiente pago</th>
+                    <th onclick="sortTable(11)">Cubre seguro <br> (10 meses)</th>
+                    <th onclick="sortTable(12)">Estatus</th>
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
@@ -122,7 +141,7 @@ $date_today = new DateTime();
                     $targetDateThree->modify('+3 months');
                     $targetDateTen = new DateTime($assurance_begin[$i]);
                     $targetDateTen->modify('+10 months +1 day');
-                    $first_payment_monthNmbr = date('n', strtotime($assurance_begin[$i])) + 1;
+                    $first_payment_monthNmbr = date('n', strtotime($assurance_begin[$i])) + 1; // Revisar si es el mes 1 o el mes 3 donde se paga
                     $first_year = $year;
                     $second_year = $year;
                     $third_year = $year;
@@ -208,7 +227,8 @@ $date_today = new DateTime();
                         } else {
                             echo "<td data-title='Liberación del seguro' class='pink-label'>" . $day . " de " . $monthThree . " del " . date('Y', $targetDateThree->getTimestamp());
                         } ?></td>
-                        <td data-title="Pagos realizados"><?php echo $period; ?></td>
+                        <td data-title="Pagos realizados"><?php echo $numberPayments[$i] . "/4"; ?></td>
+                        <td data-title="Pagos que deberían estar hechos"><?php echo $period; ?></td>
                         <td data-title="Siguiente pago"><?php if (($payment_month == "-")) {
                                                             echo $payment_month;
                                                         } else {
@@ -226,10 +246,23 @@ $date_today = new DateTime();
                             echo "<td data-title='Vigencia activa' class='pink-label'>" . $day + 1 . " de " . $monthTen . " del " . date('Y', $targetDateTen->getTimestamp());
                         } ?></td>
                         <?php
-                        if ($daysLeft < 13) {
-                            echo '<td data-title="Estatus" class="red-label"> Realizar pago';
+                        if ($numberPayments[$i] < (int)substr($period, 0, 1)) {
+                            echo '<td data-title="Estatus" class="red-label"> Pagos atrasados';
                         } else {
-                            echo '<td data-title="Estatus" class="green-label"> A tiempo';
+                            if ($daysLeft < 13) {
+                                $numberPaymentsExpected = intval(substr($period, 0, 1));
+                                if ($numberPayments[$i] > $numberPaymentsExpected) {
+                                    echo '<td data-title="Estatus" class="green-label"> Pago realizado';
+                                } else {
+                                    if ($numberPayments[$i] >= 4){
+                                        echo '<td data-title="Estatus" class="blue-label">Pagos completos';
+                                    } else {
+                                        echo '<td data-title="Estatus" class="red-label"> Realizar pago';
+                                    }
+                                }
+                            } else {
+                                echo '<td data-title="Estatus" class="blue-label"> A tiempo';
+                            }
                         } ?></td>
                         <td>
                             <a href="assurance.php?id=<?php echo $id[$i]; ?>">Editar</a>

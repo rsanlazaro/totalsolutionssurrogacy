@@ -28,6 +28,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $assurance_name[++$index] = $row['assurance_name'];
     $assurance_payment1[$index] = $row['assurance_payment1'];
     $assurance_payment2[$index] = $row['assurance_payment2'];
+    $assurance_begin[$index] = $row['assurance_begin'];
     $candidate[$index] = $row['candidate'];
     $ip[$index] = $row['ip'];
     $payment_1[$index] = $row['payment_1'];
@@ -38,39 +39,49 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 // When form submitted, insert values into the database.
-if (isset($_REQUEST['assurance_name'])) {
-    $usernameCheck = $_REQUEST['assurance_name'];
-    $sql = "SELECT * FROM assurance WHERE assurance_name='${usernameCheck}'";
-    $result = mysqli_query($conn, $sql);
-    $repeat = $result->num_rows;
-    if ($repeat > 0) {
-        header("location: /registrationAssurance.php?msg=La póliza ya ha sido registrada. Por favor, ingrese otra.");
-    } else {
-        // removes backslashes
-        $assurance_name = stripslashes($_REQUEST['assurance_name']);
-        $assurance_name = mysqli_real_escape_string($conn, $assurance_name);
-        $assurance_begin = stripslashes($_REQUEST['assurance_begin']);
-        $assurance_begin = mysqli_real_escape_string($conn, $assurance_begin);
-        $assurance_payment1 = stripslashes($_REQUEST['assurance_payment1']);
-        $assurance_payment1 = mysqli_real_escape_string($conn, $assurance_payment1);
-        $assurance_payment2 = stripslashes($_REQUEST['assurance_payment2']);
-        $assurance_payment2 = mysqli_real_escape_string($conn, $assurance_payment2);
-        $candidate = stripslashes($_REQUEST['candidate']);
-        $candidate = mysqli_real_escape_string($conn, $candidate);
-        $assurance_apply = stripslashes($_REQUEST['assurance_apply']);
-        $assurance_apply = mysqli_real_escape_string($conn, $assurance_apply);
-        $sql = "SELECT * FROM candidates WHERE form_name='${candidate}'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $ip = $row['ip'];
-        $query    = "INSERT into `assurance` (assurance_name, assurance_begin, assurance_payment1, assurance_payment2, candidate, ip, assurance_apply)
-                    VALUES ('$assurance_name', '$assurance_begin', '$assurance_payment1','$assurance_payment2', '$candidate', '$ip', '$assurance_apply')";
-        $result   = mysqli_query($conn, $query);
-        if ($result) {
-            header("Location: assurance_adm.php?msg=La póliza se ha registrado exitosamente");
-        } else {
-            header("Location: assurance_adm.php?msg=Hubo un problema registrando la póliza. Por favor, intente nuevamente");
-        }
+if (isset($_REQUEST['candidate'])) {
+    $payment_number = stripslashes($_REQUEST['payment_number']);
+    $today = new DateTime();
+    $todayString = $today->format('Y-m-d H:i:s');
+    $candidate = stripslashes($_REQUEST['candidate']);
+    switch ($payment_number) {
+        case 1:
+            $sql = "UPDATE assurance SET payment_1='$todayString' WHERE candidate_id='${candidate}'";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                header("Location: admin_payments.php?msg=El pago se ha registrado exitosamente");
+            } else {
+                header("Location: admin_payments.php?msg=Hubo un problema registrando el pago. Por favor, intente nuevamente");
+            }
+            break;
+        case 2:
+            $sql = "UPDATE assurance SET payment_2='$todayString' WHERE candidate_id='${candidate}'";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                header("Location: admin_payments.php?msg=El pago se ha registrado exitosamente");
+            } else {
+                header("Location: admin_payments.php?msg=Hubo un problema registrando el pago. Por favor, intente nuevamente");
+            }
+            break;
+        case 3:
+            $sql = "UPDATE assurance SET payment_3='$todayString' WHERE candidate_id='${candidate}'";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                header("Location: admin_payments.php?msg=El pago se ha registrado exitosamente");
+            } else {
+                header("Location: admin_payments.php?msg=Hubo un problema registrando el pago. Por favor, intente nuevamente");
+            }
+            break;
+        case 4:
+            $sql = "UPDATE assurance SET payment_4='$todayString' WHERE candidate_id='${candidate}'";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                header("Location: admin_payments.php?msg=El pago se ha registrado exitosamente");
+            } else {
+                header("Location: admin_payments.php?msg=Hubo un problema registrando el pago. Por favor, intente nuevamente");
+            }
+            break;
+        default:
     }
 }
 ?>
@@ -86,7 +97,7 @@ if (isset($_REQUEST['assurance_name'])) {
     <div class="register-form new-user">
         <div class="form-body">
             <div class="contact-form">
-                <h2 class="contact-form-title">Pago del seguro</h1>
+                <h2 class="contact-form-title">Pago del seguro</h2>
                     <form class="form" action="" method="post">
                         <div class="col-md-12">
                             <div class="has-validation">
@@ -111,17 +122,25 @@ if (isset($_REQUEST['assurance_name'])) {
                             <input type="text" id="ip" class="form-control" id="validationCustom01" name="assurance_ip" disabled />
                         </div>
                         <div class="col-md-12">
-                            <label for="validationCustom01">Siguiente pago programado</label>
+                            <label for="validationCustom01">Inicio de vigencia</label>
+                            <input type="text" id="assurance_begin" class="form-control" id="validationCustom01" name="assurance_begin" disabled />
+                        </div>
+                        <input type="hidden" id="payment_number" name="payment_number" value="1" />
+                        <div class="col-md-12">
+                            <label id="assurance_date_label" for="validationCustom01">Siguiente pago programado</label>
                             <input type="text" id="assurance_date" class="form-control" id="validationCustom01" name="assurance_date" disabled />
                         </div>
                         <div class="col-md-12">
                             <label for="validationCustom01">Monto</label>
                             <input type="text" id="assurance_amount" class="form-control" id="validationCustom01" name="assurance_amount" disabled />
                         </div>
-                        <div class="form-btn">
-                            <button class="btn btn-send" type="submit">
+                        <div class="form-btn form-btn-group">
+                            <button class="btn btn-send" id="submitBtn" type="submit" disabled>
                                 <div>Registrar el pago</div>
                             </button>
+                            <a href="payments_historic.php" class="btn btn-send disabled" id="historicBtn">
+                                <div>Ver histórico</div>
+                            </a>
                         </div>
                     </form>
             </div>
@@ -129,17 +148,27 @@ if (isset($_REQUEST['assurance_name'])) {
     </div>
 </main>
 <script>
-    // JavaScript function to update input value
     function updateValue(selectElement) {
         var selectedValue = selectElement.value;
         var jsArray = <?php echo json_encode($candidate_id); ?>;
         var assuranceId = parseInt(Object.keys(jsArray).filter(key => jsArray[key] === selectedValue));
+        var label = document.getElementById('assurance_date_label');
         if (isNaN(assuranceId)) {
             assuranceName = 'No hay póliza registrada para esta gestante';
             ip = 'No hay póliza registrada para esta gestante';
+            assuranceBegin = 'No hay póliza registrada para esta gestante';
             paymentMsg = 'No hay póliza registrada para esta gestante';
             paymentAmount = 'No hay póliza registrada para esta gestante';
+            label.textContent = "Fecha del siguiente pago programado";
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('historicBtn').classList.add('disabled');
         } else {
+            document.getElementById('submitBtn').disabled = false;
+            var historicLink = document.getElementById('historicBtn');
+            historicLink.classList.remove('disabled');
+            var jsCandidateId = <?php echo json_encode($candidate_id); ?>;
+            var CandidateId = jsCandidateId[assuranceId];
+            historicLink.href = 'payments_historic.php?id=' + CandidateId;
             var jsAssuranceName = <?php echo json_encode($assurance_name); ?>;
             var assuranceName = jsAssuranceName[assuranceId];
             var jsAssuranceIp = <?php echo json_encode($ip); ?>;
@@ -156,19 +185,45 @@ if (isset($_REQUEST['assurance_name'])) {
             var amount1 = jsAmount1[assuranceId];
             var jsAmount2 = <?php echo json_encode($assurance_payment2); ?>;
             var amount2 = jsAmount2[assuranceId];
+            var jsAssuranceBegin = <?php echo json_encode($assurance_begin); ?>;
+            var assuranceBegin = jsAssuranceBegin[assuranceId].split(' ')[0];
+            let assuranceBeginDate = new Date(assuranceBegin); // Convert to Date object
+            let assuranceBeginDateTwo = new Date(assuranceBegin); // Convert to Date object
+            let assuranceBeginDateThree = new Date(assuranceBegin); // Convert to Date object
+            let assuranceBeginDateFour = new Date(assuranceBegin); // Convert to Date object
+            assuranceBeginDate.setMonth(assuranceBeginDate.getMonth() + 1); // Add 3 months
+            assuranceBeginDateTwo.setMonth(assuranceBeginDateTwo.getMonth() + 3); // Add 6 months
+            assuranceBeginDateThree.setMonth(assuranceBeginDateThree.getMonth() + 6); // Add 9 months
+            assuranceBeginDateFour.setMonth(assuranceBeginDateFour.getMonth() + 9); // Add 12 months
+            let assuranceBeginDateNewDate = assuranceBeginDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+            let assuranceBeginDateNewDateTwo = assuranceBeginDateTwo.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+            let assuranceBeginDateNewDateThree = assuranceBeginDateThree.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+            let assuranceBeginDateNewDateFour = assuranceBeginDateFour.toISOString().split("T")[0]; // Format as YYYY-MM-DD
             if (payment1 === null || payment1 === undefined) {
-                paymentMsg = 'Falta el primer pago';
+                paymentMsg = assuranceBeginDateNewDate;
                 paymentAmount = amount1;
+                label.textContent = "El primer pago será el:";
+                payment_number = 1;
             } else {
                 paymentAmount = amount2;
                 if (payment2 === null || payment2 === undefined) {
-                    paymentMsg = 'Falta el segundo pago';
+                    paymentMsg = assuranceBeginDateNewDateTwo;
+                    label.textContent = "El segundo pago será el:";
+                    payment_number = 2;
                 } else {
                     if (payment3 === null || payment3 === undefined) {
-                        paymentMsg = 'Falta el tercer pago';
+                        paymentMsg = assuranceBeginDateNewDateThree;
+                        label.textContent = "El tercer pago será el:";
+                        payment_number = 3;
                     } else {
                         if (payment4 === null || payment4 === undefined) {
-                            paymentMsg = 'Falta el cuarto pago';
+                            paymentMsg = assuranceBeginDateNewDateFour;
+                            label.textContent = "El cuarto pago será el:";
+                            payment_number = 4;
+                        } else {
+                            paymentMsg = 'No hay más pagos programados';
+                            label.textContent = 'No hay más pagos programados';
+                            paymentAmount = 0;
                         }
                     }
                 }
@@ -178,10 +233,14 @@ if (isset($_REQUEST['assurance_name'])) {
         assuranceNameDisplay.value = assuranceName;
         var ipDisplay = document.getElementById('ip');
         ipDisplay.value = ip;
+        var dateBegin = document.getElementById('assurance_begin');
+        dateBegin.value = assuranceBegin;
         var dateDisplay = document.getElementById('assurance_date');
         dateDisplay.value = paymentMsg;
         var amountDisplay = document.getElementById('assurance_amount');
         amountDisplay.value = paymentAmount;
+        var paymentNumber = document.getElementById('payment_number');
+        paymentNumber.value = payment_number;
     }
 </script>
 </body>

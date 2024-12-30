@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $conn = connectDB();
 
-if ((!($_SESSION['login'])) && (($_SESSION['type'] != 'super-admin' ))) {
+if ((!($_SESSION['login'])) && (($_SESSION['type'] != 'super-admin'))) {
     header('location: /index.php');
 }
 ?>
@@ -15,6 +15,11 @@ if ((!($_SESSION['login'])) && (($_SESSION['type'] != 'super-admin' ))) {
     <div class="register-info">
         <h3>Registro de pagos</h3>
     </div>
+    <?php if (isset($_GET['msg'])) { ?>
+
+        <p class="error"><?php echo $_GET['msg']; ?></p>
+
+    <?php } ?>
     <div class="esthetics-options">
         <div class="esthetics-options-grid">
             <?php if ($_SESSION['type'] == "super-admin") { ?>

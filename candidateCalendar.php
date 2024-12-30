@@ -20,6 +20,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $id = $row['id'];
     $form_name = $row['form_name'];
     $form_scheme = $row['form_scheme'];
+    $scheme = $form_scheme;
 }
 
 $sql = "SELECT * FROM payments WHERE candidateId=${id}";
@@ -47,8 +48,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $gest2 = $row['gest2'];
     $gest3 = $row['gest3'];
 }
-
-$scheme = $form_scheme;
 
 ?>
 

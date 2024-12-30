@@ -1001,13 +1001,13 @@ userId='$userId'
 WHERE id = $last_id";
 $result7 = mysqli_query($conn, $query7);
 
-
 include 'includes/templates/header.php';
 ?>
 
 <main class="home">
     <section class="temporary">
         <?php if ($result1 == 1 && $result2 == 1 && $result3 == 1 && $result4 == 1 && $result5 == 1 && $result7 == 1) {
+            // header("Location: recruiter.php?msg=Los datos han sido guardados correctamente");
             echo "Los datos han sido guardados correctamente";
         } ?>
     </section>
@@ -1015,7 +1015,7 @@ include 'includes/templates/header.php';
 
 <?php
 include 'includes/templates/footer.php';
-session_destroy();
+// session_destroy();
 ?>
 
 <!-- Boostrap JS -->
