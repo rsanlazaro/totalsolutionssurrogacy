@@ -61,6 +61,7 @@ $spanishMonths = array(
     12 => 'dic'
 );
 
+date_default_timezone_set('America/Mexico_City');
 $day_today = date('d');
 $month_todayNmbr = date('n');
 $month_today = $spanishMonths[$month_todayNmbr];
@@ -130,18 +131,29 @@ $date_today = new DateTime();
                     $monthNmbrApply = date('n', strtotime($assurance_apply[$i]));
                     $yearApply = date('Y', strtotime($assurance_apply[$i]));
                     $monthApply = $spanishMonths[$monthNmbrApply];
-                    $day = intval(date('d', strtotime($assurance_begin[$i])));
+                    $day = date('d', strtotime($assurance_begin[$i]));
                     $monthNmbr = date('n', strtotime($assurance_begin[$i]));
                     $year = date('Y', strtotime($assurance_begin[$i]));
                     $month = $spanishMonths[$monthNmbr];
                     $monthThree = $monthNmbr > 9 ? $spanishMonths[$monthNmbr - 9] : $spanishMonths[$monthNmbr + 3];
                     $monthTen = $monthNmbr > 2 ? $spanishMonths[$monthNmbr - 2] : $spanishMonths[$monthNmbr + 10];
                     $beginDate = new DateTime($assurance_begin[$i]);
-                    $targetDateThree = new DateTime($assurance_begin[$i]);
-                    $targetDateThree->modify('+3 months');
                     $targetDateTen = new DateTime($assurance_begin[$i]);
                     $targetDateTen->modify('+10 months +1 day');
-                    $first_payment_monthNmbr = date('n', strtotime($assurance_begin[$i])) + 1; // Revisar si es el mes 1 o el mes 3 donde se paga
+                    $targetDateTen2 = new DateTime($assurance_begin[$i]);
+                    $targetDateOne = new DateTime($assurance_begin[$i]);
+                    $targetDateOne->modify('+1 month');
+                    $targetDateOne2 = new DateTime($assurance_begin[$i]);
+                    $targetDateThree = new DateTime($assurance_begin[$i]);
+                    $targetDateThree->modify('+3 months');
+                    $targetDateThree2 = new DateTime($assurance_begin[$i]);
+                    $targetDateSix = new DateTime($assurance_begin[$i]);
+                    $targetDateSix->modify('+6 months');
+                    $targetDateSix2 = new DateTime($assurance_begin[$i]);
+                    $targetDateNine = new DateTime($assurance_begin[$i]);
+                    $targetDateNine->modify('+9 months');
+                    $targetDateNine2 = new DateTime($assurance_begin[$i]);
+                    $first_payment_monthNmbr = date('n', strtotime($assurance_begin[$i])) + 1;
                     $first_year = $year;
                     $second_year = $year;
                     $third_year = $year;
@@ -170,35 +182,57 @@ $date_today = new DateTime();
                     $second_payment_month = $spanishMonths[$second_payment_monthNmbr];
                     $third_payment_month = $spanishMonths[$third_payment_monthNmbr];
                     $fourth_payment_month = $spanishMonths[$fourth_payment_monthNmbr];
+                    if (($targetDateOne->format("d") < "10") && ($targetDateOne2->format("d") > "20")) {
+                        $targetDateOne2->modify("+1 month");
+                        $targetDateOne2->modify("-1 month");
+                        $targetDateOne2->modify("last day of this month");
+                        $payment_month = $targetDateOne2;
+                    } else {
+                        $payment_month = $targetDateOne;
+                    }
                     $date_target = new DateTime();
                     $date_target->setDate($first_year, $first_payment_monthNmbr, $day);
-                    $interval = $date_today->diff($date_target);
                     $period = "0/4";
+                    $interval = $date_today->diff($payment_month);
                     $daysLeft = $interval->days;
-                    $payment_month = $first_payment_month;
                     if (($interval->invert == 1) && ($interval->days > 0)) {
-                        $date_target = new DateTime();
-                        $date_target->setDate($second_year, $second_payment_monthNmbr, $day);
-                        $interval = $date_today->diff($date_target);
                         $payment_today = $assurance_payment2[$i];
                         $period = "1/4";
+                        if (($targetDateThree->format("d") < "10") && ($targetDateThree2->format("d") > "20")) {
+                            $targetDateThree2->modify("+1 month");
+                            $targetDateThree2->modify("-1 month");
+                            $targetDateThree2->modify("last day of this month");
+                            $payment_month = $targetDateThree2;
+                        } else {
+                            $payment_month = $targetDateThree;
+                        }
+                        $interval = $date_today->diff($payment_month);
                         $daysLeft = $interval->days;
-                        $payment_month = $second_payment_month;
                         if (($interval->invert == 1) && ($interval->days > 0)) {
-                            $date_target = new DateTime();
-                            $date_target->setDate($third_year, $third_payment_monthNmbr, $day);
-                            $interval = $date_today->diff($date_target);
                             $period = "2/4";
+                            if (($targetDateSix->format("d") < "10") && ($targetDateSix2->format("d") > "20")) {
+                                $targetDateSix2->modify("+1 month");
+                                $targetDateSix2->modify("-1 month");
+                                $targetDateSix2->modify("last day of this month");
+                                $payment_month = $targetDateSix2;
+                            } else {
+                                $payment_month = $targetDateOne;
+                            }
+                            $interval = $date_today->diff($payment_month);
                             $daysLeft = $interval->days;
-                            $payment_month = $third_payment_month;
                         }
                         if (($interval->invert == 1) && ($interval->days > 0)) {
-                            $date_target = new DateTime();
-                            $date_target->setDate($fourth_year, $fourth_payment_monthNmbr, $day);
-                            $interval = $date_today->diff($date_target);
                             $period = "3/4";
+                            if (($targetDateNine->format("d") < "10") && ($targetDateNine2->format("d") > "20")) {
+                                $targetDateNine2->modify("+1 month");
+                                $targetDateNine2->modify("-1 month");
+                                $targetDateNine2->modify("last day of this month");
+                                $payment_month = $targetDateNine2;
+                            } else {
+                                $payment_month = $targetDateNine;
+                            }
+                            $interval = $date_today->diff($payment_month);
                             $daysLeft = $interval->days;
-                            $payment_month = $fourth_payment_month;
                         }
                         if (($interval->invert == 1) && ($interval->days > 0)) {
                             $date_target = new DateTime();
@@ -215,35 +249,37 @@ $date_today = new DateTime();
                     $date_target->setDate($year, $monthNmbr, $day);
                     $interval = $date_today->diff($date_target);
                     $monthsDifference = ($interval->y * 12) + $interval->m;
+                    $yearApply = date('y', strtotime($assurance_apply[$i]));
+                    $year = date('y', strtotime($assurance_begin[$i]));
                 ?>
                     <tr>
                         <td data-title="Nombre de póliza" scope="row"><?php echo $assurance_name[$i] ?></td>
                         <td data-title="Gestante" scope="row"><?php echo $candidate[$i] ?></td>
                         <td data-title="IP" scope="row"><?php echo $ip[$i] ?></td>
-                        <td data-title="Fecha de solicitud"><?php echo $dayApply . " de " . $monthApply . " del " . $yearApply; ?></td>
-                        <td data-title="Inicio de vigencia"><?php echo $day . " de " . $month . " del " . $year; ?></td>
+                        <td data-title="Fecha de solicitud"><?php echo $dayApply . "/" . $monthApply . "/" . $yearApply; ?></td>
+                        <td data-title="Inicio de vigencia"><?php echo $day . "/" . $month . "/" . $year; ?></td>
                         <?php if ($today >= $targetDateThree) {
-                            echo "<td data-title='Liberación del seguro' class='blue-label'>" . $day . " de " . $monthThree . " del " . date('Y', $targetDateThree->getTimestamp());
+                            echo "<td data-title='Liberación del seguro' class='blue-label'>" . $targetDateThree->format('d') . "/" . $spanishMonths[intval($targetDateThree->format('m'))] . "/" . $targetDateThree->format('y');
                         } else {
-                            echo "<td data-title='Liberación del seguro' class='pink-label'>" . $day . " de " . $monthThree . " del " . date('Y', $targetDateThree->getTimestamp());
+                            echo "<td data-title='Liberación del seguro' class='pink-label'>" . $targetDateThree->format('d') . "/" . $spanishMonths[intval($targetDateThree->format('m'))] . "/" . $targetDateThree->format('y');
                         } ?></td>
                         <td data-title="Pagos realizados"><?php echo $numberPayments[$i] . "/4"; ?></td>
                         <td data-title="Pagos que deberían estar hechos"><?php echo $period; ?></td>
                         <td data-title="Siguiente pago"><?php if (($payment_month == "-")) {
                                                             echo $payment_month;
                                                         } else {
-                                                            echo $day . " de " . $payment_month . " del " . $year;
+                                                            echo $payment_month->format('d') . "/" . $spanishMonths[intval($payment_month->format('m'))] . "/" . $payment_month->format('y');
                                                         } ?></td>
                         <td data-title="Monto a pagar"><?php if (is_numeric($payment_today)) {
                                                             echo "$" . number_format($payment_today, 2);
                                                         } else {
                                                             echo $payment_today;
                                                         } ?></td>
-                        <td data-title="Días restantes"><?php echo $daysLeft; ?></td>
+                        <td data-title="Días restantes"><?php if ($payment_month == "-") { echo $daysLeft; } else { echo ($date_today->format('d') == $payment_month->format('d')) ? 0 : (int)$daysLeft+1; } ?></td>
                         <?php if ($today >= $targetDateTen) {
-                            echo "<td data-title='Vigencia activa' class='blue-label'>" . $day + 1 . " de " . $monthTen . " del " . date('Y', $targetDateTen->getTimestamp());
+                            echo "<td data-title='Cubre seguro (10 meses)' class='blue-label'>" . date('d', $targetDateTen->getTimestamp()) . "/" . $monthTen . "/" . date('y', $targetDateTen->getTimestamp());
                         } else {
-                            echo "<td data-title='Vigencia activa' class='pink-label'>" . $day + 1 . " de " . $monthTen . " del " . date('Y', $targetDateTen->getTimestamp());
+                            echo "<td data-title='Cubre seguro (10 meses)' class='pink-label'>" . date('d', $targetDateTen->getTimestamp()) . "/" . $monthTen . "/" . date('y', $targetDateTen->getTimestamp());
                         } ?></td>
                         <?php
                         if ($numberPayments[$i] < (int)substr($period, 0, 1)) {
@@ -254,7 +290,7 @@ $date_today = new DateTime();
                                 if ($numberPayments[$i] > $numberPaymentsExpected) {
                                     echo '<td data-title="Estatus" class="green-label"> Pago realizado';
                                 } else {
-                                    if ($numberPayments[$i] >= 4){
+                                    if ($numberPayments[$i] >= 4) {
                                         echo '<td data-title="Estatus" class="blue-label">Pagos completos';
                                     } else {
                                         echo '<td data-title="Estatus" class="red-label"> Realizar pago';

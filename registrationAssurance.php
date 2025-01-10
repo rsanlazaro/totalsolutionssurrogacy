@@ -124,7 +124,7 @@ if (isset($_REQUEST['assurance_name'])) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Monto del pago inicial</label>
-                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="assurance_payment1" required />
+                                <input type="number" step="0.01" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="assurance_payment1" required />
                                 <div class="invalid-feedback">
                                     <div>Ingrese el monto</div>
                                 </div>
@@ -133,7 +133,7 @@ if (isset($_REQUEST['assurance_name'])) {
                         <div class="col-md-12">
                             <div class="has-validation">
                                 <label class="label-form" for="validationCustomUsername">Monto de los pagos trimestrales</label>
-                                <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="assurance_payment2" required />
+                                <input type="number" step="0.01" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="assurance_payment2" required />
                                 <div class="invalid-feedback">
                                     <div>Ingrese el monto</div>
                                 </div>

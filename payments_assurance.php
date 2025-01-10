@@ -41,6 +41,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 // When form submitted, insert values into the database.
 if (isset($_REQUEST['candidate'])) {
     $payment_number = stripslashes($_REQUEST['payment_number']);
+    date_default_timezone_set('America/Mexico_City');
     $today = new DateTime();
     $todayString = $today->format('Y-m-d H:i:s');
     $candidate = stripslashes($_REQUEST['candidate']);
@@ -98,51 +99,51 @@ if (isset($_REQUEST['candidate'])) {
         <div class="form-body">
             <div class="contact-form">
                 <h2 class="contact-form-title">Pago del seguro</h2>
-                    <form class="form" action="" method="post">
-                        <div class="col-md-12">
-                            <div class="has-validation">
-                                <label class="label-form" for="validationCustomUsername">Gestante</label>
-                                <select class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="candidate" onchange="updateValue(this)" required>
-                                    <?php foreach ($form_name as $index => $value) {
-                                        echo '<option value="' . $idCandidates[$index] . '">' . $value . '</option>';
-                                    ?>
-                                    <?php } ?>
-                                </select>
-                                <div class="invalid-feedback">
-                                    <div>Seleccione una gestante</div>
-                                </div>
+                <form class="form" action="" method="post">
+                    <div class="col-md-12">
+                        <div class="has-validation">
+                            <label class="label-form" for="validationCustomUsername">Gestante</label>
+                            <select class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="candidate" onchange="updateValue(this)" required>
+                                <?php foreach ($form_name as $index => $value) {
+                                    echo '<option value="' . $idCandidates[$index] . '">' . $value . '</option>';
+                                ?>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <div>Seleccione una gestante</div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <label for="validationCustom01">Número de póliza</label>
-                            <input type="text" id="assurance_name" class="form-control" id="validationCustom01" name="assurance_name" disabled />
-                        </div>
-                        <div class="col-md-12">
-                            <label for="validationCustom01">IP</label>
-                            <input type="text" id="ip" class="form-control" id="validationCustom01" name="assurance_ip" disabled />
-                        </div>
-                        <div class="col-md-12">
-                            <label for="validationCustom01">Inicio de vigencia</label>
-                            <input type="text" id="assurance_begin" class="form-control" id="validationCustom01" name="assurance_begin" disabled />
-                        </div>
-                        <input type="hidden" id="payment_number" name="payment_number" value="1" />
-                        <div class="col-md-12">
-                            <label id="assurance_date_label" for="validationCustom01">Siguiente pago programado</label>
-                            <input type="text" id="assurance_date" class="form-control" id="validationCustom01" name="assurance_date" disabled />
-                        </div>
-                        <div class="col-md-12">
-                            <label for="validationCustom01">Monto</label>
-                            <input type="text" id="assurance_amount" class="form-control" id="validationCustom01" name="assurance_amount" disabled />
-                        </div>
-                        <div class="form-btn form-btn-group">
-                            <button class="btn btn-send" id="submitBtn" type="submit" disabled>
-                                <div>Registrar el pago</div>
-                            </button>
-                            <a href="payments_historic.php" class="btn btn-send disabled" id="historicBtn">
-                                <div>Ver histórico</div>
-                            </a>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationCustom01">Número de póliza</label>
+                        <input type="text" id="assurance_name" class="form-control" id="validationCustom01" name="assurance_name" disabled />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationCustom01">IP</label>
+                        <input type="text" id="ip" class="form-control" id="validationCustom01" name="assurance_ip" disabled />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationCustom01">Inicio de vigencia</label>
+                        <input type="text" id="assurance_begin" class="form-control" id="validationCustom01" name="assurance_begin" disabled />
+                    </div>
+                    <input type="hidden" id="payment_number" name="payment_number" value="1" />
+                    <div class="col-md-12">
+                        <label id="assurance_date_label" for="validationCustom01">Siguiente pago programado</label>
+                        <input type="text" id="assurance_date" class="form-control" id="validationCustom01" name="assurance_date" disabled />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationCustom01">Monto</label>
+                        <input type="text" id="assurance_amount" class="form-control" id="validationCustom01" name="assurance_amount" disabled />
+                    </div>
+                    <div class="form-btn form-btn-group">
+                        <button class="btn btn-send" id="submitBtn" type="submit" disabled>
+                            <div>Registrar el pago</div>
+                        </button>
+                        <a href="payments_historic.php" class="btn btn-send disabled" id="historicBtn">
+                            <div>Ver histórico</div>
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -229,16 +230,39 @@ if (isset($_REQUEST['candidate'])) {
                 }
             }
         }
+        var months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
         var assuranceNameDisplay = document.getElementById('assurance_name');
         assuranceNameDisplay.value = assuranceName;
         var ipDisplay = document.getElementById('ip');
         ipDisplay.value = ip;
         var dateBegin = document.getElementById('assurance_begin');
-        dateBegin.value = assuranceBegin;
+        if (assuranceBegin !== "No hay póliza registrada para esta gestante") {
+            var day = assuranceBegin.split('-')[2];
+            var month = assuranceBegin.split('-')[1];
+            var year = assuranceBegin.split('-')[0];
+            dateBegin.value = day + '/' + months[parseInt(month) - 1] + '/' + year[2] + year[3];
+        } else {
+            dateBegin.value = assuranceBegin;
+        }
         var dateDisplay = document.getElementById('assurance_date');
-        dateDisplay.value = paymentMsg;
+        if ((paymentMsg !== 'No hay póliza registrada para esta gestante') && (paymentMsg !== 'No hay más pagos programados')) {
+            day = paymentMsg.split('-')[2];
+            month = paymentMsg.split('-')[1];
+            year = paymentMsg.split('-')[0];
+            dateDisplay.value = day + '/' + months[parseInt(month) - 1] + '/' + year[2] + year[3];
+        } else {
+            dateDisplay.value = paymentMsg;
+        }
         var amountDisplay = document.getElementById('assurance_amount');
-        amountDisplay.value = paymentAmount;
+        if (paymentAmount !== 'No hay póliza registrada para esta gestante') {
+            paymentAmount = parseFloat(paymentAmount);
+            let value = parseFloat(paymentAmount);
+            if (!isNaN(value)) {
+                amountDisplay.value = "$" + value.toFixed(2);
+            }
+        } else {
+            amountDisplay.value = paymentAmount;
+        }
         var paymentNumber = document.getElementById('payment_number');
         paymentNumber.value = payment_number;
     }
