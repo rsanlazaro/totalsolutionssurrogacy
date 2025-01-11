@@ -71,7 +71,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
             </div>
         </div>
-        <table class="responsive-table myTable table hover" id="myTable">
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">Usuario</th>
@@ -263,6 +264,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <?php } ?>
             </tbody>
         </table>
+        </div>
     </div>
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {

@@ -375,7 +375,8 @@ for ($j = 1; $j <= $num_pregnants; $j++) {
             ';
         }
     }    
-    $pregnants = $pregnants . '</table><br>';
+    $pregnants = $pregnants . '</table>
+        </div><br>';
 }
 
 $aborts = '';
@@ -448,7 +449,8 @@ for ($j = 1; $j <= $num_aborts; $j++) {
                 <p>Fecha de nacimiento:</p>
             </td>
         </tr>
-    </table><br>';
+    </table>
+        </div><br>';
 }
 
 $family_variables = array(
@@ -622,7 +624,8 @@ for ($i = 1; $i <= 18; $i++) {
 // }
 
 // $family = $family . '</p>';
-$family = $family . '</table>';
+$family = $family . '</table>
+        </div>';
 
 // Sample HTML content
 // $html = '
@@ -879,6 +882,7 @@ $html = '
             </td>
         </tr>
     </table>
+        </div>
     <table class="table">
         <tr>
             <td class="question">
@@ -903,6 +907,7 @@ $html = '
             </td>
         </tr>
     </table>
+        </div>
     <table class="table-c">
         <tr>
             <td class="question td-30">
@@ -925,6 +930,7 @@ $html = '
             </td>
         </tr>
     </table>
+        </div>
     <h2>Datos de la gestante </h2>
     <table class="table">
         <tr>
@@ -1133,6 +1139,7 @@ $html = '
         
         
     </table>
+        </div>
     <h2>Datos de los embarazos</h2>
     <p> Número de embarazos: ' . $num_pregnants . '<br>
     </p>'

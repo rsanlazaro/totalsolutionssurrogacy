@@ -870,7 +870,8 @@ for ($x = 1; $x <= 20; $x++) {
             </div>
         </div>
         <form class="form form-phenotype" action="formEDIT.php" method="post" enctype="multipart/form-data">
-            <table class="responsive-table myTable table hover" id="myTable">
+            <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Antecedente</th>
@@ -1531,6 +1532,7 @@ for ($x = 1; $x <= 20; $x++) {
                     </tr>
                 </tbody>
             </table>
+        </div>
             <input type="hidden" name="id" value="<?php echo $id ?>">
             <input type="hidden" name="pregnancyNum" value="<?php echo $pregnancyNum ?>">
             <input type="hidden" name="form_curp" value="<?php echo $form_curp ?>">

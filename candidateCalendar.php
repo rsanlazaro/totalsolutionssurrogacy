@@ -77,7 +77,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div> -->
 
     <div class="container lab-pagination">
-        <table class="responsive-table myTable table hover" id="myTable">
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Esquema</th>
@@ -96,7 +97,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        <table class="responsive-table myTable table hover" id="myTable">
+        </div>
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -135,8 +138,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
+        </div>
 
-        <table class="responsive-table myTable table hover" id="myTable">
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -199,8 +204,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
+        </div>
 
-        <table class="responsive-table myTable table hover" id="myTable">
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -290,8 +297,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
+        </div>
 
-        <table class="responsive-table myTable table hover" id="myTable">
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover myTable" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -370,6 +379,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
+        </div>
         <div class="menu-users">
             <div class="logout">
                 <a href="logout.php">
