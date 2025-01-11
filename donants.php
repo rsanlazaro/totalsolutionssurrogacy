@@ -71,8 +71,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
             </div>
         </div>
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">ID</th>
@@ -199,7 +198,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <?php } ?>
             </tbody>
         </table>
-        </div>
     </div>
 
     <script language="JavaScript" type="text/javascript">
@@ -220,7 +218,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         const filter = document.querySelector('#searchBox').value;
 
         let options = {
-            numberPerPage: 10, //Cantidad de datos por pagina
+            numberPerPage: 30, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
         };

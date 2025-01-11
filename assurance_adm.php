@@ -332,7 +332,7 @@ $date_today = new DateTime();
     <!-- Pagination -->
     <script>
         let options = {
-            numberPerPage: 10, //Cantidad de datos por pagina
+            numberPerPage: 30, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
         };

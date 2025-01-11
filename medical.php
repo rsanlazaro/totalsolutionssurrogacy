@@ -265,8 +265,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
             </div>
         </div>
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th onclick="sortTable(0)">Enfermedad </th>
@@ -502,7 +501,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
         <div class="return-button">
             <a href=<?php echo "returnCatalogo.php?id=" . $id ?>>Regresar</a>
         </div>

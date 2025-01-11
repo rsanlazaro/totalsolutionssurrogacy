@@ -77,8 +77,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div> -->
 
     <div class="container lab-pagination">
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Esquema</th>
@@ -97,9 +96,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -138,10 +135,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
 
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -204,10 +199,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
 
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -297,10 +290,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
 
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+        <table class="responsive-table myTable table hover" id="myTable">
             <thead>
                 <tr class="thead">
                     <th>Concepto</th>
@@ -379,7 +370,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </tr>
             </tbody>
         </table>
-        </div>
         <div class="menu-users">
             <div class="logout">
                 <a href="logout.php">
@@ -398,7 +388,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <!-- Pagination -->
     <script>
         let options = {
-            numberPerPage: 10, //Cantidad de datos por pagina
+            numberPerPage: 30, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
         };

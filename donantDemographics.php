@@ -156,8 +156,7 @@ if ($result->num_rows > 0) {
     <div class="container lab-pagination">
         <form class="form" action="updateDemographics.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $id ?>">
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th onclick="sortTable(0)">Problemas médicos</th>
@@ -662,7 +661,6 @@ if ($result->num_rows > 0) {
                     </tr>
                 </tbody>
             </table>
-        </div>
             <input type="hidden" value=<?php echo $code ?> name="code"/>
             <div class="form-btn">
                 <button class="btn btn-send" type="submit">
@@ -688,7 +686,7 @@ if ($result->num_rows > 0) {
     <!-- Pagination -->
     <script>
         let options = {
-            numberPerPage: 10, //Cantidad de datos por pagina
+            numberPerPage: 30, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
         };

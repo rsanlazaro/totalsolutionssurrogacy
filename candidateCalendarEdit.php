@@ -129,8 +129,7 @@ if (!($_SESSION['login'])) {
     </div> -->
     <form class="form-edit" action="" method="POST">
         <div class="container lab-pagination">
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Esquema</th>
@@ -149,9 +148,7 @@ if (!($_SESSION['login'])) {
                     </tr>
                 </tbody>
             </table>
-        </div>
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Concepto</th>
@@ -193,10 +190,8 @@ if (!($_SESSION['login'])) {
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Concepto</th>
@@ -250,10 +245,8 @@ if (!($_SESSION['login'])) {
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Concepto</th>
@@ -352,10 +345,8 @@ if (!($_SESSION['login'])) {
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-            <div class="content table-responsive table-full-width">
-            <table class="table table-hover myTable" id="myTable">
+            <table class="responsive-table myTable table hover" id="myTable">
                 <thead>
                     <tr class="thead">
                         <th>Concepto</th>
@@ -426,7 +417,6 @@ if (!($_SESSION['login'])) {
                 </tbody>
             </table>
         </div>
-        </div>
         <div class="form-btn btn-arrange">
             <button class="btn btn-send" type="submit">
                 <div>Finalizar</div>
@@ -443,7 +433,7 @@ if (!($_SESSION['login'])) {
     <!-- Pagination -->
     <script>
         let options = {
-            numberPerPage: 10, //Cantidad de datos por pagina
+            numberPerPage: 30, //Cantidad de datos por pagina
             goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
         };
