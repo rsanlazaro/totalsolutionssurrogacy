@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // session_start();
 include "includes/app.php";
 $conn = connectDB();
-$form_recluter = $_SESSION['user'];
+if (($_SESSION['type'] == 'super-admin') || ($_SESSION['type'] == 'admin')) { $form_recluter = $_SESSION['user'] . " (Interno)"; } else { $form_recluter = $_SESSION['user']; }
 
 if (!isset($_SESSION['login'])) {
     header('location: /index.php');

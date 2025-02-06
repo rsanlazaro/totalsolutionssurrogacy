@@ -65,11 +65,11 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php } ?>
     </p>
     <div class="menu-users">
-        <!-- <div class="create-user">
-            <a href="registrationUser.php">
-                Nuevo Perfil
+        <div class="create-user">
+            <a href="form.php">
+                Nueva Candidata
             </a>
-        </div> -->
+        </div>
         <div class="logout">
             <a href="logout.php">
                 Cerrar sesión
