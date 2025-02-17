@@ -51,6 +51,22 @@ while ($row = mysqli_fetch_assoc($result)) {
     $form_surgery_info = $row['form_surgery_info'];
     $form_curp = $row['form_curp'];
     $form_recluter = $row['form_recluter'];
+    $form_city = $row['form_city'];
+    $form_study = $row['form_study'];
+    $form_hobbies = $row['form_hobbies'];
+    $form_alergies = $row['form_alergies'];
+    $form_description_auto = $row['form_description_auto'];
+    $form_description_others = $row['form_description_others'];
+    $form_covid_vaccines = $row['form_covid_vaccines'];
+    $form_reason = $row['form_reason'];
+    $form_adiction = $row['form_adiction'];
+    $form_prison = $row['form_prison'];
+    $form_license = $row['form_license'];
+    $form_car = $row['form_car'];
+    $form_pregnancy_description = $row['form_pregnancy_description'];
+    $form_ectopic_pregnancy = $row['form_ectopic_pregnancy'];
+    $form_last_pregnancy = $row['form_last_pregnancy'];
+    $form_last_birth = $row['form_last_birth'];
 }
 
 $sql = "SELECT * FROM pregnants WHERE candidateId={$id}";
@@ -119,6 +135,45 @@ while ($row = mysqli_fetch_assoc(($result))) {
     $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
     $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
     $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
+    $form_age_pregnant_1 = $row['form_age_pregnant_1'];
+    $form_age_pregnant_2 = $row['form_age_pregnant_2'];
+    $form_age_pregnant_3 = $row['form_age_pregnant_3'];
+    $form_age_pregnant_4 = $row['form_age_pregnant_4'];
+    $form_age_pregnant_5 = $row['form_age_pregnant_5'];
+    $form_age_pregnant_6 = $row['form_age_pregnant_6'];
+    $form_genre_pregnant_1 = $row['form_genre_pregnant_1'];
+    $form_genre_pregnant_2 = $row['form_genre_pregnant_2'];
+    $form_genre_pregnant_3 = $row['form_genre_pregnant_3'];
+    $form_genre_pregnant_4 = $row['form_genre_pregnant_4'];
+    $form_genre_pregnant_5 = $row['form_genre_pregnant_5'];
+    $form_genre_pregnant_6 = $row['form_genre_pregnant_6'];
+    $form_type_pregnant_s_1 = $row['form_type_pregnant_s_1'];
+    $form_height_pregnant_s_1 = $row['form_height_pregnant_s_1'];
+    $form_weight_pregnant_s_1 = $row['form_weight_pregnant_s_1'];
+    $form_term_pregnant_s_1 = $row['form_term_pregnant_s_1'];
+    $form_week_pregnant_s_1 = $row['form_week_pregnant_s_1'];
+    $form_year_pregnant_s_1 = $row['form_year_pregnant_s_1'];
+    $form_comments_pregnant_s_1 = $row['form_comments_pregnant_s_1'];
+    $form_type_pregnant_s_2 = $row['form_type_pregnant_s_2'];
+    $form_height_pregnant_s_2 = $row['form_height_pregnant_s_2'];
+    $form_weight_pregnant_s_2 = $row['form_weight_pregnant_s_2'];
+    $form_term_pregnant_s_2 = $row['form_term_pregnant_s_2'];
+    $form_week_pregnant_s_2 = $row['form_week_pregnant_s_2'];
+    $form_year_pregnant_s_2 = $row['form_year_pregnant_s_2'];
+    $form_comments_pregnant_s_2 = $row['form_comments_pregnant_s_2'];
+    $form_type_pregnant_s_3 = $row['form_type_pregnant_s_3'];
+    $form_height_pregnant_s_3 = $row['form_height_pregnant_s_3'];
+    $form_weight_pregnant_s_3 = $row['form_weight_pregnant_s_3'];
+    $form_term_pregnant_s_3 = $row['form_term_pregnant_s_3'];
+    $form_week_pregnant_s_3 = $row['form_week_pregnant_s_3'];
+    $form_year_pregnant_s_3 = $row['form_year_pregnant_s_3'];
+    $form_comments_pregnant_s_3 = $row['form_comments_pregnant_s_3'];
+    $form_age_pregnant_s_1 = $row['form_age_pregnant_s_1'];
+    $form_age_pregnant_s_2 = $row['form_age_pregnant_s_2'];
+    $form_age_pregnant_s_3 = $row['form_age_pregnant_s_3'];
+    $form_genre_pregnant_s_1 = $row['form_genre_pregnant_s_1'];
+    $form_genre_pregnant_s_2 = $row['form_genre_pregnant_s_2'];
+    $form_genre_pregnant_s_3 = $row['form_genre_pregnant_s_3'];
 }
 
 $codes_array = array(
@@ -204,6 +259,23 @@ if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_p
     $num_pregnants = $num_pregnants;
 } else {
     $num_pregnants = $num_pregnants + 1;
+}
+
+$num_surrogacy = 0;
+if ($form_week_pregnant_s_1 == 0 && $form_year_pregnant_s_1 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_2 == 0 && $form_year_pregnant_s_2 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_3 == 0 && $form_year_pregnant_s_3 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
 }
 
 $num_aborts = 0;
@@ -725,6 +797,134 @@ $family_diseases = array(
                 </div>
             <?php } ?>
         </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Ciudad de residencia: <?php echo $form_city; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Nivel de estudios: <?php echo $form_study; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Hobbies: <?php echo $form_hobbies; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Alergias: <?php echo $form_alergies; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Cómo te describes a ti misma?: <?php echo $form_description_auto; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Cómo te describen otros?: <?php echo $form_description_others; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Tienes vacunas contra el COVID 19?: <?php echo $form_covid_vaccines; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Por qué decidiste convertirte en gestaste subrogada?: <?php echo $form_reason; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Tienes problemas de adicciones?: <?php echo $form_adiction; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Has estado en prisión?: <?php echo $form_prison; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Tienes licencia para conducir?: <?php echo $form_license; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        ¿Tienes auto?: <?php echo $form_car; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Describe tus embarazos: <?php echo $form_pregnancy_description; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Número de embarazos ectópicos: <?php echo $form_ectopic_pregnancy; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Fecha del último embarazo: <?php echo $form_last_pregnancy; ?>
+                    </div>
+                </label>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationDefault01">
+                    <div class="spanish">
+                        Fecha de la última vez que diste a luz: <?php echo $form_last_birth; ?>
+                    </div>
+                </label>
+            </div>
+        </div>
         <?php if ($num_pregnants > 0) { ?>
             <div class="form-characteristics">
                 <div class="form-subtitle form-white">
@@ -778,13 +978,27 @@ $family_diseases = array(
                 </div>
             </div>
             <div class="form-top">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <label for="validationDefault01">
                         <div class="spanish">
                             Comentarios del embarazo 1: <?php echo $form_comments_pregnant_1; ?>
                         </div>
                     </label>
                 </div>
+                <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 1: <?php echo $form_age_pregnant_1; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Género del embarazo 1: <?php echo $form_genre_pregnant_1; ?>
+                            </div>
+                        </label>
+                    </div>
             </div>
             <div class="form-top">
                 <div class="col-md-12">
@@ -863,10 +1077,24 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del embarazo 2: <?php echo $form_comments_pregnant_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 2: <?php echo $form_age_pregnant_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault02">
+                            <div class="spanish">
+                                Género del embarazo 2: <?php echo $form_genre_pregnant_2; ?>
                             </div>
                         </label>
                     </div>
@@ -934,10 +1162,24 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del embarazo 3: <?php echo $form_comments_pregnant_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 3: <?php echo $form_age_pregnant_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault03">
+                            <div class="spanish">
+                                Género del embarazo 3: <?php echo $form_genre_pregnant_3; ?>
                             </div>
                         </label>
                     </div>
@@ -1005,10 +1247,24 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del embarazo 4: <?php echo $form_comments_pregnant_4; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 4: <?php echo $form_age_pregnant_4; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault04">
+                            <div class="spanish">
+                                Género del embarazo 4: <?php echo $form_genre_pregnant_4; ?>
                             </div>
                         </label>
                     </div>
@@ -1076,10 +1332,24 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del embarazo 5: <?php echo $form_comments_pregnant_5; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 5: <?php echo $form_age_pregnant_5; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault05">
+                            <div class="spanish">
+                                Género del embarazo 5: <?php echo $form_genre_pregnant_5; ?>
                             </div>
                         </label>
                     </div>
@@ -1147,10 +1417,24 @@ $family_diseases = array(
                     </div>
                 </div>
                 <div class="form-top">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <label for="validationDefault01">
                             <div class="spanish">
                                 Comentarios del embarazo 6: <?php echo $form_comments_pregnant_6; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 6: <?php echo $form_age_pregnant_6; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault06">
+                            <div class="spanish">
+                                Género del embarazo 6: <?php echo $form_genre_pregnant_6; ?>
                             </div>
                         </label>
                     </div>
@@ -1163,6 +1447,281 @@ $family_diseases = array(
                             </div>
                             <?php for ($i = 1; $i <= 20; $i++) {
                                 if (${"codes_6_$i"} == 2) {
+                                    echo "<div>" .  $codes_array[$i - 1] . "</div>";
+                                }
+                            } ?>
+                        </label>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+        <?php if ($num_surrogacy > 0) { ?>
+            <div class="form-characteristics">
+                <div class="form-subtitle form-white">
+                    <div class="spanish">Datos de los embarazos por gestación subrogada</div>
+                </div>
+            </div>
+            <div class="form-top">
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Embarazo 1: <?php echo $form_type_pregnant_s_1; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Altura del embarazo 1: <?php echo $form_height_pregnant_s_1 . " m"; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Peso del embarazo 1: <?php echo $form_weight_pregnant_s_1 . " kg"; ?>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="form-top">
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Término del embarazo 1: <?php echo $form_term_pregnant_s_1; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Semana del embarazo 1: <?php echo $form_week_pregnant_s_1; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Año del embarazo 1: <?php echo $form_year_pregnant_s_1; ?>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="form-top">
+                <div class="col-md-4">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Comentarios del embarazo 1: <?php echo $form_comments_pregnant_s_1; ?>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 1: <?php echo $form_age_pregnant_s_1; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Género del embarazo 1: <?php echo $form_genre_pregnant_s_1; ?>
+                            </div>
+                        </label>
+                    </div>
+            </div>
+            <div class="form-top">
+                <div class="col-md-12">
+                    <label for="validationDefault01">
+                        <div class="spanish">
+                            Datos relacionados con el embarazo 1:
+                        </div>
+                        <?php for ($i = 1; $i <= 20; $i++) {
+                            if (${"codes_1_$i"} == 2) {
+                                if (
+                                    $codes_array[$i - 1] == "Hemorragia obstétrica" ||
+                                    $codes_array[$i - 1] == "Obesidad con IMC > 37" ||
+                                    $codes_array[$i - 1] == "Obesidad con IMC > 37" ||
+                                    $codes_array[$i - 1] == "Comorbilidades preexistentes que compliquen el embarazo y al neonato (endocrinológicas, cardiológicas e inmunológicas)" ||
+                                    $codes_array[$i - 1] == "Enfermedades hipertensivas" ||
+                                    $codes_array[$i - 1] == "Enfermedades infectocontagiosas (VIH, Hepatitis B y C)" ||
+                                    $codes_array[$i - 1] == "Sepsis" ||
+                                    $codes_array[$i - 1] == "Síndrome de Hellp" ||
+                                    $codes_array[$i - 1] == "Sospecha de placenta acreta o placenta percreta" ||
+                                    $codes_array[$i - 1] == "Sin control prenatal en los embarazos"
+                                ) {
+                                    echo "<div class='red-label'>" .  $codes_array[$i - 1] . "</div>";
+                                } else {
+                                    echo "<div class='yellow-label'>" .  $codes_array[$i - 1] . "</div>";
+                                }
+                            }
+                        } ?>
+                    </label>
+                </div>
+            </div>
+            <?php if ($num_surrogacy > 1) { ?>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Embarazo 2: <?php echo $form_type_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Altura del embarazo 2: <?php echo $form_height_pregnant_s_2 . " m"; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso del embarazo 2: <?php echo $form_weight_pregnant_s_2 . " kg"; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Término del embarazo 2: <?php echo $form_term_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Semana del embarazo 2: <?php echo $form_week_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Año del embarazo 2: <?php echo $form_year_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Comentarios del embarazo 2: <?php echo $form_comments_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 2: <?php echo $form_age_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault02">
+                            <div class="spanish">
+                                Género del embarazo 2: <?php echo $form_genre_pregnant_s_2; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-12">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Datos relacionados con el embarazo 2:
+                            </div>
+                            <?php for ($i = 1; $i <= 20; $i++) {
+                                if (${"codes_2_$i"} == 2) {
+                                    echo "<div>" .  $codes_array[$i - 1] . "</div>";
+                                }
+                            } ?>
+                        </label>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php if ($num_surrogacy > 2) { ?>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Embarazo 3: <?php echo $form_type_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Altura del embarazo 3: <?php echo $form_height_pregnant_s_3 . " m"; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso del embarazo 3: <?php echo $form_weight_pregnant_s_3 . " kg"; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Término del embarazo 3: <?php echo $form_term_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Semana del embarazo 3: <?php echo $form_week_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Año del embarazo 3: <?php echo $form_year_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Comentarios del embarazo 3: <?php echo $form_comments_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Edad 3: <?php echo $form_age_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault03">
+                            <div class="spanish">
+                                Género del embarazo 3: <?php echo $form_genre_pregnant_s_3; ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-12">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Datos relacionados con el embarazo 3:
+                            </div>
+                            <?php for ($i = 1; $i <= 20; $i++) {
+                                if (${"codes_3_$i"} == 2) {
                                     echo "<div>" .  $codes_array[$i - 1] . "</div>";
                                 }
                             } ?>
@@ -1458,6 +2017,61 @@ $family_diseases = array(
         <input type="hidden" name="family_deaf" value="<?php echo $family_deaf ?>">
         <input type="hidden" name="family_alzheimer" value="<?php echo $family_alzheimer ?>">
         <input type="hidden" name="family_parkinson" value="<?php echo $family_parkinson ?>">
+        <input type="hidden" name="form_city" value="<?php echo $form_city ?>">
+            <input type="hidden" name="form_study" value="<?php echo $form_study ?>">
+            <input type="hidden" name="form_hobbies" value="<?php echo $form_hobbies ?>">
+            <input type="hidden" name="form_alergies" value="<?php echo $form_alergies ?>">
+            <input type="hidden" name="form_description_auto" value="<?php echo $form_description_auto ?>">
+            <input type="hidden" name="form_description_others" value="<?php echo $form_description_others ?>">
+            <input type="hidden" name="form_covid_vaccines" value="<?php echo $form_covid_vaccines ?>">
+            <input type="hidden" name="form_reason" value="<?php echo $form_reason ?>">
+            <input type="hidden" name="form_adiction" value="<?php echo $form_adiction ?>">
+            <input type="hidden" name="form_prison" value="<?php echo $form_prison ?>">
+            <input type="hidden" name="form_license" value="<?php echo $form_license ?>">
+            <input type="hidden" name="form_car" value="<?php echo $form_car ?>">
+            <input type="hidden" name="form_pregnancy_description" value="<?php echo $form_pregnancy_description ?>">
+            <input type="hidden" name="form_ectopic_pregnancy" value="<?php echo $form_ectopic_pregnancy ?>">
+            <input type="hidden" name="form_last_pregnancy" value="<?php echo $form_last_pregnancy ?>">
+            <input type="hidden" name="form_last_birth" value="<?php echo $form_last_birth ?>">
+            <input type="hidden" name="form_age_pregnant_1" value="<?php echo $form_age_pregnant_1 ?>">
+            <input type="hidden" name="form_age_pregnant_2" value="<?php echo $form_age_pregnant_2 ?>">
+            <input type="hidden" name="form_age_pregnant_3" value="<?php echo $form_age_pregnant_3 ?>">
+            <input type="hidden" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>">
+            <input type="hidden" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>">
+            <input type="hidden" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>">
+            <input type="hidden" name="form_genre_pregnant_1" value="<?php echo $form_genre_pregnant_1 ?>">
+            <input type="hidden" name="form_genre_pregnant_2" value="<?php echo $form_genre_pregnant_2 ?>">
+            <input type="hidden" name="form_genre_pregnant_3" value="<?php echo $form_genre_pregnant_3 ?>">
+            <input type="hidden" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>">
+            <input type="hidden" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>">
+            <input type="hidden" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>">
+            <input type="hidden" name="form_type_pregnant_s_1" value="<?php echo $form_type_pregnant_s_1 ?>">
+            <input type="hidden" name="form_height_pregnant_s_1" value="<?php echo $form_height_pregnant_s_1 ?>">
+            <input type="hidden" name="form_weight_pregnant_s_1" value="<?php echo $form_weight_pregnant_s_1 ?>">
+            <input type="hidden" name="form_term_pregnant_s_1" value="<?php echo $form_term_pregnant_s_1 ?>">
+            <input type="hidden" name="form_week_pregnant_s_1" value="<?php echo $form_week_pregnant_s_1 ?>">
+            <input type="hidden" name="form_year_pregnant_s_1" value="<?php echo $form_year_pregnant_s_1 ?>">
+            <input type="hidden" name="form_comments_pregnant_s_1" value="<?php echo $form_comments_pregnant_s_1 ?>">
+            <input type="hidden" name="form_type_pregnant_s_2" value="<?php echo $form_type_pregnant_s_2 ?>">
+            <input type="hidden" name="form_height_pregnant_s_2" value="<?php echo $form_height_pregnant_s_2 ?>">
+            <input type="hidden" name="form_weight_pregnant_s_2" value="<?php echo $form_weight_pregnant_s_2 ?>">
+            <input type="hidden" name="form_term_pregnant_s_2" value="<?php echo $form_term_pregnant_s_2 ?>">
+            <input type="hidden" name="form_week_pregnant_s_2" value="<?php echo $form_week_pregnant_s_2 ?>">
+            <input type="hidden" name="form_year_pregnant_s_2" value="<?php echo $form_year_pregnant_s_2 ?>">
+            <input type="hidden" name="form_comments_pregnant_s_2" value="<?php echo $form_comments_pregnant_s_2 ?>">
+            <input type="hidden" name="form_type_pregnant_s_3" value="<?php echo $form_type_pregnant_s_3 ?>">
+            <input type="hidden" name="form_height_pregnant_s_3" value="<?php echo $form_height_pregnant_s_3 ?>">
+            <input type="hidden" name="form_weight_pregnant_s_3" value="<?php echo $form_weight_pregnant_s_3 ?>">
+            <input type="hidden" name="form_term_pregnant_s_3" value="<?php echo $form_term_pregnant_s_3 ?>">
+            <input type="hidden" name="form_week_pregnant_s_3" value="<?php echo $form_week_pregnant_s_3 ?>">
+            <input type="hidden" name="form_year_pregnant_s_3" value="<?php echo $form_year_pregnant_s_3 ?>">
+            <input type="hidden" name="form_comments_pregnant_s_3" value="<?php echo $form_comments_pregnant_s_3 ?>">
+            <input type="hidden" name="form_age_pregnant_s_1" value="<?php echo $form_age_pregnant_s_1 ?>">
+            <input type="hidden" name="form_age_pregnant_s_2" value="<?php echo $form_age_pregnant_s_2 ?>">
+            <input type="hidden" name="form_age_pregnant_s_3" value="<?php echo $form_age_pregnant_s_3 ?>">
+            <input type="hidden" name="form_genre_pregnant_s_1" value="<?php echo $form_genre_pregnant_s_1 ?>">
+            <input type="hidden" name="form_genre_pregnant_s_2" value="<?php echo $form_genre_pregnant_s_2 ?>">
+            <input type="hidden" name="form_genre_pregnant_s_3" value="<?php echo $form_genre_pregnant_s_3 ?>">
         <div class="form-btn btn-arrange">
             <button class="btn btn-send" type="submit">
                 <div>Generar PDF</div>

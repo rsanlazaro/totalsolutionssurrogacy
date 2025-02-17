@@ -48,6 +48,24 @@ while ($row = mysqli_fetch_assoc($result)) {
     $form_fracture_info = $row['form_fracture_info'];
     $form_surgery_info = $row['form_surgery_info'];
     $form_scheme = $row['form_scheme'];
+    $form_curp = $row['form_curp'];
+    $form_recluter = $row['form_recluter'];
+    $form_city = $row['form_city'];
+    $form_study = $row['form_study'];
+    $form_hobbies = $row['form_hobbies'];
+    $form_alergies = $row['form_alergies'];
+    $form_description_auto = $row['form_description_auto'];
+    $form_description_others = $row['form_description_others'];
+    $form_covid_vaccines = $row['form_covid_vaccines'];
+    $form_reason = $row['form_reason'];
+    $form_adiction = $row['form_adiction'];
+    $form_prison = $row['form_prison'];
+    $form_license = $row['form_license'];
+    $form_car = $row['form_car'];
+    $form_pregnancy_description = $row['form_pregnancy_description'];
+    $form_ectopic_pregnancy = $row['form_ectopic_pregnancy'];
+    $form_last_pregnancy = $row['form_last_pregnancy'];
+    $form_last_birth = $row['form_last_birth'];
 }
 
 $sql = "SELECT * FROM pregnants WHERE candidateId={$id}";
@@ -116,6 +134,45 @@ while ($row = mysqli_fetch_assoc(($result))) {
     $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
     $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
     $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
+    $form_age_pregnant_1 = $row['form_age_pregnant_1'];
+    $form_age_pregnant_2 = $row['form_age_pregnant_2'];
+    $form_age_pregnant_3 = $row['form_age_pregnant_3'];
+    $form_age_pregnant_4 = $row['form_age_pregnant_4'];
+    $form_age_pregnant_5 = $row['form_age_pregnant_5'];
+    $form_age_pregnant_6 = $row['form_age_pregnant_6'];
+    $form_genre_pregnant_1 = $row['form_genre_pregnant_1'];
+    $form_genre_pregnant_2 = $row['form_genre_pregnant_2'];
+    $form_genre_pregnant_3 = $row['form_genre_pregnant_3'];
+    $form_genre_pregnant_4 = $row['form_genre_pregnant_4'];
+    $form_genre_pregnant_5 = $row['form_genre_pregnant_5'];
+    $form_genre_pregnant_6 = $row['form_genre_pregnant_6'];
+    $form_type_pregnant_s_1 = $row['form_type_pregnant_s_1'];
+    $form_height_pregnant_s_1 = $row['form_height_pregnant_s_1'];
+    $form_weight_pregnant_s_1 = $row['form_weight_pregnant_s_1'];
+    $form_term_pregnant_s_1 = $row['form_term_pregnant_s_1'];
+    $form_week_pregnant_s_1 = $row['form_week_pregnant_s_1'];
+    $form_year_pregnant_s_1 = $row['form_year_pregnant_s_1'];
+    $form_comments_pregnant_s_1 = $row['form_comments_pregnant_s_1'];
+    $form_type_pregnant_s_2 = $row['form_type_pregnant_s_2'];
+    $form_height_pregnant_s_2 = $row['form_height_pregnant_s_2'];
+    $form_weight_pregnant_s_2 = $row['form_weight_pregnant_s_2'];
+    $form_term_pregnant_s_2 = $row['form_term_pregnant_s_2'];
+    $form_week_pregnant_s_2 = $row['form_week_pregnant_s_2'];
+    $form_year_pregnant_s_2 = $row['form_year_pregnant_s_2'];
+    $form_comments_pregnant_s_2 = $row['form_comments_pregnant_s_2'];
+    $form_type_pregnant_s_3 = $row['form_type_pregnant_s_3'];
+    $form_height_pregnant_s_3 = $row['form_height_pregnant_s_3'];
+    $form_weight_pregnant_s_3 = $row['form_weight_pregnant_s_3'];
+    $form_term_pregnant_s_3 = $row['form_term_pregnant_s_3'];
+    $form_week_pregnant_s_3 = $row['form_week_pregnant_s_3'];
+    $form_year_pregnant_s_3 = $row['form_year_pregnant_s_3'];
+    $form_comments_pregnant_s_3 = $row['form_comments_pregnant_s_3'];
+    $form_age_pregnant_s_1 = $row['form_age_pregnant_s_1'];
+    $form_age_pregnant_s_2 = $row['form_age_pregnant_s_2'];
+    $form_age_pregnant_s_3 = $row['form_age_pregnant_s_3'];
+    $form_genre_pregnant_s_1 = $row['form_genre_pregnant_s_1'];
+    $form_genre_pregnant_s_2 = $row['form_genre_pregnant_s_2'];
+    $form_genre_pregnant_s_3 = $row['form_genre_pregnant_s_3'];
 }
 
 $codes_array = array(
@@ -218,6 +275,23 @@ if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
     $num_aborts = $num_aborts;
 } else {
     $num_aborts = $num_aborts + 1;
+}
+
+$num_surrogacy = 0;
+if ($form_week_pregnant_s_1 == 0 && $form_year_pregnant_s_1 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_2 == 0 && $form_year_pregnant_s_2 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_3 == 0 && $form_year_pregnant_s_3 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
 }
 
 $sql = "SELECT * FROM family WHERE candidateId={$id}";
@@ -347,7 +421,6 @@ $family_diseases = array(
     "Parkinson"
 );
 
-echo $num_aborts;
 ?>
 <main class="register">
     <div class="register-info">
@@ -442,6 +515,30 @@ echo $num_aborts;
                 <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_birth_place" value="<?php echo $form_birth_place; ?>" />
                 <div class="invalid-feedback">
                     <div>Ingrese el lugar de nacimiento</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="form_city">
+                    <div class="spanish">
+                        Ciudad de residencia:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_city" name="form_city" value="<?php echo $form_city; ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese la ciudad de residencia</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_study">
+                    <div class="spanish">
+                        Nivel de estudios:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_study" name="form_study" value="<?php echo $form_study; ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese el Nivel de estudios</div>
                 </div>
             </div>
         </div>
@@ -672,6 +769,214 @@ echo $num_aborts;
                 </div>
             </div>
         </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="form_hobbies">
+                    <div class="spanish">
+                        Hobbies:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_hobbies" name="form_hobbies" value="<?php echo $form_hobbies ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese los Hobbies</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_alergies">
+                    <div class="spanish">
+                        Alergias:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_alergies" name="form_alergies" value="<?php echo $form_alergies ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese las Alergias</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="form_description_auto">
+                    <div class="spanish">
+                        Autodescripción:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_description_auto" name="form_description_auto" value="<?php echo $form_description_auto ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese la Autodescripción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_description_others">
+                    <div class="spanish">
+                        Descripción de otros:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_description_others" name="form_description_others" value="<?php echo $form_description_others ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese el Descripción de otros</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Vacunas COVID:
+                    </div>
+                </label>
+                <select name="form_covid_vaccines">
+                <?php if ($form_covid_vaccines == "sí") { ?>
+                        <option value="sí" selected>Sí</option>
+                            <option value="no">No</option>
+                        <?php } elseif ($form_covid_vaccines == "no") { ?>
+                            <option value="sí">Sí</option>
+                            <option value="no" selected>No</option>
+                        <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Seleccione una opción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_reason">
+                    <div class="spanish">
+                        Motivo para ser gestante subrogada:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_reason" name="form_reason" value="<?php echo $form_reason ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese el motivo</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Problemas de adicción:
+                    </div>
+                </label>
+                <select name="form_adiction">
+                <?php if ($form_adiction == "sí") { ?>
+                        <option value="sí" selected>Sí</option>
+                            <option value="no">No</option>
+                        <?php } elseif ($form_adiction == "no") { ?>
+                            <option value="sí">Sí</option>
+                            <option value="no" selected>No</option>
+                        <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Seleccione una opción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Ha estado en prisión:
+                    </div>
+                </label>
+                <select name="form_prison">
+                <?php if ($form_prison == "sí") { ?>
+                        <option value="sí" selected>Sí</option>
+                            <option value="no">No</option>
+                        <?php } elseif ($form_prison == "no") { ?>
+                            <option value="sí">Sí</option>
+                            <option value="no" selected>No</option>
+                        <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Seleccione una opción</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Tiene licencia para conducir:
+                    </div>
+                </label>
+                <select name="form_license">
+                <?php if ($form_license == "sí") { ?>
+                        <option value="sí" selected>Sí</option>
+                            <option value="no">No</option>
+                        <?php } elseif ($form_license == "no") { ?>
+                            <option value="sí">Sí</option>
+                            <option value="no" selected>No</option>
+                        <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Seleccione una opción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="validationCustom01">
+                    <div class="spanish">
+                        Tiene carro:
+                    </div>
+                </label>
+                <select name="form_car">
+                <?php if ($form_car == "sí") { ?>
+                        <option value="sí" selected>Sí</option>
+                            <option value="no">No</option>
+                        <?php } elseif ($form_car == "no") { ?>
+                            <option value="sí">Sí</option>
+                            <option value="no" selected>No</option>
+                        <?php } ?>
+                </select>
+                <div class="invalid-feedback">
+                    <div>Seleccione una opción</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="form_pregnancy_description">
+                    <div class="spanish">
+                        Describe tus embarazos:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_pregnancy_description" name="form_pregnancy_description" value="<?php echo $form_pregnancy_description ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese la descripción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_ectopic_pregnancy">
+                    <div class="spanish">
+                        Número de embarazos ectópicos:
+                    </div>
+                </label>
+                <input type="number" class="form-control-phenotype" id="form_ectopic_pregnancy" name="form_ectopic_pregnancy" value="<?php echo $form_ectopic_pregnancy ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese el Número de embarazos ectópicos</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-top">
+            <div class="col-md-6 form-top-element">
+                <label for="form_last_pregnancy">
+                    <div class="spanish">
+                        Fecha del último embarazo:
+                    </div>
+                </label>
+                <input type="text" class="form-control-phenotype" id="form_last_pregnancy" name="form_last_pregnancy" value="<?php echo $form_last_pregnancy ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese la descripción</div>
+                </div>
+            </div>
+            <div class="col-md-6 form-top-element">
+                <label for="form_last_birth">
+                    <div class="spanish">
+                        Fecha de la última vez que dio a luz:
+                    </div>
+                </label>
+                <input type="number" class="form-control-phenotype" id="form_last_birth" name="form_last_birth" value="<?php echo $form_last_birth ?>" />
+                <div class="invalid-feedback">
+                    <div>Ingrese el Número de embarazos ectópicos</div>
+                </div>
+            </div>
+        </div>
         <div class="form-characteristics">
             <div class="form-subtitle form-white">
                 <div class="spanish">Antecedentes gineco-obstétricos</div>
@@ -791,6 +1096,28 @@ echo $num_aborts;
                         <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_1" value="<?php echo $form_comments_pregnant_1 ?>" />
                         <div class="invalid-feedback">
                             <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    <label for="validationCustom01">
+                        <div class="spanish">
+                            Edad:
+                        </div>
+                    </label>
+                    <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_1" value="<?php echo $form_age_pregnant_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_1" value="<?php echo $form_genre_pregnant_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
                         </div>
                     </div>
                 </div>
@@ -916,6 +1243,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_2" value="<?php echo $form_age_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_2" value="<?php echo $form_genre_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <?php if ($num_pregnants > 2) { ?>
@@ -1039,6 +1388,28 @@ echo $num_aborts;
                                     <div>Ingrese algún comentario</div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Edad:
+                                    </div>
+                                </label>
+                                <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_3" value="<?php echo $form_age_pregnant_3 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la edad</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Género:
+                                    </div>
+                                </label>
+                                <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_3" value="<?php echo $form_genre_pregnant_3 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el género</div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                     <?php if ($num_pregnants > 3) { ?>
@@ -1162,6 +1533,28 @@ echo $num_aborts;
                                         <div>Ingrese algún comentario</div>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Edad:
+                                        </div>
+                                    </label>
+                                    <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese la edad</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Género:
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el género</div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                         <?php if ($num_pregnants > 4) { ?>
@@ -1285,6 +1678,28 @@ echo $num_aborts;
                                             <div>Ingrese algún comentario</div>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Edad:
+                                            </div>
+                                        </label>
+                                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese la edad</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Género:
+                                            </div>
+                                        </label>
+                                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese el género</div>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <?php if ($num_pregnants > 5) { ?>
@@ -1408,6 +1823,28 @@ echo $num_aborts;
                                                 <div>Ingrese algún comentario</div>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom01">
+                                                <div class="spanish">
+                                                    Edad:
+                                                </div>
+                                            </label>
+                                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                                            <div class="invalid-feedback">
+                                                <div>Ingrese la edad</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom01">
+                                                <div class="spanish">
+                                                    Género:
+                                                </div>
+                                            </label>
+                                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                                            <div class="invalid-feedback">
+                                                <div>Ingrese el género</div>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -1531,6 +1968,28 @@ echo $num_aborts;
                                                 <div>Ingrese algún comentario</div>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom01">
+                                                <div class="spanish">
+                                                    Edad:
+                                                </div>
+                                            </label>
+                                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                                            <div class="invalid-feedback">
+                                                <div>Ingrese la edad</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom01">
+                                                <div class="spanish">
+                                                    Género:
+                                                </div>
+                                            </label>
+                                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                                            <div class="invalid-feedback">
+                                                <div>Ingrese el género</div>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             <?php } ?>
@@ -1655,6 +2114,28 @@ echo $num_aborts;
                                             <div>Ingrese algún comentario</div>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Edad:
+                                            </div>
+                                        </label>
+                                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese la edad</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Género:
+                                            </div>
+                                        </label>
+                                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese el género</div>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="pregancySection display-none">
@@ -1777,6 +2258,28 @@ echo $num_aborts;
                                             <div>Ingrese algún comentario</div>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Edad:
+                                            </div>
+                                        </label>
+                                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese la edad</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom01">
+                                            <div class="spanish">
+                                                Género:
+                                            </div>
+                                        </label>
+                                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                                        <div class="invalid-feedback">
+                                            <div>Ingrese el género</div>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         <?php } ?>
@@ -1901,6 +2404,28 @@ echo $num_aborts;
                                         <div>Ingrese algún comentario</div>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Edad:
+                                        </div>
+                                    </label>
+                                    <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese la edad</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Género:
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el género</div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="pregancySection display-none">
@@ -2023,6 +2548,28 @@ echo $num_aborts;
                                         <div>Ingrese algún comentario</div>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Edad:
+                                        </div>
+                                    </label>
+                                    <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese la edad</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Género:
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el género</div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="pregancySection display-none">
@@ -2145,6 +2692,28 @@ echo $num_aborts;
                                         <div>Ingrese algún comentario</div>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Edad:
+                                        </div>
+                                    </label>
+                                    <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese la edad</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01">
+                                        <div class="spanish">
+                                            Género:
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                                    <div class="invalid-feedback">
+                                        <div>Ingrese el género</div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                     <?php } ?>
@@ -2269,6 +2838,28 @@ echo $num_aborts;
                                     <div>Ingrese algún comentario</div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Edad:
+                                    </div>
+                                </label>
+                                <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_3" value="<?php echo $form_age_pregnant_3 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la edad</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Género:
+                                    </div>
+                                </label>
+                                <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_3" value="<?php echo $form_genre_pregnant_3 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el género</div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                     <div class="pregancySection display-none">
@@ -2391,6 +2982,28 @@ echo $num_aborts;
                                     <div>Ingrese algún comentario</div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Edad:
+                                    </div>
+                                </label>
+                                <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la edad</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Género:
+                                    </div>
+                                </label>
+                                <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el género</div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                     <div class="pregancySection display-none">
@@ -2513,6 +3126,28 @@ echo $num_aborts;
                                     <div>Ingrese algún comentario</div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Edad:
+                                    </div>
+                                </label>
+                                <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la edad</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Género:
+                                    </div>
+                                </label>
+                                <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el género</div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                     <div class="pregancySection display-none">
@@ -2635,6 +3270,28 @@ echo $num_aborts;
                                     <div>Ingrese algún comentario</div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Edad:
+                                    </div>
+                                </label>
+                                <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese la edad</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom01">
+                                    <div class="spanish">
+                                        Género:
+                                    </div>
+                                </label>
+                                <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                                <div class="invalid-feedback">
+                                    <div>Ingrese el género</div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                 <?php } ?>
@@ -2759,6 +3416,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_2" value="<?php echo $form_age_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_2" value="<?php echo $form_genre_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="pregancySection display-none">
@@ -2881,6 +3560,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_3" value="<?php echo $form_age_pregnant_3 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_3" value="<?php echo $form_genre_pregnant_3 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="pregancySection display-none">
@@ -3003,6 +3704,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="pregancySection display-none">
@@ -3125,6 +3848,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="pregancySection display-none">
@@ -3247,6 +3992,28 @@ echo $num_aborts;
                                 <div>Ingrese algún comentario</div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             <?php } ?>
@@ -3371,6 +4138,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_1" value="<?php echo $form_age_pregnant_1 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_1" value="<?php echo $form_genre_pregnant_1 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
             <div class="pregancySection display-none">
@@ -3471,6 +4260,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_2" value="<?php echo $form_age_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_2" value="<?php echo $form_genre_pregnant_2 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
             <div class="pregancySection display-none">
@@ -3593,6 +4404,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_3" value="<?php echo $form_age_pregnant_3 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_3" value="<?php echo $form_genre_pregnant_3 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
             <div class="pregancySection display-none">
@@ -3715,6 +4548,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_4" value="<?php echo $form_age_pregnant_4 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_4" value="<?php echo $form_genre_pregnant_4 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
             <div class="pregancySection display-none">
@@ -3837,6 +4692,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_5" value="<?php echo $form_age_pregnant_5 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_5" value="<?php echo $form_genre_pregnant_5 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
             <div class="pregancySection display-none">
@@ -3959,6 +4836,28 @@ echo $num_aborts;
                             <div>Ingrese algún comentario</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Edad:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_6" value="<?php echo $form_age_pregnant_6 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese la edad</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Género:
+                                </div>
+                            </label>
+                            <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_6" value="<?php echo $form_genre_pregnant_6 ?>"/>
+                            <div class="invalid-feedback">
+                                <div>Ingrese el género</div>
+                            </div>
+                        </div>                    
                 </div>
             </div>
         <?php } ?>
@@ -4781,6 +5680,1181 @@ echo $num_aborts;
                 </button>
             </div>
         <?php } ?>
+
+        <?php if ($num_surrogacy > 0) { ?>
+            <div class="surrogacySection">
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 1:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_1">
+                            <?php if ($form_type_pregnant_s_1 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_1" value="<?php echo $form_height_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_1" value="<?php echo $form_weight_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_1">
+                            <?php if ($form_term_pregnant_s_1 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_1" value="<?php echo $form_week_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_1" value="<?php echo $form_year_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_1" value="<?php echo $form_comments_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_1" value="<?php echo $form_age_pregnant_s_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_1" value="<?php echo $form_genre_pregnant_s_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <?php if ($num_surrogacy > 1) { ?>
+                <div class="surrogacySection">
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 2:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_2">
+                            <?php if ($form_type_pregnant_s_2 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_2" value="<?php echo $form_height_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_2" value="<?php echo $form_weight_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_2">
+                            <?php if ($form_term_pregnant_s_2 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_2" value="<?php echo $form_week_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_2" value="<?php echo $form_year_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_2" value="<?php echo $form_comments_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_2" value="<?php echo $form_age_pregnant_s_2 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_2" value="<?php echo $form_genre_pregnant_s_2 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <?php if ($num_surrogacy > 2) { ?>
+                    <div class="surrogacySection">
+                    <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 3:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_3">
+                            <?php if ($form_type_pregnant_s_3 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_3" value="<?php echo $form_height_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_3" value="<?php echo $form_weight_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_3">
+                            <?php if ($form_term_pregnant_s_3 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_3" value="<?php echo $form_week_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_3" value="<?php echo $form_year_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_3" value="<?php echo $form_comments_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_3" value="<?php echo $form_age_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_3" value="<?php echo $form_genre_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>                    
+                </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="surrogacySection display-none">
+                    <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 3:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_3">
+                            <?php if ($form_type_pregnant_s_3 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_3" value="<?php echo $form_height_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_3" value="<?php echo $form_weight_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_3">
+                            <?php if ($form_term_pregnant_s_3 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_3" value="<?php echo $form_week_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_3" value="<?php echo $form_year_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_3" value="<?php echo $form_comments_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_3" value="<?php echo $form_age_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_3" value="<?php echo $form_genre_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>                    
+                </div>
+                    </div>
+                <?php } ?>
+            <?php } else { ?>
+                <div class="surrogacySection display-none">
+                    <div class="form-top">
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    embarazo 2:
+                                </div>
+                            </label>
+                            <select name="form_type_pregnant_s_2">
+                                <?php if ($form_type_pregnant_s_2 == "Voluntario") { ?>
+                                    <option value="Voluntario" selected>Voluntario</option>
+                                    <option value="Involuntario">Involuntario</option>
+                                <?php } elseif ($form_type_pregnant_s_2 == "Involuntario") { ?>
+                                    <option value="Voluntario">Voluntario</option>
+                                    <option value="Involuntario" selected>Involuntario</option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <div>Seleccione una opción</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationDefault01">
+                                <div class="spanish">
+                                    Año:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_year_pregnant_s_2" value="<?php echo $form_year_pregnant_s_2 ?>" />
+                            <div class="invalid-feedback">
+                                <div>Ingrese el año</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Método:
+                                </div>
+                            </label>
+                            <select name="form_method_pregnant_s_2">
+                                <?php if ($form_method_pregnant_s_2 == "Bioquímico") { ?>
+                                    <option value="Bioquímico" selected>Bioquímico</option>
+                                    <option value="Legrado">Legrado</option>
+                                    <option value="Espontáneo">Espontáneo</option>
+                                <?php } elseif ($form_method_pregnant_s_2 == "Legrado") { ?>
+                                    <option value="Bioquímico">Bioquímico</option>
+                                    <option value="Legrado" selected>Legrado</option>
+                                    <option value="Espontáneo">Espontáneo</option>
+                                <?php } elseif ($form_method_pregnant_s_2 == "Espontáneo") { ?>
+                                    <option value="Bioquímico">Bioquímico</option>
+                                    <option value="Legrado">Legrado</option>
+                                    <option value="Espontáneo" selected>Espontáneo</option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <div>Seleccione una opción</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationDefault01">
+                                <div class="spanish">
+                                    Semana:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_week_pregnant_s_2" value="<?php echo $form_week_pregnant_s_2; ?>" />
+                            <div class="invalid-feedback">
+                                <div>Ingrese el año</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationDefault01" name="form_comments_pregnant_s_2" value="<?php echo $form_comments_pregnant_s_2; ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="surrogacySection display-none">
+                    <div class="form-top">
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    embarazo 3:
+                                </div>
+                            </label>
+                            <select name="form_type_pregnant_s_3">
+                                <?php if ($form_type_pregnant_s_3 == "Voluntario") { ?>
+                                    <option value="Voluntario" selected>Voluntario</option>
+                                    <option value="Involuntario">Involuntario</option>
+                                <?php } elseif ($form_type_pregnant_s_3 == "Involuntario") { ?>
+                                    <option value="Voluntario">Voluntario</option>
+                                    <option value="Involuntario" selected>Involuntario</option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <div>Seleccione una opción</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationDefault01">
+                                <div class="spanish">
+                                    Año:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_year_pregnant_s_3" value="<?php echo $form_year_pregnant_s_3 ?>" />
+                            <div class="invalid-feedback">
+                                <div>Ingrese el año</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom01">
+                                <div class="spanish">
+                                    Método:
+                                </div>
+                            </label>
+                            <select name="form_method_pregnant_s_3">
+                                <?php if ($form_method_pregnant_s_3 == "Bioquímico") { ?>
+                                    <option value="Bioquímico" selected>Bioquímico</option>
+                                    <option value="Legrado">Legrado</option>
+                                    <option value="Espontáneo">Espontáneo</option>
+                                <?php } elseif ($form_method_pregnant_s_3 == "Legrado") { ?>
+                                    <option value="Bioquímico">Bioquímico</option>
+                                    <option value="Legrado" selected>Legrado</option>
+                                    <option value="Espontáneo">Espontáneo</option>
+                                <?php } elseif ($form_method_pregnant_s_3 == "Espontáneo") { ?>
+                                    <option value="Bioquímico">Bioquímico</option>
+                                    <option value="Legrado">Legrado</option>
+                                    <option value="Espontáneo" selected>Espontáneo</option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <div>Seleccione una opción</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationDefault01">
+                                <div class="spanish">
+                                    Semana:
+                                </div>
+                            </label>
+                            <input type="number" class="form-control-phenotype" id="validationDefault01" name="form_week_pregnant_s_3" value="<?php echo $form_week_pregnant_s_3; ?>" />
+                            <div class="invalid-feedback">
+                                <div>Ingrese el año</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationDefault01" name="form_comments_pregnant_s_3" value="<?php echo $form_comments_pregnant_s_3; ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_3" value="<?php echo $form_age_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_3" value="<?php echo $form_genre_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } else { ?>
+            <div class="surrogacySection display-none">
+                <div class="form-top">
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 2:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_2">
+                            <?php if ($form_type_pregnant_s_2 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_2" value="<?php echo $form_height_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_2" value="<?php echo $form_weight_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_2">
+                            <?php if ($form_term_pregnant_s_2 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_2 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_2" value="<?php echo $form_week_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_2" value="<?php echo $form_year_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_2" value="<?php echo $form_comments_pregnant_s_2 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_2" value="<?php echo $form_age_pregnant_s_2 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_2" value="<?php echo $form_genre_pregnant_s_2 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="surrogacySection display-none">
+            <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 1:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_1">
+                            <?php if ($form_type_pregnant_s_1 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_1" value="<?php echo $form_height_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_1" value="<?php echo $form_weight_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_1">
+                            <?php if ($form_term_pregnant_s_1 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_1 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_1" value="<?php echo $form_week_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_1" value="<?php echo $form_year_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_1" value="<?php echo $form_comments_pregnant_s_1 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_1" value="<?php echo $form_age_pregnant_s_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_1" value="<?php echo $form_genre_pregnant_s_1 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="surrogacySection display-none">
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Embarazo 3:
+                            </div>
+                        </label>
+                        <select name="form_type_pregnant_s_3">
+                            <?php if ($form_type_pregnant_s_3 == "natural") { ?>
+                                <option value="natural" selected>Parto natural</option>
+                                <option value="cesarea">Cesárea</option>
+                            <?php } else { ?>
+                                <option value="natural">Parto natural</option>
+                                <option value="cesarea" selected>Cesárea</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Estatura (m):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_height_pregnant_s_3" value="<?php echo $form_height_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese la estatura</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationDefault01">
+                            <div class="spanish">
+                                Peso (kg):
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" step=".01" id="validationDefault01" name="form_weight_pregnant_s_3" value="<?php echo $form_weight_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el peso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Término:
+                            </div>
+                        </label>
+                        <select name="form_term_pregnant_s_3">
+                            <?php if ($form_term_pregnant_s_3 == "preterm") { ?>
+                                <option value="preterm" selected>Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "term") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term" selected>término</option>
+                                <option value="program">programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "program") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program" selected>programado</option>
+                                <option value="induced">inducido</option>
+                            <?php } elseif ($form_term_pregnant_s_3 == "induced") { ?>
+                                <option value="preterm">Pre término</option>
+                                <option value="term">término</option>
+                                <option value="program">programado</option>
+                                <option value="induced" selected>inducido</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Seleccione una opción</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Semana:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_week_pregnant_s_3" value="<?php echo $form_week_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese un número de semana</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Año:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_year_pregnant_s_3" value="<?php echo $form_year_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese el año</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Complicaciones:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_comments_pregnant_s_3" value="<?php echo $form_comments_pregnant_s_3 ?>" />
+                        <div class="invalid-feedback">
+                            <div>Ingrese algún comentario</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Edad:
+                            </div>
+                        </label>
+                        <input type="number" class="form-control-phenotype" id="validationCustom01" name="form_age_pregnant_s_3" value="<?php echo $form_age_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese la edad</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01">
+                            <div class="spanish">
+                                Género:
+                            </div>
+                        </label>
+                        <input type="text" class="form-control-phenotype" id="validationCustom01" name="form_genre_pregnant_s_3" value="<?php echo $form_genre_pregnant_s_3 ?>"/>
+                        <div class="invalid-feedback">
+                            <div>Ingrese el género</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <?php if ($num_surrogacy > 0) { ?>
+            <div class="form-btn" id="surrogacyEnable2">
+                <button class="btn btn-send" id="surrogacy">
+                    <div>Agregar datos de embarazo</div>
+                </button>
+                <button class="btn btn-send" id="surrogacyRmv">
+                    <div>Remover campo de embarazo</div>
+                </button>
+            </div>
+        <?php } else { ?>
+            <div class="form-btn" id="surrogacyEnable2">
+                <button class="btn btn-send" id="surrogacy">
+                    <div>Agregar datos de embarazo</div>
+                </button>
+                <button class="btn btn-send display-none" id="surrogacyRmv">
+                    <div>Remover campo de embarazo</div>
+                </button>
+            </div>
+        <?php } ?>
+
         <input type="hidden" id="pregnancyNum" name="pregnancyNum" value="<?php echo $num_pregnants; ?>">
         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
         <input type="hidden" id="form_risk_notes" name="form_risk_notes" value="<?php echo $form_risk_notes; ?>">

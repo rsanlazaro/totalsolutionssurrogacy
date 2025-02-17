@@ -136,6 +136,62 @@ $family_psoriasis = ucfirst($_POST['family_psoriasis']);
 $family_deaf = ucfirst($_POST['family_deaf']);
 $family_alzheimer = ucfirst($_POST['family_alzheimer']);
 $family_parkinson = ucfirst($_POST['family_parkinson']);
+$form_city = ucfirst($_POST['form_city']);
+$form_study = ucfirst($_POST['form_study']);
+$form_hobbies = ucfirst($_POST['form_hobbies']);
+$form_alergies = ucfirst($_POST['form_alergies']);
+$form_description_auto = ucfirst($_POST['form_description_auto']);
+$form_description_others = ucfirst($_POST['form_description_others']);
+$form_covid_vaccines = ucfirst($_POST['form_covid_vaccines']);
+$form_reason = ucfirst($_POST['form_reason']);
+$form_adiction = ucfirst($_POST['form_adiction']);
+$form_prison = ucfirst($_POST['form_prison']);
+$form_license = ucfirst($_POST['form_license']);
+$form_car = ucfirst($_POST['form_car']);
+$form_pregnancy_description = ucfirst($_POST['form_pregnancy_description']);
+$form_ectopic_pregnancy = ucfirst($_POST['form_ectopic_pregnancy']);
+$form_last_pregnancy = ucfirst($_POST['form_last_pregnancy']);
+$form_last_birth = ucfirst($_POST['form_last_birth']);
+$form_age_pregnant_1 = ucfirst($_POST['form_age_pregnant_1']);
+$form_age_pregnant_2 = ucfirst($_POST['form_age_pregnant_2']);
+$form_age_pregnant_3 = ucfirst($_POST['form_age_pregnant_3']);
+$form_age_pregnant_4 = ucfirst($_POST['form_age_pregnant_4']);
+$form_age_pregnant_5 = ucfirst($_POST['form_age_pregnant_5']);
+$form_age_pregnant_6 = ucfirst($_POST['form_age_pregnant_6']);
+$form_genre_pregnant_1 = ucfirst($_POST['form_genre_pregnant_1']);
+$form_genre_pregnant_2 = ucfirst($_POST['form_genre_pregnant_2']);
+$form_genre_pregnant_3 = ucfirst($_POST['form_genre_pregnant_3']);
+$form_genre_pregnant_4 = ucfirst($_POST['form_genre_pregnant_4']);
+$form_genre_pregnant_5 = ucfirst($_POST['form_genre_pregnant_5']);
+$form_genre_pregnant_6 = ucfirst($_POST['form_genre_pregnant_6']);
+$form_type_pregnant_s_1 = ucfirst($_POST['form_type_pregnant_s_1']);
+$form_height_pregnant_s_1 = ucfirst($_POST['form_height_pregnant_s_1']);
+$form_weight_pregnant_s_1 = ucfirst($_POST['form_weight_pregnant_s_1']);
+$form_term_pregnant_s_1 = ucfirst($_POST['form_term_pregnant_s_1']);
+$form_week_pregnant_s_1 = ucfirst($_POST['form_week_pregnant_s_1']);
+$form_year_pregnant_s_1 = ucfirst($_POST['form_year_pregnant_s_1']);
+$form_comments_pregnant_s_1 = ucfirst($_POST['form_comments_pregnant_s_1']);
+$form_type_pregnant_s_2 = ucfirst($_POST['form_type_pregnant_s_2']);
+$form_height_pregnant_s_2 = ucfirst($_POST['form_height_pregnant_s_2']);
+$form_weight_pregnant_s_2 = ucfirst($_POST['form_weight_pregnant_s_2']);
+$form_term_pregnant_s_2 = ucfirst($_POST['form_term_pregnant_s_2']);
+$form_week_pregnant_s_2 = ucfirst($_POST['form_week_pregnant_s_2']);
+$form_year_pregnant_s_2 = ucfirst($_POST['form_year_pregnant_s_2']);
+$form_comments_pregnant_s_2 = ucfirst($_POST['form_comments_pregnant_s_2']);
+$form_type_pregnant_s_3 = ucfirst($_POST['form_type_pregnant_s_3']);
+$form_height_pregnant_s_3 = ucfirst($_POST['form_height_pregnant_s_3']);
+$form_weight_pregnant_s_3 = ucfirst($_POST['form_weight_pregnant_s_3']);
+$form_term_pregnant_s_3 = ucfirst($_POST['form_term_pregnant_s_3']);
+$form_week_pregnant_s_3 = ucfirst($_POST['form_week_pregnant_s_3']);
+$form_year_pregnant_s_3 = ucfirst($_POST['form_year_pregnant_s_3']);
+$form_comments_pregnant_s_3 = ucfirst($_POST['form_comments_pregnant_s_3']);
+$form_age_pregnant_s_1 = ucfirst($_POST['form_age_pregnant_s_1']);
+$form_age_pregnant_s_2 = ucfirst($_POST['form_age_pregnant_s_2']);
+$form_age_pregnant_s_3 = ucfirst($_POST['form_age_pregnant_s_3']);
+$form_genre_pregnant_s_1 = ucfirst($_POST['form_genre_pregnant_s_1']);
+$form_genre_pregnant_s_2 = ucfirst($_POST['form_genre_pregnant_s_2']);
+$form_genre_pregnant_s_3 = ucfirst($_POST['form_genre_pregnant_s_3']);
+
 
 $codes_array = array(
     "Cirugía uterina previa",
@@ -239,6 +295,23 @@ if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
     $num_aborts = $num_aborts + 1;
 }
 
+$num_surrogacy = 0;
+if ($form_week_pregnant_s_1 == 0 && $form_year_pregnant_s_1 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_2 == 0 && $form_year_pregnant_s_2 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+if ($form_week_pregnant_s_3 == 0 && $form_year_pregnant_s_3 == 0) {
+    $num_surrogacy = $num_surrogacy;
+} else {
+    $num_surrogacy = $num_surrogacy + 1;
+}
+
 if ($form_smoke == "No") {
     $form_smoke_qty = " ";
     $form_smoke_times = " ";
@@ -249,10 +322,6 @@ if ($form_alcohol == "No") {
 }
 
 $pregnants = '';
-
-// if ($num_pregnants > 0) {
-//     $pregnants = '<table class="table">';
-// }
 
 for ($j = 1; $j <= $num_pregnants; $j++) {
     $pregnants = $pregnants . '
@@ -374,7 +443,7 @@ for ($j = 1; $j <= $num_pregnants; $j++) {
             </tr> 
             ';
         }
-    }    
+    }
     $pregnants = $pregnants . '</table><br>';
 }
 
@@ -450,6 +519,120 @@ for ($j = 1; $j <= $num_aborts; $j++) {
         </tr>
     </table><br>';
 }
+
+$surrogacy = '';
+
+for ($j = 1; $j <= $num_surrogacy; $j++) {
+    $surrogacy = $surrogacy . '
+    <table class="table">
+    <tr>
+        <td class="question">
+            <div>
+                <p>Tipo de embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_type_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Altura del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_height_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Peso del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_weight_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Término del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_term_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Semana del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_week_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Año del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_year_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="question">
+            <div>
+                <p>Comentarios del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td class="answer">
+            <div class="answer">' . ${"form_comments_pregnant_s_$j"} . ' </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>
+    <tr>
+    <br>
+        <td class="question">
+            <div>
+                <p>Complicaciones del embarazo #' . $j . ': </p>
+            </div>
+        </td>
+        <td>
+            <div> </div>
+        </td>
+        <td class="question spacing">
+            <p> </p>
+        </td>
+    </tr>';
+    $surrogacy = $surrogacy . '</table><br>';
+}
+
 
 $family_variables = array(
     "family_alergy",
@@ -1131,13 +1314,153 @@ $html = '
             </td>
         </tr>
         
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Ciudad de residencia:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_city . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Nivel de estudios:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_study . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Hobbies:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_hobbies . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Alergias:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_alergies . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>¿Cómo te describes a ti misma?:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_description_auto . '</div>
+            </td>
+            <td class="question spacing">
+                <p>¿Cómo te describen otros?:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_description_others . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>¿Tienes vacunas contra el COVID 19?:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_covid_vaccines . '</div>
+            </td>
+            <td class="question spacing">
+                <p>¿Por qué decidiste convertirte en gestante subrogada?:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_reason . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>¿Tienes problemas de adicciones?:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_adiction . '</div>
+            </td>
+            <td class="question spacing">
+                <p>¿Has estado en prisión?:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_prison . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>¿Tienes licencia para conducir?:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_license . '</div>
+            </td>
+            <td class="question spacing">
+                <p>¿Tienes auto?:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_car . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Describe tus embarazos:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_pregnancy_description . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Número de embarazos ectópicos:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_ectopic_pregnancy . '</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="question">
+                <div>
+                    <p>Fecha del último embarazo:</p>
+                </div>
+            </td>
+            <td class="answer">
+                <div class="answer">' . $form_last_pregnancy . '</div>
+            </td>
+            <td class="question spacing">
+                <p>Fecha de la última vez que diste a luz:</p>
+            </td>
+            <td class="answer">
+                <p class="answer">' . $form_last_birth . '</p>
+            </td>
+        </tr>
         
     </table>
     <h2>Datos de los embarazos</h2>
     <p> Número de embarazos: ' . $num_pregnants . '<br>
     </p>'
     . $pregnants .
-    '<p>
+    '
+    <h2>Datos de los embarazos por gestación subrogada</h2> 
+    <p> Número de embarazos: ' . $num_surrogacy . '<br>
+    </p>'
+    . $surrogacy .
+    ' <p>
     <h2>Datos de los abortos</h2>
     <p> Número de abortos: ' . $num_aborts . '<br>
     </p>'

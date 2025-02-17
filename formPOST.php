@@ -391,6 +391,62 @@ if (isset($_POST['form_6'])) {
     $_SESSION['form_6'] = $form_6;
 }
 
+if (isset($_POST['form_city'])) {$form_city = $_POST['form_city']; $_SESSION['form_city'] = $form_city;}
+if (isset($_POST['form_study'])) {$form_study = $_POST['form_study']; $_SESSION['form_study'] = $form_study;}
+if (isset($_POST['form_hobbies'])) {$form_hobbies = $_POST['form_hobbies']; $_SESSION['form_hobbies'] = $form_hobbies;}
+if (isset($_POST['form_alergies'])) {$form_alergies = $_POST['form_alergies']; $_SESSION['form_alergies'] = $form_alergies;}
+if (isset($_POST['form_description_auto'])) {$form_description_auto = $_POST['form_description_auto']; $_SESSION['form_description_auto'] = $form_description_auto;}
+if (isset($_POST['form_description_others'])) {$form_description_others = $_POST['form_description_others']; $_SESSION['form_description_others'] = $form_description_others;}
+if (isset($_POST['form_covid_vaccines'])) {$form_covid_vaccines = $_POST['form_covid_vaccines']; $_SESSION['form_covid_vaccines'] = $form_covid_vaccines;}
+if (isset($_POST['form_reason'])) {$form_reason = $_POST['form_reason']; $_SESSION['form_reason'] = $form_reason;}
+if (isset($_POST['form_adiction'])) {$form_adiction = $_POST['form_adiction']; $_SESSION['form_adiction'] = $form_adiction;}
+if (isset($_POST['form_prison'])) {$form_prison = $_POST['form_prison']; $_SESSION['form_prison'] = $form_prison;}
+if (isset($_POST['form_license'])) {$form_license = $_POST['form_license']; $_SESSION['form_license'] = $form_license;}
+if (isset($_POST['form_car'])) {$form_car = $_POST['form_car']; $_SESSION['form_car'] = $form_car;}
+if (isset($_POST['form_pregnancy_description'])) {$form_pregnancy_description = $_POST['form_pregnancy_description']; $_SESSION['form_pregnancy_description'] = $form_pregnancy_description;}
+if (isset($_POST['form_ectopic_pregnancy'])) {$form_ectopic_pregnancy = $_POST['form_ectopic_pregnancy']; $_SESSION['form_ectopic_pregnancy'] = $form_ectopic_pregnancy;}
+if (isset($_POST['form_last_pregnancy'])) {$form_last_pregnancy = $_POST['form_last_pregnancy']; $_SESSION['form_last_pregnancy'] = $form_last_pregnancy;}
+if (isset($_POST['form_last_birth'])) {$form_last_birth = $_POST['form_last_birth']; $_SESSION['form_last_birth'] = $form_last_birth;}
+if (isset($_POST['form_age_pregnant_1'])) {$form_age_pregnant_1 = $_POST['form_age_pregnant_1']; $_SESSION['form_age_pregnant_1'] = $form_age_pregnant_1;}
+if (isset($_POST['form_age_pregnant_2'])) {$form_age_pregnant_2 = $_POST['form_age_pregnant_2']; $_SESSION['form_age_pregnant_2'] = $form_age_pregnant_2;}
+if (isset($_POST['form_age_pregnant_3'])) {$form_age_pregnant_3 = $_POST['form_age_pregnant_3']; $_SESSION['form_age_pregnant_3'] = $form_age_pregnant_3;}
+if (isset($_POST['form_age_pregnant_4'])) {$form_age_pregnant_4 = $_POST['form_age_pregnant_4']; $_SESSION['form_age_pregnant_4'] = $form_age_pregnant_4;}
+if (isset($_POST['form_age_pregnant_5'])) {$form_age_pregnant_5 = $_POST['form_age_pregnant_5']; $_SESSION['form_age_pregnant_5'] = $form_age_pregnant_5;}
+if (isset($_POST['form_age_pregnant_6'])) {$form_age_pregnant_6 = $_POST['form_age_pregnant_6']; $_SESSION['form_age_pregnant_6'] = $form_age_pregnant_6;}
+if (isset($_POST['form_genre_pregnant_1'])) {$form_genre_pregnant_1 = $_POST['form_genre_pregnant_1']; $_SESSION['form_genre_pregnant_1'] = $form_genre_pregnant_1;}
+if (isset($_POST['form_genre_pregnant_2'])) {$form_genre_pregnant_2 = $_POST['form_genre_pregnant_2']; $_SESSION['form_genre_pregnant_2'] = $form_genre_pregnant_2;}
+if (isset($_POST['form_genre_pregnant_3'])) {$form_genre_pregnant_3 = $_POST['form_genre_pregnant_3']; $_SESSION['form_genre_pregnant_3'] = $form_genre_pregnant_3;}
+if (isset($_POST['form_genre_pregnant_4'])) {$form_genre_pregnant_4 = $_POST['form_genre_pregnant_4']; $_SESSION['form_genre_pregnant_4'] = $form_genre_pregnant_4;}
+if (isset($_POST['form_genre_pregnant_5'])) {$form_genre_pregnant_5 = $_POST['form_genre_pregnant_5']; $_SESSION['form_genre_pregnant_5'] = $form_genre_pregnant_5;}
+if (isset($_POST['form_genre_pregnant_6'])) {$form_genre_pregnant_6 = $_POST['form_genre_pregnant_6']; $_SESSION['form_genre_pregnant_6'] = $form_genre_pregnant_6;}
+if (isset($_POST['form_type_pregnant_s_1'])) {$form_type_pregnant_s_1 = $_POST['form_type_pregnant_s_1']; $_SESSION['form_type_pregnant_s_1'] = $form_type_pregnant_s_1;}
+if (isset($_POST['form_height_pregnant_s_1'])) {$form_height_pregnant_s_1 = $_POST['form_height_pregnant_s_1']; $_SESSION['form_height_pregnant_s_1'] = $form_height_pregnant_s_1;}
+if (isset($_POST['form_weight_pregnant_s_1'])) {$form_weight_pregnant_s_1 = $_POST['form_weight_pregnant_s_1']; $_SESSION['form_weight_pregnant_s_1'] = $form_weight_pregnant_s_1;}
+if (isset($_POST['form_term_pregnant_s_1'])) {$form_term_pregnant_s_1 = $_POST['form_term_pregnant_s_1']; $_SESSION['form_term_pregnant_s_1'] = $form_term_pregnant_s_1;}
+if (isset($_POST['form_week_pregnant_s_1'])) {$form_week_pregnant_s_1 = $_POST['form_week_pregnant_s_1']; $_SESSION['form_week_pregnant_s_1'] = $form_week_pregnant_s_1;}
+if (isset($_POST['form_year_pregnant_s_1'])) {$form_year_pregnant_s_1 = $_POST['form_year_pregnant_s_1']; $_SESSION['form_year_pregnant_s_1'] = $form_year_pregnant_s_1;}
+if (isset($_POST['form_comments_pregnant_s_1'])) {$form_comments_pregnant_s_1 = $_POST['form_comments_pregnant_s_1']; $_SESSION['form_comments_pregnant_s_1'] = $form_comments_pregnant_s_1;}
+if (isset($_POST['form_type_pregnant_s_2'])) {$form_type_pregnant_s_2 = $_POST['form_type_pregnant_s_2']; $_SESSION['form_type_pregnant_s_2'] = $form_type_pregnant_s_2;}
+if (isset($_POST['form_height_pregnant_s_2'])) {$form_height_pregnant_s_2 = $_POST['form_height_pregnant_s_2']; $_SESSION['form_height_pregnant_s_2'] = $form_height_pregnant_s_2;}
+if (isset($_POST['form_weight_pregnant_s_2'])) {$form_weight_pregnant_s_2 = $_POST['form_weight_pregnant_s_2']; $_SESSION['form_weight_pregnant_s_2'] = $form_weight_pregnant_s_2;}
+if (isset($_POST['form_term_pregnant_s_2'])) {$form_term_pregnant_s_2 = $_POST['form_term_pregnant_s_2']; $_SESSION['form_term_pregnant_s_2'] = $form_term_pregnant_s_2;}
+if (isset($_POST['form_week_pregnant_s_2'])) {$form_week_pregnant_s_2 = $_POST['form_week_pregnant_s_2']; $_SESSION['form_week_pregnant_s_2'] = $form_week_pregnant_s_2;}
+if (isset($_POST['form_year_pregnant_s_2'])) {$form_year_pregnant_s_2 = $_POST['form_year_pregnant_s_2']; $_SESSION['form_year_pregnant_s_2'] = $form_year_pregnant_s_2;}
+if (isset($_POST['form_comments_pregnant_s_2'])) {$form_comments_pregnant_s_2 = $_POST['form_comments_pregnant_s_2']; $_SESSION['form_comments_pregnant_s_2'] = $form_comments_pregnant_s_2;}
+if (isset($_POST['form_type_pregnant_s_3'])) {$form_type_pregnant_s_3 = $_POST['form_type_pregnant_s_3']; $_SESSION['form_type_pregnant_s_3'] = $form_type_pregnant_s_3;}
+if (isset($_POST['form_height_pregnant_s_3'])) {$form_height_pregnant_s_3 = $_POST['form_height_pregnant_s_3']; $_SESSION['form_height_pregnant_s_3'] = $form_height_pregnant_s_3;}
+if (isset($_POST['form_weight_pregnant_s_3'])) {$form_weight_pregnant_s_3 = $_POST['form_weight_pregnant_s_3']; $_SESSION['form_weight_pregnant_s_3'] = $form_weight_pregnant_s_3;}
+if (isset($_POST['form_term_pregnant_s_3'])) {$form_term_pregnant_s_3 = $_POST['form_term_pregnant_s_3']; $_SESSION['form_term_pregnant_s_3'] = $form_term_pregnant_s_3;}
+if (isset($_POST['form_week_pregnant_s_3'])) {$form_week_pregnant_s_3 = $_POST['form_week_pregnant_s_3']; $_SESSION['form_week_pregnant_s_3'] = $form_week_pregnant_s_3;}
+if (isset($_POST['form_year_pregnant_s_3'])) {$form_year_pregnant_s_3 = $_POST['form_year_pregnant_s_3']; $_SESSION['form_year_pregnant_s_3'] = $form_year_pregnant_s_3;}
+if (isset($_POST['form_comments_pregnant_s_3'])) {$form_comments_pregnant_s_3 = $_POST['form_comments_pregnant_s_3']; $_SESSION['form_comments_pregnant_s_3'] = $form_comments_pregnant_s_3;}
+if (isset($_POST['form_age_pregnant_s_1'])) {$form_age_pregnant_s_1 = $_POST['form_age_pregnant_s_1']; $_SESSION['form_age_pregnant_s_1'] = $form_age_pregnant_s_1;}
+if (isset($_POST['form_age_pregnant_s_2'])) {$form_age_pregnant_s_2 = $_POST['form_age_pregnant_s_2']; $_SESSION['form_age_pregnant_s_2'] = $form_age_pregnant_s_2;}
+if (isset($_POST['form_age_pregnant_s_3'])) {$form_age_pregnant_s_3 = $_POST['form_age_pregnant_s_3']; $_SESSION['form_age_pregnant_s_3'] = $form_age_pregnant_s_3;}
+if (isset($_POST['form_genre_pregnant_s_1'])) {$form_genre_pregnant_s_1 = $_POST['form_genre_pregnant_s_1']; $_SESSION['form_genre_pregnant_s_1'] = $form_genre_pregnant_s_1;}
+if (isset($_POST['form_genre_pregnant_s_2'])) {$form_genre_pregnant_s_2 = $_POST['form_genre_pregnant_s_2']; $_SESSION['form_genre_pregnant_s_2'] = $form_genre_pregnant_s_2;}
+if (isset($_POST['form_genre_pregnant_s_3'])) {$form_genre_pregnant_s_3 = $_POST['form_genre_pregnant_s_3']; $_SESSION['form_genre_pregnant_s_3'] = $form_genre_pregnant_s_3;}
+
 if (isset($_SESSION['form_curp'])) {
     $form_curp = $_SESSION['form_curp'];
 }
@@ -674,6 +730,62 @@ if (isset($_SESSION['form_6'])) {
     $form_6 = $_SESSION['form_6'];
 }
 
+if (isset($_SESSION['form_city'])) {$form_city = $_SESSION['form_city']; }
+if (isset($_SESSION['form_study'])) {$form_study = $_SESSION['form_study']; }
+if (isset($_SESSION['form_hobbies'])) {$form_hobbies = $_SESSION['form_hobbies']; }
+if (isset($_SESSION['form_alergies'])) {$form_alergies = $_SESSION['form_alergies']; }
+if (isset($_SESSION['form_description_auto'])) {$form_description_auto = $_SESSION['form_description_auto']; }
+if (isset($_SESSION['form_description_others'])) {$form_description_others = $_SESSION['form_description_others']; }
+if (isset($_SESSION['form_covid_vaccines'])) {$form_covid_vaccines = $_SESSION['form_covid_vaccines']; }
+if (isset($_SESSION['form_reason'])) {$form_reason = $_SESSION['form_reason']; }
+if (isset($_SESSION['form_adiction'])) {$form_adiction = $_SESSION['form_adiction']; }
+if (isset($_SESSION['form_prison'])) {$form_prison = $_SESSION['form_prison']; }
+if (isset($_SESSION['form_license'])) {$form_license = $_SESSION['form_license']; }
+if (isset($_SESSION['form_car'])) {$form_car = $_SESSION['form_car']; }
+if (isset($_SESSION['form_pregnancy_description'])) {$form_pregnancy_description = $_SESSION['form_pregnancy_description']; }
+if (isset($_SESSION['form_ectopic_pregnancy'])) {$form_ectopic_pregnancy = $_SESSION['form_ectopic_pregnancy']; }
+if (isset($_SESSION['form_last_pregnancy'])) {$form_last_pregnancy = $_SESSION['form_last_pregnancy']; }
+if (isset($_SESSION['form_last_birth'])) {$form_last_birth = $_SESSION['form_last_birth']; }
+if (isset($_SESSION['form_age_pregnant_1'])) {$form_age_pregnant_1 = $_SESSION['form_age_pregnant_1']; }
+if (isset($_SESSION['form_age_pregnant_2'])) {$form_age_pregnant_2 = $_SESSION['form_age_pregnant_2']; }
+if (isset($_SESSION['form_age_pregnant_3'])) {$form_age_pregnant_3 = $_SESSION['form_age_pregnant_3']; }
+if (isset($_SESSION['form_age_pregnant_4'])) {$form_age_pregnant_4 = $_SESSION['form_age_pregnant_4']; }
+if (isset($_SESSION['form_age_pregnant_5'])) {$form_age_pregnant_5 = $_SESSION['form_age_pregnant_5']; }
+if (isset($_SESSION['form_age_pregnant_6'])) {$form_age_pregnant_6 = $_SESSION['form_age_pregnant_6']; }
+if (isset($_SESSION['form_genre_pregnant_1'])) {$form_genre_pregnant_1 = $_SESSION['form_genre_pregnant_1']; }
+if (isset($_SESSION['form_genre_pregnant_2'])) {$form_genre_pregnant_2 = $_SESSION['form_genre_pregnant_2']; }
+if (isset($_SESSION['form_genre_pregnant_3'])) {$form_genre_pregnant_3 = $_SESSION['form_genre_pregnant_3']; }
+if (isset($_SESSION['form_genre_pregnant_4'])) {$form_genre_pregnant_4 = $_SESSION['form_genre_pregnant_4']; }
+if (isset($_SESSION['form_genre_pregnant_5'])) {$form_genre_pregnant_5 = $_SESSION['form_genre_pregnant_5']; }
+if (isset($_SESSION['form_genre_pregnant_6'])) {$form_genre_pregnant_6 = $_SESSION['form_genre_pregnant_6']; }
+if (isset($_SESSION['form_type_pregnant_s_1'])) {$form_type_pregnant_s_1 = $_SESSION['form_type_pregnant_s_1']; }
+if (isset($_SESSION['form_height_pregnant_s_1'])) {$form_height_pregnant_s_1 = $_SESSION['form_height_pregnant_s_1']; }
+if (isset($_SESSION['form_weight_pregnant_s_1'])) {$form_weight_pregnant_s_1 = $_SESSION['form_weight_pregnant_s_1']; }
+if (isset($_SESSION['form_term_pregnant_s_1'])) {$form_term_pregnant_s_1 = $_SESSION['form_term_pregnant_s_1']; }
+if (isset($_SESSION['form_week_pregnant_s_1'])) {$form_week_pregnant_s_1 = $_SESSION['form_week_pregnant_s_1']; }
+if (isset($_SESSION['form_year_pregnant_s_1'])) {$form_year_pregnant_s_1 = $_SESSION['form_year_pregnant_s_1']; }
+if (isset($_SESSION['form_comments_pregnant_s_1'])) {$form_comments_pregnant_s_1 = $_SESSION['form_comments_pregnant_s_1']; }
+if (isset($_SESSION['form_type_pregnant_s_2'])) {$form_type_pregnant_s_2 = $_SESSION['form_type_pregnant_s_2']; }
+if (isset($_SESSION['form_height_pregnant_s_2'])) {$form_height_pregnant_s_2 = $_SESSION['form_height_pregnant_s_2']; }
+if (isset($_SESSION['form_weight_pregnant_s_2'])) {$form_weight_pregnant_s_2 = $_SESSION['form_weight_pregnant_s_2']; }
+if (isset($_SESSION['form_term_pregnant_s_2'])) {$form_term_pregnant_s_2 = $_SESSION['form_term_pregnant_s_2']; }
+if (isset($_SESSION['form_week_pregnant_s_2'])) {$form_week_pregnant_s_2 = $_SESSION['form_week_pregnant_s_2']; }
+if (isset($_SESSION['form_year_pregnant_s_2'])) {$form_year_pregnant_s_2 = $_SESSION['form_year_pregnant_s_2']; }
+if (isset($_SESSION['form_comments_pregnant_s_2'])) {$form_comments_pregnant_s_2 = $_SESSION['form_comments_pregnant_s_2']; }
+if (isset($_SESSION['form_type_pregnant_s_3'])) {$form_type_pregnant_s_3 = $_SESSION['form_type_pregnant_s_3']; }
+if (isset($_SESSION['form_height_pregnant_s_3'])) {$form_height_pregnant_s_3 = $_SESSION['form_height_pregnant_s_3']; }
+if (isset($_SESSION['form_weight_pregnant_s_3'])) {$form_weight_pregnant_s_3 = $_SESSION['form_weight_pregnant_s_3']; }
+if (isset($_SESSION['form_term_pregnant_s_3'])) {$form_term_pregnant_s_3 = $_SESSION['form_term_pregnant_s_3']; }
+if (isset($_SESSION['form_week_pregnant_s_3'])) {$form_week_pregnant_s_3 = $_SESSION['form_week_pregnant_s_3']; }
+if (isset($_SESSION['form_year_pregnant_s_3'])) {$form_year_pregnant_s_3 = $_SESSION['form_year_pregnant_s_3']; }
+if (isset($_SESSION['form_comments_pregnant_s_3'])) {$form_comments_pregnant_s_3 = $_SESSION['form_comments_pregnant_s_3']; }
+if (isset($_SESSION['form_age_pregnant_s_1'])) {$form_age_pregnant_s_1 = $_SESSION['form_age_pregnant_s_1']; }
+if (isset($_SESSION['form_age_pregnant_s_2'])) {$form_age_pregnant_s_2 = $_SESSION['form_age_pregnant_s_2']; }
+if (isset($_SESSION['form_age_pregnant_s_3'])) {$form_age_pregnant_s_3 = $_SESSION['form_age_pregnant_s_3']; }
+if (isset($_SESSION['form_genre_pregnant_s_1'])) {$form_genre_pregnant_s_1 = $_SESSION['form_genre_pregnant_s_1']; }
+if (isset($_SESSION['form_genre_pregnant_s_2'])) {$form_genre_pregnant_s_2 = $_SESSION['form_genre_pregnant_s_2']; }
+if (isset($_SESSION['form_genre_pregnant_s_3'])) {$form_genre_pregnant_s_3 = $_SESSION['form_genre_pregnant_s_3']; }
+
 $family = array("none", "mom", "dad", "mom-grandpas", "dad-grandpas");
 $diseases = array("alergy","apoplejia","cardiopathy","catarata","cirrosis","convulsive","distrophy","enfisem","epilepsy","glaucom","hemofilia","ictericia","migraine","varicocele","equinovaro","mental","drugs","esquizo","alcohol","diabetes_young","bocio","blind","daltonic","diabetes","psiquiatric","endometriosis","fibrosis","gota","hipertension","paladar","kidney","circulation","psoriasis","deaf","alzheimer","parkinson");
 
@@ -722,7 +834,23 @@ form_surgery,
 form_fracture_info,
 form_surgery_info,
 form_curp,
-form_recluter) 
+form_recluter,
+form_city,
+form_study,
+form_hobbies,
+form_alergies,
+form_description_auto,
+form_description_others,
+form_covid_vaccines,
+form_reason,
+form_adiction,
+form_prison,
+form_license,
+form_car,
+form_pregnancy_description,
+form_ectopic_pregnancy,
+form_last_pregnancy,
+form_last_birth) 
 VALUES 
 ('$form_name', 
 '$form_date', 
@@ -755,7 +883,23 @@ VALUES
 '$form_fracture_info',
 '$form_surgery_info',
 '$form_curp',
-'$form_recluter')";
+'$form_recluter',
+'$form_city',
+'$form_study',
+'$form_hobbies',
+'$form_alergies',
+'$form_description_auto',
+'$form_description_others',
+'$form_covid_vaccines',
+'$form_reason',
+'$form_adiction',
+'$form_prison',
+'$form_license',
+'$form_car',
+'$form_pregnancy_description',
+'$form_ectopic_pregnancy',
+'$form_last_pregnancy',
+'$form_last_birth')";
 $result1   = mysqli_query($conn, $query1);
 
 $query = "SELECT * FROM candidates ORDER BY ID DESC LIMIT 1";
@@ -829,7 +973,46 @@ form_coded_comments_pregnant_2,
 form_coded_comments_pregnant_3,
 form_coded_comments_pregnant_4,
 form_coded_comments_pregnant_5,
-form_coded_comments_pregnant_6)
+form_coded_comments_pregnant_6,
+form_age_pregnant_1,
+form_age_pregnant_2,
+form_age_pregnant_3,
+form_age_pregnant_4,
+form_age_pregnant_5,
+form_age_pregnant_6,
+form_genre_pregnant_1,
+form_genre_pregnant_2,
+form_genre_pregnant_3,
+form_genre_pregnant_4,
+form_genre_pregnant_5,
+form_genre_pregnant_6,
+form_type_pregnant_s_1,
+form_height_pregnant_s_1,
+form_weight_pregnant_s_1,
+form_term_pregnant_s_1,
+form_week_pregnant_s_1,
+form_year_pregnant_s_1,
+form_comments_pregnant_s_1,
+form_type_pregnant_s_2,
+form_height_pregnant_s_2,
+form_weight_pregnant_s_2,
+form_term_pregnant_s_2,
+form_week_pregnant_s_2,
+form_year_pregnant_s_2,
+form_comments_pregnant_s_2,
+form_type_pregnant_s_3,
+form_height_pregnant_s_3,
+form_weight_pregnant_s_3,
+form_term_pregnant_s_3,
+form_week_pregnant_s_3,
+form_year_pregnant_s_3,
+form_comments_pregnant_s_3,
+form_age_pregnant_s_1,
+form_age_pregnant_s_2,
+form_age_pregnant_s_3,
+form_genre_pregnant_s_1,
+form_genre_pregnant_s_2,
+form_genre_pregnant_s_3)
 VALUES
 ('$last_id',
 '$form_type_pregnant_1',
@@ -894,7 +1077,46 @@ VALUES
 '$form_3',
 '$form_4',
 '$form_5',
-'$form_6')";
+'$form_6',
+'$form_age_pregnant_1',
+'$form_age_pregnant_2',
+'$form_age_pregnant_3',
+'$form_age_pregnant_4',
+'$form_age_pregnant_5',
+'$form_age_pregnant_6',
+'$form_genre_pregnant_1',
+'$form_genre_pregnant_2',
+'$form_genre_pregnant_3',
+'$form_genre_pregnant_4',
+'$form_genre_pregnant_5',
+'$form_genre_pregnant_6',
+'$form_type_pregnant_s_1',
+'$form_height_pregnant_s_1',
+'$form_weight_pregnant_s_1',
+'$form_term_pregnant_s_1',
+'$form_week_pregnant_s_1',
+'$form_year_pregnant_s_1',
+'$form_comments_pregnant_s_1',
+'$form_type_pregnant_s_2',
+'$form_height_pregnant_s_2',
+'$form_weight_pregnant_s_2',
+'$form_term_pregnant_s_2',
+'$form_week_pregnant_s_2',
+'$form_year_pregnant_s_2',
+'$form_comments_pregnant_s_2',
+'$form_type_pregnant_s_3',
+'$form_height_pregnant_s_3',
+'$form_weight_pregnant_s_3',
+'$form_term_pregnant_s_3',
+'$form_week_pregnant_s_3',
+'$form_year_pregnant_s_3',
+'$form_comments_pregnant_s_3',
+'$form_age_pregnant_s_1',
+'$form_age_pregnant_s_2',
+'$form_age_pregnant_s_3',
+'$form_genre_pregnant_s_1',
+'$form_genre_pregnant_s_2',
+'$form_genre_pregnant_s_3')";
 $result2 = mysqli_query($conn, $query2);
 
 $query3 = "INSERT into `family`
