@@ -102,9 +102,6 @@
                   <li>
                     <a class="dropdown-item" href="assurance_adm.php">Seguros</a>
                   </li>
-                  <li>
-                    <a class="dropdown-item" href="itinerary.php">Itinerario</a>
-                  </li>
                   <?php if ($_SESSION['type'] == "super-admin") { ?>
                     <li>
                       <a class="dropdown-item" href="admin_payments.php">Pagos</a>
