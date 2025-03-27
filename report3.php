@@ -104,7 +104,8 @@ $data .= '
     .header-one {
         background-color: #fa5995;
         border-radius: 0 50px 50px 0;
-        
+        font-size: 20px;
+        line-height: 0.5;
     }
     .header-one p,
     .header-two p {
@@ -121,8 +122,12 @@ $data .= '
     }
     .header-two {
         background-color: #fa5995;
-        border-radius: 50px 0 0 50px;    
-    }        
+        border-radius: 50px 0 0 50px;
+        font-size: 20px;
+        line-height: 0.5;
+        margin-top: -107px;
+        padding-bottom: 1px;
+    }
     .logo {
         position: absolute;
         top: 10px;
@@ -133,12 +138,15 @@ $data .= '
     .line {
         width: 250px;
         height: 1px; /* Adjust thickness */
-        background-color: white;
+        background-color: red;
         margin: 0 auto;
+        position: absolute;
+        border-top: 1px solid red;
+        top: -100px;
     }
     .bottom-info {
         background-color: #fa5995;
-        margin-top: 60px;
+        margin-top: 42px;
         padding-top: 50px;
         padding-bottom: 50px;
         padding-right: 40px;
@@ -153,6 +161,8 @@ $data .= '
         padding-top: 10px;
         color: white;
         margin-bottom: 40px;
+        font-size: 15px;
+        line-height: 1;
     }
     .square-2 {
         background-color: white;
@@ -164,7 +174,7 @@ $data .= '
         padding-bottom: 10px;
         padding-left: 30px;
         margin-top: 10px;
-        height: 165px;
+        height: 182px;
         line-height: 0.5;
     }
 
@@ -181,7 +191,7 @@ $data2 = '
     <div style="width: 100%;">
     <div class="header-one" align="left" style="width: 60%;float: left;">
         <p class="first-p">' . $period . '</p>
-        <p class="second-p">Nom(s):' . $name . '</p>
+        <p class="second-p">Nom(s): ' . $name . '</p>
     </div>
 
     <div align="right">
@@ -191,7 +201,10 @@ $data2 = '
 </div>
 <div style="padding-top: 25px;">
     <div style="width: 100%;">
-    <div class="header-two" align="right" style="width: 95%;float: right;">
+    <div align="left">
+        <img src="baby.png" style="max-height:125px; height:auto; margin-left: 50px;"/>
+    </div>
+    <div class="header-two" align="right" style="width: 90%;float: right;">
         <p class="first-p">Bienvenue chez Babyboom. Nous sommes ravis de vous présenter</p>
         <p class="second-p">l\'itinéraire de votre séjour à México</p>
     </div>
