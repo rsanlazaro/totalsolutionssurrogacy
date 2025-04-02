@@ -9,6 +9,24 @@ $date_3 = ucfirst($_POST['date_3']);
 $date_4 = ucfirst($_POST['date_4']);
 $date_5 = ucfirst($_POST['date_5']);
 $date_6 = ucfirst($_POST['date_6']);
+if ($date_1 == '') {
+    $date_1 = 'Jour 1';
+}
+if ($date_2 == '') {
+    $date_2 = 'Jour 2';
+}
+if ($date_3 == '') {
+    $date_3 = 'Jour 3';
+}
+if ($date_4 == '') {
+    $date_4 = 'Jour 4';
+}
+if ($date_5 == '') {
+    $date_5 = 'Jour 5';
+}
+if ($date_6 == '') {
+    $date_6 = 'Jour 6';
+}
 $activity_1_1 = ucfirst($_POST['activity_1_1']);
 $activity_1_2 = ucfirst($_POST['activity_1_2']);
 $activity_1_3 = ucfirst($_POST['activity_1_3']);
@@ -148,7 +166,7 @@ $data .= '
         background-color: #fa5995;
         margin-top: 42px;
         padding-top: 50px;
-        padding-bottom: 50px;
+        padding-bottom: 40px;
         padding-right: 40px;
         padding-left: 40px;
     }
@@ -161,8 +179,9 @@ $data .= '
         padding-top: 10px;
         color: white;
         margin-bottom: 40px;
-        font-size: 15px;
+        font-size: 18px;
         line-height: 1;
+        height: 50px;
     }
     .square-2 {
         background-color: white;
@@ -173,9 +192,10 @@ $data .= '
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 30px;
+        font-size: 15px;
         margin-top: 10px;
         height: 182px;
-        line-height: 0.5;
+        line-height: 1.25;
     }
 
 </style>';
