@@ -43,6 +43,11 @@ while ($row = mysqli_fetch_assoc($result)) {
     $form_6[$indexOK] = $row['form_6'];
     $form_recluter[$indexOK] = $row['form_recluter'];
     $form_scheme[$indexOK] = $row['form_scheme'];
+    if ($row['form_label'] == '' || $row['form_label'] == null) {
+        $form_label[$indexOK] = 'register';
+    } else {
+        $form_label[$indexOK] = $row['form_label'];
+    }
 }
 ?>
 
@@ -124,232 +129,235 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for ($i = 1; $i <= $indexOK; $i++) { ?>
-                                    <?php
-                                    $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $form_type_pregnant_1 = $row['form_type_pregnant_1'];
-                                        $form_height_pregnant_1 = $row['form_height_pregnant_1'];
-                                        $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
-                                        $form_term_pregnant_1 = $row['form_term_pregnant_1'];
-                                        $form_week_pregnant_1 = $row['form_week_pregnant_1'];
-                                        $form_year_pregnant_1 = $row['form_year_pregnant_1'];
-                                        $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
-                                        $form_type_pregnant_2 = $row['form_type_pregnant_2'];
-                                        $form_height_pregnant_2 = $row['form_height_pregnant_2'];
-                                        $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
-                                        $form_term_pregnant_2 = $row['form_term_pregnant_2'];
-                                        $form_week_pregnant_2 = $row['form_week_pregnant_2'];
-                                        $form_year_pregnant_2 = $row['form_year_pregnant_2'];
-                                        $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
-                                        $form_type_pregnant_3 = $row['form_type_pregnant_3'];
-                                        $form_height_pregnant_3 = $row['form_height_pregnant_3'];
-                                        $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
-                                        $form_term_pregnant_3 = $row['form_term_pregnant_3'];
-                                        $form_week_pregnant_3 = $row['form_week_pregnant_3'];
-                                        $form_year_pregnant_3 = $row['form_year_pregnant_3'];
-                                        $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
-                                        $form_type_pregnant_4 = $row['form_type_pregnant_4'];
-                                        $form_height_pregnant_4 = $row['form_height_pregnant_4'];
-                                        $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
-                                        $form_term_pregnant_4 = $row['form_term_pregnant_4'];
-                                        $form_week_pregnant_4 = $row['form_week_pregnant_4'];
-                                        $form_year_pregnant_4 = $row['form_year_pregnant_4'];
-                                        $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
-                                        $form_type_pregnant_5 = $row['form_type_pregnant_5'];
-                                        $form_height_pregnant_5 = $row['form_height_pregnant_5'];
-                                        $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
-                                        $form_term_pregnant_5 = $row['form_term_pregnant_5'];
-                                        $form_week_pregnant_5 = $row['form_week_pregnant_5'];
-                                        $form_year_pregnant_5 = $row['form_year_pregnant_5'];
-                                        $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
-                                        $form_type_pregnant_6 = $row['form_type_pregnant_6'];
-                                        $form_height_pregnant_6 = $row['form_height_pregnant_6'];
-                                        $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
-                                        $form_term_pregnant_6 = $row['form_term_pregnant_6'];
-                                        $form_week_pregnant_6 = $row['form_week_pregnant_6'];
-                                        $form_year_pregnant_6 = $row['form_year_pregnant_6'];
-                                        $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
-                                        $form_type_abort_1 = $row['form_type_abort_1'];
-                                        $form_year_abort_1 = $row['form_year_abort_1'];
-                                        $form_week_abort_1 = $row['form_week_abort_1'];
-                                        $form_method_abort_1 = $row['form_method_abort_1'];
-                                        $form_comments_abort_1 = $row['form_comments_abort_1'];
-                                        $form_type_abort_2 = $row['form_type_abort_2'];
-                                        $form_year_abort_2 = $row['form_year_abort_2'];
-                                        $form_week_abort_2 = $row['form_week_abort_2'];
-                                        $form_method_abort_2 = $row['form_method_abort_2'];
-                                        $form_comments_abort_2 = $row['form_comments_abort_2'];
-                                        $form_type_abort_3 = $row['form_type_abort_3'];
-                                        $form_year_abort_3 = $row['form_year_abort_3'];
-                                        $form_week_abort_3 = $row['form_week_abort_3'];
-                                        $form_method_abort_3 = $row['form_method_abort_3'];
-                                        $form_comments_abort_3 = $row['form_comments_abort_3'];
-                                        $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
-                                        $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
-                                        $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
-                                        $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
-                                        $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
-                                        $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
-                                        $num_pregnants = 0;
-                                        if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
+                                <?php for ($i = 1; $i <= $indexOK; $i++) {
+                                    if ($form_label[$i] == 'register') { ?>
+                                        <?php
+                                        $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $form_type_pregnant_1 = $row['form_type_pregnant_1'];
+                                            $form_height_pregnant_1 = $row['form_height_pregnant_1'];
+                                            $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
+                                            $form_term_pregnant_1 = $row['form_term_pregnant_1'];
+                                            $form_week_pregnant_1 = $row['form_week_pregnant_1'];
+                                            $form_year_pregnant_1 = $row['form_year_pregnant_1'];
+                                            $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
+                                            $form_type_pregnant_2 = $row['form_type_pregnant_2'];
+                                            $form_height_pregnant_2 = $row['form_height_pregnant_2'];
+                                            $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
+                                            $form_term_pregnant_2 = $row['form_term_pregnant_2'];
+                                            $form_week_pregnant_2 = $row['form_week_pregnant_2'];
+                                            $form_year_pregnant_2 = $row['form_year_pregnant_2'];
+                                            $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
+                                            $form_type_pregnant_3 = $row['form_type_pregnant_3'];
+                                            $form_height_pregnant_3 = $row['form_height_pregnant_3'];
+                                            $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
+                                            $form_term_pregnant_3 = $row['form_term_pregnant_3'];
+                                            $form_week_pregnant_3 = $row['form_week_pregnant_3'];
+                                            $form_year_pregnant_3 = $row['form_year_pregnant_3'];
+                                            $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
+                                            $form_type_pregnant_4 = $row['form_type_pregnant_4'];
+                                            $form_height_pregnant_4 = $row['form_height_pregnant_4'];
+                                            $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
+                                            $form_term_pregnant_4 = $row['form_term_pregnant_4'];
+                                            $form_week_pregnant_4 = $row['form_week_pregnant_4'];
+                                            $form_year_pregnant_4 = $row['form_year_pregnant_4'];
+                                            $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
+                                            $form_type_pregnant_5 = $row['form_type_pregnant_5'];
+                                            $form_height_pregnant_5 = $row['form_height_pregnant_5'];
+                                            $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
+                                            $form_term_pregnant_5 = $row['form_term_pregnant_5'];
+                                            $form_week_pregnant_5 = $row['form_week_pregnant_5'];
+                                            $form_year_pregnant_5 = $row['form_year_pregnant_5'];
+                                            $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
+                                            $form_type_pregnant_6 = $row['form_type_pregnant_6'];
+                                            $form_height_pregnant_6 = $row['form_height_pregnant_6'];
+                                            $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
+                                            $form_term_pregnant_6 = $row['form_term_pregnant_6'];
+                                            $form_week_pregnant_6 = $row['form_week_pregnant_6'];
+                                            $form_year_pregnant_6 = $row['form_year_pregnant_6'];
+                                            $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
+                                            $form_type_abort_1 = $row['form_type_abort_1'];
+                                            $form_year_abort_1 = $row['form_year_abort_1'];
+                                            $form_week_abort_1 = $row['form_week_abort_1'];
+                                            $form_method_abort_1 = $row['form_method_abort_1'];
+                                            $form_comments_abort_1 = $row['form_comments_abort_1'];
+                                            $form_type_abort_2 = $row['form_type_abort_2'];
+                                            $form_year_abort_2 = $row['form_year_abort_2'];
+                                            $form_week_abort_2 = $row['form_week_abort_2'];
+                                            $form_method_abort_2 = $row['form_method_abort_2'];
+                                            $form_comments_abort_2 = $row['form_comments_abort_2'];
+                                            $form_type_abort_3 = $row['form_type_abort_3'];
+                                            $form_year_abort_3 = $row['form_year_abort_3'];
+                                            $form_week_abort_3 = $row['form_week_abort_3'];
+                                            $form_method_abort_3 = $row['form_method_abort_3'];
+                                            $form_comments_abort_3 = $row['form_comments_abort_3'];
+                                            $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
+                                            $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
+                                            $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
+                                            $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
+                                            $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
+                                            $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
+                                            $num_pregnants = 0;
+                                            if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            $num_aborts = 0;
+                                            if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            $num_ces = 0;
+                                            if ($form_type_pregnant_1 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_2 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_3 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_4 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_5 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_6 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
                                         }
-                                        if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        $num_aborts = 0;
-                                        if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        $num_ces = 0;
-                                        if ($form_type_pregnant_1 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_2 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_3 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_4 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_5 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_6 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                    }
-                                    ?>
-                                    <tr>
-                                        <td data-title="Gestante" scope="row">
-                                            <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
-                                        </td>
-                                        <td data-title="Edad" <?php if ($form_age[$i] > 38) {
-                                                                    echo "class='red-label'";
-                                                                } else {
-                                                                    echo "class='green-label'";
-                                                                } ?>><?php echo $form_age[$i] ?></td>
-                                        <td data-title="Fecha de nacimiento"><?php echo $form_date[$i] ?></td>
-                                        <td data-title="Estatura (m)"><?php echo $form_height[$i] ?></td>
-                                        <td data-title="Peso (kg)"><?php echo $form_weight[$i] ?></td>
-                                        <td data-title="IMC" <?php if (($form_weight[$i] != 0) && ($form_height[$i] != 0)) {
-                                                                    if ((round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2)) > 28) {
+                                        ?>
+                                        <tr>
+                                            <td data-title="Gestante" scope="row">
+                                                <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
+                                            </td>
+                                            <td data-title="Edad" <?php if ($form_age[$i] > 38) {
                                                                         echo "class='red-label'";
                                                                     } else {
                                                                         echo "class='green-label'";
-                                                                    } ?>><?php
-                                                                            if ($form_height[$i] != 0) {
-                                                                                echo round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2);
-                                                                            }
-                                                                        }
-                                                                            ?></td>
-                                        <td data-title="Embarazos"><?php if ($num_ces > 2) {
-                                                                        echo $num_pregnants . " embarazos <div class='yellow-label'>" . $num_ces . " cesáreas </div>";
-                                                                    } else {
-                                                                        echo $num_pregnants . " embarazos <br>" . $num_ces . " cesáreas";
-                                                                    } ?></td>
-                                        <td data-title="Complicaciones"><?php
-                                                                        if (($form_coded_comments_pregnant_1 == "11111111111111111111") && ($form_coded_comments_pregnant_2 == "11111111111111111111") && ($form_coded_comments_pregnant_3 == "11111111111111111111") && ($form_coded_comments_pregnant_4 == "11111111111111111111") && ($form_coded_comments_pregnant_5 == "11111111111111111111") && ($form_coded_comments_pregnant_6 == "11111111111111111111")) {
-                                                                            echo "No";
+                                                                    } ?>><?php echo $form_age[$i] ?></td>
+                                            <td data-title="Fecha de nacimiento"><?php echo $form_date[$i] ?></td>
+                                            <td data-title="Estatura (m)"><?php echo $form_height[$i] ?></td>
+                                            <td data-title="Peso (kg)"><?php echo $form_weight[$i] ?></td>
+                                            <td data-title="IMC" <?php if (($form_weight[$i] != 0) && ($form_height[$i] != 0)) {
+                                                                        if ((round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2)) > 28) {
+                                                                            echo "class='red-label'";
                                                                         } else {
-                                                                            echo "Sí";
-                                                                        }
-                                                                        ?></td>
-                                        <td data-title="ACO"><?php if ($form_diu[$i] == "sí") {
-                                                                    echo "DIU";
-                                                                }
-                                                                if ($form_implant[$i] == "sí") {
-                                                                    echo " Implante ";
-                                                                } ?></td>
-                                        <td data-title="Esquema"><?php echo $form_scheme[$i]; ?></td>
-                                        <td data-title="Lugar de nacimiento"><?php
-                                                                                $form_birth_place_eval = strtoupper($form_birth_place[1]);
-                                                                                $form_birth_place_eval = iconv('UTF-8', 'ASCII//TRANSLIT', $form_birth_place_eval);
-                                                                                if (
-                                                                                    $form_birth_place_eval == "CIUDAD DE MEXICO" ||
-                                                                                    $form_birth_place_eval == "CDMX" ||
-                                                                                    $form_birth_place_eval == "ESTADO DE MEXICO" ||
-                                                                                    $form_birth_place_eval == "EDO MEX" ||
-                                                                                    $form_birth_place_eval == "EDO. MEX" ||
-                                                                                    $form_birth_place_eval == "EDO. DE MEX" ||
-                                                                                    $form_birth_place_eval == "EDO DE MEX" ||
-                                                                                    $form_birth_place_eval == "EDOMEX"
-                                                                                ) {
-                                                                                    echo "<div class='green-label'>" . $form_birth_place[$i] . "</div>";
-                                                                                } else {
-                                                                                    echo "<div class='red-label'>" . $form_birth_place[$i] . "</div>";
-                                                                                } ?></td>
-                                        <td data-title="Calendario" scope="row">
-                                            <a href="candidateCalendarEdit.php?id=<?php echo $id[$i]; ?>">Pagos</a>
-                                        </td>
-                                        <td><?php echo $form_recluter[$i]; ?></td>
-                                        <td>
-                                            <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
-                                        </td>
-                                        <td>
-                                            <form method="POST" class="form-table" action="deleteCandidate.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
-                                                <input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Eliminar">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form method="POST" class="form-table" action="deleteCandidate.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
-                                                <div class="dropdown">
-                                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Mover a
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Gestante"></li>
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Descartada"></li>
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                                                            echo "class='green-label'";
+                                                                        } ?>><?php
+                                                                                if ($form_height[$i] != 0) {
+                                                                                    echo round(($form_weight[$i]) / ($form_height[$i] * $form_height[$i]), 2);
+                                                                                }
+                                                                            }
+                                                                                ?></td>
+                                            <td data-title="Embarazos"><?php if ($num_ces > 2) {
+                                                                            echo $num_pregnants . " embarazos <div class='yellow-label'>" . $num_ces . " cesáreas </div>";
+                                                                        } else {
+                                                                            echo $num_pregnants . " embarazos <br>" . $num_ces . " cesáreas";
+                                                                        } ?></td>
+                                            <td data-title="Complicaciones"><?php
+                                                                            if (($form_coded_comments_pregnant_1 == "11111111111111111111") && ($form_coded_comments_pregnant_2 == "11111111111111111111") && ($form_coded_comments_pregnant_3 == "11111111111111111111") && ($form_coded_comments_pregnant_4 == "11111111111111111111") && ($form_coded_comments_pregnant_5 == "11111111111111111111") && ($form_coded_comments_pregnant_6 == "11111111111111111111")) {
+                                                                                echo "No";
+                                                                            } else {
+                                                                                echo "Sí";
+                                                                            }
+                                                                            ?></td>
+                                            <td data-title="ACO"><?php if ($form_diu[$i] == "sí") {
+                                                                        echo "DIU";
+                                                                    }
+                                                                    if ($form_implant[$i] == "sí") {
+                                                                        echo " Implante ";
+                                                                    } ?></td>
+                                            <td data-title="Esquema"><?php echo $form_scheme[$i]; ?></td>
+                                            <td data-title="Lugar de nacimiento"><?php
+                                                                                    $form_birth_place_eval = strtoupper($form_birth_place[1]);
+                                                                                    $form_birth_place_eval = iconv('UTF-8', 'ASCII//TRANSLIT', $form_birth_place_eval);
+                                                                                    if (
+                                                                                        $form_birth_place_eval == "CIUDAD DE MEXICO" ||
+                                                                                        $form_birth_place_eval == "CDMX" ||
+                                                                                        $form_birth_place_eval == "ESTADO DE MEXICO" ||
+                                                                                        $form_birth_place_eval == "EDO MEX" ||
+                                                                                        $form_birth_place_eval == "EDO. MEX" ||
+                                                                                        $form_birth_place_eval == "EDO. DE MEX" ||
+                                                                                        $form_birth_place_eval == "EDO DE MEX" ||
+                                                                                        $form_birth_place_eval == "EDOMEX"
+                                                                                    ) {
+                                                                                        echo "<div class='green-label'>" . $form_birth_place[$i] . "</div>";
+                                                                                    } else {
+                                                                                        echo "<div class='red-label'>" . $form_birth_place[$i] . "</div>";
+                                                                                    } ?></td>
+                                            <td data-title="Calendario" scope="row">
+                                                <a href="candidateCalendarEdit.php?id=<?php echo $id[$i]; ?>">Pagos</a>
+                                            </td>
+                                            <td><?php echo $form_recluter[$i]; ?></td>
+                                            <td>
+                                                <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
+                                            </td>
+                                            <td>
+                                                <form method="POST" class="form-table" action="deleteCandidate.php">
+                                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                                    <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
+                                                    <input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Eliminar">
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form method="POST" class="form-table" action="changeCandidateStatus.php" onsubmit="return confirmSubmit('<?php echo $id[$i]; ?>')">
+                                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                                    <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
+                                                    <input type="hidden" name=<?php echo "action_value_" . $id[$i]; ?> id="<?php echo "action_value_" . $id[$i]; ?>">
+                                                    <div class="dropdown">
+                                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Mover a
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Inicial_' . $id[$i]; ?>')" class="boton-rojo-block" value="Inicial"></li>
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Descartadas_' . $id[$i]; ?>')" class="boton-rojo-block" value="Descartadas"></li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -388,180 +396,183 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for ($i = 1; $i <= $indexOK; $i++) { ?>
-                                    <?php
-                                    $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $form_type_pregnant_1 = $row['form_type_pregnant_1'];
-                                        $form_height_pregnant_1 = $row['form_height_pregnant_1'];
-                                        $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
-                                        $form_term_pregnant_1 = $row['form_term_pregnant_1'];
-                                        $form_week_pregnant_1 = $row['form_week_pregnant_1'];
-                                        $form_year_pregnant_1 = $row['form_year_pregnant_1'];
-                                        $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
-                                        $form_type_pregnant_2 = $row['form_type_pregnant_2'];
-                                        $form_height_pregnant_2 = $row['form_height_pregnant_2'];
-                                        $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
-                                        $form_term_pregnant_2 = $row['form_term_pregnant_2'];
-                                        $form_week_pregnant_2 = $row['form_week_pregnant_2'];
-                                        $form_year_pregnant_2 = $row['form_year_pregnant_2'];
-                                        $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
-                                        $form_type_pregnant_3 = $row['form_type_pregnant_3'];
-                                        $form_height_pregnant_3 = $row['form_height_pregnant_3'];
-                                        $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
-                                        $form_term_pregnant_3 = $row['form_term_pregnant_3'];
-                                        $form_week_pregnant_3 = $row['form_week_pregnant_3'];
-                                        $form_year_pregnant_3 = $row['form_year_pregnant_3'];
-                                        $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
-                                        $form_type_pregnant_4 = $row['form_type_pregnant_4'];
-                                        $form_height_pregnant_4 = $row['form_height_pregnant_4'];
-                                        $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
-                                        $form_term_pregnant_4 = $row['form_term_pregnant_4'];
-                                        $form_week_pregnant_4 = $row['form_week_pregnant_4'];
-                                        $form_year_pregnant_4 = $row['form_year_pregnant_4'];
-                                        $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
-                                        $form_type_pregnant_5 = $row['form_type_pregnant_5'];
-                                        $form_height_pregnant_5 = $row['form_height_pregnant_5'];
-                                        $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
-                                        $form_term_pregnant_5 = $row['form_term_pregnant_5'];
-                                        $form_week_pregnant_5 = $row['form_week_pregnant_5'];
-                                        $form_year_pregnant_5 = $row['form_year_pregnant_5'];
-                                        $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
-                                        $form_type_pregnant_6 = $row['form_type_pregnant_6'];
-                                        $form_height_pregnant_6 = $row['form_height_pregnant_6'];
-                                        $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
-                                        $form_term_pregnant_6 = $row['form_term_pregnant_6'];
-                                        $form_week_pregnant_6 = $row['form_week_pregnant_6'];
-                                        $form_year_pregnant_6 = $row['form_year_pregnant_6'];
-                                        $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
-                                        $form_type_abort_1 = $row['form_type_abort_1'];
-                                        $form_year_abort_1 = $row['form_year_abort_1'];
-                                        $form_week_abort_1 = $row['form_week_abort_1'];
-                                        $form_method_abort_1 = $row['form_method_abort_1'];
-                                        $form_comments_abort_1 = $row['form_comments_abort_1'];
-                                        $form_type_abort_2 = $row['form_type_abort_2'];
-                                        $form_year_abort_2 = $row['form_year_abort_2'];
-                                        $form_week_abort_2 = $row['form_week_abort_2'];
-                                        $form_method_abort_2 = $row['form_method_abort_2'];
-                                        $form_comments_abort_2 = $row['form_comments_abort_2'];
-                                        $form_type_abort_3 = $row['form_type_abort_3'];
-                                        $form_year_abort_3 = $row['form_year_abort_3'];
-                                        $form_week_abort_3 = $row['form_week_abort_3'];
-                                        $form_method_abort_3 = $row['form_method_abort_3'];
-                                        $form_comments_abort_3 = $row['form_comments_abort_3'];
-                                        $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
-                                        $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
-                                        $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
-                                        $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
-                                        $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
-                                        $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
-                                        $num_pregnants = 0;
-                                        if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
+                                <?php for ($i = 1; $i <= $indexOK; $i++) {
+                                    if ($form_label[$i] == 'initial') { ?>
+                                        <?php
+                                        $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $form_type_pregnant_1 = $row['form_type_pregnant_1'];
+                                            $form_height_pregnant_1 = $row['form_height_pregnant_1'];
+                                            $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
+                                            $form_term_pregnant_1 = $row['form_term_pregnant_1'];
+                                            $form_week_pregnant_1 = $row['form_week_pregnant_1'];
+                                            $form_year_pregnant_1 = $row['form_year_pregnant_1'];
+                                            $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
+                                            $form_type_pregnant_2 = $row['form_type_pregnant_2'];
+                                            $form_height_pregnant_2 = $row['form_height_pregnant_2'];
+                                            $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
+                                            $form_term_pregnant_2 = $row['form_term_pregnant_2'];
+                                            $form_week_pregnant_2 = $row['form_week_pregnant_2'];
+                                            $form_year_pregnant_2 = $row['form_year_pregnant_2'];
+                                            $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
+                                            $form_type_pregnant_3 = $row['form_type_pregnant_3'];
+                                            $form_height_pregnant_3 = $row['form_height_pregnant_3'];
+                                            $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
+                                            $form_term_pregnant_3 = $row['form_term_pregnant_3'];
+                                            $form_week_pregnant_3 = $row['form_week_pregnant_3'];
+                                            $form_year_pregnant_3 = $row['form_year_pregnant_3'];
+                                            $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
+                                            $form_type_pregnant_4 = $row['form_type_pregnant_4'];
+                                            $form_height_pregnant_4 = $row['form_height_pregnant_4'];
+                                            $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
+                                            $form_term_pregnant_4 = $row['form_term_pregnant_4'];
+                                            $form_week_pregnant_4 = $row['form_week_pregnant_4'];
+                                            $form_year_pregnant_4 = $row['form_year_pregnant_4'];
+                                            $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
+                                            $form_type_pregnant_5 = $row['form_type_pregnant_5'];
+                                            $form_height_pregnant_5 = $row['form_height_pregnant_5'];
+                                            $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
+                                            $form_term_pregnant_5 = $row['form_term_pregnant_5'];
+                                            $form_week_pregnant_5 = $row['form_week_pregnant_5'];
+                                            $form_year_pregnant_5 = $row['form_year_pregnant_5'];
+                                            $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
+                                            $form_type_pregnant_6 = $row['form_type_pregnant_6'];
+                                            $form_height_pregnant_6 = $row['form_height_pregnant_6'];
+                                            $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
+                                            $form_term_pregnant_6 = $row['form_term_pregnant_6'];
+                                            $form_week_pregnant_6 = $row['form_week_pregnant_6'];
+                                            $form_year_pregnant_6 = $row['form_year_pregnant_6'];
+                                            $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
+                                            $form_type_abort_1 = $row['form_type_abort_1'];
+                                            $form_year_abort_1 = $row['form_year_abort_1'];
+                                            $form_week_abort_1 = $row['form_week_abort_1'];
+                                            $form_method_abort_1 = $row['form_method_abort_1'];
+                                            $form_comments_abort_1 = $row['form_comments_abort_1'];
+                                            $form_type_abort_2 = $row['form_type_abort_2'];
+                                            $form_year_abort_2 = $row['form_year_abort_2'];
+                                            $form_week_abort_2 = $row['form_week_abort_2'];
+                                            $form_method_abort_2 = $row['form_method_abort_2'];
+                                            $form_comments_abort_2 = $row['form_comments_abort_2'];
+                                            $form_type_abort_3 = $row['form_type_abort_3'];
+                                            $form_year_abort_3 = $row['form_year_abort_3'];
+                                            $form_week_abort_3 = $row['form_week_abort_3'];
+                                            $form_method_abort_3 = $row['form_method_abort_3'];
+                                            $form_comments_abort_3 = $row['form_comments_abort_3'];
+                                            $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
+                                            $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
+                                            $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
+                                            $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
+                                            $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
+                                            $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
+                                            $num_pregnants = 0;
+                                            if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            $num_aborts = 0;
+                                            if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            $num_ces = 0;
+                                            if ($form_type_pregnant_1 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_2 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_3 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_4 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_5 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_6 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
                                         }
-                                        if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        $num_aborts = 0;
-                                        if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        $num_ces = 0;
-                                        if ($form_type_pregnant_1 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_2 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_3 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_4 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_5 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_6 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                    }
-                                    ?>
-                                    <tr>
-                                        <td data-title="Gestante" scope="row">
-                                            <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
-                                        </td>
-                                        <td data-title="CURP"><?php echo "X"; ?></td>
-                                        <td data-title="RFC"><?php echo "X"; ?></td>
-                                        <td data-title="Edad"><?php echo "X"; ?></td>
-                                        <td data-title="Fecha de nacimiento"><?php echo "X"; ?></td>
-                                        <td data-title="Estado civil"><?php echo "X"; ?></td>
-                                        <td data-title="Ocupación"><?php echo "X"; ?></td>
-                                        <td data-title="Domicilio"><?php echo "X"; ?></td>
-                                        <td data-title="Cuenta CLABE"><?php echo "X"; ?></td>
-                                        <td data-title="Banco"><?php echo "X"; ?></td>
-                                        <td data-title="Esquema"><?php echo "X"; ?></td>
-                                        <td data-title="Entrevista psicológica"><?php echo "X"; ?></td>
-                                        <td data-title="Psicometría"><?php echo "X"; ?></td>
-                                        <td data-title="Solicitud de seguro"><?php echo "X"; ?></td>
-                                        <td data-title="Estudio socioeconómico"><?php echo "X"; ?></td>
-                                        <td>
-                                            <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
-                                        </td>
-                                        <td>
-                                            <form method="POST" class="form-table" action="deleteCandidate.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
-                                                <div class="dropdown">
-                                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Mover a
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Gestante"></li>
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Descartada"></li>
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                        ?>
+                                        <tr>
+                                            <td data-title="Gestante" scope="row">
+                                                <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
+                                            </td>
+                                            <td data-title="CURP"><?php echo "X"; ?></td>
+                                            <td data-title="RFC"><?php echo "X"; ?></td>
+                                            <td data-title="Edad"><?php echo "X"; ?></td>
+                                            <td data-title="Fecha de nacimiento"><?php echo "X"; ?></td>
+                                            <td data-title="Estado civil"><?php echo "X"; ?></td>
+                                            <td data-title="Ocupación"><?php echo "X"; ?></td>
+                                            <td data-title="Domicilio"><?php echo "X"; ?></td>
+                                            <td data-title="Cuenta CLABE"><?php echo "X"; ?></td>
+                                            <td data-title="Banco"><?php echo "X"; ?></td>
+                                            <td data-title="Esquema"><?php echo "X"; ?></td>
+                                            <td data-title="Entrevista psicológica"><?php echo "X"; ?></td>
+                                            <td data-title="Psicometría"><?php echo "X"; ?></td>
+                                            <td data-title="Solicitud de seguro"><?php echo "X"; ?></td>
+                                            <td data-title="Estudio socioeconómico"><?php echo "X"; ?></td>
+                                            <td>
+                                                <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
+                                            </td>
+                                            <td>
+                                                <form method="POST" class="form-table" action="changeCandidateStatus.php" onsubmit="return confirmSubmit('<?php echo $id[$i]; ?>')">
+                                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                                    <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
+                                                    <input type="hidden" name=<?php echo "action_value_" . $id[$i]; ?> id="<?php echo "action_value_" . $id[$i]; ?>">
+                                                    <div class="dropdown">
+                                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Mover a
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Gestante_' . $id[$i]; ?>')" class="boton-rojo-block" value="Gestante"></li>
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Descartadas_' . $id[$i]; ?>')" class="boton-rojo-block" value="Descartadas"></li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -600,180 +611,183 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for ($i = 1; $i <= $indexOK; $i++) { ?>
-                                    <?php
-                                    $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $form_type_pregnant_1 = $row['form_type_pregnant_1'];
-                                        $form_height_pregnant_1 = $row['form_height_pregnant_1'];
-                                        $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
-                                        $form_term_pregnant_1 = $row['form_term_pregnant_1'];
-                                        $form_week_pregnant_1 = $row['form_week_pregnant_1'];
-                                        $form_year_pregnant_1 = $row['form_year_pregnant_1'];
-                                        $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
-                                        $form_type_pregnant_2 = $row['form_type_pregnant_2'];
-                                        $form_height_pregnant_2 = $row['form_height_pregnant_2'];
-                                        $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
-                                        $form_term_pregnant_2 = $row['form_term_pregnant_2'];
-                                        $form_week_pregnant_2 = $row['form_week_pregnant_2'];
-                                        $form_year_pregnant_2 = $row['form_year_pregnant_2'];
-                                        $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
-                                        $form_type_pregnant_3 = $row['form_type_pregnant_3'];
-                                        $form_height_pregnant_3 = $row['form_height_pregnant_3'];
-                                        $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
-                                        $form_term_pregnant_3 = $row['form_term_pregnant_3'];
-                                        $form_week_pregnant_3 = $row['form_week_pregnant_3'];
-                                        $form_year_pregnant_3 = $row['form_year_pregnant_3'];
-                                        $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
-                                        $form_type_pregnant_4 = $row['form_type_pregnant_4'];
-                                        $form_height_pregnant_4 = $row['form_height_pregnant_4'];
-                                        $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
-                                        $form_term_pregnant_4 = $row['form_term_pregnant_4'];
-                                        $form_week_pregnant_4 = $row['form_week_pregnant_4'];
-                                        $form_year_pregnant_4 = $row['form_year_pregnant_4'];
-                                        $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
-                                        $form_type_pregnant_5 = $row['form_type_pregnant_5'];
-                                        $form_height_pregnant_5 = $row['form_height_pregnant_5'];
-                                        $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
-                                        $form_term_pregnant_5 = $row['form_term_pregnant_5'];
-                                        $form_week_pregnant_5 = $row['form_week_pregnant_5'];
-                                        $form_year_pregnant_5 = $row['form_year_pregnant_5'];
-                                        $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
-                                        $form_type_pregnant_6 = $row['form_type_pregnant_6'];
-                                        $form_height_pregnant_6 = $row['form_height_pregnant_6'];
-                                        $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
-                                        $form_term_pregnant_6 = $row['form_term_pregnant_6'];
-                                        $form_week_pregnant_6 = $row['form_week_pregnant_6'];
-                                        $form_year_pregnant_6 = $row['form_year_pregnant_6'];
-                                        $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
-                                        $form_type_abort_1 = $row['form_type_abort_1'];
-                                        $form_year_abort_1 = $row['form_year_abort_1'];
-                                        $form_week_abort_1 = $row['form_week_abort_1'];
-                                        $form_method_abort_1 = $row['form_method_abort_1'];
-                                        $form_comments_abort_1 = $row['form_comments_abort_1'];
-                                        $form_type_abort_2 = $row['form_type_abort_2'];
-                                        $form_year_abort_2 = $row['form_year_abort_2'];
-                                        $form_week_abort_2 = $row['form_week_abort_2'];
-                                        $form_method_abort_2 = $row['form_method_abort_2'];
-                                        $form_comments_abort_2 = $row['form_comments_abort_2'];
-                                        $form_type_abort_3 = $row['form_type_abort_3'];
-                                        $form_year_abort_3 = $row['form_year_abort_3'];
-                                        $form_week_abort_3 = $row['form_week_abort_3'];
-                                        $form_method_abort_3 = $row['form_method_abort_3'];
-                                        $form_comments_abort_3 = $row['form_comments_abort_3'];
-                                        $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
-                                        $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
-                                        $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
-                                        $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
-                                        $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
-                                        $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
-                                        $num_pregnants = 0;
-                                        if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
+                                <?php for ($i = 1; $i <= $indexOK; $i++) {
+                                    if ($form_label[$i] == 'discarded') { ?>
+                                        <?php
+                                        $sql = "SELECT * FROM pregnants WHERE candidateId='" . $id[$i] . "'";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $form_type_pregnant_1 = $row['form_type_pregnant_1'];
+                                            $form_height_pregnant_1 = $row['form_height_pregnant_1'];
+                                            $form_weight_pregnant_1 = $row['form_weight_pregnant_1'];
+                                            $form_term_pregnant_1 = $row['form_term_pregnant_1'];
+                                            $form_week_pregnant_1 = $row['form_week_pregnant_1'];
+                                            $form_year_pregnant_1 = $row['form_year_pregnant_1'];
+                                            $form_comments_pregnant_1 = $row['form_comments_pregnant_1'];
+                                            $form_type_pregnant_2 = $row['form_type_pregnant_2'];
+                                            $form_height_pregnant_2 = $row['form_height_pregnant_2'];
+                                            $form_weight_pregnant_2 = $row['form_weight_pregnant_2'];
+                                            $form_term_pregnant_2 = $row['form_term_pregnant_2'];
+                                            $form_week_pregnant_2 = $row['form_week_pregnant_2'];
+                                            $form_year_pregnant_2 = $row['form_year_pregnant_2'];
+                                            $form_comments_pregnant_2 = $row['form_comments_pregnant_2'];
+                                            $form_type_pregnant_3 = $row['form_type_pregnant_3'];
+                                            $form_height_pregnant_3 = $row['form_height_pregnant_3'];
+                                            $form_weight_pregnant_3 = $row['form_weight_pregnant_3'];
+                                            $form_term_pregnant_3 = $row['form_term_pregnant_3'];
+                                            $form_week_pregnant_3 = $row['form_week_pregnant_3'];
+                                            $form_year_pregnant_3 = $row['form_year_pregnant_3'];
+                                            $form_comments_pregnant_3 = $row['form_comments_pregnant_3'];
+                                            $form_type_pregnant_4 = $row['form_type_pregnant_4'];
+                                            $form_height_pregnant_4 = $row['form_height_pregnant_4'];
+                                            $form_weight_pregnant_4 = $row['form_weight_pregnant_4'];
+                                            $form_term_pregnant_4 = $row['form_term_pregnant_4'];
+                                            $form_week_pregnant_4 = $row['form_week_pregnant_4'];
+                                            $form_year_pregnant_4 = $row['form_year_pregnant_4'];
+                                            $form_comments_pregnant_4 = $row['form_comments_pregnant_4'];
+                                            $form_type_pregnant_5 = $row['form_type_pregnant_5'];
+                                            $form_height_pregnant_5 = $row['form_height_pregnant_5'];
+                                            $form_weight_pregnant_5 = $row['form_weight_pregnant_5'];
+                                            $form_term_pregnant_5 = $row['form_term_pregnant_5'];
+                                            $form_week_pregnant_5 = $row['form_week_pregnant_5'];
+                                            $form_year_pregnant_5 = $row['form_year_pregnant_5'];
+                                            $form_comments_pregnant_5 = $row['form_comments_pregnant_5'];
+                                            $form_type_pregnant_6 = $row['form_type_pregnant_6'];
+                                            $form_height_pregnant_6 = $row['form_height_pregnant_6'];
+                                            $form_weight_pregnant_6 = $row['form_weight_pregnant_6'];
+                                            $form_term_pregnant_6 = $row['form_term_pregnant_6'];
+                                            $form_week_pregnant_6 = $row['form_week_pregnant_6'];
+                                            $form_year_pregnant_6 = $row['form_year_pregnant_6'];
+                                            $form_comments_pregnant_6 = $row['form_comments_pregnant_6'];
+                                            $form_type_abort_1 = $row['form_type_abort_1'];
+                                            $form_year_abort_1 = $row['form_year_abort_1'];
+                                            $form_week_abort_1 = $row['form_week_abort_1'];
+                                            $form_method_abort_1 = $row['form_method_abort_1'];
+                                            $form_comments_abort_1 = $row['form_comments_abort_1'];
+                                            $form_type_abort_2 = $row['form_type_abort_2'];
+                                            $form_year_abort_2 = $row['form_year_abort_2'];
+                                            $form_week_abort_2 = $row['form_week_abort_2'];
+                                            $form_method_abort_2 = $row['form_method_abort_2'];
+                                            $form_comments_abort_2 = $row['form_comments_abort_2'];
+                                            $form_type_abort_3 = $row['form_type_abort_3'];
+                                            $form_year_abort_3 = $row['form_year_abort_3'];
+                                            $form_week_abort_3 = $row['form_week_abort_3'];
+                                            $form_method_abort_3 = $row['form_method_abort_3'];
+                                            $form_comments_abort_3 = $row['form_comments_abort_3'];
+                                            $form_coded_comments_pregnant_1 = $row['form_coded_comments_pregnant_1'];
+                                            $form_coded_comments_pregnant_2 = $row['form_coded_comments_pregnant_2'];
+                                            $form_coded_comments_pregnant_3 = $row['form_coded_comments_pregnant_3'];
+                                            $form_coded_comments_pregnant_4 = $row['form_coded_comments_pregnant_4'];
+                                            $form_coded_comments_pregnant_5 = $row['form_coded_comments_pregnant_5'];
+                                            $form_coded_comments_pregnant_6 = $row['form_coded_comments_pregnant_6'];
+                                            $num_pregnants = 0;
+                                            if ($form_height_pregnant_1 == 0 && $form_weight_pregnant_1 == 0 && $form_week_pregnant_1 == 0 && $form_year_pregnant_1 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
+                                                $num_pregnants = $num_pregnants;
+                                            } else {
+                                                $num_pregnants = $num_pregnants + 1;
+                                            }
+                                            $num_aborts = 0;
+                                            if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
+                                                $num_aborts = $num_aborts;
+                                            } else {
+                                                $num_aborts = $num_aborts + 1;
+                                            }
+                                            $num_ces = 0;
+                                            if ($form_type_pregnant_1 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_2 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_3 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_4 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_5 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
+                                            if ($form_type_pregnant_6 == "cesarea") {
+                                                $num_ces = $num_ces + 1;
+                                            }
                                         }
-                                        if ($form_height_pregnant_2 == 0 && $form_weight_pregnant_2 == 0 && $form_week_pregnant_2 == 0 && $form_year_pregnant_2 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_3 == 0 && $form_weight_pregnant_3 == 0 && $form_week_pregnant_3 == 0 && $form_year_pregnant_3 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_4 == 0 && $form_weight_pregnant_4 == 0 && $form_week_pregnant_4 == 0 && $form_year_pregnant_4 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_5 == 0 && $form_weight_pregnant_5 == 0 && $form_week_pregnant_5 == 0 && $form_year_pregnant_5 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        if ($form_height_pregnant_6 == 0 && $form_weight_pregnant_6 == 0 && $form_week_pregnant_6 == 0 && $form_year_pregnant_6 == 0) {
-                                            $num_pregnants = $num_pregnants;
-                                        } else {
-                                            $num_pregnants = $num_pregnants + 1;
-                                        }
-                                        $num_aborts = 0;
-                                        if ($form_week_abort_1 == 0 && $form_year_abort_1 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_2 == 0 && $form_year_abort_2 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        if ($form_week_abort_3 == 0 && $form_year_abort_3 == 0) {
-                                            $num_aborts = $num_aborts;
-                                        } else {
-                                            $num_aborts = $num_aborts + 1;
-                                        }
-                                        $num_ces = 0;
-                                        if ($form_type_pregnant_1 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_2 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_3 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_4 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_5 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                        if ($form_type_pregnant_6 == "cesarea") {
-                                            $num_ces = $num_ces + 1;
-                                        }
-                                    }
-                                    ?>
-                                    <tr>
-                                        <td data-title="Gestante" scope="row">
-                                            <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
-                                        </td>
-                                        <td data-title="CURP"><?php echo "X"; ?></td>
-                                        <td data-title="RFC"><?php echo "X"; ?></td>
-                                        <td data-title="Edad"><?php echo "X"; ?></td>
-                                        <td data-title="Fecha de nacimiento"><?php echo "X"; ?></td>
-                                        <td data-title="Estado civil"><?php echo "X"; ?></td>
-                                        <td data-title="Ocupación"><?php echo "X"; ?></td>
-                                        <td data-title="Domicilio"><?php echo "X"; ?></td>
-                                        <td data-title="Cuenta CLABE"><?php echo "X"; ?></td>
-                                        <td data-title="Banco"><?php echo "X"; ?></td>
-                                        <td data-title="Esquema"><?php echo "X"; ?></td>
-                                        <td data-title="Entrevista psicológica"><?php echo "X"; ?></td>
-                                        <td data-title="Psicometría"><?php echo "X"; ?></td>
-                                        <td data-title="Solicitud de seguro"><?php echo "X"; ?></td>
-                                        <td data-title="Estudio socioeconómico"><?php echo "X"; ?></td>
-                                        <td>
-                                            <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
-                                        </td>
-                                        <td>
-                                            <form method="POST" class="form-table" action="deleteCandidate.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
-                                                <div class="dropdown">
-                                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Mover a
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Gestante"></li>
-                                                        <li><input type="submit" onclick="return confirm('¿Deseas eliminar a la candidata?')" class="boton-rojo-block" value="Descartada"></li>
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                        ?>
+                                        <tr>
+                                            <td data-title="Gestante" scope="row">
+                                                <a href="profile.php?id=<?php echo $id[$i]; ?>"><?php echo $form_name[$i] ?></a>
+                                            </td>
+                                            <td data-title="CURP"><?php echo "X"; ?></td>
+                                            <td data-title="RFC"><?php echo "X"; ?></td>
+                                            <td data-title="Edad"><?php echo "X"; ?></td>
+                                            <td data-title="Fecha de nacimiento"><?php echo "X"; ?></td>
+                                            <td data-title="Estado civil"><?php echo "X"; ?></td>
+                                            <td data-title="Ocupación"><?php echo "X"; ?></td>
+                                            <td data-title="Domicilio"><?php echo "X"; ?></td>
+                                            <td data-title="Cuenta CLABE"><?php echo "X"; ?></td>
+                                            <td data-title="Banco"><?php echo "X"; ?></td>
+                                            <td data-title="Esquema"><?php echo "X"; ?></td>
+                                            <td data-title="Entrevista psicológica"><?php echo "X"; ?></td>
+                                            <td data-title="Psicometría"><?php echo "X"; ?></td>
+                                            <td data-title="Solicitud de seguro"><?php echo "X"; ?></td>
+                                            <td data-title="Estudio socioeconómico"><?php echo "X"; ?></td>
+                                            <td>
+                                                <a href="candidate.php?id=<?php echo $id[$i]; ?>">Editar</a>
+                                            </td>
+                                            <td>
+                                                <form method="POST" class="form-table" action="changeCandidateStatus.php" onsubmit="return confirmSubmit('<?php echo $id[$i]; ?>')">
+                                                    <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                                    <input type="hidden" name="form_name" value="<?php echo $form_name[$i]; ?>">
+                                                    <input type="hidden" name=<?php echo "action_value_" . $id[$i]; ?> id="<?php echo "action_value_" . $id[$i]; ?>">
+                                                    <div class="dropdown">
+                                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Mover a
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Registro_' . $id[$i]; ?>')" class="boton-rojo-block" value="Registro"></li>
+                                                            <li><input type="submit" onclick="setActionValue('<?php echo 'Inicial_' . $id[$i]; ?>')" class="boton-rojo-block" value="Inicial"></li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -786,6 +800,18 @@ while ($row = mysqli_fetch_assoc($result)) {
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {
             return confirm('Are you sure?');
+        }
+    </script>
+    <!-- Select value from form 'Mover a' -->
+    <script>
+        function setActionValue(value) {
+            let strVal = value.split('_')[0];
+            let strNum = value.split('_')[1];
+            document.getElementById(`action_value_${strNum}`).value = strVal;
+        }
+        function confirmSubmit(value) {
+            let val = document.getElementById(`action_value_${value}`).value;
+            return confirm(`¿Deseas mover a la candidata a ${val}?`);
         }
     </script>
     <!-- Custom JS -->
