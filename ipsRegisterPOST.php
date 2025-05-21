@@ -9,8 +9,8 @@ $input = json_decode(file_get_contents('php://input'), true);
 $id = $input['id'] ?? 'No ID';
 $content = $input['content'] ?? 'No Content';
 $stage = $input['stage'] ?? 'No Stage';
-$rowNumber = $input['row'] ?? 'No Row';
-$max_value = $input['max_value'] ?? 'No max value';
+$row_number = $input['row'] ?? 'No Row';
+$row_max = $input['row_max'] ?? 'No max value';
 
 include "includes/app.php";
 $conn = connectDB();
@@ -24,20 +24,20 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 }
 
-if ($rowNumber > 0) {
+if ($row_number > 0) {
     if ($content == "false") {
-        ${"stage_count_$rowNumber"} = ${"stage_count_$rowNumber"} - 1;
-        if (${"stage_count_$rowNumber"} == 1) {
+        ${"stage_count_$row_number"} = ${"stage_count_$row_number"} - 1;
+        if (${"stage_count_$row_number"} == 1) {
             $content = "true";
         }
     } else {
-        ${"stage_count_$rowNumber"} = ${"stage_count_$rowNumber"} + 1;
-        if (${"stage_count_$rowNumber"} == $max_value) {
+        ${"stage_count_$row_number"} = ${"stage_count_$row_number"} + 1;
+        if (${"stage_count_$row_number"} == $row_max) {
             $content = "false";
         }
     }
-    $variable = "stage_count_" . $rowNumber;
-    $variableValue = ${"stage_count_$rowNumber"};
+    $variable = "stage_count_" . $row_number;
+    $variableValue = ${"stage_count_$row_number"};
     $sql = "UPDATE $table SET $variable=$variableValue WHERE id=1";
     mysqli_query($conn, $sql);
 }
@@ -47,4 +47,4 @@ $sql = "UPDATE $table SET $variable='$content' WHERE id=1";
 mysqli_query($conn, $sql);
 
 // Echo the data back
-echo "Received ID: $id with table $table \n variable $variable Received Content: $content from stage $stage and rowNumber $rowNumber";
+echo "Received ID: $id with table $table \n variable $variable Received Content: $content from stage $stage and row_number $row_number";

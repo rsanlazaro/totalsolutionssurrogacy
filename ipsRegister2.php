@@ -210,7 +210,7 @@ generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_o
 $propertyName = "max_counter_enable";
 ${"Stage_$stage"}->$propertyName = $counter_enable;
 
-function generateRow(int $component, int $stage, int $stage_count, string $description, array $select_options, bool $isStage2)
+function generateRow(int $component, int $stage, int $row_num, string $description, array $select_options, bool $isStage2)
 {
     global $counter_enable;
     global ${"max_{$stage}_{$component}"};
@@ -244,13 +244,13 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         if ($i == 0) {
             if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
                 ${"add_$component"}[0] =
-                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_{$stage}_{$component}"} . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
+                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . "," . $component . ", " . $row_num . "," . ${"max_{$stage}_{$component}"} . ")'>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
         </button>";
             } else {
                 ${"add_$component"}[0] =
-                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_{$stage}_{$component}"} . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
+                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . "," . $component . ", " . $row_num . "," . ${"max_{$stage}_{$component}"} . ")'>
+                <i id='toggleIcon_off_" . $stage . "_". $counter_enable . "' class='fa-solid fa-minus false'></i>
         </button>";
             }
         } else {
@@ -261,7 +261,7 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         ${"info_general_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         $counter_enable++;
         global ${"stage_{$counter_enable}"};
-        ${"state_$component"}[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>";
+        ${"state_$component"}[$i] = "<select id='" . $stage . "_" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>";
         $state_variable = "";
         foreach ($select_options as $key => $value) {
             $state_variable .= "<option " . (${"stage_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
@@ -290,12 +290,12 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_1_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
         </button>";
         } else {
             ${"enable_1_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
         </button>";
         }
         $counter_enable++;
@@ -306,12 +306,12 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_2_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
         </button>";
         } else {
             ${"enable_2_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
         </button>";
         }
         $counter_enable++;
@@ -322,12 +322,12 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_3_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
         </button>";
         } else {
             ${"enable_3_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
         </button>";
         }
         $counter_enable++;
@@ -335,12 +335,12 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enableView_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
         </button>";
         } else {
             ${"enableView_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
         </button>";
         }
         $counter_enable++;
@@ -689,9 +689,9 @@ function tableStage2(
         <script src="https://kit.fontawesome.com/b8332e4c7c.js" crossorigin="anonymous"></script>
         <!-- Animation -->
         <script>
-            function toggle(id, state, stage, row = 0, stage_count = 0, max_value = 0) {
+            function toggle(id, state, stage, row = 0, row_num = 0, row_max = 0) {
 
-                const icon = document.getElementById('toggleIcon_off_' + id);
+                const icon = document.getElementById('toggleIcon_off_' + stage + '_' + id);
                 icon.classList.add('icon-animate');
 
                 setTimeout(() => {
@@ -722,33 +722,33 @@ function tableStage2(
                 if (row == 0) {
                     (state == true) ? newValue = 'false': newValue = 'true';
                 } else {
-                    if (stage_count == max_value) {
+                    if (row_num == row_max) {
                         newValue = 'false';
-                    } else if (stage_count == 1) {
+                    } else if (row_num == 1) {
                         newValue = 'true';
                     } else {
                         newValue = String(state);
                     }
                 }
-                fetchContent(id, newValue, stage, row, max_value);
+                fetchContent(id, newValue, stage, row, row_max);
                 // location.reload();
             };
 
             function saveContent(tdElement, stage, id) {
                 const newValue = tdElement.innerText;
                 const row = 0;
-                const max_value = "";
-                fetchContent(id, newValue, stage, row, max_value);
+                const row_max = "";
+                fetchContent(id, newValue, stage, row, row_max);
             }
 
             function saveContent2(tdElement, stage, id) {
-                const newValue = document.getElementById(id).value;
+                const newValue = document.getElementById(stage + '_' + id).value;
                 const row = 0;
-                const max_value = "";
-                fetchContent(id, newValue, stage, row, max_value);
+                const row_max = "";
+                fetchContent(id, newValue, stage, row, row_max);
             }
 
-            function fetchContent(id, newValue, stage, row, max_value) {
+            function fetchContent(id, newValue, stage, row, row_max) {
                 fetch('ipsRegisterPOST.php', {
                         method: 'POST',
                         headers: {
@@ -759,7 +759,7 @@ function tableStage2(
                             content: newValue,
                             stage: stage,
                             row: row,
-                            max_value: max_value
+                            row_max: row_max
                         })
                     })
                     .then(res => res.text()) // expect plain text for echo
