@@ -19,7 +19,7 @@ $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=1";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 4; $i++) {
+    for ($i = 1; $i <= 5; $i++) {
         ${"stage_count_$i"} = $row['stage_count_' . $i];
     }
 }
@@ -42,9 +42,9 @@ if ($rowNumber > 0) {
     mysqli_query($conn, $sql);
 }
 
-$variable = "stage_" . $stage . "_" . $id;
+$variable = "stage_" . $id;
 $sql = "UPDATE $table SET $variable='$content' WHERE id=1";
 mysqli_query($conn, $sql);
 
 // Echo the data back
-echo "Received ID: $id\nReceived Content: $content from stage $stage and rowNumber $rowNumber \n";
+echo "Received ID: $id with table $table \n variable $variable Received Content: $content from stage $stage and rowNumber $rowNumber";

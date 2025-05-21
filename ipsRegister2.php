@@ -15,47 +15,46 @@ if (isset($_GET['id'])) {
     $ip_id = $_GET['id'];
 }
 
-$table = "ipregister_" . $stage;
-$sql = "SELECT * FROM ipregister WHERE id=${ip_id}";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 480; $i++) {
-        ${"stage_{$component}_{$i}"} = $row['stage_' . $component . '_' . $i];
-        global ${"stage_${component}_{$i}"};
-    }
-}
-$sql = "SELECT * FROM ipregister WHERE id=${ip_id}";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 5; $i++) {
-        ${"stage_count_$i"} = $row['stage_count_' . $i];
-        global ${"stage_count_$i"};
-    }
-}
-
 $counter_enable = 1;
 
 // ----------------- New Stage ----------------- //
 
 $stage = 1;
-${"stage_$stage"} = new stdClass();
+${"Stage_$stage"} = new stdClass();
 $titles = ["Agregar", "Crio embrio", "General Info", "Estado", "Underway", "Info", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
-${"stage_$stage"}->titles = $titles;
+${"Stage_$stage"}->titles = $titles;
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 200; $i++) {
+        ${"stage_{$i}"} = $row['stage_' . $i];
+    }
+}
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 5; $i++) {
+        ${"stage_count_$i"} = $row['stage_count_' . $i];
+        $propertyName = "stage_count_$i";
+        ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
+    }
+}
 
 // ---------------- New Component -------------- // 
 $component = 1;
-${"max_stage_1_$component"} = 3;
+${"max_{$stage}_{$component}"} = 2;
 $description = "Creación embrionaria - Reporte <br> Rapport de création embryonnaire";
 $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, ${"stage_count_$component"}, $description, $select_options);
+generateRow($component, $stage, $Stage_1->stage_count_1, $description, $select_options, false);
 
 // ---------------- New Component -------------- // 
 
 $component = 2;
-${"max_stage_1_$component"} = 4;
+${"max_{$stage}_{$component}"} = 2;
 $description = "Reporte Pgta <br> Rapport PGT-A";
 $select_options = [
     "waiting" => "Esperando",
@@ -63,13 +62,159 @@ $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, ${"stage_count_$component"}, $description, $select_options);
+generateRow($component, $stage, $Stage_1->stage_count_2, $description, $select_options, false);
 
-function generateRow(int $component, int $stage, int $stage_count, string $description, array $select_options)
+$propertyName = "max_counter_enable";
+${"Stage_$stage"}->$propertyName = $counter_enable;
+
+// ----------------- New Stage ----------------- //
+$stage = 2;
+$prev_stage = $stage - 1;
+${"Stage_$stage"} = new stdClass();
+$titles = ["Agregar", "Preparación Endometrial > Transferencia", "General Info", "Resultado", "Underway", "Datos", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
+${"Stage_$stage"}->titles = $titles;
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 200; $i++) {
+        ${"stage_{$i}"} = $row['stage_' . $i];
+    }
+}
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 5; $i++) {
+        ${"stage_count_$i"} = $row['stage_count_' . $i];
+        $propertyName = "stage_count_$i";
+        ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
+    }
+}
+
+// ---------------- New Component -------------- // 
+$component = 1;
+${"max_{$stage}_{$component}"} = 1;
+$description = "Presentación de la candidata <br> Présentation de la candidate";
+$select_options = [
+    "selection" => "Selection",
+    "insurance" => "Insurance Period",
+    "start" => "Start Simulation",
+    "canceled" => "Canceled",
+    "concluding" => "Concluding"
+];
+generateRow($component, $stage, $Stage_2->stage_count_1, $description, $select_options, false);
+
+// ---------------- New Component -------------- // 
+$component = 2;
+${"max_{$stage}_{$component}"} = 2;
+$description = "Transfer. Embrionaria <br> Transfert embryonnaire";
+$select_options = [
+    "canceled" => "Canceled",
+    "underway" => "Underway",
+    "concluding" => "Concluding"
+];
+generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, false);
+
+// ---------------- New Component -------------- // 
+$component = 3;
+${"max_{$stage}_{$component}"} = 2;
+$description = "Reporte Transfer <br> Rapport de transfert embryonnaire";
+$select_options = [
+    "waiting" => "Esperando",
+    "concluding" => "Concluding"
+];
+generateRow($component, $stage, $Stage_2->stage_count_3, $description, $select_options, false);
+
+// ---------------- New Component -------------- // 
+$component = 4;
+${"max_{$stage}_{$component}"} = 2;
+$description = "Prueba Beta <br> Beta Test";
+$select_options = [
+    "waiting" => "Esperando",
+    "concluding" => "Concluding"
+];
+generateRow($component, $stage, $Stage_2->stage_count_4, $description, $select_options, false);
+
+// ---------------- New Component -------------- // 
+$component = 5;
+${"max_{$stage}_{$component}"} = 2;
+$description = "Saco gestacional <br> Sac gestationnel";
+$select_options = [
+    "yes" => "Con presencia",
+    "no" => "Sin presencia"
+];
+generateRow($component, $stage, $Stage_2->stage_count_5, $description, $select_options, false);
+
+$propertyName = "max_counter_enable";
+${"Stage_$stage"}->$propertyName = $counter_enable;
+
+// ----------------- New Stage ----------------- //
+
+$stage = 3;
+$prev_stage = $stage - 1;
+${"Stage_$stage"} = new stdClass();
+$titles = ["Agregar", "Confirmación embarazo - Primer trimestre", "Descripción", "Resultado", "Underway", "Ícono resumen", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
+${"Stage_$stage"}->titles = $titles;
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 200; $i++) {
+        ${"stage_{$i}"} = $row['stage_' . $i];
+    }
+}
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 5; $i++) {
+        ${"stage_count_$i"} = $row['stage_count_' . $i];
+        $propertyName = "stage_count_$i";
+        ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
+    }
+}
+
+// ---------------- New Component -------------- // 
+$component = 1;
+${"max_{$stage}_{$component}"} = 2;
+$description = "SDG8 - Latido de corazón <br> Détection du battement du coeur foetal";
+$select_options = [
+    "waiting" => "Esperando SDG",
+    "successful" => "Successful",
+    "notconfirmed" => "No Confirmado"
+];
+generateRow($component, $stage, $Stage_3->stage_count_1, $description, $select_options, true);
+
+// ---------------- New Component -------------- // 
+$component = 2;
+${"max_{$stage}_{$component}"} = 2;
+$description = "SDG10 - Seg Ginecologica <br> Suivi Gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_3->stage_count_2, $description, $select_options, true);
+
+// ---------------- New Component -------------- // 
+$component = 3;
+${"max_{$stage}_{$component}"} = 2;
+$description = "SDG12 - Materno Fetal 1 <br> Suivi Materno Fetal 1";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_options, true);
+$propertyName = "max_counter_enable";
+${"Stage_$stage"}->$propertyName = $counter_enable;
+
+function generateRow(int $component, int $stage, int $stage_count, string $description, array $select_options, bool $isStage2)
 {
     global $counter_enable;
-    global ${"max_stage_{$stage}_{{$component}}"};
-    global ${"stage_{$stage}_{$counter_enable}"};
+    global ${"max_{$stage}_{$component}"};
+    global ${"stage_{$counter_enable}"};
     ${"info_general_$component"} = [];
     ${"info_1_$component"} = [];
     ${"info_2_$component"} = [];
@@ -92,58 +237,57 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
     global ${"enable_3_$component"};
     global ${"enableView_$component"};
     global ${"description_$component"};
-    global ${"stage_$stage"};
+    global ${"Stage_$stage"};
     global ${"state_$component"};
-    global ${"max_stage_{$stage}_{$component}"};
-    for ($i = 0; $i < ${"max_stage_{$stage}_{$component}"}; $i++) {
+    for ($i = 0; $i < ${"max_{$stage}_{$component}"}; $i++) {
         ${"description_$component"}[$i] = $description;
-    }
-    for ($i = 0; $i < ${"max_stage_{$stage}_{$component}"}; $i++) {
+        if ($i == 0) {
+            if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+                ${"add_$component"}[0] =
+                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_{$stage}_{$component}"} . ")'>
+                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
+        </button>";
+            } else {
+                ${"add_$component"}[0] =
+                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_{$stage}_{$component}"} . ")'>
+                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
+        </button>";
+            }
+        } else {
+            "<button> </button>";
+        }
+        $counter_enable++;
+        global ${"stage_{$counter_enable}"};
+        ${"info_general_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        $counter_enable++;
+        global ${"stage_{$counter_enable}"};
         ${"state_$component"}[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>";
         $state_variable = "";
         foreach ($select_options as $key => $value) {
-            $state_variable .= "<option " . (${"stage_{$stage}_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
+            $state_variable .= "<option " . (${"stage_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
                 $value .
                 "</option>";
         }
         ${"state_$component"}[$i] .= $state_variable . "</select>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-    }
-    for ($i = 0; $i < ${"max_stage_{$stage}_{$component}"}; $i++) {
-        if ($i == 0) {
-            if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
-                ${"add_$component"}[0] =
-                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_stage_{$stage}_{$component}"} . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
-        </button>";
-            } else {
-                ${"add_$component"}[0] =
-                    "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . "," . $component . ", " . $stage_count . "," . ${"max_stage_{$stage}_{$component}"} . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
-        </button>";
-            }
-            $counter_enable++;
-            global ${"stage_{$stage}_{$counter_enable}"};
+        global ${"stage_{$counter_enable}"};
+        ${"underway_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        $counter_enable++;
+        global ${"stage_{$counter_enable}"};
+        if ($isStage2) {
+            ${"info_1_$component"}[$i] = "<td colspan='2' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         } else {
-            "<button> </button>";
+            ${"info_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         }
-        ${"info_general_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"underway_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        global ${"stage_{$counter_enable}"};
+        ${"info_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"info_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        global ${"stage_{$counter_enable}"};
+        ${"uploading_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"info_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
-        $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
-        $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
+        global ${"stage_{$counter_enable}"};
+        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_1_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -155,11 +299,11 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        global ${"stage_{$counter_enable}"};
+        ${"uploading_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
+        global ${"stage_{$counter_enable}"};
+        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_2_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -171,11 +315,11 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_3_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        global ${"stage_{$counter_enable}"};
+        ${"uploading_3_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
+        global ${"stage_{$counter_enable}"};
+        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enable_3_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -187,8 +331,8 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
+        global ${"stage_{$counter_enable}"};
+        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
             ${"enableView_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
@@ -200,599 +344,121 @@ function generateRow(int $component, int $stage, int $stage_count, string $descr
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$stage}_{$counter_enable}"};
+        global ${"stage_{$counter_enable}"};
     }
     $propertyName = "add_$component";
-    ${"stage_$stage"}->$propertyName = ${"add_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"add_$component"};
     $propertyName = "description_$component";
-    ${"stage_$stage"}->$propertyName = ${"description_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"description_$component"};
     $propertyName = "info_general_$component";
-    ${"stage_$stage"}->$propertyName = ${"info_general_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"info_general_$component"};
     $propertyName = "state_$component";
-    ${"stage_$stage"}->$propertyName = ${"state_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"state_$component"};
     $propertyName = "underway_$component";
-    ${"stage_$stage"}->$propertyName = ${"underway_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"underway_$component"};
     $propertyName = "info_1_$component";
-    ${"stage_$stage"}->$propertyName = ${"info_1_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"info_1_$component"};
     $propertyName = "info_2_$component";
-    ${"stage_$stage"}->$propertyName = ${"info_2_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"info_2_$component"};
     $propertyName = "uploading_1_$component";
-    ${"stage_$stage"}->$propertyName = ${"uploading_1_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"uploading_1_$component"};
     $propertyName = "uploading_2_$component";
-    ${"stage_$stage"}->$propertyName = ${"uploading_2_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"uploading_2_$component"};
     $propertyName = "uploading_3_$component";
-    ${"stage_$stage"}->$propertyName = ${"uploading_3_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"uploading_3_$component"};
     $propertyName = "enable_1_$component";
-    ${"stage_$stage"}->$propertyName = ${"enable_1_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"enable_1_$component"};
     $propertyName = "enable_2_$component";
-    ${"stage_$stage"}->$propertyName = ${"enable_2_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"enable_2_$component"};
     $propertyName = "enable_3_$component";
-    ${"stage_$stage"}->$propertyName = ${"enable_3_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"enable_3_$component"};
     $propertyName = "enableView_$component";
-    ${"stage_$stage"}->$propertyName = ${"enableView_$component"};
+    ${"Stage_$stage"}->$propertyName = ${"enableView_$component"};
 }
 
-// Stage 2
-$max_stage_2_1 = 2;
-$max_stage_2_2 = 2;
-$max_stage_2_3 = 2;
-$max_stage_2_4 = 2;
-$max_stage_2_5 = 2;
-
-// $stage = 1;
-$stage_2 = new stdClass();
-
-$titles = ["Agregar", "Preparación Endometrial > Transferencia", "General Info", "Resultado", "Underway", "Datos", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
-$description_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $description_1[$i] = "Presentación de la candidata <br> Présentation de la candidate";
-}
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    if ($i == 0) {
-        if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-            $add_1[0] =
-                "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . ",3, " . $stage_count_3 . "," . $max_stage_2_1 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
-        </button>";
+function headerStage($titles)
+{
+    foreach ($titles as $title) {
+        if ($title == "Info" || $title == "Datos" || $title == "Ícono resumen") {
+            echo "<th colspan='2'>" . $title . "</th>";
         } else {
-            $add_1[0] =
-                "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . ",3, " . $stage_count_3 . "," . $max_stage_2_1 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
-        </button>";
+            echo "<th>" . $title . "</th>";
         }
-        $counter_enable++;
-    } else {
-        "<button> </button>";
     }
-}
-$info_general_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $info_general_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$state_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $state_1[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>
-        <option " . (${"stage_1_$counter_enable"} === "selection" ? "selected" : "") . " value='selection'>
-            Selection
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "insurance" ? "selected" : "") . " value='insurance'>
-            Insurance Period
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "start" ? "selected" : "") . " value='start'>
-            Start Simulation
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "canceled" ? "selected" : "") . " value='canceled'>
-            Canceled
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "Concluding" ? "selected" : "") . " value='Concluding'>
-            Concluding
-        </option>
-    </select>";
-    $counter_enable++;
-}
-$underway_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $underway_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_1_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $info_1_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_2_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $info_2_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$uploading_1_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $uploading_1_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_1_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_1_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_2_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $uploading_2_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_2_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_2_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_3_1 = [];
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    $uploading_3_1[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_3_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_3_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_1; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enableView_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
-        </button>";
-    } else {
-        $enableView_1[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
-        </button>";
-    }
-    $counter_enable++;
 }
 
-// Second element
-$description_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $description_2[$i] = "Transfer. Embrionaria <br> Transfert embryonnaire";
-}
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $add_2[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_2 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
-        </button>";
-    } else {
-        $add_2[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_2 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
-        </button>";
+function tableStage(
+    $stage_count_1,
+    $add_1,
+    $description_1,
+    $info_general_1,
+    $state_1,
+    $underway_1,
+    $info_1_1,
+    $info_2_1,
+    $uploading_1_1,
+    $enable_1_1,
+    $uploading_2_1,
+    $enable_2_1,
+    $uploading_3_1,
+    $enable_3_1,
+    $enableView_1
+) {
+    for ($x = 0; $x < $stage_count_1; $x++) {
+        echo "<tr>" .
+            ($x == 0 ? "<td class='add'>" . $add_1[$x] . "</td>" : "<td class='add'> </td>") .
+            "<td class='description'>" . $description_1[$x] . "</td>" .
+            $info_general_1[$x] .
+            "<td>" . $state_1[$x] . "</td>" .
+            $underway_1[$x] .
+            $info_1_1[$x] .
+            $info_2_1[$x] .
+            $uploading_1_1[$x] .
+            "<td class='enable_1'>" . $enable_1_1[$x] . "</td>" .
+            $uploading_2_1[$x] .
+            "<td class='enable_2'>" . $enable_2_1[$x] . "</td>" .
+            $uploading_3_1[$x] .
+            "<td class='enable_3'>" . $enable_3_1[$x] . "</td>" .
+            "<td class='enableView'>" . $enableView_1[$x] . "</td>" .
+            "</tr>";
     }
-    $counter_enable++;
-}
-$info_general_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $info_general_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$state_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $state_2[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>
-        <option " . (${"stage_1_$counter_enable"} === "canceled" ? "selected" : "") . " value='canceled'>
-            Canceled
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "underway" ? "selected" : "") . " value='underway'>
-            Underway
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "concluding" ? "selected" : "") . " value='concluding'>
-            Concluding
-        </option>
-    </select>";
-    $counter_enable++;
-}
-$underway_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $underway_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_1_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $info_1_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_2_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $info_2_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$uploading_1_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $uploading_1_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_1_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_1_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_2_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $uploading_2_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_2_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_2_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_3_2 = [];
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    $uploading_3_2[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_3_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_3_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_2; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enableView_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
-        </button>";
-    } else {
-        $enableView_2[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
-        </button>";
-    }
-    $counter_enable++;
 }
 
-// Third element
-$description_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $description_3[$i] = "Reporte Transfer <br> Rapport de transfert embryonnaire";
-}
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $add_3[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_3 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
-        </button>";
-    } else {
-        $add_3[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_3 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
-        </button>";
+function tableStage2(
+    $stage_count_1,
+    $add_1,
+    $description_1,
+    $info_general_1,
+    $state_1,
+    $underway_1,
+    $info_1_1,
+    $uploading_1_1,
+    $enable_1_1,
+    $uploading_2_1,
+    $enable_2_1,
+    $uploading_3_1,
+    $enable_3_1,
+    $enableView_1
+) {
+    for ($x = 0; $x < $stage_count_1; $x++) {
+        echo "<tr>" .
+            ($x == 0 ? "<td class='add'>" . $add_1[$x] . "</td>" : "<td class='add'> </td>") .
+            "<td class='description'>" . $description_1[$x] . "</td>" .
+            $info_general_1[$x] .
+            "<td>" . $state_1[$x] . "</td>" .
+            $underway_1[$x] .
+            $info_1_1[$x] .
+            $uploading_1_1[$x] .
+            "<td class='enable_1'>" . $enable_1_1[$x] . "</td>" .
+            $uploading_2_1[$x] .
+            "<td class='enable_2'>" . $enable_2_1[$x] . "</td>" .
+            $uploading_3_1[$x] .
+            "<td class='enable_3'>" . $enable_3_1[$x] . "</td>" .
+            "<td class='enableView'>" . $enableView_1[$x] . "</td>" .
+            "</tr>";
     }
-    $counter_enable++;
-}
-$info_general_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $info_general_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$state_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $state_3[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>
-        <option " . (${"stage_1_$counter_enable"} === "waiting" ? "selected" : "") . " value='waiting'>
-            Esperando
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "concluding" ? "selected" : "") . " value='concluding'>
-            Concluding
-        </option>
-    </select>";
-    $counter_enable++;
-}
-$underway_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $underway_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_1_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $info_1_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_2_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $info_2_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$uploading_1_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $uploading_1_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_1_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_1_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_2_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $uploading_2_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_2_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_2_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_3_3 = [];
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    $uploading_3_3[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_3_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_3_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_3; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enableView_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
-        </button>";
-    } else {
-        $enableView_3[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
-        </button>";
-    }
-    $counter_enable++;
 }
 
-// Fourth element
-$description_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $description_4[$i] = "Reporte Transfer <br> Rapport de transfert embryonnaire";
-}
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $add_4[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_4 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
-        </button>";
-    } else {
-        $add_4[0] =
-            "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . ",4, " . $stage_count_4 . "," . $max_stage_2_4 . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$info_general_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $info_general_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$state_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $state_4[$i] = "<select id='" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>
-        <option " . (${"stage_1_$counter_enable"} === "waiting" ? "selected" : "") . " value='waiting'>
-            Esperando
-        </option>
-        <option " . (${"stage_1_$counter_enable"} === "concluding" ? "selected" : "") . " value='concluding'>
-            Concluding
-        </option>
-    </select>";
-    $counter_enable++;
-}
-$underway_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $underway_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_1_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $info_1_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$info_2_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $info_2_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-$uploading_1_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $uploading_1_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_1_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_1_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_2_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $uploading_2_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_2_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_2_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-$uploading_3_4 = [];
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    $uploading_3_4[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_1_$counter_enable"} . "</td>";
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enable_3_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
-        </button>";
-    } else {
-        $enable_3_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-toggle-off false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-for ($i = 0; $i < $max_stage_2_4; $i++) {
-    if (${"stage_1_$counter_enable"} == '-' || ${"stage_1_$counter_enable"} == "true") {
-        $enableView_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
-        </button>";
-    } else {
-        $enableView_4[$i] =
-            "<button onclick='toggle(" . $counter_enable . ",false, " . $stage . ")'>
-                <i id='toggleIcon_off_" . $counter_enable . "' class='fa-solid fa-eye-slash false'></i>
-        </button>";
-    }
-    $counter_enable++;
-}
-
-$stage_2->titles = $titles;
-$stage_2->add_1 = $add_1;
-$stage_2->description_1 = $description_1;
-$stage_2->info_general_1 = $info_general_1;
-$stage_2->state_1 = $state_1;
-$stage_2->underway_1 = $underway_1;
-$stage_2->info_1_1 = $info_1_1;
-$stage_2->info_2_1 = $info_2_1;
-$stage_2->uploading_1_1 = $uploading_1_1;
-$stage_2->enable_1_1 = $enable_1_1;
-$stage_2->uploading_2_1 = $uploading_2_1;
-$stage_2->enable_2_1 = $enable_2_1;
-$stage_2->uploading_3_1 = $uploading_3_1;
-$stage_2->enable_3_1 = $enable_3_1;
-$stage_2->enableView_1 = $enableView_1;
-$stage_2->add_2 = $add_2;
-$stage_2->description_2 = $description_2;
-$stage_2->info_general_2 = $info_general_2;
-$stage_2->state_2 = $state_2;
-$stage_2->underway_2 = $underway_2;
-$stage_2->info_1_2 = $info_1_2;
-$stage_2->info_2_2 = $info_2_2;
-$stage_2->uploading_1_2 = $uploading_1_2;
-$stage_2->enable_1_2 = $enable_1_2;
-$stage_2->uploading_2_2 = $uploading_2_2;
-$stage_2->enable_2_2 = $enable_2_2;
-$stage_2->uploading_3_2 = $uploading_3_2;
-$stage_2->enable_3_2 = $enable_3_2;
-$stage_2->enableView_2 = $enableView_2;
-$stage_2->add_3 = $add_3;
-$stage_2->description_3 = $description_3;
-$stage_2->info_general_3 = $info_general_3;
-$stage_2->state_3 = $state_3;
-$stage_2->underway_3 = $underway_3;
-$stage_2->info_1_3 = $info_1_3;
-$stage_2->info_2_3 = $info_2_3;
-$stage_2->uploading_1_3 = $uploading_1_3;
-$stage_2->enable_1_3 = $enable_1_3;
-$stage_2->uploading_2_3 = $uploading_2_3;
-$stage_2->enable_2_3 = $enable_2_3;
-$stage_2->uploading_3_3 = $uploading_3_3;
-$stage_2->enable_3_3 = $enable_3_3;
-$stage_2->enableView_3 = $enableView_3;
 ?>
 
 <main class="register">
@@ -812,52 +478,44 @@ $stage_2->enableView_3 = $enableView_3;
                         <tbody id="section1" class="collapse show">
                             <tr class="thead">
                                 <?php
-                                foreach ($stage_1->titles as $title) {
-                                    if ($title == "Info") {
-                                        echo "<th colspan='2'>" . $title . "</th>";
-                                    } else {
-                                        echo "<th>" . $title . "</th>";
-                                    }
-                                }
+                                headerStage($Stage_1->titles);
                                 ?>
                             </tr>
                             <?php
-                            for ($x = 0; $x < $stage_count_1; $x++) {
-                                echo "<tr>" .
-                                    ($x == 0 ? "<td class='add'>" . $stage_1->add_1[$x] . "</td>" : "<td class='add'> </td>") .
-                                    "<td class='description'>" . $stage_1->description_1[$x] . "</td>" .
-                                    $stage_1->info_general_1[$x] .
-                                    "<td>" . $stage_1->state_1[$x] . "</td>" .
-                                    $stage_1->underway_1[$x] .
-                                    $stage_1->info_1_1[$x] .
-                                    $stage_1->info_2_1[$x] .
-                                    $stage_1->uploading_1_1[$x] .
-                                    "<td class='enable_1'>" . $stage_1->enable_1_1[$x] . "</td>" .
-                                    $stage_1->uploading_2_1[$x] .
-                                    "<td class='enable_2'>" . $stage_1->enable_2_1[$x] . "</td>" .
-                                    $stage_1->uploading_3_1[$x] .
-                                    "<td class='enable_3'>" . $stage_1->enable_3_1[$x] . "</td>" .
-                                    "<td class='enableView'>" . $stage_1->enableView_1[$x] . "</td>" .
-                                    "</tr>";
-                            }
-                            for ($x = 0; $x < $stage_count_2; $x++) {
-                                echo "<tr>" .
-                                    ($x == 0 ? "<td class='add'>" . $stage_1->add_2[$x] . "</td>" : "<td class='add'> </td>") .
-                                    "<td class='description'>" . $stage_1->description_2[$x] . "</td>" .
-                                    $stage_1->info_general_2[$x] .
-                                    "<td>" . $stage_1->state_2[$x] . "</td>" .
-                                    $stage_1->underway_2[$x] .
-                                    $stage_1->info_1_2[$x] .
-                                    $stage_1->info_2_2[$x] .
-                                    $stage_1->uploading_1_2[$x] .
-                                    "<td class='enable_1'>" . $stage_1->enable_1_2[$x] . "</td>" .
-                                    $stage_1->uploading_2_2[$x] .
-                                    "<td class='enable_2'>" . $stage_1->enable_2_2[$x] . "</td>" .
-                                    $stage_1->uploading_3_2[$x] .
-                                    "<td class='enable_3'>" . $stage_1->enable_3_2[$x] . "</td>" .
-                                    "<td class='enableView'>" . $stage_1->enableView_2[$x] . "</td>" .
-                                    "</tr>";
-                            }
+                            tableStage(
+                                $Stage_1->stage_count_1,
+                                $Stage_1->add_1,
+                                $Stage_1->description_1,
+                                $Stage_1->info_general_1,
+                                $Stage_1->state_1,
+                                $Stage_1->underway_1,
+                                $Stage_1->info_1_1,
+                                $Stage_1->info_2_1,
+                                $Stage_1->uploading_1_1,
+                                $Stage_1->enable_1_1,
+                                $Stage_1->uploading_2_1,
+                                $Stage_1->enable_2_1,
+                                $Stage_1->uploading_3_1,
+                                $Stage_1->enable_3_1,
+                                $Stage_1->enableView_1
+                            );
+                            tableStage(
+                                $Stage_1->stage_count_2,
+                                $Stage_1->add_2,
+                                $Stage_1->description_2,
+                                $Stage_1->info_general_2,
+                                $Stage_1->state_2,
+                                $Stage_1->underway_2,
+                                $Stage_1->info_1_2,
+                                $Stage_1->info_2_2,
+                                $Stage_1->uploading_1_2,
+                                $Stage_1->enable_1_2,
+                                $Stage_1->uploading_2_2,
+                                $Stage_1->enable_2_2,
+                                $Stage_1->uploading_3_2,
+                                $Stage_1->enable_3_2,
+                                $Stage_1->enableView_2
+                            );
                             ?>
                         </tbody>
                         <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section2" aria-expanded="true" style="cursor: pointer;">
@@ -868,70 +526,157 @@ $stage_2->enableView_3 = $enableView_3;
                         <tbody id="section2" class="collapse show">
                             <tr class="thead">
                                 <?php
-                                foreach ($stage_2->titles as $title) {
-                                    if ($title == "Info") {
-                                        echo "<th colspan='2'>" . $title . "</th>";
-                                    } else {
-                                        echo "<th>" . $title . "</th>";
-                                    }
-                                }
+                                headerStage($Stage_2->titles);
                                 ?>
                             </tr>
                             <?php
-                            for ($x = 0; $x < $stage_count_3; $x++) {
-                                echo "<tr>" .
-                                    ($x == 0 ? "<td class='add'>" . $stage_2->add_1[$x] . "</td>" : "<td class='add'> </td>") .
-                                    "<td class='description'>" . $stage_2->description_1[$x] . "</td>" .
-                                    $stage_2->info_general_1[$x] .
-                                    "<td>" . $stage_2->state_1[$x] . "</td>" .
-                                    $stage_2->underway_1[$x] .
-                                    $stage_2->info_1_1[$x] .
-                                    $stage_2->info_2_1[$x] .
-                                    $stage_2->uploading_1_1[$x] .
-                                    "<td class='enable_1'>" . $stage_2->enable_1_1[$x] . "</td>" .
-                                    $stage_2->uploading_2_1[$x] .
-                                    "<td class='enable_2'>" . $stage_2->enable_2_1[$x] . "</td>" .
-                                    $stage_2->uploading_3_1[$x] .
-                                    "<td class='enable_3'>" . $stage_2->enable_3_1[$x] . "</td>" .
-                                    "<td class='enableView'>" . $stage_2->enableView_1[$x] . "</td>" .
-                                    "</tr>";
-                            }
-                            for ($x = 0; $x < $stage_count_4; $x++) {
-                                echo "<tr>" .
-                                    ($x == 0 ? "<td class='add'>" . $stage_2->add_2[$x] . "</td>" : "<td class='add'> </td>") .
-                                    "<td class='description'>" . $stage_2->description_2[$x] . "</td>" .
-                                    $stage_2->info_general_2[$x] .
-                                    "<td>" . $stage_2->state_2[$x] . "</td>" .
-                                    $stage_2->underway_2[$x] .
-                                    $stage_2->info_1_2[$x] .
-                                    $stage_2->info_2_2[$x] .
-                                    $stage_2->uploading_1_2[$x] .
-                                    "<td class='enable_1'>" . $stage_2->enable_1_2[$x] . "</td>" .
-                                    $stage_2->uploading_2_2[$x] .
-                                    "<td class='enable_2'>" . $stage_2->enable_2_2[$x] . "</td>" .
-                                    $stage_2->uploading_3_2[$x] .
-                                    "<td class='enable_3'>" . $stage_2->enable_3_2[$x] . "</td>" .
-                                    "<td class='enableView'>" . $stage_2->enableView_2[$x] . "</td>" .
-                                    "</tr>";
-                            }
-                            for ($x = 0; $x < $stage_count_5; $x++) {
-                                echo "<tr>" .
-                                    ($x == 0 ? "<td class='add'>" . $stage_2->add_3[$x] . "</td>" : "<td class='add'> </td>") .
-                                    "<td class='description'>" . $stage_2->description_3[$x] . "</td>" .
-                                    $stage_2->info_general_3[$x] .
-                                    "<td>" . $stage_2->state_3[$x] . "</td>" .
-                                    $stage_2->underway_3[$x] .
-                                    $stage_2->info_1_3[$x] .
-                                    $stage_2->info_2_3[$x] .
-                                    $stage_2->uploading_1_3[$x] .
-                                    "<td class='enable_1'>" . $stage_2->enable_1_3[$x] . "</td>" .
-                                    $stage_2->uploading_2_3[$x] .
-                                    "<td class='enable_2'>" . $stage_2->enable_2_3[$x] . "</td>" .
-                                    $stage_2->uploading_3_3[$x] .
-                                    "<td class='enable_3'>" . $stage_2->enable_3_3[$x] . "</td>" .
-                                    "<td class='enableView'>" . $stage_2->enableView_3[$x] . "</td>" .
-                                    "</tr>";
-                            }
+                            tableStage(
+                                $Stage_2->stage_count_1,
+                                $Stage_2->add_1,
+                                $Stage_2->description_1,
+                                $Stage_2->info_general_1,
+                                $Stage_2->state_1,
+                                $Stage_2->underway_1,
+                                $Stage_2->info_1_1,
+                                $Stage_2->info_2_1,
+                                $Stage_2->uploading_1_1,
+                                $Stage_2->enable_1_1,
+                                $Stage_2->uploading_2_1,
+                                $Stage_2->enable_2_1,
+                                $Stage_2->uploading_3_1,
+                                $Stage_2->enable_3_1,
+                                $Stage_2->enableView_1
+                            );
+                            tableStage(
+                                $Stage_2->stage_count_2,
+                                $Stage_2->add_2,
+                                $Stage_2->description_2,
+                                $Stage_2->info_general_2,
+                                $Stage_2->state_2,
+                                $Stage_2->underway_2,
+                                $Stage_2->info_1_2,
+                                $Stage_2->info_2_2,
+                                $Stage_2->uploading_1_2,
+                                $Stage_2->enable_1_2,
+                                $Stage_2->uploading_2_2,
+                                $Stage_2->enable_2_2,
+                                $Stage_2->uploading_3_2,
+                                $Stage_2->enable_3_2,
+                                $Stage_2->enableView_2
+                            );
+                            tableStage(
+                                $Stage_2->stage_count_3,
+                                $Stage_2->add_3,
+                                $Stage_2->description_3,
+                                $Stage_2->info_general_3,
+                                $Stage_2->state_3,
+                                $Stage_2->underway_3,
+                                $Stage_2->info_1_3,
+                                $Stage_2->info_2_3,
+                                $Stage_2->uploading_1_3,
+                                $Stage_2->enable_1_3,
+                                $Stage_2->uploading_2_3,
+                                $Stage_2->enable_2_3,
+                                $Stage_2->uploading_3_3,
+                                $Stage_2->enable_3_3,
+                                $Stage_2->enableView_3
+                            );
+                            tableStage(
+                                $Stage_2->stage_count_4,
+                                $Stage_2->add_4,
+                                $Stage_2->description_4,
+                                $Stage_2->info_general_4,
+                                $Stage_2->state_4,
+                                $Stage_2->underway_4,
+                                $Stage_2->info_1_4,
+                                $Stage_2->info_2_4,
+                                $Stage_2->uploading_1_4,
+                                $Stage_2->enable_1_4,
+                                $Stage_2->uploading_2_4,
+                                $Stage_2->enable_2_4,
+                                $Stage_2->uploading_3_4,
+                                $Stage_2->enable_3_4,
+                                $Stage_2->enableView_4
+                            );
+                            tableStage(
+                                $Stage_2->stage_count_5,
+                                $Stage_2->add_5,
+                                $Stage_2->description_5,
+                                $Stage_2->info_general_5,
+                                $Stage_2->state_5,
+                                $Stage_2->underway_5,
+                                $Stage_2->info_1_5,
+                                $Stage_2->info_2_5,
+                                $Stage_2->uploading_1_5,
+                                $Stage_2->enable_1_5,
+                                $Stage_2->uploading_2_5,
+                                $Stage_2->enable_2_5,
+                                $Stage_2->uploading_3_5,
+                                $Stage_2->enable_3_5,
+                                $Stage_2->enableView_5
+                            );
+                            ?>
+                        </tbody>
+                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section3" aria-expanded="true" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th colspan="14">Fase 3 - Confirmación embarazo - Primer trimestre</th>
+                            </tr>
+                        </thead>
+                        <tbody id="section3" class="collapse show">
+                            <tr class="thead">
+                                <?php
+                                headerStage($Stage_3->titles);
+                                ?>
+                            </tr>
+                            <?php
+                            tableStage2(
+                                $Stage_3->stage_count_1,
+                                $Stage_3->add_1,
+                                $Stage_3->description_1,
+                                $Stage_3->info_general_1,
+                                $Stage_3->state_1,
+                                $Stage_3->underway_1,
+                                $Stage_3->info_1_1,
+                                $Stage_3->uploading_1_1,
+                                $Stage_3->enable_1_1,
+                                $Stage_3->uploading_2_1,
+                                $Stage_3->enable_2_1,
+                                $Stage_3->uploading_3_1,
+                                $Stage_3->enable_3_1,
+                                $Stage_3->enableView_1
+                            );
+                            tableStage2(
+                                $Stage_3->stage_count_2,
+                                $Stage_3->add_2,
+                                $Stage_3->description_2,
+                                $Stage_3->info_general_2,
+                                $Stage_3->state_2,
+                                $Stage_3->underway_2,
+                                $Stage_3->info_1_2,
+                                $Stage_3->uploading_1_2,
+                                $Stage_3->enable_1_2,
+                                $Stage_3->uploading_2_2,
+                                $Stage_3->enable_2_2,
+                                $Stage_3->uploading_3_2,
+                                $Stage_3->enable_3_2,
+                                $Stage_3->enableView_2
+                            );
+                            tableStage2(
+                                $Stage_3->stage_count_3,
+                                $Stage_3->add_3,
+                                $Stage_3->description_3,
+                                $Stage_3->info_general_3,
+                                $Stage_3->state_3,
+                                $Stage_3->underway_3,
+                                $Stage_3->info_1_3,
+                                $Stage_3->uploading_1_3,
+                                $Stage_3->enable_1_3,
+                                $Stage_3->uploading_2_3,
+                                $Stage_3->enable_2_3,
+                                $Stage_3->uploading_3_3,
+                                $Stage_3->enable_3_3,
+                                $Stage_3->enableView_3
+                            );
                             ?>
                         </tbody>
                     </table>
@@ -986,19 +731,19 @@ $stage_2->enableView_3 = $enableView_3;
                     }
                 }
                 fetchContent(id, newValue, stage, row, max_value);
-                location.reload();
+                // location.reload();
             };
 
             function saveContent(tdElement, stage, id) {
                 const newValue = tdElement.innerText;
-                const row = "";
+                const row = 0;
                 const max_value = "";
                 fetchContent(id, newValue, stage, row, max_value);
             }
 
             function saveContent2(tdElement, stage, id) {
                 const newValue = document.getElementById(id).value;
-                const row = "";
+                const row = 0;
                 const max_value = "";
                 fetchContent(id, newValue, stage, row, max_value);
             }
