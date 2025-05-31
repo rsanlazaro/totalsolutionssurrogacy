@@ -19,8 +19,8 @@
   <!-- Font awesome -->
   <!-- Style -->
   <link rel="stylesheet" href="build/css/app.css" />
-  <link href="assets/css/paper-dashboard.css" rel="stylesheet" />
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- <link href="assets/css/paper-dashboard.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" /> -->
 </head>
 
 <body>

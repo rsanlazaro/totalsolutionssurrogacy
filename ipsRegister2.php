@@ -28,13 +28,13 @@ $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     for ($i = 1; $i <= 200; $i++) {
-        ${"stage_{$i}"} = $row['stage_' . $i];
+        ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
     }
 }
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 5; $i++) {
+    for ($i = 1; $i <= 2; $i++) {
         ${"stage_count_$i"} = $row['stage_count_' . $i];
         $propertyName = "stage_count_$i";
         ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
@@ -44,17 +44,19 @@ while ($row = mysqli_fetch_assoc($result)) {
 // ---------------- New Component -------------- // 
 $component = 1;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Creación embrionaria - Reporte <br> Rapport de création embryonnaire";
 $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_1->stage_count_1, $description, $select_options, false);
+generateRow($component, $stage, $Stage_1->stage_count_1, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 
 $component = 2;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Reporte Pgta <br> Rapport PGT-A";
 $select_options = [
     "waiting" => "Esperando",
@@ -62,12 +64,11 @@ $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_1->stage_count_2, $description, $select_options, false);
+generateRow($component, $stage, $Stage_1->stage_count_2, $description, $select_options, $isStage2);
 
-$propertyName = "max_counter_enable";
-${"Stage_$stage"}->$propertyName = $counter_enable;
 
 // ----------------- New Stage ----------------- //
+$counter_enable = 1;
 $stage = 2;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
@@ -78,7 +79,7 @@ $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     for ($i = 1; $i <= 200; $i++) {
-        ${"stage_{$i}"} = $row['stage_' . $i];
+        ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
     }
 }
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
@@ -94,6 +95,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 // ---------------- New Component -------------- // 
 $component = 1;
 ${"max_{$stage}_{$component}"} = 1;
+$isStage2 = false;
 $description = "Presentación de la candidata <br> Présentation de la candidate";
 $select_options = [
     "selection" => "Selection",
@@ -102,54 +104,57 @@ $select_options = [
     "canceled" => "Canceled",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_1, $description, $select_options, false);
+generateRow($component, $stage, $Stage_2->stage_count_1, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Transfer. Embrionaria <br> Transfert embryonnaire";
 $select_options = [
     "canceled" => "Canceled",
     "underway" => "Underway",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, false);
+generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Reporte Transfer <br> Rapport de transfert embryonnaire";
 $select_options = [
     "waiting" => "Esperando",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_3, $description, $select_options, false);
+generateRow($component, $stage, $Stage_2->stage_count_3, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 4;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Prueba Beta <br> Beta Test";
 $select_options = [
     "waiting" => "Esperando",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_4, $description, $select_options, false);
+generateRow($component, $stage, $Stage_2->stage_count_4, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 5;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = false;
 $description = "Saco gestacional <br> Sac gestationnel";
 $select_options = [
     "yes" => "Con presencia",
     "no" => "Sin presencia"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_5, $description, $select_options, false);
+generateRow($component, $stage, $Stage_2->stage_count_5, $description, $select_options, $isStage2);
 
-$propertyName = "max_counter_enable";
-${"Stage_$stage"}->$propertyName = $counter_enable;
 
 // ----------------- New Stage ----------------- //
 
+$counter_enable = 1;
 $stage = 3;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
@@ -160,13 +165,13 @@ $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     for ($i = 1; $i <= 200; $i++) {
-        ${"stage_{$i}"} = $row['stage_' . $i];
+        ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
     }
 }
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 5; $i++) {
+    for ($i = 1; $i <= 3; $i++) {
         ${"stage_count_$i"} = $row['stage_count_' . $i];
         $propertyName = "stage_count_$i";
         ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
@@ -176,17 +181,19 @@ while ($row = mysqli_fetch_assoc($result)) {
 // ---------------- New Component -------------- // 
 $component = 1;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
 $description = "SDG8 - Latido de corazón <br> Détection du battement du coeur foetal";
 $select_options = [
     "waiting" => "Esperando SDG",
     "successful" => "Successful",
     "notconfirmed" => "No Confirmado"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_1, $description, $select_options, true);
+generateRow($component, $stage, $Stage_3->stage_count_1, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
 $description = "SDG10 - Seg Ginecologica <br> Suivi Gynécologique";
 $select_options = [
     "none" => "---",
@@ -194,11 +201,12 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_2, $description, $select_options, true);
+generateRow($component, $stage, $Stage_3->stage_count_2, $description, $select_options, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
 ${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
 $description = "SDG12 - Materno Fetal 1 <br> Suivi Materno Fetal 1";
 $select_options = [
     "none" => "---",
@@ -206,15 +214,217 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_options, true);
-$propertyName = "max_counter_enable";
-${"Stage_$stage"}->$propertyName = $counter_enable;
+generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_options, $isStage2);
+
+// ----------------- New Stage ----------------- //
+
+$counter_enable = 1;
+$stage = 4;
+$prev_stage = $stage - 1;
+${"Stage_$stage"} = new stdClass();
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 200; $i++) {
+        ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
+    }
+}
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 4; $i++) {
+        ${"stage_count_$i"} = $row['stage_count_' . $i];
+        $propertyName = "stage_count_$i";
+        ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
+    }
+}
+
+// ---------------- New Component -------------- // 
+$component = 1;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_4->stage_count_1, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 2;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_4->stage_count_2, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 3;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Materno Fetal 2 <br> Suivi Materno Fetal 2";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_4->stage_count_3, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 4;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_4->stage_count_4, $description, $select_options, $isStage2);
+
+// ----------------- New Stage ----------------- //
+
+$counter_enable = 1;
+$stage = 5;
+$prev_stage = $stage - 1;
+${"Stage_$stage"} = new stdClass();
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 200; $i++) {
+        ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
+    }
+}
+$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 8; $i++) {
+        ${"stage_count_$i"} = $row['stage_count_' . $i];
+        $propertyName = "stage_count_$i";
+        ${"Stage_$stage"}->$propertyName = ${"stage_count_$i"};
+    }
+}
+
+// ---------------- New Component -------------- // 
+$component = 1;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_1, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 2;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Materno Fetal 3 <br> Suivi Materno Fetal 3";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_2, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 3;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_3, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 4;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_4, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 5;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_5, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 6;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_6, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 7;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_7, $description, $select_options, $isStage2);
+
+// ---------------- New Component -------------- // 
+$component = 8;
+${"max_{$stage}_{$component}"} = 2;
+$isStage2 = true;
+$description = "Seg Ginecológica <br> Suivi gynécologique";
+$select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
+    "canceled" => "Cancelada",
+    "done" => "Realizada"
+];
+generateRow($component, $stage, $Stage_5->stage_count_8, $description, $select_options, $isStage2);
 
 function generateRow(int $component, int $stage, int $row_num, string $description, array $select_options, bool $isStage2)
 {
     global $counter_enable;
     global ${"max_{$stage}_{$component}"};
-    global ${"stage_{$counter_enable}"};
+    global ${"stage_{$stage}_{$counter_enable}"};
     ${"info_general_$component"} = [];
     ${"info_1_$component"} = [];
     ${"info_2_$component"} = [];
@@ -242,7 +452,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
     for ($i = 0; $i < ${"max_{$stage}_{$component}"}; $i++) {
         ${"description_$component"}[$i] = $description;
         if ($i == 0) {
-            if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+            if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
                 ${"add_$component"}[0] =
                     "<button class='addBtn' onclick='toggle(" . $counter_enable . ",true, " . $stage . "," . $component . ", " . $row_num . "," . ${"max_{$stage}_{$component}"} . ")'>
                 <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-plus false'></i>
@@ -250,44 +460,44 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
             } else {
                 ${"add_$component"}[0] =
                     "<button class='addBtn' onclick='toggle(" . $counter_enable . ",false, " . $stage . "," . $component . ", " . $row_num . "," . ${"max_{$stage}_{$component}"} . ")'>
-                <i id='toggleIcon_off_" . $stage . "_". $counter_enable . "' class='fa-solid fa-minus false'></i>
+                <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-minus false'></i>
         </button>";
             }
         } else {
             "<button> </button>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"info_general_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"info_general_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
+        global ${"stage_{$stage}_{$counter_enable}"};
         ${"state_$component"}[$i] = "<select id='" . $stage . "_" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>";
         $state_variable = "";
         foreach ($select_options as $key => $value) {
-            $state_variable .= "<option " . (${"stage_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
+            $state_variable .= "<option " . (${"stage_{$stage}_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
                 $value .
                 "</option>";
         }
         ${"state_$component"}[$i] .= $state_variable . "</select>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"underway_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"underway_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
+        global ${"stage_{$stage}_{$counter_enable}"};
         if ($isStage2) {
-            ${"info_1_$component"}[$i] = "<td colspan='2' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+            ${"info_1_$component"}[$i] = "<td colspan='2' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         } else {
-            ${"info_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+            ${"info_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"info_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"info_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"uploading_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"uploading_1_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+        global ${"stage_{$stage}_{$counter_enable}"};
+        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
             ${"enable_1_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -299,11 +509,11 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"uploading_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"uploading_2_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+        global ${"stage_{$stage}_{$counter_enable}"};
+        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
             ${"enable_2_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -315,11 +525,11 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        ${"uploading_3_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$counter_enable}"} . "</td>";
+        global ${"stage_{$stage}_{$counter_enable}"};
+        ${"uploading_3_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+        global ${"stage_{$stage}_{$counter_enable}"};
+        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
             ${"enable_3_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-toggle-on false'></i>
@@ -331,8 +541,8 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
-        if (${"stage_{$counter_enable}"} == '-' || ${"stage_{$counter_enable}"} == "true") {
+        global ${"stage_{$stage}_{$counter_enable}"};
+        if (${"stage_{$stage}_{$counter_enable}"} == '-' || ${"stage_{$stage}_{$counter_enable}"} == "true") {
             ${"enableView_$component"}[$i] =
                 "<button onclick='toggle(" . $counter_enable . ",true, " . $stage . ")'>
                 <i id='toggleIcon_off_" . $stage . "_" . $counter_enable . "' class='fa-solid fa-eye false'></i>
@@ -344,7 +554,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         </button>";
         }
         $counter_enable++;
-        global ${"stage_{$counter_enable}"};
+        global ${"stage_{$stage}_{$counter_enable}"};
     }
     $propertyName = "add_$component";
     ${"Stage_$stage"}->$propertyName = ${"add_$component"};
@@ -468,7 +678,7 @@ function tableStage2(
     <div class="tab-content mt-3" id="myTabContent">
         <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
             <div class="container lab-pagination">
-                <div id="table-scroll" class="content table-responsive table-full-width">
+                <div id="table-scroll2" class="content table-responsive table-full-width">
                     <table class="table table-hover myTable tableIps" id="myTable">
                         <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true" style="cursor: pointer;">
                             <tr class="thead">
@@ -679,15 +889,223 @@ function tableStage2(
                             );
                             ?>
                         </tbody>
+                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section4" aria-expanded="true" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th colspan="14">Fase 4 - Seguimiento del embarazo - Segundo Trimestre</th>
+                            </tr>
+                        </thead>
+                        <tbody id="section4" class="collapse show">
+                            <?php
+                            tableStage2(
+                                $Stage_4->stage_count_1,
+                                $Stage_4->add_1,
+                                $Stage_4->description_1,
+                                $Stage_4->info_general_1,
+                                $Stage_4->state_1,
+                                $Stage_4->underway_1,
+                                $Stage_4->info_1_1,
+                                $Stage_4->uploading_1_1,
+                                $Stage_4->enable_1_1,
+                                $Stage_4->uploading_2_1,
+                                $Stage_4->enable_2_1,
+                                $Stage_4->uploading_3_1,
+                                $Stage_4->enable_3_1,
+                                $Stage_4->enableView_1
+                            );
+                            tableStage2(
+                                $Stage_4->stage_count_2,
+                                $Stage_4->add_2,
+                                $Stage_4->description_2,
+                                $Stage_4->info_general_2,
+                                $Stage_4->state_2,
+                                $Stage_4->underway_2,
+                                $Stage_4->info_1_2,
+                                $Stage_4->uploading_1_2,
+                                $Stage_4->enable_1_2,
+                                $Stage_4->uploading_2_2,
+                                $Stage_4->enable_2_2,
+                                $Stage_4->uploading_3_2,
+                                $Stage_4->enable_3_2,
+                                $Stage_4->enableView_2
+                            );
+                            tableStage2(
+                                $Stage_4->stage_count_3,
+                                $Stage_4->add_3,
+                                $Stage_4->description_3,
+                                $Stage_4->info_general_3,
+                                $Stage_4->state_3,
+                                $Stage_4->underway_3,
+                                $Stage_4->info_1_3,
+                                $Stage_4->uploading_1_3,
+                                $Stage_4->enable_1_3,
+                                $Stage_4->uploading_2_3,
+                                $Stage_4->enable_2_3,
+                                $Stage_4->uploading_3_3,
+                                $Stage_4->enable_3_3,
+                                $Stage_4->enableView_3
+                            );
+                            tableStage2(
+                                $Stage_4->stage_count_4,
+                                $Stage_4->add_4,
+                                $Stage_4->description_4,
+                                $Stage_4->info_general_4,
+                                $Stage_4->state_4,
+                                $Stage_4->underway_4,
+                                $Stage_4->info_1_4,
+                                $Stage_4->uploading_1_4,
+                                $Stage_4->enable_1_4,
+                                $Stage_4->uploading_2_4,
+                                $Stage_4->enable_2_4,
+                                $Stage_4->uploading_3_4,
+                                $Stage_4->enable_3_4,
+                                $Stage_4->enableView_4
+                            );
+                            ?>
+                        </tbody>
+                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section5" aria-expanded="true" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th colspan="14">Fase 5 - Seguimiento del embarazo - Tercer Trimestre > Parto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="section5" class="collapse show">
+                            <?php
+                            tableStage2(
+                                $Stage_5->stage_count_1,
+                                $Stage_5->add_1,
+                                $Stage_5->description_1,
+                                $Stage_5->info_general_1,
+                                $Stage_5->state_1,
+                                $Stage_5->underway_1,
+                                $Stage_5->info_1_1,
+                                $Stage_5->uploading_1_1,
+                                $Stage_5->enable_1_1,
+                                $Stage_5->uploading_2_1,
+                                $Stage_5->enable_2_1,
+                                $Stage_5->uploading_3_1,
+                                $Stage_5->enable_3_1,
+                                $Stage_5->enableView_1
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_2,
+                                $Stage_5->add_2,
+                                $Stage_5->description_2,
+                                $Stage_5->info_general_2,
+                                $Stage_5->state_2,
+                                $Stage_5->underway_2,
+                                $Stage_5->info_1_2,
+                                $Stage_5->uploading_1_2,
+                                $Stage_5->enable_1_2,
+                                $Stage_5->uploading_2_2,
+                                $Stage_5->enable_2_2,
+                                $Stage_5->uploading_3_2,
+                                $Stage_5->enable_3_2,
+                                $Stage_5->enableView_2
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_3,
+                                $Stage_5->add_3,
+                                $Stage_5->description_3,
+                                $Stage_5->info_general_3,
+                                $Stage_5->state_3,
+                                $Stage_5->underway_3,
+                                $Stage_5->info_1_3,
+                                $Stage_5->uploading_1_3,
+                                $Stage_5->enable_1_3,
+                                $Stage_5->uploading_2_3,
+                                $Stage_5->enable_2_3,
+                                $Stage_5->uploading_3_3,
+                                $Stage_5->enable_3_3,
+                                $Stage_5->enableView_3
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_4,
+                                $Stage_5->add_4,
+                                $Stage_5->description_4,
+                                $Stage_5->info_general_4,
+                                $Stage_5->state_4,
+                                $Stage_5->underway_4,
+                                $Stage_5->info_1_4,
+                                $Stage_5->uploading_1_4,
+                                $Stage_5->enable_1_4,
+                                $Stage_5->uploading_2_4,
+                                $Stage_5->enable_2_4,
+                                $Stage_5->uploading_3_4,
+                                $Stage_5->enable_3_4,
+                                $Stage_5->enableView_4
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_5,
+                                $Stage_5->add_5,
+                                $Stage_5->description_5,
+                                $Stage_5->info_general_5,
+                                $Stage_5->state_5,
+                                $Stage_5->underway_5,
+                                $Stage_5->info_1_5,
+                                $Stage_5->uploading_1_5,
+                                $Stage_5->enable_1_5,
+                                $Stage_5->uploading_2_5,
+                                $Stage_5->enable_2_5,
+                                $Stage_5->uploading_3_5,
+                                $Stage_5->enable_3_5,
+                                $Stage_5->enableView_5
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_6,
+                                $Stage_5->add_6,
+                                $Stage_5->description_6,
+                                $Stage_5->info_general_6,
+                                $Stage_5->state_6,
+                                $Stage_5->underway_6,
+                                $Stage_5->info_1_6,
+                                $Stage_5->uploading_1_6,
+                                $Stage_5->enable_1_6,
+                                $Stage_5->uploading_2_6,
+                                $Stage_5->enable_2_6,
+                                $Stage_5->uploading_3_6,
+                                $Stage_5->enable_3_6,
+                                $Stage_5->enableView_6
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_7,
+                                $Stage_5->add_7,
+                                $Stage_5->description_7,
+                                $Stage_5->info_general_7,
+                                $Stage_5->state_7,
+                                $Stage_5->underway_7,
+                                $Stage_5->info_1_7,
+                                $Stage_5->uploading_1_7,
+                                $Stage_5->enable_1_7,
+                                $Stage_5->uploading_2_7,
+                                $Stage_5->enable_2_7,
+                                $Stage_5->uploading_3_7,
+                                $Stage_5->enable_3_7,
+                                $Stage_5->enableView_7
+                            );
+                            tableStage2(
+                                $Stage_5->stage_count_8,
+                                $Stage_5->add_8,
+                                $Stage_5->description_8,
+                                $Stage_5->info_general_8,
+                                $Stage_5->state_8,
+                                $Stage_5->underway_8,
+                                $Stage_5->info_1_8,
+                                $Stage_5->uploading_1_8,
+                                $Stage_5->enable_1_8,
+                                $Stage_5->uploading_2_8,
+                                $Stage_5->enable_2_8,
+                                $Stage_5->uploading_3_8,
+                                $Stage_5->enable_3_8,
+                                $Stage_5->enableView_8
+                            );
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-        <!-- Favicon -->
         <script src="https://kit.fontawesome.com/b8332e4c7c.js" crossorigin="anonymous"></script>
-        <!-- Animation -->
         <script>
             function toggle(id, state, stage, row = 0, row_num = 0, row_max = 0) {
 
@@ -715,7 +1133,6 @@ function tableStage2(
                 }, 150);
                 let newValue = '-';
 
-                // // Remove animation class after it's done
                 setTimeout(() => {
                     icon.classList.remove('icon-animate');
                 }, 300);
@@ -731,7 +1148,7 @@ function tableStage2(
                     }
                 }
                 fetchContent(id, newValue, stage, row, row_max);
-                // location.reload();
+                location.reload();
             };
 
             function saveContent(tdElement, stage, id) {
@@ -762,18 +1179,11 @@ function tableStage2(
                             row_max: row_max
                         })
                     })
-                    .then(res => res.text()) // expect plain text for echo
+                    .then(res => res.text())
                     .then(data => {
                         console.log('Server responded with:', data);
                     })
                     .catch(error => console.error('Error:', error));
             }
         </script>
-
-        <!-- Custom JS -->
-        <script src="build/js/bundle2.min.js"></script>
 </main>
-
-<?php
-include 'includes/templates/footer.php';
-?>
